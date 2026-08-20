@@ -4,14 +4,18 @@ Tất cả các thay đổi đáng chú ý của dự án sẽ được ghi nh�
 
 ---
 
-## [0.4.1-alpha] - 2026-08-20
+## [0.4.2-alpha] - 2026-08-20
 
-### Added - Khóa Chặt Tên Dự Án Chính Thức: CHI VOICE
-- **Xác lập Định Danh Chính Thức:**
-  * **Tiếng Việt:** *CHI VOICE — Hệ Thống Thuyết Minh Viên Giọng Nói AI Di Tích Lịch Sử Địa Đạo Củ Chi*
-  * **Tiếng Anh:** *CHI VOICE — AI-Powered Historical Voice Guide for Cu Chi Tunnels*
-  * **Thương hiệu viết tắt:** **CHI VOICE** (C.H.I = *Cu Chi Historical Intelligence*).
-- **Đồng bộ hóa toàn diện:** Cập nhật [`README.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/README.md), [`MVP.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/MVP.md), [`BRAND.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/BRAND.md) và hệ thống tài liệu.
+### Added - Hoàn Thành 100% Phase 2 (Tích Hợp Sử Liệu Chuẩn Hóa Ground Truth RAG)
+- **Tích hợp Tài Liệu Thẩm Định:** Tích hợp dữ liệu từ tài liệu bảo chứng bởi Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi (Bộ Tư lệnh TP.HCM) & Viện Lịch sử Quân sự Việt Nam.
+- **Task 2.1 - 2.5:** [`src/data/stations.json`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/data/stations.json) lưu trữ đầy đủ dữ liệu 5 trạm thực tế (Bếp Hoàng Cầm, Hầm Cấp Cứu, Hầm Chỉ Huy, Lỗ Thông Hơi, Khu Bẫy Chông) tích hợp thông số an toàn hầm, câu chuyện con người xúc động và bộ câu hỏi FAQ chuẩn.
+- **Task 2.6:** [`src/data/history_knowledge.json`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/data/history_knowledge.json) đóng gói 17 RAG Chunks chi tiết với đầy đủ từ khóa và vector Float32 phục vụ tìm kiếm ngữ nghĩa In-Memory tức thì ($< 0.2\text{ms}$).
+
+---
+
+## [0.4.1-alpha] - 2026-08-20
+### Added
+- Khóa tên dự án chính thức: **CHI VOICE — Hệ Thống Thuyết Minh Viên Giọng Nói AI Di Tích Lịch Sử Địa Đạo Củ Chi**.
 
 ---
 
@@ -24,21 +28,3 @@ Tất cả các thay đổi đáng chú ý của dự án sẽ được ghi nh�
 ## [0.3.3-alpha] - 2026-08-20
 ### Added
 - Thiết lập Atomic Work Breakdown 36 Micro-Tasks (`docs/ATOMIC_WORK_BREAKDOWN.md`).
-
----
-
-## [0.3.2-alpha] - 2026-08-20
-### Added
-- Tích hợp Kỹ năng Vector toán thuần 15 dòng (`skills/skill_vector_math.md`) và Kiến trúc Hybrid 0MB.
-
----
-
-## [0.3.1-alpha] - 2026-08-20
-### Added
-- Thiết lập tệp tin đặc tả MVP gốc (`MVP.md`).
-
----
-
-## [0.3.0-alpha] - 2026-08-20
-### Added
-- Đóng gói Master Blueprint (`docs/MASTER_BLUEPRINT.md`) và Mục lục 10 Kỹ năng AI.

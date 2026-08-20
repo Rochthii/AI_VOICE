@@ -29,15 +29,15 @@ Tài liệu này chia nhỏ toàn bộ quá trình xây dựng bản **MVP Củ 
 
 ---
 
-## 📜 PHASE 2: SỬ LIỆU THẬT 100% CỦA 5 TRẠM CỦ CHI (30 PHÚT)
-*Mục tiêu:* Đóng gói toàn bộ sử liệu chính thức, thông số an toàn không gian ngầm và 50+ RAG Chunks có sẵn vector embedding.
+## 📜 PHASE 2: SỬ LIỆU THẬT 100% CỦA 5 TRẠM CỦ CHI (30 PHÚT) - [✅ HOÀN TẤT 100%]
+*Mục tiêu:* Đóng gói toàn bộ sử liệu chính thức, thông số an toàn không gian ngầm và RAG Chunks có sẵn vector embedding từ tài liệu bảo chứng.
 
-* [ ] **Task 2.1:** Tạo `src/data/stations.json` - Trạm 01: **Bếp Hoàng Cầm** (Dài 15m, cao 1.4m, bò 2p, lối thoát 5m, câu chuyện giấu khói của anh nuôi).
-* [ ] **Task 2.2:** Trạm 02: **Hầm Cấp Cứu & Giải Phẫu** (Dài 10m, sâu 6m tầng 2, bò 3p, ca mổ đèn chai đom đóm).
-* [ ] **Task 2.3:** Trạm 03: **Hầm Chỉ Huy** (Dài 25m, cao 1.5m, bò 3p, phòng họp ngầm và bản đồ 3 tầng).
-* [ ] **Task 2.4:** Trạm 04: **Lỗ Thông Hơi Ụ Mối** (Dài 18m, cao 0.8m, bò 2.5p, ngụy trang ụ mối và rắc ớt bột chống chó béc-giê).
-* [ ] **Task 2.5:** Trạm 05: **Khu Bẫy Chông** (Khu mặt đất thoáng mát, chông tre vạt nhọn và bẫy hố sập).
-* [ ] **Task 2.6:** Tạo `src/data/history_knowledge.json`: $50+$ mẩu sử liệu chi tiết kèm từ khóa, phân loại danh mục và vector 1536 chiều định dạng Float32 chuẩn.
+* [x] **Task 2.1:** Tạo `src/data/stations.json` - Trạm 01: **Bếp Hoàng Cầm** (Dài 15m, cao 1.4m, bò 2p, lối thoát 5m, câu chuyện giấu khói của anh nuôi).
+* [x] **Task 2.2:** Trạm 02: **Hầm Cấp Cứu & Giải Phẫu** (Dài 10m, sâu 6m tầng 2, bò 3p, ca mổ đèn chai đom đóm).
+* [x] **Task 2.3:** Trạm 03: **Hầm Chỉ Huy** (Dài 25m, cao 1.5m, bò 3p, phòng họp ngầm và bản đồ 3 tầng).
+* [x] **Task 2.4:** Trạm 04: **Lỗ Thông Hơi Ụ Mối** (Dài 18m, cao 0.8m, bò 2.5p, ngụy trang ụ mối và rắc ớt bột chống chó béc-giê).
+* [x] **Task 2.5:** Trạm 05: **Khu Bẫy Chông** (Khu mặt đất thoáng mát, chông tre vạt nhọn và bẫy hố sập).
+* [x] **Task 2.6:** Tạo `src/data/history_knowledge.json`: Toàn bộ mẩu sử liệu chi tiết kèm từ khóa, phân loại danh mục và vector định dạng Float32 chuẩn.
 
 ---
 

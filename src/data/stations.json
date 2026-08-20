@@ -1,0 +1,381 @@
+[
+  {
+    "id": "01_hoang_cam_kitchen",
+    "order_index": 1,
+    "qr_code_key": "QR_KITCHEN_01",
+    "title": {
+      "vi": "Bếp Hoàng Cầm — Nghệ Thuật Giấu Khói Dã Chiến",
+      "en": "Hoang Cam Stove — The Art of Smokeless Cooking"
+    },
+    "short_summary": {
+      "vi": "Hệ thống bếp nấu dã chiến độc đáo đặt tại tầng 2 địa đạo với 4 khối liên hoàn triệt tiêu hoàn toàn cột khói.",
+      "en": "A unique underground stove system situated at Level 2 that cools smoke into low-lying mist undetectable by aircraft."
+    },
+    "safety": {
+      "tunnel_length_meters": 15,
+      "avg_crawl_time_minutes": 2,
+      "ceiling_height_meters": 1.4,
+      "emergency_exit_note": {
+        "vi": "Lối thoát hiểm và cửa thông gió tự nhiên ở ngay trước mặt cách 5 mét.",
+        "en": "Emergency exit and natural vent opening directly ahead in 5 meters."
+      },
+      "reassurance_message": {
+        "vi": "Khu vực bếp tương đối thoáng mát, trần hầm cao 1.4 mét. Bạn hãy thở đều và di chuyển thong thả.",
+        "en": "The kitchen area is relatively airy with 1.4m ceiling height. Breathe steadily and move comfortably."
+      },
+      "difficulty_level": "easy"
+    },
+    "human_story_hook": {
+      "vi": "Hãy nhìn những rãnh đất zíc-zắc trên vách hầm, nơi người nuôi quân Hoàng Cầm đã kiên trì đào từng mét rãnh để đồng đội có được bữa cơm nóng sốt giữa làn bom đạn mà không lộ dấu vết.",
+      "en": "Look at these zigzag earthen trenches where cook Hoang Cam dug meter by meter so his comrades could enjoy hot meals amid heavy bombardment without revealing smoke."
+    },
+    "audio_assets": {
+      "vi": {
+        "url": "/audio/stations/01_kitchen_vi.mp3",
+        "duration_seconds": 160,
+        "file_size_bytes": 2560000
+      },
+      "en": {
+        "url": "/audio/stations/01_kitchen_en.mp3",
+        "duration_seconds": 150,
+        "file_size_bytes": 2400000
+      }
+    },
+    "key_facts": [
+      {
+        "vi": "Do đồng chí Hoàng Cầm sáng chế trong Chiến dịch Hòa Bình mùa Đông - Xuân 1951-1952.",
+        "en": "Invented by soldier Hoang Cam during the Hoa Binh Campaign in Winter-Spring 1951-1952."
+      },
+      {
+        "vi": "Hạ nhiệt độ khói từ trên 250°C xuống 30-35°C qua hệ thống rãnh zíc-zắc dài 10-20m.",
+        "en": "Cools smoke from over 250°C down to 30-35°C through 10-20m zigzag underground trenches."
+      },
+      {
+        "vi": "Khói thoát ra biến thành làn sương mỏng là là mặt đất, hòa lẫn vào sương rừng tự nhiên.",
+        "en": "Released smoke turns into thin low-lying mist blending seamlessly into natural forest fog."
+      }
+    ],
+    "faqs": [
+      {
+        "id": "faq_kitchen_01",
+        "question": {
+          "vi": "Tại sao bếp Hoàng Cầm không bị máy bay phát hiện khói?",
+          "en": "Why could enemy aircraft not detect smoke from Hoang Cam stove?"
+        },
+        "answer": {
+          "vi": "Khói nóng trên 250 độ C đi qua hệ thống rãnh zíc-zắc dài 10-20m phủ đất ẩm và rơm rạ mục sẽ truyền nhiệt vào đất, hạ xuống 30-35 độ C. Khi thoát ra miệng ngụy trang, khói đã nguội biến thành làn sương mỏng bay sát mặt đất hòa vào sương rừng.",
+          "en": "Hot smoke over 250°C travels through 10-20m zigzag trenches covered with damp soil and straw, cooling down to 30-35°C. It emerges as a thin ground-level mist indistinguishable from morning forest fog."
+        },
+        "keywords": ["giấu khói", "rãnh", "máy bay", "nhiệt độ", "hạ nhiệt"]
+      },
+      {
+        "id": "faq_kitchen_02",
+        "question": {
+          "vi": "Bếp Hoàng Cầm thường nấu vào những khung giờ nào?",
+          "en": "What hours were typically used for cooking on Hoang Cam stoves?"
+        },
+        "answer": {
+          "vi": "Chiến sĩ chỉ đun nấu vào chập tối hoặc tờ mờ sáng từ 4h00 đến 5h30 sáng để tận dụng màn sương mù tự nhiên của rừng Đông Nam Bộ và dùng củi khô không sinh khói đen.",
+          "en": "Cooking occurred only at dusk or early dawn (4:00 AM - 5:30 AM) to utilize the natural forest mist and dry smokeless wood."
+        },
+        "keywords": ["giờ nấu", "thời gian", "sáng sớm", "củi"]
+      }
+    ]
+  },
+  {
+    "id": "02_field_hospital",
+    "order_index": 2,
+    "qr_code_key": "QR_HOSPITAL_02",
+    "title": {
+      "vi": "Bệnh Xá & Hầm Phẫu Thuật Dã Chiến",
+      "en": "Field Hospital & Underground Surgery"
+    },
+    "short_summary": {
+      "vi": "Bệnh xá kiên cố tại tầng 2 sâu 5-7m, nơi diễn ra các ca phẫu thuật phức tạp dưới ánh đèn chai đom đóm.",
+      "en": "Fortified field hospital at Level 2 (5-7m depth) where complex surgeries were performed under fire."
+    },
+    "safety": {
+      "tunnel_length_meters": 10,
+      "avg_crawl_time_minutes": 3,
+      "ceiling_height_meters": 1.4,
+      "emergency_exit_note": {
+        "vi": "Lối thoát hiểm dẫn thẳng lên giếng nước ngầm bên tay trái sau 6 mét.",
+        "en": "Emergency exit leading to underground water well on the left after 6 meters."
+      },
+      "reassurance_message": {
+        "vi": "Hầm bệnh xá nằm sâu 6 mét, nhiệt độ mát mẻ 24-26 độ C quanh năm và cách ly tiếng ồn bom đạn.",
+        "en": "The hospital bunker sits 6m deep, maintaining a cool 24-26°C year-round and insulated from surface bomb noise."
+      },
+      "difficulty_level": "medium"
+    },
+    "human_story_hook": {
+      "vi": "Dưới ánh sáng đèn măng-sông bọc chụp sắt và chai đom đóm, các bác sĩ quân y đã quỳ gối 2 đến 4 tiếng đồng hồ trên nền đất ẩm để thực hiện những ca mổ cứu sống đồng đội.",
+      "en": "Under shielded pressure lamps and firefly bottles, military surgeons kneeled for 2 to 4 hours on damp clay floors performing life-saving operations."
+    },
+    "audio_assets": {
+      "vi": {
+        "url": "/audio/stations/02_hospital_vi.mp3",
+        "duration_seconds": 180,
+        "file_size_bytes": 2880000
+      },
+      "en": {
+        "url": "/audio/stations/02_hospital_en.mp3",
+        "duration_seconds": 170,
+        "file_size_bytes": 2720000
+      }
+    },
+    "key_facts": [
+      {
+        "vi": "Nằm ở tầng 2 độ sâu 5m - 7m, duy trì nhiệt độ mát mẻ 24°C - 26°C.",
+        "en": "Located at Level 2 (5m - 7m depth), maintaining a cool 24°C - 26°C temperature."
+      },
+      {
+        "vi": "Sáng kiến truyền dịch tĩnh mạch cấp cứu bằng nước dừa tươi nguyên buồng vô trùng.",
+        "en": "Pioneered intravenous emergency hydration using sterile fresh coconut water."
+      },
+      {
+        "vi": "Bác sĩ phẫu thuật trong tư thế ngồi bệt hoặc quỳ gối liên tục 2 đến 4 tiếng.",
+        "en": "Surgeons operated while sitting flat or kneeling continuously for 2 to 4 hours."
+      }
+    ],
+    "faqs": [
+      {
+        "id": "faq_hospital_01",
+        "question": {
+          "vi": "Quân y Củ Chi truyền dịch cho thương binh bằng gì khi hết thuốc?",
+          "en": "What did Cu Chi medics use for IV fluids when supplies ran out?"
+        },
+        "answer": {
+          "vi": "Khi cạn kiệt dung dịch sinh lý do bị bao vây cấm vận, quân y Củ Chi sử dụng nước dừa tươi nguyên buồng đã tiệt trùng vỏ ngoài để truyền tĩnh mạch trực tiếp bù nước và điện giải cho thương binh nặng.",
+          "en": "Under severe blockade without saline, medics sterilized whole fresh coconuts and used the natural water as direct intravenous electrolyte fluid for severely wounded soldiers."
+        },
+        "keywords": ["nước dừa", "truyền dịch", "thuốc", "dung dịch sinh lý"]
+      },
+      {
+        "id": "faq_hospital_02",
+        "question": {
+          "vi": "Tại sao trong hầm mổ không dùng đèn dầu?",
+          "en": "Why were open oil lamps forbidden in surgery tunnels?"
+        },
+        "answer": {
+          "vi": "Đèn dầu hở bị cấm tuyệt đối vì tiêu hao nhiều oxy trong hầm kín. Thay vào đó, quân y dùng bình ắc-quy nối bóng đèn 6V hoặc đèn măng-sông có chụp sắt hướng tia sáng cục bộ vào bàn mổ.",
+          "en": "Open oil lamps were strictly banned to preserve oxygen in enclosed tunnels. Instead, medics used 6V battery lamps or shielded pressure lanterns focused directly on surgical tables."
+        },
+        "keywords": ["đèn dầu", "ánh sáng", "oxy", "măng-sông"]
+      }
+    ]
+  },
+  {
+    "id": "03_command_bunker",
+    "order_index": 3,
+    "qr_code_key": "QR_COMMAND_03",
+    "title": {
+      "vi": "Hầm Chỉ Huy Đầu Não",
+      "en": "Supreme Headquarters Bunker"
+    },
+    "short_summary": {
+      "vi": "Sở chỉ huy đầu não tại tầng 3 sâu 8-12m, nơi diễn ra các cuộc họp chiến lược định đoạt cục diện chiến trường.",
+      "en": "The strategic command center at Level 3 (8-12m depth) where critical military decisions were formulated."
+    },
+    "safety": {
+      "tunnel_length_meters": 25,
+      "avg_crawl_time_minutes": 3,
+      "ceiling_height_meters": 1.5,
+      "emergency_exit_note": {
+        "vi": "Có ngách thoát hiểm cơ mật trổ thẳng ra mép sông Sài Gòn.",
+        "en": "Secret emergency escape corridor leading directly to Saigon River."
+      },
+      "reassurance_message": {
+        "vi": "Hầm chỉ huy kiên cố nhất với vách gỗ căm xe và có diện tích rộng rãi nhất trong hệ thống.",
+        "en": "The command bunker is the most fortified with ironwood pillars and the most spacious in the system."
+      },
+      "difficulty_level": "easy"
+    },
+    "human_story_hook": {
+      "vi": "Tại căn phòng đất nằm sâu 10 mét dưới lòng đất này, tiếng gõ điện đài cơ yếu và các bản đồ tác chiến đã chỉ đạo cuộc Tổng tiến công Tết Mậu Thân 1968 và Chiến dịch Hồ Chí Minh 1975.",
+      "en": "Ten meters underground in this earthen room, telegraph transmitters and battle maps directed the 1968 Tet Offensive and the historic 1975 Ho Chi Minh Campaign."
+    },
+    "audio_assets": {
+      "vi": {
+        "url": "/audio/stations/03_command_vi.mp3",
+        "duration_seconds": 190,
+        "file_size_bytes": 3040000
+      },
+      "en": {
+        "url": "/audio/stations/03_command_en.mp3",
+        "duration_seconds": 180,
+        "file_size_bytes": 2880000
+      }
+    },
+    "key_facts": [
+      {
+        "vi": "Nằm ở tầng 3 độ sâu 8m - 12m, chịu được đạn pháo 155mm và bom phá.",
+        "en": "Situated at Level 3 (8m - 12m depth), withstanding 155mm artillery and demolition bombs."
+      },
+      {
+        "vi": "Kết cấu cửa bẻ góc vuông hình chữ Z/L triệt tiêu sóng xung kích và khí độc hơi cay CS.",
+        "en": "Z/L-shaped angled entryways that deflect blast shockwaves and block CS tear gas."
+      },
+      {
+        "vi": "Mạng lưới dây điện thoại hữu tuyến dã chiến bọc cao su chôn ngầm trong đất.",
+        "en": "Underground rubber-insulated field telephone network connecting military sectors."
+      }
+    ],
+    "faqs": [
+      {
+        "id": "faq_command_01",
+        "question": {
+          "vi": "Lối vào hầm chỉ huy được thiết kế hình chữ Z và L để làm gì?",
+          "en": "Why were command bunker entrances shaped in Z and L angles?"
+        },
+        "answer": {
+          "vi": "Lối vào bẻ góc vuông chữ Z hoặc L nhằm triệt tiêu hoàn toàn sóng xung kích từ bom đạn nổ gần trước khi truyền vào phòng họp chính, đồng thời ngăn chặn khí độc hơi cay CS tràn sâu vào bên trong.",
+          "en": "Right-angled Z/L corridors deflect shockwaves from nearby bomb explosions before reaching the main room and prevent CS tear gas from penetrating inside."
+        },
+        "keywords": ["chữ Z", "chữ L", "sóng xung kích", "hơi cay", "khí độc"]
+      }
+    ]
+  },
+  {
+    "id": "04_ventilation_termite",
+    "order_index": 4,
+    "qr_code_key": "QR_TERMITE_04",
+    "title": {
+      "vi": "Lỗ Thông Hơi Ụ Mối & Đối Phó Chó Nghiệp Vụ",
+      "en": "Termite Mound Ventilation & K-9 Defense"
+    },
+    "short_summary": {
+      "vi": "Nghệ thuật ngụy trang lỗ thở ngầm thành tổ mối tự nhiên và chiến thuật vô hiệu hóa khứu giác chó săn Mỹ.",
+      "en": "Ingenious camouflage of underground air vents as termite mounds and tactical defeat of tracking dogs."
+    },
+    "safety": {
+      "tunnel_length_meters": 18,
+      "avg_crawl_time_minutes": 2.5,
+      "ceiling_height_meters": 0.8,
+      "emergency_exit_note": {
+        "vi": "Cửa thoát hiểm trung gian bên tay phải sau 8 mét.",
+        "en": "Intermediate emergency exit on the right after 8 meters."
+      },
+      "reassurance_message": {
+        "vi": "Đoạn hầm này thấp 0.8 mét cần bò sát đất, nhưng luồng gió tươi từ lỗ thở liên tục cung cấp dưỡng khí.",
+        "en": "This section is 0.8m low requiring crawling, but fresh air through the vent constantly supplies oxygen."
+      },
+      "difficulty_level": "hard"
+    },
+    "human_story_hook": {
+      "vi": "Một ụ mối vô tri trên mặt đất là lá phổi cứu sống hàng trăm con người bên dưới; một chút bột ớt và xà phòng chiến lợi phẩm đã đánh lừa cả những đàn chó săn béc-giê thiện chiến nhất.",
+      "en": "An ordinary forest termite mound served as a life-saving lung for hundreds below; chili powder and captured soap outsmarted the most elite military tracking dogs."
+    },
+    "audio_assets": {
+      "vi": {
+        "url": "/audio/stations/04_termite_vi.mp3",
+        "duration_seconds": 175,
+        "file_size_bytes": 2800000
+      },
+      "en": {
+        "url": "/audio/stations/04_termite_en.mp3",
+        "duration_seconds": 165,
+        "file_size_bytes": 2640000
+      }
+    },
+    "key_facts": [
+      {
+        "vi": "Ống tre luồn xiên nối từ trần hầm vào mạng vi ống rỗng tự nhiên của ụ mối cứng như đá.",
+        "en": "Bamboo tubes routed diagonally from tunnel ceiling into the hollow micro-passages of stone-hard termite mounds."
+      },
+      {
+        "vi": "Đối lưu thụ động: Khí nóng CO2 bốc lên, không khí mát giàu Oxy từ rừng tràn xuống 24/24.",
+        "en": "Passive convection: Warm CO2 rises out while cool oxygen-rich forest air draws down 24/7."
+      },
+      {
+        "vi": "Dùng ớt bột xay mịn và xà phòng Mỹ để vô hiệu hóa khứu giác chó săn béc-giê.",
+        "en": "Used finely ground chili powder and captured American soap to neutralize scout dogs' smell."
+      }
+    ],
+    "faqs": [
+      {
+        "id": "faq_termite_01",
+        "question": {
+          "vi": "Du kích Củ Chi làm thế nào để chó nghiệp vụ Mỹ không phát hiện lỗ thông hơi?",
+          "en": "How did Cu Chi guerillas stop military tracker dogs from finding air vents?"
+        },
+        "answer": {
+          "vi": "Chiến sĩ rắc ớt bột xay mịn và tiêu sọ quanh lỗ thông hơi để làm tê liệt khứu giác chó săn khi hít phải, đồng thời đặt xà phòng và quần áo thu được của lính Mỹ để chó nhận diện nhầm mùi đồng đội.",
+          "en": "Guerillas scattered ground chili and black pepper around vents to paralyze the dogs' sense of smell, and placed captured American soap and uniforms so dogs identified familiar friendly scents."
+        },
+        "keywords": ["chó béc giê", "chó săn", "ớt bột", "xà phòng", "tiêu sọ"]
+      }
+    ]
+  },
+  {
+    "id": "05_booby_traps",
+    "order_index": 5,
+    "qr_code_key": "QR_TRAPS_05",
+    "title": {
+      "vi": "Trận Đồ Bẫy Chông & Vũ Khí Du Kích",
+      "en": "Booby Trap Array & Guerilla Weaponry"
+    },
+    "short_summary": {
+      "vi": "Nghệ thuật lấy thô sơ chế ngự hiện đại với 6 dạng bẫy chông kinh điển từ tre rừng tôi than hồng.",
+      "en": "The art of defeating modern armies with 6 classic handmade traps crafted from heat-treated forest bamboo."
+    },
+    "safety": {
+      "tunnel_length_meters": 0,
+      "avg_crawl_time_minutes": 0,
+      "ceiling_height_meters": 3.0,
+      "emergency_exit_note": {
+        "vi": "Khu vực trưng bày trên mặt đất rộng rãi, thoáng mát, đi lại tự do.",
+        "en": "Spacious open-air ground exhibition area, free walking."
+      },
+      "reassurance_message": {
+        "vi": "Chúc mừng bạn đã hoàn thành hành trình ngầm và trở lại mặt đất an toàn!",
+        "en": "Congratulations on completing your underground journey and returning safely to the surface!"
+      },
+      "difficulty_level": "easy"
+    },
+    "human_story_hook": {
+      "vi": "Những thân tre rừng Củ Chi được vót nhọn, tôi trên than củi hồng để đầu chông hóa sừng cứng như thép, biến vũ khí thô sơ thành nỗi khiếp sợ tinh thần của những đội quân tối tân nhất.",
+      "en": "Cu Chi forest bamboo stakes, whittled sharp and heat-tempered over glowing charcoal until rock-hard as steel, transformed simple nature into psychological dread for modern infantry."
+    },
+    "audio_assets": {
+      "vi": {
+        "url": "/audio/stations/05_traps_vi.mp3",
+        "duration_seconds": 185,
+        "file_size_bytes": 2960000
+      },
+      "en": {
+        "url": "/audio/stations/05_traps_en.mp3",
+        "duration_seconds": 175,
+        "file_size_bytes": 2800000
+      }
+    },
+    "key_facts": [
+      {
+        "vi": "6 loại bẫy kinh điển: Hố chông sập, bẫy chông lật trục xoay, bẫy cánh bướm, bẫy lựu đạn giật chốt, bẫy cần bật và bẫy nẹp cật tre.",
+        "en": "6 classic traps: Pit trap, rolling axle trap, butterfly leg trap, tripwire grenade, spring catapult, and bamboo squeeze trap."
+      },
+      {
+        "vi": "Kỹ thuật tôi than củi hồng giúp đầu chông tre đanh cứng như thép và không bị ẩm mục dưới đất.",
+        "en": "Charcoal heat-tempering hardened bamboo tips like steel and prevented rot in moist underground soil."
+      },
+      {
+        "vi": "Mục tiêu chiến thuật: Tiêu hao sinh lực, buộc đối phương mất 2-3 lính cáng 1 thương binh và phá vỡ ý chí tiến công.",
+        "en": "Tactical objective: Wound soldiers so enemy required 2-3 troops to evacuate one casualty, shattering morale."
+      }
+    ],
+    "faqs": [
+      {
+        "id": "faq_traps_01",
+        "question": {
+          "vi": "Tại sao chông tre Củ Chi lại cứng như thép và không bị mục dưới đất?",
+          "en": "Why were Cu Chi bamboo stakes hard as steel and rot-resistant underground?"
+        },
+        "answer": {
+          "vi": "Du kích chọn tre đực già từ 3 năm tuổi có ruột đặc, vót nhọn có ngạnh rồi hơ trên than củi hồng để bay kiệt tinh dầu và nước sống. Quá trình tôi nhiệt này giúp đầu chông hóa sừng đanh cứng như thép và không bị ẩm mục khi cắm dưới đất nhiều tháng.",
+          "en": "Guerillas selected solid 3-year-old male bamboo, shaped barbed tips, and heat-tempered them over glowing charcoal to evaporate all moisture and sap. This transformed the tips into steel-hard points resistant to rot for months."
+        },
+        "keywords": ["chông tre", "tôi than", "cứng như thép", "ẩm mục", "tre già"]
+      }
+    ]
+  }
+]
