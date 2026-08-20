@@ -21,20 +21,105 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
   onAnswerReceived
 }) => {
   const dict = getDictionary(locale);
-  const [isHolding, setIsHolding] = useState(false);
+  const [isListening, setIsListening] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [speechTranscript, setSpeechTranscript] = useState("");
   const [isTextModalOpen, setIsTextModalOpen] = useState(false);
   const [typedQuery, setTypedQuery] = useState("");
+
+  const isListeningRef = useRef(false);
+  const latestTranscriptRef = useRef("");
+  const silenceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const initialSilenceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animFrameIdRef = useRef<number | null>(null);
   const recognitionRef = useRef<unknown>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
-  const holdStartTimeRef = useRef<number>(0);
 
-  // Khởi tạo Web Speech API cho phản hồi nhanh
+  // Đồng bộ ref
+  useEffect(() => {
+    isListeningRef.current = isListening;
+  }, [isListening]);
+
+  // Kết thúc và gửi câu hỏi lên AI
+  const finishAndSubmitRecording = useCallback(
+    async (finalText?: string) => {
+      if (silenceTimerRef.current) {
+        clearTimeout(silenceTimerRef.current);
+        silenceTimerRef.current = null;
+      }
+      if (initialSilenceTimerRef.current) {
+        clearTimeout(initialSilenceTimerRef.current);
+        initialSilenceTimerRef.current = null;
+      }
+
+      setIsListening(false);
+      isListeningRef.current = false;
+
+      if (recognitionRef.current) {
+        try {
+          (recognitionRef.current as { stop: () => void }).stop();
+        } catch {}
+      }
+
+      let recognizedQuery = (finalText || latestTranscriptRef.current || speechTranscript).trim();
+
+      if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
+        const recorder = mediaRecorderRef.current;
+        recorder.stop();
+        recorder.stream.getTracks().forEach((t) => t.stop());
+
+        await new Promise((r) => setTimeout(r, 100));
+
+        if (audioChunksRef.current.length > 0 && !recognizedQuery) {
+          try {
+            const audioBlob = new Blob(audioChunksRef.current, { type: "audio/webm" });
+            const formData = new FormData();
+            formData.append("file", audioBlob);
+            formData.append("lang", locale);
+
+            const sttRes = await fetch("/api/stt", {
+              method: "POST",
+              body: formData
+            });
+
+            if (sttRes.ok) {
+              const sttData = await sttRes.json();
+              if (sttData.text && sttData.text.trim()) {
+                recognizedQuery = sttData.text.trim();
+              }
+            }
+          } catch (sttErr) {
+            console.warn("[Whisper STT Fallback]:", sttErr);
+          }
+        }
+      }
+
+      if (!recognizedQuery) {
+        setSpeechTranscript("");
+        return;
+      }
+
+      setIsProcessing(true);
+      audioEngine.pause();
+
+      try {
+        const answer = await onAskQuestion(recognizedQuery);
+        onAnswerReceived(answer);
+      } catch (err) {
+        console.error("[SonicOrb Ask Error]:", err);
+      } finally {
+        setIsProcessing(false);
+        setSpeechTranscript("");
+        latestTranscriptRef.current = "";
+      }
+    },
+    [speechTranscript, locale, onAskQuestion, onAnswerReceived]
+  );
+
+  // Khởi tạo Web Speech API với bộ nhận diện im lặng 3s
   useEffect(() => {
     if (typeof window !== "undefined") {
       const SpeechRecognition =
@@ -43,7 +128,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
       if (SpeechRecognition) {
         const recognition = new (SpeechRecognition as new () => any)();
-        recognition.continuous = false;
+        recognition.continuous = true;
         recognition.interimResults = true;
         recognition.lang = LOCALE_MAP[locale]?.speechLang || "vi-VN";
 
@@ -52,8 +137,25 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
           for (let i = event.resultIndex; i < event.results.length; ++i) {
             interim += event.results[i][0].transcript;
           }
-          if (interim) {
-            setSpeechTranscript(interim);
+          if (interim && interim.trim()) {
+            const currentText = interim.trim();
+            setSpeechTranscript(currentText);
+            latestTranscriptRef.current = currentText;
+
+            // Xóa bộ đếm im lặng cũ khi người dùng còn đang nói
+            if (silenceTimerRef.current) {
+              clearTimeout(silenceTimerRef.current);
+            }
+            if (initialSilenceTimerRef.current) {
+              clearTimeout(initialSilenceTimerRef.current);
+            }
+
+            // Tự động gửi sau 3.0s im lặng nếu người dùng dừng nói
+            silenceTimerRef.current = setTimeout(() => {
+              if (isListeningRef.current && latestTranscriptRef.current.trim().length > 0) {
+                finishAndSubmitRecording(latestTranscriptRef.current.trim());
+              }
+            }, 3000);
           }
         };
 
@@ -64,7 +166,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         recognitionRef.current = recognition;
       }
     }
-  }, [locale]);
+  }, [locale, finishAndSubmitRecording]);
 
   // Sóng âm thanh ấm áp, êm dịu (Warm Organic Audio Wave Canvas)
   useEffect(() => {
@@ -81,18 +183,18 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
       const cy = canvas.height / 2;
       const baseRadius = canvas.width * 0.36;
 
-      const waveCount = isPlaying ? 3 : isHolding ? 4 : isProcessing ? 2 : 1;
-      const speed = isPlaying ? 0.04 : isHolding ? 0.06 : isProcessing ? 0.03 : 0.015;
+      const waveCount = isPlaying ? 3 : isListening ? 4 : isProcessing ? 2 : 1;
+      const speed = isPlaying ? 0.04 : isListening ? 0.06 : isProcessing ? 0.03 : 0.015;
       time += speed;
 
       for (let w = 0; w < waveCount; w++) {
         ctx.beginPath();
         const points = 40;
-        const currentRadius = baseRadius + w * (isHolding ? 8 : 6);
+        const currentRadius = baseRadius + w * (isListening ? 8 : 6);
 
         for (let i = 0; i <= points; i++) {
           const angle = (i / points) * Math.PI * 2;
-          const noise = Math.sin(angle * 3 + time + w) * (isHolding ? 10 : isPlaying ? 8 : 4);
+          const noise = Math.sin(angle * 3 + time + w) * (isListening ? 10 : isPlaying ? 8 : 4);
           const r = currentRadius + noise;
           const x = cx + Math.cos(angle) * r;
           const y = cy + Math.sin(angle) * r;
@@ -106,7 +208,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
         ctx.closePath();
 
-        if (isHolding) {
+        if (isListening) {
           ctx.strokeStyle = `rgba(5, 150, 105, ${0.45 - w * 0.08})`;
           ctx.lineWidth = 2.5;
         } else if (isPlaying) {
@@ -133,126 +235,78 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         cancelAnimationFrame(animFrameIdRef.current);
       }
     };
-  }, [isPlaying, isHolding, isProcessing]);
+  }, [isPlaying, isListening, isProcessing]);
 
-  // Bắt đầu chạm giữ thu âm
-  const handleTouchStart = useCallback(
-    async (e: React.TouchEvent | React.MouseEvent) => {
-      e.stopPropagation();
-      audioEngine.unlockAudioContext();
-      audioEngine.playBambooClickSound();
+  // Chạm vào nút Micro để Bật/Tắt thu âm thông minh
+  const handleToggleListening = useCallback(async () => {
+    if (isProcessing) return;
 
-      holdStartTimeRef.current = Date.now();
-      setIsHolding(true);
-      setSpeechTranscript("");
-      audioChunksRef.current = [];
+    audioEngine.unlockAudioContext();
+    audioEngine.playBambooClickSound();
 
-      audioEngine.pause();
+    if (isListening) {
+      // Nếu đang nói mà bấm thêm lần nữa -> Gửi ngay lập tức
+      await finishAndSubmitRecording();
+      return;
+    }
 
-      if (recognitionRef.current) {
-        try {
-          (recognitionRef.current as { start: () => void }).start();
-        } catch {}
+    // Bắt đầu lắng nghe
+    setIsListening(true);
+    isListeningRef.current = true;
+    setSpeechTranscript("");
+    latestTranscriptRef.current = "";
+    audioChunksRef.current = [];
+
+    audioEngine.pause();
+
+    if (recognitionRef.current) {
+      try {
+        (recognitionRef.current as { start: () => void }).start();
+      } catch {}
+    }
+
+    if (typeof navigator !== "undefined" && navigator.mediaDevices) {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            echoCancellation: true,
+            noiseSuppression: true,
+            autoGainControl: true
+          }
+        });
+
+        const mediaRecorder = new MediaRecorder(stream);
+        mediaRecorderRef.current = mediaRecorder;
+
+        mediaRecorder.ondataavailable = (event) => {
+          if (event.data.size > 0) {
+            audioChunksRef.current.push(event.data);
+          }
+        };
+
+        mediaRecorder.start(100);
+      } catch (err) {
+        console.warn("[MediaRecorder Error]:", err);
       }
+    }
 
-      if (typeof navigator !== "undefined" && navigator.mediaDevices) {
-        try {
-          const stream = await navigator.mediaDevices.getUserMedia({
-            audio: {
-              echoCancellation: true,
-              noiseSuppression: true,
-              autoGainControl: true
-            }
-          });
-
-          const mediaRecorder = new MediaRecorder(stream);
-          mediaRecorderRef.current = mediaRecorder;
-
-          mediaRecorder.ondataavailable = (event) => {
-            if (event.data.size > 0) {
-              audioChunksRef.current.push(event.data);
-            }
-          };
-
-          mediaRecorder.start(100);
-        } catch (err) {
-          console.warn("[MediaRecorder Micro Error]:", err);
-        }
-      }
-    },
-    []
-  );
-
-  // Buông tay kết thúc thu âm
-  const handleTouchEnd = useCallback(
-    async (e: React.TouchEvent | React.MouseEvent) => {
-      e.stopPropagation();
-      const holdDuration = Date.now() - holdStartTimeRef.current;
-      setIsHolding(false);
-
-      if (recognitionRef.current) {
-        try {
-          (recognitionRef.current as { stop: () => void }).stop();
-        } catch {}
-      }
-
-      // Chạm quá ngắn < 250ms -> Mở bàn phím gõ chữ
-      if (holdDuration < 250) {
+    // Nếu người dùng bật mic nhưng không nói gì sau 6s -> Tự động dừng
+    initialSilenceTimerRef.current = setTimeout(() => {
+      if (isListeningRef.current && !latestTranscriptRef.current.trim()) {
+        setIsListening(false);
+        isListeningRef.current = false;
         if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
           mediaRecorderRef.current.stop();
           mediaRecorderRef.current.stream.getTracks().forEach((t) => t.stop());
         }
-        setIsTextModalOpen(true);
-        return;
-      }
-
-      setIsProcessing(true);
-      let recognizedQuery = speechTranscript.trim();
-
-      if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
-        const recorder = mediaRecorderRef.current;
-        recorder.stop();
-        recorder.stream.getTracks().forEach((t) => t.stop());
-
-        await new Promise((r) => setTimeout(r, 100));
-
-        if (audioChunksRef.current.length > 0) {
+        if (recognitionRef.current) {
           try {
-            const audioBlob = new Blob(audioChunksRef.current, { type: "audio/webm" });
-            const formData = new FormData();
-            formData.append("file", audioBlob);
-            formData.append("lang", locale);
-
-            const sttRes = await fetch("/api/stt", {
-              method: "POST",
-              body: formData
-            });
-
-            if (sttRes.ok) {
-              const sttData = await sttRes.json();
-              if (sttData.text && sttData.text.trim()) {
-                recognizedQuery = sttData.text.trim();
-              }
-            }
-          } catch (sttErr) {
-            console.warn("[Whisper STT Server Fallback to Web Speech]:", sttErr);
-          }
+            (recognitionRef.current as { stop: () => void }).stop();
+          } catch {}
         }
       }
-
-      const query = recognizedQuery || dict.orb.defaultQuestion;
-
-      try {
-        const answer = await onAskQuestion(query);
-        onAnswerReceived(answer);
-      } catch (err) {
-        console.error("[SonicOrb Ask Error]:", err);
-      } finally {
-        setIsProcessing(false);
-      }
-    },
-    [speechTranscript, locale, dict.orb.defaultQuestion, onAskQuestion, onAnswerReceived]
-  );
+    }, 6000);
+  }, [isListening, isProcessing, finishAndSubmitRecording]);
 
   const handleSendTypedQuery = async (queryText?: string) => {
     const q = (queryText || typedQuery).trim();
@@ -277,13 +331,13 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
   return (
     <main className="h-[50vh] w-full flex flex-col items-center justify-center relative select-none p-4">
-      {/* 1. KHỐI ĐĨA ÂM THANH DI TÍCH (HERITAGE SOUND CAPSULE - WARM LIGHT THEME) */}
+      {/* 1. KHỐI ĐĨA ÂM THANH DI TÍCH (HERITAGE SOUND CAPSULE) */}
       <div className="relative flex flex-col items-center justify-center">
         {/* Lớp hào quang thở nhẹ nhàng (Organic Warm Breathing Glow) */}
         <div
           className={`absolute w-64 h-64 sm:w-72 sm:h-72 rounded-full transition-all duration-700 pointer-events-none ${
-            isHolding
-              ? "bg-emerald-400/25 blur-3xl scale-110"
+            isListening
+              ? "bg-emerald-400/30 blur-3xl scale-110"
               : isPlaying
               ? "bg-amber-400/30 blur-3xl scale-105"
               : isProcessing
@@ -292,20 +346,17 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
           }`}
         />
 
-        {/* NÚT CHÍNH TƯƠNG TÁC ÂM THANH THÂN THIỆN */}
+        {/* NÚT CHÍNH TƯƠNG TÁC ÂM THANH THÂN THIỆN (CHẠM ĐỂ NÓI -> TỰ ĐỘNG GỬI SAU 3S IM LẶNG) */}
         <button
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          onMouseDown={handleTouchStart}
-          onMouseUp={handleTouchEnd}
+          onClick={handleToggleListening}
           className={`w-52 h-52 sm:w-60 sm:h-60 rounded-full relative cursor-pointer overflow-hidden transition-all duration-300 transform active:scale-95 shadow-2xl flex flex-col items-center justify-center border-2 ${
-            isHolding
-              ? "bg-gradient-to-b from-white via-emerald-50 to-emerald-100/60 border-emerald-500 shadow-emerald-700/20"
+            isListening
+              ? "bg-gradient-to-b from-white via-emerald-50 to-emerald-100/70 border-emerald-500 shadow-emerald-700/25"
               : isPlaying
               ? "bg-gradient-to-b from-white via-amber-50 to-amber-100/60 border-amber-500 shadow-amber-700/20"
               : "bg-gradient-to-b from-white via-[#FAF6EE] to-[#EFE8DC] border-[#D5CEBF] hover:border-amber-500 shadow-[#00000015]"
           }`}
-          aria-label="Chạm hoặc giữ để hỏi thuyết minh"
+          aria-label="Chạm để nói chuyện với hướng dẫn viên"
         >
           {/* Canvas sóng âm thanh êm dịu */}
           <canvas
@@ -319,7 +370,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
           <div className="z-10 flex flex-col items-center justify-center space-y-2 pointer-events-none">
             <div
               className={`p-4 rounded-full transition-all duration-300 shadow-sm ${
-                isHolding
+                isListening
                   ? "bg-emerald-100 text-emerald-700 scale-110"
                   : isPlaying
                   ? "bg-amber-100 text-amber-700 animate-pulse"
@@ -328,8 +379,8 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                   : "bg-white/90 text-amber-700 border border-stone-200"
               }`}
             >
-              {isHolding ? (
-                <Mic className="w-8 h-8 animate-bounce" />
+              {isListening ? (
+                <Mic className="w-8 h-8 animate-bounce text-emerald-600" />
               ) : isPlaying ? (
                 <Volume2 className="w-8 h-8 animate-pulse" />
               ) : isProcessing ? (
@@ -339,24 +390,24 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
               )}
             </div>
 
-            {/* Dòng chữ trạng thái rõ ràng, dễ đọc cho mọi lứa tuổi */}
-            <div className="px-3.5 py-1 rounded-full bg-white/90 border border-stone-300 shadow-sm backdrop-blur-md">
+            {/* Dòng chữ trạng thái rõ ràng, dễ hiểu */}
+            <div className="px-3.5 py-1 rounded-full bg-white/95 border border-stone-300 shadow-sm backdrop-blur-md">
               <span className="text-[11px] sm:text-xs font-bold tracking-wide text-stone-800 uppercase font-sans">
-                {isHolding
+                {isListening
                   ? locale === "vi"
-                    ? "Đang lắng nghe..."
-                    : "Listening..."
+                    ? "Đang nghe... (Tự gửi sau 3s)"
+                    : "Listening... (Auto-send)"
                   : isProcessing
                   ? locale === "vi"
-                    ? "Đang suy nghĩ..."
+                    ? "Đang tra sử liệu..."
                     : "Searching..."
                   : isPlaying
                   ? locale === "vi"
                     ? "Đang thuyết minh"
                     : "Narrating"
                   : locale === "vi"
-                  ? "Chạm & Giữ để hỏi"
-                  : "Hold to Speak"}
+                  ? "Chạm để nói"
+                  : "Tap to Speak"}
               </span>
             </div>
           </div>
@@ -374,7 +425,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
       {/* 2. HIỂN THỊ LỜI NÓI THỜI GIAN THỰC (KHI ĐANG THU ÂM) */}
       {speechTranscript && (
-        <div className="absolute bottom-1 max-w-[90%] px-4 py-2 rounded-2xl bg-white border-2 border-amber-500 text-xs text-stone-900 font-semibold text-center shadow-xl backdrop-blur-md animate-in fade-in z-30">
+        <div className="absolute bottom-1 max-w-[90%] px-4 py-2 rounded-2xl bg-white border-2 border-emerald-500 text-xs text-stone-900 font-semibold text-center shadow-xl backdrop-blur-md animate-in fade-in z-30">
           &ldquo;{speechTranscript}&rdquo;
         </div>
       )}
