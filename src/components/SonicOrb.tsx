@@ -563,13 +563,13 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
     <main
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="w-full flex-1 flex flex-col items-center justify-between p-4 py-2 select-none overflow-hidden"
+      className="w-full flex-1 flex flex-col items-center justify-between p-3 py-1 select-none overflow-hidden"
     >
       {/* 1. THẤU KÍNH ÂM THANH DI TÍCH 3D ĐA TẦNG CHIỀU SÂU (VOLUMETRIC 3D OPTICAL CORE) */}
       <div className="relative flex flex-col items-center justify-center my-auto">
         {/* Hào quang nền khuếch tán hữu cơ */}
         <div
-          className={`absolute w-48 h-48 sm:w-56 sm:h-56 rounded-full transition-all duration-700 pointer-events-none ${
+          className={`absolute w-40 h-40 sm:w-48 sm:h-48 rounded-full transition-all duration-700 pointer-events-none ${
             isListening
               ? "bg-emerald-500/35 blur-3xl scale-125"
               : isBusy
@@ -588,7 +588,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
             transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
             transition: "transform 0.15s ease-out"
           }}
-          className={`w-44 h-44 sm:w-52 sm:h-52 rounded-full relative overflow-hidden transition-all duration-500 transform shadow-2xl flex items-center justify-center border-4 ${
+          className={`w-36 h-36 sm:w-44 sm:h-44 rounded-full relative overflow-hidden transition-all duration-500 transform shadow-2xl flex items-center justify-center border-4 ${
             isBusy
               ? "bg-gradient-to-br from-[#FFFDF7] via-[#FEF3D6] to-[#FDE68A] border-amber-500 shadow-amber-700/45 animate-pulse cursor-wait pointer-events-none"
               : isListening
@@ -612,8 +612,8 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         </button>
 
         {/* Chú thích trạng thái tinh tế dưới thấu kính */}
-        <div className="mt-3 text-center">
-          <p className="text-xs font-bold text-stone-700 tracking-wide font-sans">
+        <div className="mt-2 text-center">
+          <p className="text-[11px] sm:text-xs font-bold text-stone-700 tracking-wide font-sans">
             {isListening
               ? locale === "vi"
                 ? "Đang lắng nghe... (Tự gửi sau 3s)"
@@ -635,31 +635,31 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
       {/* 2. DÒNG LỜI NÓI THỜI GIAN THỰC KHI ĐANG NÓI */}
       {speechTranscript && (
-        <div className="max-w-[92%] px-4 py-2 my-1 rounded-2xl bg-white border-2 border-emerald-500 text-xs text-stone-900 font-semibold text-center shadow-xl backdrop-blur-md animate-in fade-in z-30 font-sans">
+        <div className="max-w-[92%] px-3 py-1.5 my-0.5 rounded-2xl bg-white border-2 border-emerald-500 text-[11px] text-stone-900 font-semibold text-center shadow-xl backdrop-blur-md animate-in fade-in z-30 font-sans">
           &ldquo;{speechTranscript}&rdquo;
         </div>
       )}
 
       {/* 3. BẢNG THẺ GỢI Ý SỬ LIỆU TINH HOA (CURATED DISCOVERY CARDS PANEL) */}
       {followUpSuggestions && followUpSuggestions.length > 0 && !isListening && (
-        <div className="w-full max-w-sm px-2 my-1 space-y-1.5 animate-cardSlideUp">
-          <div className="flex items-center justify-center space-x-1.5 text-amber-900 font-extrabold text-[11px] uppercase tracking-wider">
-            <Sparkles className="w-3.5 h-3.5 text-amber-700" />
+        <div className="w-full max-w-sm px-2 my-0.5 space-y-1 animate-cardSlideUp">
+          <div className="flex items-center justify-center space-x-1 text-amber-900 font-extrabold text-[10px] uppercase tracking-wider">
+            <Sparkles className="w-3 h-3 text-amber-700" />
             <span>{locale === "vi" ? "Gợi ý khám phá tiếp theo:" : "Explore further:"}</span>
           </div>
 
-          <div className="flex flex-col space-y-1.5">
+          <div className="flex flex-col space-y-1">
             {followUpSuggestions.slice(0, 2).map((sug, idx) => (
               <button
                 key={idx}
                 disabled={isBusy || isPlaying}
                 onClick={() => handleSendTypedQuery(sug)}
-                className={`w-full p-2.5 px-3 rounded-2xl bg-white hover:bg-amber-50/90 border border-[#E0D8C8] hover:border-amber-500 text-left text-xs font-semibold text-stone-900 transition-all shadow-[0_2px_6px_rgba(0,0,0,0.03)] flex items-center justify-between group font-sans ${
+                className={`w-full p-2 px-2.5 rounded-xl bg-white hover:bg-amber-50/90 border border-[#E0D8C8] hover:border-amber-500 text-left text-[11px] font-semibold text-stone-900 transition-all shadow-[0_2px_4px_rgba(0,0,0,0.02)] flex items-center justify-between group font-sans ${
                   isBusy || isPlaying ? "opacity-50 pointer-events-none" : "active:scale-[0.98]"
                 }`}
               >
                 <span className="line-clamp-1 group-hover:text-amber-950">{sug}</span>
-                <ChevronRight className="w-4 h-4 text-amber-700 ml-2 flex-shrink-0 group-hover:translate-x-0.5 transition-transform" />
+                <ChevronRight className="w-3.5 h-3.5 text-amber-700 ml-1.5 flex-shrink-0 group-hover:translate-x-0.5 transition-transform" />
               </button>
             ))}
           </div>
@@ -670,11 +670,11 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
       <button
         disabled={isBusy || isPlaying}
         onClick={() => setIsTextModalOpen(true)}
-        className={`my-1 flex items-center space-x-1.5 px-4 py-1.5 rounded-full bg-white border border-[#DDD4C2] text-stone-600 hover:text-amber-900 hover:border-amber-500 transition-all text-xs font-semibold shadow-sm font-sans ${
+        className={`my-0.5 flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white border border-[#DDD4C2] text-stone-600 hover:text-amber-900 hover:border-amber-500 transition-all text-[11px] font-semibold shadow-sm font-sans ${
           isBusy || isPlaying ? "opacity-50 pointer-events-none" : "active:scale-95"
         }`}
       >
-        <MessageSquare className="w-3.5 h-3.5 text-amber-700" />
+        <MessageSquare className="w-3 h-3 text-amber-700" />
         <span>{locale === "vi" ? "Gõ câu hỏi bằng bàn phím" : "Type question"}</span>
       </button>
 

@@ -112,18 +112,7 @@
       "vi": "Hình tượng Bác sĩ Võ Hoàng Lê quả cảm thực hiện những ca phẫu thuật ngoại khoa phức tạp dưới ngọn đèn dầu le lói trong lòng đất ẩm tối, vừa cầm dao mổ vừa chỉ huy bảo vệ toàn vẹn khu bệnh viện ngầm.",
       "en": "Dr. Vo Hoang Le courageously performed complex surgeries under dim oil lamps in damp earth, wielding surgical scalpels while commanding defensive operations to protect the underground hospital."
     },
-    "audio_assets": {
-      "vi": {
-        "url": "/audio/stations/02_hospital_vi.mp3",
-        "duration_seconds": 180,
-        "file_size_bytes": 2880000
-      },
-      "en": {
-        "url": "/audio/stations/02_hospital_en.mp3",
-        "duration_seconds": 170,
-        "file_size_bytes": 2720000
-      }
-    },
+    "audio_assets": {},
     "key_facts": [
       {
         "vi": "Bố trí liên hoàn tại Tầng 2 (độ sâu 5m – 8m), an toàn trước các loại bom phá thông thường cỡ nhỏ.",
@@ -195,18 +184,7 @@
       "vi": "Tại quần thể hầm chỉ huy Bến Dược và Bến Đình, các quyết sách quân sự táo bạo đã được ban hành, biến nơi đây thành bàn đạp lịch sử cho cuộc Tổng tiến công Tết Mậu Thân 1968.",
       "en": "In the command complexes of Ben Duoc and Ben Dinh, bold military decisions were formulated, serving as the staging ground for the historic 1968 Tet Offensive."
     },
-    "audio_assets": {
-      "vi": {
-        "url": "/audio/stations/03_command_vi.mp3",
-        "duration_seconds": 190,
-        "file_size_bytes": 3040000
-      },
-      "en": {
-        "url": "/audio/stations/03_command_en.mp3",
-        "duration_seconds": 180,
-        "file_size_bytes": 2880000
-      }
-    },
+    "audio_assets": {},
     "key_facts": [
       {
         "vi": "Thiết kế tại Tầng 3 (độ sâu 8m – 12m, có nơi sâu hơn 12m), an toàn trước các loại bom tấn lớn nhất của đối phương.",
@@ -278,18 +256,7 @@
       "vi": "Sáng kiến đặt xà phòng Mỹ tại cửa hầm và lỗ thông hơi đã vô hiệu hóa hoàn toàn khứu giác đàn chó săn béc-giê của đối phương trong các trận càn quét khốc liệt.",
       "en": "Placing captured American soap at trapdoors and air vents completely neutralized tracking dogs' keen smell during massive sweep operations."
     },
-    "audio_assets": {
-      "vi": {
-        "url": "/audio/stations/04_termite_vi.mp3",
-        "duration_seconds": 175,
-        "file_size_bytes": 2800000
-      },
-      "en": {
-        "url": "/audio/stations/04_termite_en.mp3",
-        "duration_seconds": 165,
-        "file_size_bytes": 2640000
-      }
-    },
+    "audio_assets": {},
     "key_facts": [
       {
         "vi": "Ống dẫn khí bằng thân tre rỗng ruột hoặc ống kim loại nối với lỗ thông hơi ngụy trang dưới dạng ụ mối đùn, mô đất, bụi rậm, gốc cây.",
@@ -361,18 +328,7 @@
       "vi": "Sáng kiến tái chế bom pháo lép thành mìn gạt của Anh hùng Tô Văn Đực đã biến vũ khí hủy diệt của đối phương thành vũ khí bảo vệ quê hương, phá hủy hàng trăm xe tăng, xe bọc thép trong trận càn Cedar Falls 1967.",
       "en": "Hero To Van Duc's invention of recycling unexploded ordnance into sweep mines turned enemy weapons into homeland defense, destroying hundreds of tanks and APCs in Operation Cedar Falls (1967)."
     },
-    "audio_assets": {
-      "vi": {
-        "url": "/audio/stations/05_traps_vi.mp3",
-        "duration_seconds": 185,
-        "file_size_bytes": 2960000
-      },
-      "en": {
-        "url": "/audio/stations/05_traps_en.mp3",
-        "duration_seconds": 175,
-        "file_size_bytes": 2800000
-      }
-    },
+    "audio_assets": {},
     "key_facts": [
       {
         "vi": "Hai kiểu bẫy chông kinh điển phục dựng tại di tích: chông cánh cửa và chông nắp tự động, kết hợp hố đinh, hố đạp lôi và bãi mìn liên hoàn.",
