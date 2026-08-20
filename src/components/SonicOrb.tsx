@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { Loader2, MessageSquare, Send } from "lucide-react";
+import { Mic, MessageSquare, Send, Sparkles, Volume2, HelpCircle } from "lucide-react";
 import { audioEngine } from "@/lib/audio-engine";
 import { Locale, getDictionary, LOCALE_MAP } from "@/i18n";
 
@@ -23,21 +23,18 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
   const dict = getDictionary(locale);
   const [isHolding, setIsHolding] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [speechTranscript, setSpeechTranscript] = useState("");
   const [isTextModalOpen, setIsTextModalOpen] = useState(false);
   const [typedQuery, setTypedQuery] = useState("");
-  const [speechTranscript, setSpeechTranscript] = useState("");
 
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationFrameRef = useRef<number>(0);
-
-  const holdStartTimeRef = useRef<number>(0);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const animFrameIdRef = useRef<number | null>(null);
   const recognitionRef = useRef<unknown>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
+  const holdStartTimeRef = useRef<number>(0);
 
-  // 1. Khởi tạo Web Speech API Recognition (Real-time feedback)
+  // Khởi tạo Web Speech API cho phản hồi nhanh
   useEffect(() => {
     if (typeof window !== "undefined") {
       const SpeechRecognition =
@@ -45,27 +42,23 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         (window as unknown as { webkitSpeechRecognition: unknown }).webkitSpeechRecognition;
 
       if (SpeechRecognition) {
-        const recognition = new (SpeechRecognition as new () => {
-          continuous: boolean;
-          interimResults: boolean;
-          lang: string;
-          onresult: (e: { results: { [x: string]: { [x: string]: { transcript: string } } } }) => void;
-          onerror: (e: unknown) => void;
-          start: () => void;
-          stop: () => void;
-        })();
-
+        const recognition = new (SpeechRecognition as new () => any)();
         recognition.continuous = false;
         recognition.interimResults = true;
         recognition.lang = LOCALE_MAP[locale]?.speechLang || "vi-VN";
 
-        recognition.onresult = (event) => {
-          const text = event.results[0][0].transcript;
-          setSpeechTranscript(text);
+        recognition.onresult = (event: any) => {
+          let interim = "";
+          for (let i = event.resultIndex; i < event.results.length; ++i) {
+            interim += event.results[i][0].transcript;
+          }
+          if (interim) {
+            setSpeechTranscript(interim);
+          }
         };
 
-        recognition.onerror = (err) => {
-          console.warn("[STT Error]:", err);
+        recognition.onerror = (event: any) => {
+          console.warn("[WebSpeech Warning]:", event.error);
         };
 
         recognitionRef.current = recognition;
@@ -73,38 +66,38 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
     }
   }, [locale]);
 
-  // 2. Vẽ 60FPS Reactive Soundwave Core trên Canvas 3D (Đẹp mê hoặc)
+  // Sóng âm thanh ấm áp, êm dịu (Warm Organic Audio Wave Canvas)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let phase = 0;
-    const width = (canvas.width = 240);
-    const height = (canvas.height = 240);
-    const centerX = width / 2;
-    const centerY = height / 2;
+    let time = 0;
 
     const render = () => {
-      ctx.clearRect(0, 0, width, height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+      const baseRadius = canvas.width * 0.36;
 
-      const activeState = isHolding || isPlaying || isProcessing;
-      const waveCount = activeState ? 4 : 2;
-      const baseRadius = 46;
+      const waveCount = isPlaying ? 3 : isHolding ? 4 : isProcessing ? 2 : 1;
+      const speed = isPlaying ? 0.04 : isHolding ? 0.06 : isProcessing ? 0.03 : 0.015;
+      time += speed;
 
-      for (let i = 0; i < waveCount; i++) {
+      for (let w = 0; w < waveCount; w++) {
         ctx.beginPath();
-        const currentPhase = phase + i * 0.8;
-        const amplitude = isHolding ? 14 : isPlaying ? 10 : isProcessing ? 12 : 3.5;
+        const points = 40;
+        const currentRadius = baseRadius + w * (isHolding ? 8 : 6);
 
-        for (let angle = 0; angle <= Math.PI * 2; angle += 0.05) {
-          const offset = Math.sin(angle * 6 + currentPhase) * amplitude + Math.cos(angle * 3 - currentPhase) * (amplitude * 0.5);
-          const r = baseRadius + offset;
-          const x = centerX + Math.cos(angle) * r;
-          const y = centerY + Math.sin(angle) * r;
+        for (let i = 0; i <= points; i++) {
+          const angle = (i / points) * Math.PI * 2;
+          const noise = Math.sin(angle * 3 + time + w) * (isHolding ? 10 : isPlaying ? 8 : 4);
+          const r = currentRadius + noise;
+          const x = cx + Math.cos(angle) * r;
+          const y = cy + Math.sin(angle) * r;
 
-          if (angle === 0) {
+          if (i === 0) {
             ctx.moveTo(x, y);
           } else {
             ctx.lineTo(x, y);
@@ -112,118 +105,88 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         }
 
         ctx.closePath();
-        ctx.lineWidth = 2.2;
+
         if (isHolding) {
-          ctx.strokeStyle = `rgba(45, 212, 191, ${0.8 - i * 0.18})`; // Ngọc bích thu âm
-          ctx.shadowColor = "#2DD4BF";
-          ctx.shadowBlur = 16;
+          ctx.strokeStyle = `rgba(16, 185, 129, ${0.4 - w * 0.08})`;
+          ctx.lineWidth = 2.5;
         } else if (isPlaying) {
-          ctx.strokeStyle = `rgba(229, 169, 60, ${0.85 - i * 0.2})`; // Hổ phách thuyết minh
-          ctx.shadowColor = "#E5A93C";
-          ctx.shadowBlur = 18;
+          ctx.strokeStyle = `rgba(245, 158, 11, ${0.45 - w * 0.1})`;
+          ctx.lineWidth = 2.5;
         } else if (isProcessing) {
-          ctx.strokeStyle = `rgba(168, 85, 247, ${0.8 - i * 0.18})`; // Tím huyền bí xử lý AI
-          ctx.shadowColor = "#A855F7";
-          ctx.shadowBlur = 14;
+          ctx.strokeStyle = `rgba(217, 119, 6, ${0.35 - w * 0.1})`;
+          ctx.lineWidth = 2;
         } else {
-          ctx.strokeStyle = `rgba(229, 169, 60, ${0.35 - i * 0.1})`;
-          ctx.shadowBlur = 0;
+          ctx.strokeStyle = "rgba(245, 158, 11, 0.15)";
+          ctx.lineWidth = 1.5;
         }
+
         ctx.stroke();
       }
 
-      phase += isHolding ? 0.08 : isPlaying ? 0.05 : 0.025;
-      animationFrameRef.current = requestAnimationFrame(render);
+      animFrameIdRef.current = requestAnimationFrame(render);
     };
 
-    animationFrameRef.current = requestAnimationFrame(render);
-
-    const handleVisibilityChange = () => {
-      if (document.hidden && animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      } else if (!document.hidden) {
-        animationFrameRef.current = requestAnimationFrame(render);
-      }
-    };
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
+    render();
 
     return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
+      if (animFrameIdRef.current) {
+        cancelAnimationFrame(animFrameIdRef.current);
       }
     };
-  }, [isHolding, isPlaying, isProcessing]);
+  }, [isPlaying, isHolding, isProcessing]);
 
-  // 3. 3D Perspective Tilt theo con trỏ chuột / điểm chạm
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    const tiltX = -(y / (rect.height / 2)) * 14;
-    const tiltY = (x / (rect.width / 2)) * 14;
-    setTilt({ x: tiltX, y: tiltY });
-  };
-
-  const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
-  };
-
-  // 4. Bắt đầu chạm giữ (Kích hoạt AGC & Khử ồn phần cứng)
+  // Bắt đầu chạm giữ thu âm
   const handleTouchStart = useCallback(
     async (e: React.TouchEvent | React.MouseEvent) => {
-      e.preventDefault();
+      e.stopPropagation();
+      audioEngine.unlockAudioContext();
+      audioEngine.playBambooClickSound();
+
       holdStartTimeRef.current = Date.now();
       setIsHolding(true);
       setSpeechTranscript("");
+      audioChunksRef.current = [];
 
-      audioEngine.triggerHapticFeedback();
-      audioEngine.playBambooClickSound();
       audioEngine.pause();
 
-      // Bật Web Speech cho real-time UI
       if (recognitionRef.current) {
         try {
           (recognitionRef.current as { start: () => void }).start();
         } catch {}
       }
 
-      // Kích hoạt MediaRecorder với cấu hình khử ồn & tăng âm lượng giọng nhỏ (AGC)
       if (typeof navigator !== "undefined" && navigator.mediaDevices) {
         try {
           const stream = await navigator.mediaDevices.getUserMedia({
             audio: {
-              echoCancellation: true,    // Khử dội âm hầm
-              noiseSuppression: true,    // Khử tiếng ồn quạt gió & bước chân
-              autoGainControl: true,     // Tự động khuếch đại khi du khách nói nhỏ
-              channelCount: 1,
-              sampleRate: 16000
+              echoCancellation: true,
+              noiseSuppression: true,
+              autoGainControl: true
             }
           });
 
-          audioChunksRef.current = [];
-          const recorder = new MediaRecorder(stream);
-          recorder.ondataavailable = (ev) => {
-            if (ev.data.size > 0) {
-              audioChunksRef.current.push(ev.data);
+          const mediaRecorder = new MediaRecorder(stream);
+          mediaRecorderRef.current = mediaRecorder;
+
+          mediaRecorder.ondataavailable = (event) => {
+            if (event.data.size > 0) {
+              audioChunksRef.current.push(event.data);
             }
           };
-          recorder.start(100);
-          mediaRecorderRef.current = recorder;
-        } catch (mediaErr) {
-          console.warn("[MediaRecorder Init Warning]:", mediaErr);
+
+          mediaRecorder.start(100);
+        } catch (err) {
+          console.warn("[MediaRecorder Micro Error]:", err);
         }
       }
     },
     []
   );
 
-  // 5. Kết thúc chạm giữ (Gửi file âm thanh sang Groq Whisper-large-v3)
+  // Buông tay kết thúc thu âm
   const handleTouchEnd = useCallback(
     async (e: React.TouchEvent | React.MouseEvent) => {
-      e.preventDefault();
+      e.stopPropagation();
       const holdDuration = Date.now() - holdStartTimeRef.current;
       setIsHolding(false);
 
@@ -246,13 +209,11 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
       setIsProcessing(true);
       let recognizedQuery = speechTranscript.trim();
 
-      // Dừng MediaRecorder và thu thập audio blob gửi lên Whisper STT
       if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
         const recorder = mediaRecorderRef.current;
         recorder.stop();
         recorder.stream.getTracks().forEach((t) => t.stop());
 
-        // Đợi 100ms để nhận chunk cuối cùng
         await new Promise((r) => setTimeout(r, 100));
 
         if (audioChunksRef.current.length > 0) {
@@ -315,120 +276,124 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
   const sampleQuestions = dict.orb.sampleQuestions;
 
   return (
-    <main
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="h-[50vh] w-full flex flex-col items-center justify-center relative select-none perspective-[1000px]"
-    >
-      {/* 1. HIỆU ỨNG SÓNG SONAR LAN TỎA */}
-      {isPlaying && (
-        <div className="absolute w-[280px] h-[280px] rounded-full border border-tunnel-amber/30 animate-sonar pointer-events-none" />
-      )}
-      {isHolding && (
-        <div className="absolute w-[300px] h-[300px] rounded-full border border-tunnel-jade/50 animate-sonar pointer-events-none" />
-      )}
+    <main className="h-[50vh] w-full flex flex-col items-center justify-center relative select-none p-4">
+      {/* 1. KHỐI ĐĨA ÂM THANH DI TÍCH (HERITAGE SOUND CAPSULE) */}
+      <div className="relative flex flex-col items-center justify-center">
+        {/* Lớp hào quang thở nhẹ nhàng (Organic Warm Breathing Glow) */}
+        <div
+          className={`absolute w-64 h-64 sm:w-72 sm:h-72 rounded-full transition-all duration-700 pointer-events-none ${
+            isHolding
+              ? "bg-emerald-500/20 blur-3xl scale-110"
+              : isPlaying
+              ? "bg-amber-500/20 blur-3xl scale-105"
+              : isProcessing
+              ? "bg-amber-600/15 blur-2xl animate-pulse"
+              : "bg-amber-500/10 blur-2xl"
+          }`}
+        />
 
-      {/* 2. VÒNG GYROSCOPE 3D ORBITAL RINGS */}
-      <div className="absolute w-[310px] h-[310px] pointer-events-none flex items-center justify-center">
-        {/* Vòng xoay 3D 1 */}
-        <div className="absolute w-full h-full rounded-full border border-dashed border-tunnel-amber/25 animate-gyro-1 opacity-70" />
-        {/* Vòng xoay 3D 2 ngược chiều */}
-        <div className="absolute w-[275px] h-[275px] rounded-full border border-tunnel-amber/20 animate-gyro-2 opacity-50" />
-        {/* Vệt sáng quét Hologram */}
-        <div className="absolute w-[260px] h-[260px] rounded-full border-t-2 border-tunnel-amber/60 animate-light-sweep" />
-      </div>
-
-      {/* 3. KHỐI CẦU ÂM BẢN 3D SIÊU THỰC (ULTRA-3D OBSIDIAN MONOLITH SPHERE) */}
-      <div
-        style={{
-          transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-          transition: "transform 0.15s ease-out"
-        }}
-        className="relative flex items-center justify-center animate-sphere-float z-20"
-      >
+        {/* NÚT CHÍNH TƯƠNG TÁC ÂM THANH THÂN THIỆN */}
         <button
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
           onMouseDown={handleTouchStart}
           onMouseUp={handleTouchEnd}
-          className={`w-[225px] h-[225px] sm:w-[235px] sm:h-[235px] rounded-full relative cursor-pointer overflow-hidden transition-all duration-500 transform active:scale-95 ${
-            isHolding ? "sphere-3d-jade" : "sphere-3d-obsidian"
+          className={`w-52 h-52 sm:w-60 sm:h-60 rounded-full relative cursor-pointer overflow-hidden transition-all duration-300 transform active:scale-95 shadow-2xl flex flex-col items-center justify-center border-2 ${
+            isHolding
+              ? "bg-gradient-to-b from-stone-900 via-emerald-950/40 to-stone-950 border-emerald-500 shadow-emerald-900/30"
+              : isPlaying
+              ? "bg-gradient-to-b from-stone-900 via-amber-950/30 to-stone-950 border-amber-400 shadow-amber-900/30"
+              : "bg-gradient-to-b from-stone-900 via-stone-900 to-stone-950 border-stone-700/80 hover:border-amber-400/80 shadow-black"
           }`}
-          aria-label="Quả Cầu Âm Bản 3D"
+          aria-label="Chạm hoặc giữ để hỏi thuyết minh"
         >
-          {/* Lớp phản quang vòm sắc nét (Curved Specular Glare) */}
-          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none opacity-85" />
-          <div className="absolute top-2 left-6 w-24 h-12 rounded-full bg-white/20 blur-sm transform -rotate-45 pointer-events-none" />
-
-          {/* Canvas 3D Reactive Soundwave Core */}
+          {/* Canvas sóng âm thanh êm dịu */}
           <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full pointer-events-none opacity-95"
+            width={240}
+            height={240}
+            className="absolute inset-0 w-full h-full pointer-events-none opacity-80"
           />
 
-          {/* Badge trạng thái phát sáng tinh tế, luôn nằm ngang ổn định, không xoay lộn */}
-          <div className="absolute inset-0 flex flex-col items-center justify-end pb-8 pointer-events-none z-10">
-            <div className="flex items-center space-x-2 px-3.5 py-1 rounded-full bg-black/80 border border-white/10 backdrop-blur-md shadow-xl transition-all duration-300">
-              <span
-                className={`w-2 h-2 rounded-full ${
-                  isHolding
-                    ? "bg-tunnel-jade animate-ping"
-                    : isProcessing
-                    ? "bg-purple-400 animate-pulse shadow-[0_0_8px_#C084FC]"
-                    : isPlaying
-                    ? "bg-tunnel-amber animate-pulse shadow-[0_0_8px_#E5A93C]"
-                    : "bg-tunnel-amber"
-                }`}
-              />
-              <span className="text-[10px] sm:text-[11px] font-bold tracking-widest text-stone-200 uppercase font-mono">
-                {isProcessing
-                  ? locale === "vi"
-                    ? "ĐANG TRA SỬ LIỆU..."
-                    : "SEARCHING..."
-                  : isHolding
-                  ? dict.orb.statusListening
+          {/* Biểu tượng trung tâm thân thiện (Icon Mic / Volume / Sparkles) */}
+          <div className="z-10 flex flex-col items-center justify-center space-y-2 pointer-events-none">
+            <div
+              className={`p-4 rounded-full transition-all duration-300 ${
+                isHolding
+                  ? "bg-emerald-500/20 text-emerald-400 scale-110 shadow-lg shadow-emerald-500/20"
                   : isPlaying
-                  ? dict.orb.statusNarrating
-                  : dict.orb.statusTapToAsk}
+                  ? "bg-amber-500/20 text-amber-400 animate-pulse"
+                  : isProcessing
+                  ? "bg-amber-500/15 text-amber-300 animate-pulse"
+                  : "bg-stone-800/80 text-amber-400/90"
+              }`}
+            >
+              {isHolding ? (
+                <Mic className="w-8 h-8 animate-bounce" />
+              ) : isPlaying ? (
+                <Volume2 className="w-8 h-8 animate-pulse" />
+              ) : isProcessing ? (
+                <Sparkles className="w-8 h-8 animate-spin" />
+              ) : (
+                <Mic className="w-8 h-8" />
+              )}
+            </div>
+
+            {/* Dòng chữ trạng thái rõ ràng, dễ đọc cho mọi lứa tuổi */}
+            <div className="px-3.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md shadow-sm">
+              <span className="text-[11px] sm:text-xs font-bold tracking-wide text-stone-200 uppercase font-sans">
+                {isHolding
+                  ? locale === "vi"
+                    ? "Đang lắng nghe..."
+                    : "Listening..."
+                  : isProcessing
+                  ? locale === "vi"
+                    ? "Đang suy nghĩ..."
+                    : "Searching..."
+                  : isPlaying
+                  ? locale === "vi"
+                    ? "Đang thuyết minh"
+                    : "Narrating"
+                  : locale === "vi"
+                  ? "Chạm & Giữ để hỏi"
+                  : "Hold to Speak"}
               </span>
             </div>
           </div>
+        </button>
 
-          {/* Vành Rim kim loại 3D ngoài cùng */}
-          <div className="absolute inset-0 rounded-full border border-white/15 pointer-events-none shadow-inner" />
+        {/* Nút mở bàn phím gõ chữ phụ bên cạnh */}
+        <button
+          onClick={() => setIsTextModalOpen(true)}
+          className="mt-4 flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-stone-900/90 border border-stone-700/80 text-stone-300 hover:text-amber-400 hover:border-amber-400/60 active:scale-95 transition-all text-xs font-medium shadow-md"
+        >
+          <MessageSquare className="w-3.5 h-3.5 text-amber-400" />
+          <span>{locale === "vi" ? "Gõ câu hỏi bằng bàn phím" : "Type question"}</span>
         </button>
       </div>
 
-      {/* 4. PHỤ ĐỀ THỜI GIAN THỰC KHI ĐANG NÓI VÀO MIC */}
+      {/* 2. HIỂN THỊ LỜI NÓI THỜI GIAN THỰC (KHI ĐANG THU ÂM) */}
       {speechTranscript && (
-        <div className="absolute -bottom-2 max-w-[90%] px-4 py-2 rounded-xl bg-stone-950/95 border border-tunnel-amber/60 text-xs text-tunnel-amber text-center shadow-2xl backdrop-blur-md animate-in fade-in z-30 font-mono">
-          {dict.orb.recPrefix} &ldquo;{speechTranscript}&rdquo;
+        <div className="absolute bottom-1 max-w-[90%] px-4 py-2 rounded-2xl bg-stone-900 border border-amber-400/60 text-xs text-amber-300 text-center shadow-xl backdrop-blur-md animate-in fade-in z-30">
+          &ldquo;{speechTranscript}&rdquo;
         </div>
       )}
 
-      {/* 5. MODAL HỎI ĐÁP TOÀN NĂNG (GÕ TEXT & TEST PROMPTS) */}
+      {/* 3. MODAL GÕ CÂU HỎI THÂN THIỆN & CÂU HỎI GỢI Ý */}
       {isTextModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-end sm:items-center justify-center p-4">
           <div className="w-full max-w-md bg-stone-950 border border-stone-800 rounded-3xl p-6 space-y-4 shadow-2xl animate-in slide-in-from-bottom duration-200">
             {/* Header */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2.5 text-tunnel-amber">
-                <div className="p-2 rounded-xl bg-tunnel-amber/15 border border-tunnel-amber/30">
-                  <MessageSquare className="w-5 h-5 text-tunnel-amber" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold tracking-wide uppercase text-white font-mono">
-                    {dict.orb.aiTitle}
-                  </h3>
-                  <p className="text-[11px] text-stone-400">
-                    {dict.orb.aiSubtitle}
-                  </p>
-                </div>
+            <div className="flex items-center justify-between border-b border-stone-800 pb-3">
+              <div className="flex items-center space-x-2 text-amber-400">
+                <MessageSquare className="w-5 h-5 text-amber-400" />
+                <h3 className="text-sm font-bold uppercase text-white font-sans">
+                  {locale === "vi" ? "Hỏi Trợ Lý Hướng Dẫn Viên" : "Ask Audio Guide"}
+                </h3>
               </div>
               <button
                 onClick={() => setIsTextModalOpen(false)}
-                className="text-stone-400 hover:text-white text-xs px-2.5 py-1.5 rounded-lg bg-stone-900 border border-stone-800 font-mono"
+                className="text-stone-400 hover:text-white text-xs px-2.5 py-1.5 rounded-lg bg-stone-900 border border-stone-800"
               >
                 {dict.common.close}
               </button>
@@ -441,37 +406,37 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                 value={typedQuery}
                 onChange={(e) => setTypedQuery(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSendTypedQuery()}
-                placeholder={dict.orb.inputPlaceholder}
-                className="flex-1 px-4 py-3 bg-stone-900 border border-stone-700 rounded-2xl text-sm text-tunnel-chalk focus:outline-none focus:border-tunnel-amber placeholder-stone-500 shadow-inner"
+                placeholder={locale === "vi" ? "Nhập câu hỏi về địa đạo..." : "Type your question..."}
+                className="flex-1 px-4 py-3 bg-stone-900 border border-stone-700 rounded-2xl text-sm text-stone-100 focus:outline-none focus:border-amber-400 placeholder-stone-500 shadow-inner font-sans"
                 autoFocus
               />
               <button
                 onClick={() => handleSendTypedQuery()}
-                className="p-3.5 rounded-2xl bg-gradient-to-br from-tunnel-amber to-amber-600 text-stone-950 font-bold hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-tunnel-amber/25"
-                aria-label={dict.common.send}
+                className="p-3.5 rounded-2xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold active:scale-95 transition-all shadow-md"
               >
                 <Send className="w-4 h-4" />
               </button>
             </div>
 
-            {/* Bộ Prompt Mẫu */}
-            <div className="space-y-2 pt-1">
-              <div className="flex items-center justify-between text-[11px] font-medium text-stone-400">
-                <span>{dict.orb.promptSuite}</span>
-                <span className="text-tunnel-amber text-[10px] font-mono">{dict.orb.oneClickQuery}</span>
+            {/* Câu Hỏi Gợi Ý Phổ Biến */}
+            {sampleQuestions && sampleQuestions.length > 0 && (
+              <div className="space-y-2 pt-2">
+                <p className="text-[11px] font-bold text-stone-400 uppercase tracking-wider">
+                  {locale === "vi" ? "Câu hỏi thường gặp:" : "Frequently asked:"}
+                </p>
+                <div className="flex flex-col space-y-1.5">
+                  {sampleQuestions.slice(0, 3).map((sq, i) => (
+                    <button
+                      key={i}
+                      onClick={() => handleSendTypedQuery(sq)}
+                      className="text-left px-3.5 py-2.5 rounded-xl bg-stone-900/80 hover:bg-stone-800 text-xs text-stone-300 hover:text-amber-300 border border-stone-800 transition-all font-sans"
+                    >
+                      {sq}
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 max-h-48 overflow-y-auto pr-1">
-                {sampleQuestions.map((sq, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => handleSendTypedQuery(sq)}
-                    className="text-left text-[11px] p-2.5 rounded-xl bg-stone-900/80 border border-stone-800/90 text-stone-300 hover:border-tunnel-amber hover:bg-tunnel-amber/10 hover:text-tunnel-amber active:scale-95 transition-all leading-snug font-sans"
-                  >
-                    • {sq}
-                  </button>
-                ))}
-              </div>
-            </div>
+            )}
           </div>
         </div>
       )}
