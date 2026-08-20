@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { Mic, MessageSquare, Send, Sparkles, Volume2, HelpCircle } from "lucide-react";
+import { Mic, MessageSquare, Send, Sparkles, Volume2 } from "lucide-react";
 import { audioEngine } from "@/lib/audio-engine";
 import { Locale, getDictionary, LOCALE_MAP } from "@/i18n";
 
@@ -107,16 +107,16 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         ctx.closePath();
 
         if (isHolding) {
-          ctx.strokeStyle = `rgba(16, 185, 129, ${0.4 - w * 0.08})`;
+          ctx.strokeStyle = `rgba(5, 150, 105, ${0.45 - w * 0.08})`;
           ctx.lineWidth = 2.5;
         } else if (isPlaying) {
-          ctx.strokeStyle = `rgba(245, 158, 11, ${0.45 - w * 0.1})`;
+          ctx.strokeStyle = `rgba(217, 119, 6, ${0.5 - w * 0.1})`;
           ctx.lineWidth = 2.5;
         } else if (isProcessing) {
-          ctx.strokeStyle = `rgba(217, 119, 6, ${0.35 - w * 0.1})`;
+          ctx.strokeStyle = `rgba(180, 83, 9, ${0.4 - w * 0.1})`;
           ctx.lineWidth = 2;
         } else {
-          ctx.strokeStyle = "rgba(245, 158, 11, 0.15)";
+          ctx.strokeStyle = "rgba(217, 119, 6, 0.2)";
           ctx.lineWidth = 1.5;
         }
 
@@ -277,18 +277,18 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
   return (
     <main className="h-[50vh] w-full flex flex-col items-center justify-center relative select-none p-4">
-      {/* 1. KHỐI ĐĨA ÂM THANH DI TÍCH (HERITAGE SOUND CAPSULE) */}
+      {/* 1. KHỐI ĐĨA ÂM THANH DI TÍCH (HERITAGE SOUND CAPSULE - WARM LIGHT THEME) */}
       <div className="relative flex flex-col items-center justify-center">
         {/* Lớp hào quang thở nhẹ nhàng (Organic Warm Breathing Glow) */}
         <div
           className={`absolute w-64 h-64 sm:w-72 sm:h-72 rounded-full transition-all duration-700 pointer-events-none ${
             isHolding
-              ? "bg-emerald-500/20 blur-3xl scale-110"
+              ? "bg-emerald-400/25 blur-3xl scale-110"
               : isPlaying
-              ? "bg-amber-500/20 blur-3xl scale-105"
+              ? "bg-amber-400/30 blur-3xl scale-105"
               : isProcessing
-              ? "bg-amber-600/15 blur-2xl animate-pulse"
-              : "bg-amber-500/10 blur-2xl"
+              ? "bg-amber-500/20 blur-2xl animate-pulse"
+              : "bg-amber-300/20 blur-2xl"
           }`}
         />
 
@@ -300,10 +300,10 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
           onMouseUp={handleTouchEnd}
           className={`w-52 h-52 sm:w-60 sm:h-60 rounded-full relative cursor-pointer overflow-hidden transition-all duration-300 transform active:scale-95 shadow-2xl flex flex-col items-center justify-center border-2 ${
             isHolding
-              ? "bg-gradient-to-b from-stone-900 via-emerald-950/40 to-stone-950 border-emerald-500 shadow-emerald-900/30"
+              ? "bg-gradient-to-b from-white via-emerald-50 to-emerald-100/60 border-emerald-500 shadow-emerald-700/20"
               : isPlaying
-              ? "bg-gradient-to-b from-stone-900 via-amber-950/30 to-stone-950 border-amber-400 shadow-amber-900/30"
-              : "bg-gradient-to-b from-stone-900 via-stone-900 to-stone-950 border-stone-700/80 hover:border-amber-400/80 shadow-black"
+              ? "bg-gradient-to-b from-white via-amber-50 to-amber-100/60 border-amber-500 shadow-amber-700/20"
+              : "bg-gradient-to-b from-white via-[#FAF6EE] to-[#EFE8DC] border-[#D5CEBF] hover:border-amber-500 shadow-[#00000015]"
           }`}
           aria-label="Chạm hoặc giữ để hỏi thuyết minh"
         >
@@ -312,20 +312,20 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
             ref={canvasRef}
             width={240}
             height={240}
-            className="absolute inset-0 w-full h-full pointer-events-none opacity-80"
+            className="absolute inset-0 w-full h-full pointer-events-none opacity-90"
           />
 
           {/* Biểu tượng trung tâm thân thiện (Icon Mic / Volume / Sparkles) */}
           <div className="z-10 flex flex-col items-center justify-center space-y-2 pointer-events-none">
             <div
-              className={`p-4 rounded-full transition-all duration-300 ${
+              className={`p-4 rounded-full transition-all duration-300 shadow-sm ${
                 isHolding
-                  ? "bg-emerald-500/20 text-emerald-400 scale-110 shadow-lg shadow-emerald-500/20"
+                  ? "bg-emerald-100 text-emerald-700 scale-110"
                   : isPlaying
-                  ? "bg-amber-500/20 text-amber-400 animate-pulse"
+                  ? "bg-amber-100 text-amber-700 animate-pulse"
                   : isProcessing
-                  ? "bg-amber-500/15 text-amber-300 animate-pulse"
-                  : "bg-stone-800/80 text-amber-400/90"
+                  ? "bg-amber-100 text-amber-800 animate-pulse"
+                  : "bg-white/90 text-amber-700 border border-stone-200"
               }`}
             >
               {isHolding ? (
@@ -340,8 +340,8 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
             </div>
 
             {/* Dòng chữ trạng thái rõ ràng, dễ đọc cho mọi lứa tuổi */}
-            <div className="px-3.5 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md shadow-sm">
-              <span className="text-[11px] sm:text-xs font-bold tracking-wide text-stone-200 uppercase font-sans">
+            <div className="px-3.5 py-1 rounded-full bg-white/90 border border-stone-300 shadow-sm backdrop-blur-md">
+              <span className="text-[11px] sm:text-xs font-bold tracking-wide text-stone-800 uppercase font-sans">
                 {isHolding
                   ? locale === "vi"
                     ? "Đang lắng nghe..."
@@ -365,35 +365,35 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         {/* Nút mở bàn phím gõ chữ phụ bên cạnh */}
         <button
           onClick={() => setIsTextModalOpen(true)}
-          className="mt-4 flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-stone-900/90 border border-stone-700/80 text-stone-300 hover:text-amber-400 hover:border-amber-400/60 active:scale-95 transition-all text-xs font-medium shadow-md"
+          className="mt-4 flex items-center space-x-1.5 px-4 py-2 rounded-full bg-white/90 border border-stone-300 text-stone-700 hover:text-amber-800 hover:border-amber-500 active:scale-95 transition-all text-xs font-semibold shadow-sm"
         >
-          <MessageSquare className="w-3.5 h-3.5 text-amber-400" />
+          <MessageSquare className="w-3.5 h-3.5 text-amber-700" />
           <span>{locale === "vi" ? "Gõ câu hỏi bằng bàn phím" : "Type question"}</span>
         </button>
       </div>
 
       {/* 2. HIỂN THỊ LỜI NÓI THỜI GIAN THỰC (KHI ĐANG THU ÂM) */}
       {speechTranscript && (
-        <div className="absolute bottom-1 max-w-[90%] px-4 py-2 rounded-2xl bg-stone-900 border border-amber-400/60 text-xs text-amber-300 text-center shadow-xl backdrop-blur-md animate-in fade-in z-30">
+        <div className="absolute bottom-1 max-w-[90%] px-4 py-2 rounded-2xl bg-white border-2 border-amber-500 text-xs text-stone-900 font-semibold text-center shadow-xl backdrop-blur-md animate-in fade-in z-30">
           &ldquo;{speechTranscript}&rdquo;
         </div>
       )}
 
       {/* 3. MODAL GÕ CÂU HỎI THÂN THIỆN & CÂU HỎI GỢI Ý */}
       {isTextModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-end sm:items-center justify-center p-4">
-          <div className="w-full max-w-md bg-stone-950 border border-stone-800 rounded-3xl p-6 space-y-4 shadow-2xl animate-in slide-in-from-bottom duration-200">
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center p-4">
+          <div className="w-full max-w-md bg-[#FAF7F2] border border-[#DDD7CC] rounded-3xl p-6 space-y-4 shadow-2xl animate-in slide-in-from-bottom duration-200 text-stone-900">
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-stone-800 pb-3">
-              <div className="flex items-center space-x-2 text-amber-400">
-                <MessageSquare className="w-5 h-5 text-amber-400" />
-                <h3 className="text-sm font-bold uppercase text-white font-sans">
+            <div className="flex items-center justify-between border-b border-stone-200 pb-3">
+              <div className="flex items-center space-x-2 text-amber-800">
+                <MessageSquare className="w-5 h-5 text-amber-700" />
+                <h3 className="text-sm font-bold uppercase text-stone-900 font-sans">
                   {locale === "vi" ? "Hỏi Trợ Lý Hướng Dẫn Viên" : "Ask Audio Guide"}
                 </h3>
               </div>
               <button
                 onClick={() => setIsTextModalOpen(false)}
-                className="text-stone-400 hover:text-white text-xs px-2.5 py-1.5 rounded-lg bg-stone-900 border border-stone-800"
+                className="text-stone-500 hover:text-stone-900 text-xs px-2.5 py-1.5 rounded-lg bg-stone-100 border border-stone-200"
               >
                 {dict.common.close}
               </button>
@@ -407,12 +407,12 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                 onChange={(e) => setTypedQuery(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSendTypedQuery()}
                 placeholder={locale === "vi" ? "Nhập câu hỏi về địa đạo..." : "Type your question..."}
-                className="flex-1 px-4 py-3 bg-stone-900 border border-stone-700 rounded-2xl text-sm text-stone-100 focus:outline-none focus:border-amber-400 placeholder-stone-500 shadow-inner font-sans"
+                className="flex-1 px-4 py-3 bg-white border border-stone-300 rounded-2xl text-sm text-stone-900 focus:outline-none focus:border-amber-500 placeholder-stone-400 shadow-inner font-sans"
                 autoFocus
               />
               <button
                 onClick={() => handleSendTypedQuery()}
-                className="p-3.5 rounded-2xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold active:scale-95 transition-all shadow-md"
+                className="p-3.5 rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-bold active:scale-95 transition-all shadow-md"
               >
                 <Send className="w-4 h-4" />
               </button>
@@ -421,7 +421,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
             {/* Câu Hỏi Gợi Ý Phổ Biến */}
             {sampleQuestions && sampleQuestions.length > 0 && (
               <div className="space-y-2 pt-2">
-                <p className="text-[11px] font-bold text-stone-400 uppercase tracking-wider">
+                <p className="text-[11px] font-bold text-stone-500 uppercase tracking-wider">
                   {locale === "vi" ? "Câu hỏi thường gặp:" : "Frequently asked:"}
                 </p>
                 <div className="flex flex-col space-y-1.5">
@@ -429,7 +429,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                     <button
                       key={i}
                       onClick={() => handleSendTypedQuery(sq)}
-                      className="text-left px-3.5 py-2.5 rounded-xl bg-stone-900/80 hover:bg-stone-800 text-xs text-stone-300 hover:text-amber-300 border border-stone-800 transition-all font-sans"
+                      className="text-left px-3.5 py-2.5 rounded-xl bg-white hover:bg-amber-50 text-xs text-stone-800 hover:text-amber-900 border border-stone-200 transition-all font-sans shadow-sm"
                     >
                       {sq}
                     </button>

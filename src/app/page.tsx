@@ -222,11 +222,11 @@ function MainGuideContent() {
   };
 
   return (
-    <div className="w-full h-[100dvh] bg-stone-950 flex items-center justify-center overflow-hidden">
-      {/* KHUNG DI ĐỘNG SONIC MONOLITH */}
+    <div className="w-full h-[100dvh] bg-[#ECE7DC] flex items-center justify-center overflow-hidden">
+      {/* KHUNG DI ĐỘNG CỦ CHI VOICE GUIDE */}
       <div
         onClick={handleScreenTouch}
-        className="h-[100dvh] w-full max-w-md flex flex-col justify-between bg-tunnel-base text-tunnel-chalk overflow-hidden relative select-none font-sans shadow-2xl border-x border-stone-900/80"
+        className="h-[100dvh] w-full max-w-md flex flex-col justify-between bg-[#FAF7F2] text-[#1C1917] overflow-hidden relative select-none font-sans shadow-2xl border-x border-[#E0DACE]"
       >
         {/* ZONE 1: BEACON AN TOÀN & ĐỊNH HƯỚNG (20vh) */}
         <SafetyBeacon

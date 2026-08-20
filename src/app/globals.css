@@ -3,12 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 243, 244, 246;
-  --background-start-rgb: 13, 14, 17;
-  --background-end-rgb: 13, 14, 17;
+  --foreground-rgb: 28, 25, 23;
+  --background-start-rgb: 248, 246, 240;
+  --background-end-rgb: 244, 241, 234;
 }
 
-/* Khóa cứng môi trường Hầm tối Zero-Scroll */
 html,
 body {
   height: 100%;
@@ -16,8 +15,8 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #050608;
-  color: #f3f4f6;
+  background-color: #f4f1ea;
+  color: #1c1917;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -26,7 +25,6 @@ body {
   -webkit-touch-callout: none;
 }
 
-/* Ẩn hoàn toàn thanh cuộn trình duyệt */
 ::-webkit-scrollbar {
   display: none;
 }
@@ -34,127 +32,6 @@ body {
 * {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-/* ========================================================================== */
-/* 🌟 3D SONIC MONOLITH SPHERE & GYROSCOPE ANIMATIONS                         */
-/* ========================================================================== */
-
-@keyframes gyroSpin1 {
-  0% {
-    transform: rotateX(65deg) rotateY(15deg) rotateZ(0deg);
-  }
-  100% {
-    transform: rotateX(65deg) rotateY(15deg) rotateZ(360deg);
-  }
-}
-
-@keyframes gyroSpin2 {
-  0% {
-    transform: rotateX(65deg) rotateY(-25deg) rotateZ(360deg);
-  }
-  100% {
-    transform: rotateX(65deg) rotateY(-25deg) rotateZ(0deg);
-  }
-}
-
-@keyframes sphereFloat {
-  0%, 100% {
-    transform: translateY(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-8px) scale(1.02);
-  }
-}
-
-@keyframes lightSweep {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes corePulse {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(0.96);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.06);
-  }
-}
-
-@keyframes sonarGlow {
-  0% {
-    transform: scale(0.9);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1.6);
-    opacity: 0;
-  }
-}
-
-.animate-gyro-1 {
-  animation: gyroSpin1 12s linear infinite;
-}
-
-.animate-gyro-2 {
-  animation: gyroSpin2 16s linear infinite;
-}
-
-.animate-sphere-float {
-  animation: sphereFloat 6s ease-in-out infinite;
-}
-
-.animate-light-sweep {
-  animation: lightSweep 8s linear infinite;
-}
-
-.animate-core-pulse {
-  animation: corePulse 3s ease-in-out infinite;
-}
-
-.animate-sonar {
-  animation: sonarGlow 2.5s cubic-bezier(0.1, 0.7, 0.1, 1) infinite;
-}
-
-/* 3D Glass & Obsidian Shading */
-.sphere-3d-obsidian {
-  background: radial-gradient(
-    circle at 35% 25%,
-    rgba(255, 230, 160, 0.45) 0%,
-    rgba(229, 169, 60, 0.25) 18%,
-    rgba(30, 24, 15, 0.8) 45%,
-    rgba(13, 14, 17, 0.98) 75%,
-    #050608 100%
-  );
-  box-shadow:
-    inset 0 3px 6px rgba(255, 255, 255, 0.35),
-    inset 0 -12px 28px rgba(0, 0, 0, 0.95),
-    inset 0 0 30px rgba(229, 169, 60, 0.2),
-    0 15px 35px rgba(0, 0, 0, 0.8),
-    0 0 50px rgba(229, 169, 60, 0.25);
-}
-
-.sphere-3d-jade {
-  background: radial-gradient(
-    circle at 35% 25%,
-    rgba(167, 243, 208, 0.6) 0%,
-    rgba(45, 212, 191, 0.35) 20%,
-    rgba(6, 78, 59, 0.85) 50%,
-    rgba(13, 14, 17, 0.98) 80%,
-    #030706 100%
-  );
-  box-shadow:
-    inset 0 3px 8px rgba(255, 255, 255, 0.45),
-    inset 0 -12px 28px rgba(0, 0, 0, 0.95),
-    inset 0 0 40px rgba(45, 212, 191, 0.3),
-    0 15px 35px rgba(0, 0, 0, 0.8),
-    0 0 60px rgba(45, 212, 191, 0.45);
 }
 
 @keyframes fadeIn {

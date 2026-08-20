@@ -16,7 +16,6 @@ import {
   Crosshair,
   CheckCircle2,
   HelpCircle,
-  QrCode,
   Layers,
   Sparkles
 } from "lucide-react";
@@ -31,11 +30,11 @@ interface StationDossierModalProps {
 }
 
 const STATION_ICONS: Record<string, React.ReactNode> = {
-  "01_hoang_cam_kitchen": <Flame className="w-6 h-6 text-amber-400" />,
-  "02_field_hospital": <HeartPulse className="w-6 h-6 text-rose-400" />,
-  "03_command_bunker": <ShieldAlert className="w-6 h-6 text-emerald-400" />,
-  "04_ventilation_termite": <Wind className="w-6 h-6 text-cyan-400" />,
-  "05_booby_traps": <Crosshair className="w-6 h-6 text-yellow-400" />
+  "01_hoang_cam_kitchen": <Flame className="w-6 h-6 text-amber-600" />,
+  "02_field_hospital": <HeartPulse className="w-6 h-6 text-rose-600" />,
+  "03_command_bunker": <ShieldAlert className="w-6 h-6 text-emerald-600" />,
+  "04_ventilation_termite": <Wind className="w-6 h-6 text-cyan-600" />,
+  "05_booby_traps": <Crosshair className="w-6 h-6 text-amber-600" />
 };
 
 const STATION_SECRETS: Record<
@@ -132,25 +131,25 @@ export const StationDossierModal: React.FC<StationDossierModalProps> = ({
   const howItWorksText = locale === "vi" ? secret.howItWorks.vi : secret.howItWorks.en;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex items-end sm:items-center justify-center p-3 sm:p-4 select-none animate-fadeIn">
-      <div className="w-full max-w-lg bg-stone-950 border border-stone-800/90 rounded-3xl p-5 sm:p-6 space-y-5 max-h-[90vh] overflow-y-auto shadow-2xl text-stone-200 relative animate-in slide-in-from-bottom duration-200">
+    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center p-3 sm:p-4 select-none animate-fadeIn">
+      <div className="w-full max-w-lg bg-[#FAF7F2] border border-[#DDD7CC] rounded-3xl p-5 sm:p-6 space-y-5 max-h-[90vh] overflow-y-auto shadow-2xl text-stone-900 relative animate-in slide-in-from-bottom duration-200">
         {/* 1. MODAL HEADER */}
-        <div className="flex items-start justify-between border-b border-stone-800/80 pb-4">
+        <div className="flex items-start justify-between border-b border-stone-200 pb-4">
           <div className="flex items-start space-x-3">
-            <div className="p-3 rounded-2xl bg-stone-900 border border-stone-800 text-tunnel-amber flex-shrink-0 shadow-md">
-              {STATION_ICONS[station.id] || <Compass className="w-6 h-6 text-tunnel-amber" />}
+            <div className="p-3 rounded-2xl bg-amber-100 border border-amber-300 text-amber-800 flex-shrink-0 shadow-sm">
+              {STATION_ICONS[station.id] || <Compass className="w-6 h-6 text-amber-700" />}
             </div>
             <div>
               <div className="flex items-center space-x-2">
-                <span className="px-2.5 py-0.5 rounded-full bg-tunnel-amber/15 border border-tunnel-amber/30 text-tunnel-amber text-[10px] font-bold tracking-wider uppercase font-mono">
+                <span className="px-2.5 py-0.5 rounded-full bg-amber-100 border border-amber-300 text-amber-900 text-[10px] font-bold tracking-wider uppercase font-sans">
                   TRẠM 0{station.order_index}
                 </span>
-                <span className="text-[10px] text-stone-400 font-mono flex items-center space-x-1">
-                  <Layers className="w-3 h-3 text-tunnel-amber inline mr-1" />
+                <span className="text-[10px] text-stone-500 font-medium font-sans flex items-center space-x-1">
+                  <Layers className="w-3 h-3 text-amber-700 inline mr-1" />
                   {depthText}
                 </span>
               </div>
-              <h2 className="text-base sm:text-lg font-black text-white mt-1 leading-snug">
+              <h2 className="text-base sm:text-lg font-black text-stone-900 mt-1 leading-snug font-sans">
                 {stationTitle}
               </h2>
             </div>
@@ -158,7 +157,7 @@ export const StationDossierModal: React.FC<StationDossierModalProps> = ({
 
           <button
             onClick={onClose}
-            className="p-2 rounded-full bg-stone-900 border border-stone-800 text-stone-400 hover:text-white active:scale-95 transition-all flex-shrink-0"
+            className="p-2 rounded-full bg-white border border-stone-300 text-stone-600 hover:text-stone-950 active:scale-95 transition-all flex-shrink-0 shadow-sm"
             aria-label="Đóng"
           >
             <X className="w-5 h-5" />
@@ -166,54 +165,54 @@ export const StationDossierModal: React.FC<StationDossierModalProps> = ({
         </div>
 
         {/* 2. KHU VỰC: CHỖ NÀY CÓ NHỮNG GÌ & LÀ GÌ? */}
-        <div className="p-4 rounded-2xl bg-stone-900/90 border border-stone-800 space-y-2 shadow-inner">
-          <div className="flex items-center space-x-2 text-tunnel-amber text-xs font-bold uppercase tracking-wider font-mono">
-            <Sparkles className="w-4 h-4" />
+        <div className="p-4 rounded-2xl bg-white border border-stone-200 space-y-2 shadow-sm">
+          <div className="flex items-center space-x-2 text-amber-900 text-xs font-bold uppercase tracking-wider font-sans">
+            <Sparkles className="w-4 h-4 text-amber-700" />
             <span>{locale === "vi" ? "HIỆN VẬT & KHÔNG GIAN THỰC TẾ" : "WHAT IS LOCATED HERE"}</span>
           </div>
-          <p className="text-xs sm:text-[13px] text-stone-300 leading-relaxed">
+          <p className="text-xs sm:text-[13px] text-stone-700 leading-relaxed font-sans">
             {whatIsHereText}
           </p>
         </div>
 
         {/* 3. KHU VỰC: BÍ QUYẾT KỸ THUẬT & NGUYÊN LÝ HOẠT ĐỘNG */}
-        <div className="p-4 rounded-2xl bg-tunnel-amber/10 border border-tunnel-amber/30 space-y-2">
-          <div className="flex items-center space-x-2 text-tunnel-amber text-xs font-bold uppercase tracking-wider font-mono">
-            <Layers className="w-4 h-4" />
+        <div className="p-4 rounded-2xl bg-amber-50/80 border border-amber-200 space-y-2">
+          <div className="flex items-center space-x-2 text-amber-900 text-xs font-bold uppercase tracking-wider font-sans">
+            <Layers className="w-4 h-4 text-amber-700" />
             <span>{locale === "vi" ? "BÍ QUYẾT CÔNG TRÌNH NGẦM" : "SUBTERRANEAN MECHANISM"}</span>
           </div>
-          <p className="text-xs sm:text-[13px] text-stone-200 leading-relaxed italic">
+          <p className="text-xs sm:text-[13px] text-stone-800 leading-relaxed italic font-sans">
             &ldquo;{howItWorksText}&rdquo;
           </p>
         </div>
 
         {/* 4. 3 DẤU MỐC SỬ LIỆU ĐÃ KIỂM CHỨNG */}
         <div className="space-y-2.5">
-          <h3 className="text-xs font-bold text-tunnel-jade uppercase tracking-wider font-mono flex items-center space-x-1.5">
-            <ShieldCheck className="w-4 h-4" />
+          <h3 className="text-xs font-bold text-emerald-800 uppercase tracking-wider font-sans flex items-center space-x-1.5">
+            <ShieldCheck className="w-4 h-4 text-emerald-700" />
             <span>{locale === "vi" ? "3 ĐẶC ĐIỂM SỬ LIỆU THEN CHỐT" : "VERIFIED HISTORICAL FACTS"}</span>
           </h3>
           <div className="space-y-2">
             {station.key_facts.map((fact, idx) => (
               <div
                 key={idx}
-                className="flex items-start space-x-2.5 p-2.5 rounded-xl bg-stone-900/60 border border-stone-800/80 text-xs text-stone-300"
+                className="flex items-start space-x-2.5 p-2.5 rounded-xl bg-white border border-stone-200 text-xs text-stone-800 shadow-sm"
               >
-                <CheckCircle2 className="w-4 h-4 text-tunnel-jade flex-shrink-0 mt-0.5" />
-                <span className="leading-snug">{getLocalizedText(fact, locale)}</span>
+                <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                <span className="leading-snug font-sans">{getLocalizedText(fact, locale)}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* 5. THÔNG SỐ AN TOÀN SINH MỆNH DƯỚI HẦM */}
-        <div className="p-3.5 rounded-2xl bg-stone-900/90 border border-stone-800/90 space-y-2 text-xs">
-          <div className="flex items-center justify-between text-stone-400 font-mono text-[11px]">
-            <span>ĐỘ DÀI: <strong className="text-white">{safety.tunnel_length_meters}m</strong></span>
-            <span>THỜI GIAN: <strong className="text-white">~{safety.avg_crawl_time_minutes}p</strong></span>
-            <span>TRẦN HẦM: <strong className="text-white">{safety.ceiling_height_meters}m</strong></span>
+        <div className="p-3.5 rounded-2xl bg-white border border-stone-200 space-y-2 text-xs shadow-sm">
+          <div className="flex items-center justify-between text-stone-600 font-sans text-xs">
+            <span>ĐỘ DÀI: <strong className="text-stone-900">{safety.tunnel_length_meters}m</strong></span>
+            <span>THỜI GIAN: <strong className="text-stone-900">~{safety.avg_crawl_time_minutes}p</strong></span>
+            <span>TRẦN HẦM: <strong className="text-stone-900">{safety.ceiling_height_meters}m</strong></span>
           </div>
-          <div className="pt-1.5 border-t border-stone-800 flex items-start space-x-2 text-tunnel-jade text-xs font-medium">
+          <div className="pt-1.5 border-t border-stone-100 flex items-start space-x-2 text-emerald-700 text-xs font-semibold">
             <ShieldCheck className="w-4 h-4 flex-shrink-0 mt-0.5" />
             <span>{exitNote} — {reassurance}</span>
           </div>
@@ -221,21 +220,21 @@ export const StationDossierModal: React.FC<StationDossierModalProps> = ({
 
         {/* 6. CÂU HỎI THỰC ĐỊA DU KHÁCH THƯỜNG HỎI (FAQS) */}
         {station.faqs && station.faqs.length > 0 && (
-          <div className="space-y-2.5 pt-2 border-t border-stone-800/80">
-            <h3 className="text-xs font-bold text-stone-400 uppercase tracking-wider font-mono flex items-center space-x-1.5">
-              <HelpCircle className="w-4 h-4 text-tunnel-amber" />
+          <div className="space-y-2.5 pt-2 border-t border-stone-200">
+            <h3 className="text-xs font-bold text-stone-600 uppercase tracking-wider font-sans flex items-center space-x-1.5">
+              <HelpCircle className="w-4 h-4 text-amber-700" />
               <span>{dict.beacon.fieldFaq}</span>
             </h3>
             <div className="space-y-2">
               {station.faqs.map((faq, idx) => (
                 <div
                   key={idx}
-                  className="p-3 rounded-xl bg-stone-900/90 border border-stone-800/90 space-y-1 text-xs"
+                  className="p-3 rounded-xl bg-white border border-stone-200 space-y-1 text-xs shadow-sm"
                 >
-                  <p className="font-bold text-tunnel-amber">
+                  <p className="font-bold text-amber-900 font-sans">
                     Q: {getLocalizedText(faq.question, locale)}
                   </p>
-                  <p className="text-stone-300 leading-relaxed">
+                  <p className="text-stone-700 leading-relaxed font-sans">
                     A: {getLocalizedText(faq.answer, locale)}
                   </p>
                 </div>
@@ -245,13 +244,13 @@ export const StationDossierModal: React.FC<StationDossierModalProps> = ({
         )}
 
         {/* 7. CỤM NÚT HÀNH ĐỘNG DU KHÁCH */}
-        <div className="pt-2 flex flex-col sm:flex-row gap-2.5 sticky bottom-0 bg-stone-950/95 py-2">
+        <div className="pt-2 flex flex-col sm:flex-row gap-2.5 sticky bottom-0 bg-[#FAF7F2]/95 py-2">
           <button
             onClick={() => {
               onClose();
               onPlayNarration();
             }}
-            className="flex-1 py-3.5 px-4 rounded-2xl bg-tunnel-amber text-stone-950 font-bold text-xs hover:bg-amber-400 active:scale-95 transition-all flex items-center justify-center space-x-2 shadow-lg shadow-tunnel-amber/20 font-mono uppercase"
+            className="flex-1 py-3.5 px-4 rounded-2xl bg-amber-600 hover:bg-amber-700 text-white font-bold text-xs active:scale-95 transition-all flex items-center justify-center space-x-2 shadow-lg shadow-amber-600/25 font-sans uppercase"
           >
             <Play className="w-4 h-4 fill-current" />
             <span>{locale === "vi" ? "NGHE THUYẾT MINH MP3 (0ms)" : "PLAY AUDIO GUIDE (0ms)"}</span>
@@ -262,9 +261,9 @@ export const StationDossierModal: React.FC<StationDossierModalProps> = ({
               onClose();
               onAskAI();
             }}
-            className="py-3.5 px-4 rounded-2xl bg-stone-900 border border-stone-700 text-tunnel-chalk font-bold text-xs hover:border-tunnel-amber active:scale-95 transition-all flex items-center justify-center space-x-2 font-mono uppercase"
+            className="py-3.5 px-4 rounded-2xl bg-white border border-stone-300 text-stone-800 font-bold text-xs hover:border-amber-500 hover:bg-amber-50 active:scale-95 transition-all flex items-center justify-center space-x-2 font-sans uppercase shadow-sm"
           >
-            <MessageSquare className="w-4 h-4 text-tunnel-amber" />
+            <MessageSquare className="w-4 h-4 text-amber-700" />
             <span>{locale === "vi" ? "HỎI AI" : "ASK AI"}</span>
           </button>
         </div>

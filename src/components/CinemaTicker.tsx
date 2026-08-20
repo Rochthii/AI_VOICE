@@ -101,22 +101,19 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
     return `${summary} ${storyHook}`.trim();
   }, [activeSubtitle, currentStation, locale]);
 
-  // 2. Tách thành danh sách các dòng phụ đề 1 dòng (Single-line list)
-  const subtitleLines = useMemo(() => {
-    return splitIntoSingleLines(fullText);
-  }, [fullText]);
+  // 2. Danh sách các dòng phụ đề 1 dòng
+  const subtitleLines = useMemo(() => splitIntoSingleLines(fullText), [fullText]);
 
-  // 3. Xác định dòng phụ đề hiện tại theo tiến độ phát âm thanh (1 dòng duy nhất)
+  // 3. Tính toán dòng phụ đề hiển thị theo tỷ lệ thời gian phát
   const currentSingleLine = useMemo(() => {
     if (subtitleLines.length === 0) return "";
-    if (!isPlaying || !duration || duration <= 0) {
-      return subtitleLines[0];
-    }
+    if (subtitleLines.length === 1) return subtitleLines[0];
 
-    const progress = Math.max(0, Math.min(1, currentTime / duration));
+    const safeDuration = duration > 0 ? duration : 20;
+    const progress = Math.min(Math.max(currentTime / safeDuration, 0), 0.999);
     const activeIndex = Math.min(
-      subtitleLines.length - 1,
-      Math.floor(progress * subtitleLines.length)
+      Math.floor(progress * subtitleLines.length),
+      subtitleLines.length - 1
     );
 
     return subtitleLines[activeIndex] || subtitleLines[0];
@@ -128,19 +125,19 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
   };
 
   return (
-    <footer className="w-full flex flex-col justify-end p-4 pb-6 bg-gradient-to-t from-black via-stone-950/95 to-transparent select-none z-10 space-y-3">
-      {/* 1. KHUNG PHỤ ĐỀ 1 DÒNG CHUẨN ĐIỆN ẢNH (SINGLE-LINE CINEMA SUBTITLE) */}
-      <div className="w-full h-11 flex items-center justify-center px-4 rounded-full bg-stone-950/90 border border-stone-800/80 shadow-md backdrop-blur-md overflow-hidden relative">
+    <footer className="w-full flex flex-col justify-end p-4 pb-6 bg-gradient-to-t from-[#EDE8DE] via-[#FAF7F2]/95 to-transparent select-none z-10 space-y-3">
+      {/* 1. KHUNG PHỤ ĐỀ 1 DÒNG (SINGLE-LINE CARTOUCHE SUBTITLE - LIGHT THEME) */}
+      <div className="w-full h-11 flex items-center justify-center px-4 rounded-full bg-white/95 border border-[#E2DDD3] shadow-md backdrop-blur-md overflow-hidden relative">
         <div className="flex items-center space-x-2 w-full justify-center overflow-hidden">
           {isPlaying && (
-            <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-tunnel-amber/20 text-tunnel-amber animate-pulse">
+            <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-amber-100 text-amber-700 animate-pulse">
               <Volume2 className="w-3 h-3" />
             </span>
           )}
           <div className="overflow-hidden w-full text-center">
             <p
               key={currentSingleLine}
-              className={`text-xs sm:text-[13px] font-medium tracking-wide text-stone-200 truncate italic leading-none transition-all duration-300 ${
+              className={`text-xs sm:text-[13px] font-semibold tracking-wide text-stone-900 truncate leading-none transition-all duration-300 ${
                 isPlaying ? "animate-fadeIn" : ""
               }`}
             >
@@ -158,10 +155,10 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
           max="100"
           value={progressPercent || 0}
           onChange={handleSeek}
-          className="w-full h-1.5 bg-stone-800 rounded-lg appearance-none cursor-pointer accent-tunnel-amber"
+          className="w-full h-1.5 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-amber-600"
           aria-label={dict.ticker.progressBar}
         />
-        <div className="flex justify-between text-[10px] text-stone-400 font-mono px-0.5">
+        <div className="flex justify-between text-[10px] text-stone-500 font-mono px-0.5 font-semibold">
           <span>{formatAudioDuration(currentTime)}</span>
           <span>{formatAudioDuration(duration)}</span>
         </div>
@@ -171,7 +168,7 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
       <div className="flex items-center justify-center space-x-8 pt-1">
         <button
           onClick={() => audioEngine.seekRelative(-15)}
-          className="p-2.5 rounded-full text-stone-400 hover:text-tunnel-chalk active:scale-90 transition-all"
+          className="p-2.5 rounded-full text-stone-600 hover:text-stone-900 active:scale-90 transition-all"
           aria-label={dict.ticker.seekBackward}
         >
           <RotateCcw className="w-5 h-5" />
@@ -179,7 +176,7 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
 
         <button
           onClick={onTogglePlay}
-          className="p-4 rounded-full bg-tunnel-amber text-stone-950 font-bold hover:bg-amber-400 active:scale-95 shadow-xl shadow-tunnel-amber/30 transition-all"
+          className="p-4 rounded-full bg-amber-600 text-white font-bold hover:bg-amber-700 active:scale-95 shadow-xl shadow-amber-600/30 transition-all"
           aria-label={isPlaying ? dict.ticker.pause : dict.ticker.play}
         >
           {isPlaying ? <Pause className="w-6 h-6 fill-current" /> : <Play className="w-6 h-6 fill-current ml-0.5" />}
@@ -187,7 +184,7 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
 
         <button
           onClick={() => audioEngine.seekRelative(15)}
-          className="p-2.5 rounded-full text-stone-400 hover:text-tunnel-chalk active:scale-90 transition-all"
+          className="p-2.5 rounded-full text-stone-600 hover:text-stone-900 active:scale-90 transition-all"
           aria-label={dict.ticker.seekForward}
         >
           <RotateCw className="w-5 h-5" />
