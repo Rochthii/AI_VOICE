@@ -42,13 +42,11 @@ function buildProviderList(): AIProvider[] {
   const providers: AIProvider[] = [];
 
   // ── TIER 1: GROQ — NHANH NHẤT ─────────────────────────────────────────────
-  // compound-mini: lightweight router, nhanh hơn compound đầy đủ
-  // openai/gpt-oss-20b: pure LLM không có thinking overhead
   const groqConfigs = [
-    { key: process.env.GROQ_API_KEY, model: "groq/compound-mini", id: "groq_mini_1" },
     { key: process.env.GROQ_API_KEY, model: "openai/gpt-oss-20b", id: "groq_gpt20b_1" },
-    { key: process.env.GROQ_API_KEY_2, model: "groq/compound-mini", id: "groq_mini_2" },
-    { key: process.env.GROQ_API_KEY_2, model: "openai/gpt-oss-20b", id: "groq_gpt20b_2" }
+    { key: process.env.GROQ_API_KEY, model: "openai/gpt-oss-120b", id: "groq_gpt120b_1" },
+    { key: process.env.GROQ_API_KEY_2, model: "openai/gpt-oss-20b", id: "groq_gpt20b_2" },
+    { key: process.env.GROQ_API_KEY_2, model: "openai/gpt-oss-120b", id: "groq_gpt120b_2" }
   ];
 
   groqConfigs.forEach(({ key, model, id }) => {
@@ -64,12 +62,12 @@ function buildProviderList(): AIProvider[] {
     });
   });
 
-  // ── TIER 2: GOOGLE GEMINI 2.5 Flash Lite (nhanh nhất trong Gemini) ─────────
+  // ── TIER 2: GOOGLE GEMINI ─────────────────────────────────────────────────
   const geminiConfigs = [
-    { key: process.env.GEMINI_API_KEY, model: "gemini-2.5-flash-lite", id: "gemini_lite_1" },
-    { key: process.env.GEMINI_API_KEY, model: "gemini-2.5-flash", id: "gemini_flash_1" },
-    { key: process.env.GEMINI_API_KEY_2, model: "gemini-2.5-flash-lite", id: "gemini_lite_2" },
-    { key: process.env.GEMINI_API_KEY_2, model: "gemini-2.5-flash", id: "gemini_flash_2" }
+    { key: process.env.GEMINI_API_KEY, model: "gemini-2.0-flash", id: "gemini_2_flash_1" },
+    { key: process.env.GEMINI_API_KEY, model: "gemini-1.5-flash-8b", id: "gemini_8b_1" },
+    { key: process.env.GEMINI_API_KEY_2, model: "gemini-2.0-flash", id: "gemini_2_flash_2" },
+    { key: process.env.GEMINI_API_KEY_2, model: "gemini-1.5-flash-8b", id: "gemini_8b_2" }
   ];
 
   geminiConfigs.forEach(({ key, model, id }) => {
@@ -165,8 +163,8 @@ export async function streamOpenAICompatible(
       body: JSON.stringify({
         model: provider.model,
         messages,
-        max_tokens: 150,
-        temperature: 0.4,
+        max_tokens: 1000,
+        temperature: 0.3,
         stream: true
       }),
       signal: controller.signal
@@ -180,6 +178,7 @@ export async function streamOpenAICompatible(
     const reader = res.body!.getReader();
     const decoder = new TextDecoder();
     let fullText = "";
+    let inThinkTag = false;
 
     while (true) {
       const { done, value } = await reader.read();
@@ -193,8 +192,23 @@ export async function streamOpenAICompatible(
         try {
           const parsed = JSON.parse(payload);
           let chunk: string = parsed?.choices?.[0]?.delta?.content || "";
-          // Strip thinking tags (qwen3, compound internals)
-          chunk = chunk.replace(/<think>[\s\S]*?<\/think>/gi, "");
+          
+          if (!chunk) continue;
+
+          // Xử lý loại bỏ thẻ thinking nếu model có reasoning
+          if (chunk.includes("<think>")) {
+            inThinkTag = true;
+            chunk = chunk.split("<think>")[0];
+          }
+          if (inThinkTag) {
+            if (chunk.includes("</think>")) {
+              inThinkTag = false;
+              chunk = chunk.split("</think>")[1] || "";
+            } else {
+              continue;
+            }
+          }
+
           if (chunk) {
             fullText += chunk;
             onChunk(chunk);

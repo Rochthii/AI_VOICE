@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
   const classification = classifyQuery(query, stationId);
 
   // ══ TẦNG 3: RAG IN-MEMORY (0.2ms, 0 token) — OFFLINE FIRST ════════════════
-  const ragMatch = searchHistoricalKnowledge(query, stationId, lang === "vi" ? "vi" : "en");
+  const ragMatch = searchHistoricalKnowledge(query, undefined, lang === "vi" ? "vi" : "en");
 
   // RAG hit với confidence cao cho VI/EN → trả về ngay (0 token AI)
   const isDirectLang = lang === "vi" || lang === "en";
@@ -107,7 +107,7 @@ export async function POST(req: NextRequest) {
 
   // Thêm RAG match nếu có (bổ sung độ chính xác cao)
   if (ragMatch) {
-    contextRaw = ragMatch.content + "\n\n" + contextRaw;
+    contextRaw = `[CHI TIẾT LIÊN QUAN TRỰC TIẾP]:\n${ragMatch.content}\n\n${contextRaw}`;
   }
 
   // Cắt context theo budget

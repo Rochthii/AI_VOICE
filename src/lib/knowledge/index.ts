@@ -43,18 +43,20 @@ export function getKnowledgeBySection(section: KnowledgeSectionKey, locale: Loca
 }
 
 /**
- * Lấy tri thức toàn diện cho câu hỏi: kết hợp bối cảnh tổng thể địa đạo + chi tiết trạm
+ * Lấy tri thức toàn diện cho câu hỏi: kết hợp bối cảnh trọng tâm + chi tiết trạm + tổng thể địa đạo
  */
 export function getKnowledgeForQuery(section: KnowledgeSectionKey, locale: Locale = "vi"): string {
   const langKey = locale === "vi" ? "vi" : "en";
   const stationContent = getKnowledgeBySection(section, locale);
   const generalOverview = generalKnowledge[langKey].overview;
+  const sacredOverview = generalKnowledge[langKey].sacred;
 
   if (section === "overview" || section === "sacred") {
-    return `${generalOverview}\n\n${generalKnowledge[langKey].sacred}`;
+    return `${generalOverview}\n\n${sacredOverview}`;
   }
 
-  return `[GENERAL CU CHI TUNNEL SYSTEM]:\n${generalOverview}\n\n[SPECIFIC STATION ARCHIVE]:\n${stationContent}`;
+  // Luôn đặt tri thức trọng tâm lên hàng đầu để không bị cắt bởi token budget
+  return `[TRỌNG TÂM SỬ LIỆU / ĐỐI TƯỢNG ĐƯỢC HỎI]:\n${stationContent}\n\n[BỐI CẢNH TOÀN CẢNH ĐỊA ĐẠO CỦ CHI]:\n${generalOverview}`;
 }
 
 /**

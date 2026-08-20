@@ -26,10 +26,10 @@ export interface TokenBudget {
   withinBudget: boolean;
 }
 
-const MAX_BUDGET = 850;
-const MAX_CONTEXT_TOKENS = 450;
-const MAX_HISTORY_TOKENS = 60;
-const MAX_QUERY_TOKENS = 60;
+const MAX_BUDGET = 1200;
+const MAX_CONTEXT_TOKENS = 750;
+const MAX_HISTORY_TOKENS = 80;
+const MAX_QUERY_TOKENS = 80;
 
 /** Ước tính token nhanh không cần API cho mọi ngôn ngữ */
 export function estimateTokens(text: string, lang: Locale = "vi"): number {
