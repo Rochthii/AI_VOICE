@@ -34,8 +34,10 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
   const holdStartTimeRef = useRef<number>(0);
   const recognitionRef = useRef<unknown>(null);
+  const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+  const audioChunksRef = useRef<Blob[]>([]);
 
-  // 1. Khởi tạo Web Speech API Recognition
+  // 1. Khởi tạo Web Speech API Recognition (Real-time feedback)
   useEffect(() => {
     if (typeof window !== "undefined") {
       const SpeechRecognition =
@@ -98,7 +100,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
         for (let angle = 0; angle <= Math.PI * 2; angle += 0.05) {
           const offset = Math.sin(angle * 6 + currentPhase) * amplitude + Math.cos(angle * 3 - currentPhase) * (amplitude * 0.5);
-          const r = baseRadius + i * 13 + offset;
+          const r = baseRadius + offset;
           const x = centerX + Math.cos(angle) * r;
           const y = centerY + Math.sin(angle) * r;
 
@@ -110,42 +112,41 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         }
 
         ctx.closePath();
-        ctx.lineWidth = 1.5;
-
+        ctx.lineWidth = 2.2;
         if (isHolding) {
-          ctx.strokeStyle = `rgba(45, 212, 191, ${0.75 - i * 0.15})`;
+          ctx.strokeStyle = `rgba(45, 212, 191, ${0.8 - i * 0.18})`; // Ngọc bích thu âm
           ctx.shadowColor = "#2DD4BF";
-          ctx.shadowBlur = 12;
-        } else if (isProcessing) {
-          ctx.strokeStyle = `rgba(229, 169, 60, ${0.85 - i * 0.18})`;
-          ctx.shadowColor = "#E5A93C";
-          ctx.shadowBlur = 14;
+          ctx.shadowBlur = 16;
         } else if (isPlaying) {
-          ctx.strokeStyle = `rgba(229, 169, 60, ${0.65 - i * 0.12})`;
+          ctx.strokeStyle = `rgba(229, 169, 60, ${0.85 - i * 0.2})`; // Hổ phách thuyết minh
           ctx.shadowColor = "#E5A93C";
-          ctx.shadowBlur = 8;
+          ctx.shadowBlur = 18;
+        } else if (isProcessing) {
+          ctx.strokeStyle = `rgba(168, 85, 247, ${0.8 - i * 0.18})`; // Tím huyền bí xử lý AI
+          ctx.shadowColor = "#A855F7";
+          ctx.shadowBlur = 14;
         } else {
-          ctx.strokeStyle = `rgba(229, 169, 60, ${0.25 - i * 0.06})`;
+          ctx.strokeStyle = `rgba(229, 169, 60, ${0.35 - i * 0.1})`;
           ctx.shadowBlur = 0;
         }
-
         ctx.stroke();
       }
 
-      phase += isHolding ? 0.08 : isPlaying ? 0.04 : 0.02;
-      if (typeof document !== "undefined" && !document.hidden) {
-        animationFrameRef.current = requestAnimationFrame(render);
-      }
+      phase += isHolding ? 0.08 : isPlaying ? 0.05 : 0.025;
+      animationFrameRef.current = requestAnimationFrame(render);
     };
 
+    animationFrameRef.current = requestAnimationFrame(render);
+
     const handleVisibilityChange = () => {
-      if (!document.hidden) {
+      if (document.hidden && animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      } else if (!document.hidden) {
         animationFrameRef.current = requestAnimationFrame(render);
       }
     };
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
-    render();
 
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
@@ -170,9 +171,9 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
     setTilt({ x: 0, y: 0 });
   };
 
-  // 4. Bắt đầu chạm giữ
+  // 4. Bắt đầu chạm giữ (Kích hoạt AGC & Khử ồn phần cứng)
   const handleTouchStart = useCallback(
-    (e: React.TouchEvent | React.MouseEvent) => {
+    async (e: React.TouchEvent | React.MouseEvent) => {
       e.preventDefault();
       holdStartTimeRef.current = Date.now();
       setIsHolding(true);
@@ -182,18 +183,44 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
       audioEngine.playBambooClickSound();
       audioEngine.pause();
 
+      // Bật Web Speech cho real-time UI
       if (recognitionRef.current) {
         try {
           (recognitionRef.current as { start: () => void }).start();
-        } catch {
-          // No-op
+        } catch {}
+      }
+
+      // Kích hoạt MediaRecorder với cấu hình khử ồn & tăng âm lượng giọng nhỏ (AGC)
+      if (typeof navigator !== "undefined" && navigator.mediaDevices) {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            audio: {
+              echoCancellation: true,    // Khử dội âm hầm
+              noiseSuppression: true,    // Khử tiếng ồn quạt gió & bước chân
+              autoGainControl: true,     // Tự động khuếch đại khi du khách nói nhỏ
+              channelCount: 1,
+              sampleRate: 16000
+            }
+          });
+
+          audioChunksRef.current = [];
+          const recorder = new MediaRecorder(stream);
+          recorder.ondataavailable = (ev) => {
+            if (ev.data.size > 0) {
+              audioChunksRef.current.push(ev.data);
+            }
+          };
+          recorder.start(100);
+          mediaRecorderRef.current = recorder;
+        } catch (mediaErr) {
+          console.warn("[MediaRecorder Init Warning]:", mediaErr);
         }
       }
     },
     []
   );
 
-  // 5. Kết thúc chạm giữ
+  // 5. Kết thúc chạm giữ (Gửi file âm thanh sang Groq Whisper-large-v3)
   const handleTouchEnd = useCallback(
     async (e: React.TouchEvent | React.MouseEvent) => {
       e.preventDefault();
@@ -203,21 +230,57 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
       if (recognitionRef.current) {
         try {
           (recognitionRef.current as { stop: () => void }).stop();
-        } catch {
-          // No-op
-        }
+        } catch {}
       }
 
+      // Chạm quá ngắn < 250ms -> Mở bàn phím gõ chữ
       if (holdDuration < 250) {
+        if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
+          mediaRecorderRef.current.stop();
+          mediaRecorderRef.current.stream.getTracks().forEach((t) => t.stop());
+        }
         setIsTextModalOpen(true);
         return;
       }
 
-      const query =
-        speechTranscript.trim() ||
-        dict.orb.defaultQuestion;
-
       setIsProcessing(true);
+      let recognizedQuery = speechTranscript.trim();
+
+      // Dừng MediaRecorder và thu thập audio blob gửi lên Whisper STT
+      if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
+        const recorder = mediaRecorderRef.current;
+        recorder.stop();
+        recorder.stream.getTracks().forEach((t) => t.stop());
+
+        // Đợi 100ms để nhận chunk cuối cùng
+        await new Promise((r) => setTimeout(r, 100));
+
+        if (audioChunksRef.current.length > 0) {
+          try {
+            const audioBlob = new Blob(audioChunksRef.current, { type: "audio/webm" });
+            const formData = new FormData();
+            formData.append("file", audioBlob);
+            formData.append("lang", locale);
+
+            const sttRes = await fetch("/api/stt", {
+              method: "POST",
+              body: formData
+            });
+
+            if (sttRes.ok) {
+              const sttData = await sttRes.json();
+              if (sttData.text && sttData.text.trim()) {
+                recognizedQuery = sttData.text.trim();
+              }
+            }
+          } catch (sttErr) {
+            console.warn("[Whisper STT Server Fallback to Web Speech]:", sttErr);
+          }
+        }
+      }
+
+      const query = recognizedQuery || dict.orb.defaultQuestion;
+
       try {
         const answer = await onAskQuestion(query);
         onAnswerReceived(answer);
@@ -227,7 +290,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         setIsProcessing(false);
       }
     },
-    [speechTranscript, dict.orb.defaultQuestion, onAskQuestion, onAnswerReceived]
+    [speechTranscript, locale, dict.orb.defaultQuestion, onAskQuestion, onAnswerReceived]
   );
 
   const handleSendTypedQuery = async (queryText?: string) => {
