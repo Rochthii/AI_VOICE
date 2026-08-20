@@ -5,11 +5,11 @@
     "qr_code_key": "QR_KITCHEN_01",
     "title": {
       "vi": "Bếp Hoàng Cầm — Nghệ Thuật Giấu Khói Dã Chiến",
-      "en": "Hoang Cam Stove — The Art of Smokeless Cooking"
+      "en": "Hoang Cam Stove — The Art of Underground Smokeless Cooking"
     },
     "short_summary": {
-      "vi": "Hệ thống bếp nấu dã chiến độc đáo đặt tại tầng 2 địa đạo với 4 khối liên hoàn triệt tiêu hoàn toàn cột khói.",
-      "en": "A unique underground stove system situated at Level 2 that cools smoke into low-lying mist undetectable by aircraft."
+      "vi": "Hệ thống bếp nấu dã chiến độc đáo bố trí tại Tầng 2 địa đạo (sâu 5m - 8m), dẫn khói qua rãnh ngầm làm nguội và phân tán, biến địa đạo thành 'thành phố trong lòng đất'.",
+      "en": "An ingenious underground stove at Level 2 (5m - 8m depth) dissipating smoke through subterranean trenches, sustaining a 'city in the earth'."
     },
     "safety": {
       "tunnel_length_meters": 15,
@@ -20,14 +20,14 @@
         "en": "Emergency exit and natural vent opening directly ahead in 5 meters."
       },
       "reassurance_message": {
-        "vi": "Khu vực bếp tương đối thoáng mát, trần hầm cao 1.4 mét. Bạn hãy thở đều và di chuyển thong thả.",
-        "en": "The kitchen area is relatively airy with 1.4m ceiling height. Breathe steadily and move comfortably."
+        "vi": "Khu vực bếp tương đối thoáng mát ở Tầng 2, trần hầm cao 1.4 mét. Bạn hãy thở đều và di chuyển thong thả.",
+        "en": "The kitchen area at Level 2 is relatively airy with 1.4m ceiling height. Breathe steadily and move comfortably."
       },
       "difficulty_level": "easy"
     },
     "human_story_hook": {
-      "vi": "Hãy nhìn những rãnh đất zíc-zắc trên vách hầm, nơi người nuôi quân Hoàng Cầm đã kiên trì đào từng mét rãnh để đồng đội có được bữa cơm nóng sốt giữa làn bom đạn mà không lộ dấu vết.",
-      "en": "Look at these zigzag earthen trenches where cook Hoang Cam dug meter by meter so his comrades could enjoy hot meals amid heavy bombardment without revealing smoke."
+      "vi": "Bếp Hoàng Cầm đỏ lửa nấu chín những củ khoai mì dẻo thơm chấm muối mè, cùng các hầm sinh hoạt biến lòng địa đạo thành một xã hội thu nhỏ kiên cường giữa vùng chiến sự khốc liệt.",
+      "en": "Under intense bombardment, the Hoang Cam stove kept fires burning to cook hot cassava with sesame salt, turning the underground network into a resilient miniature society."
     },
     "audio_assets": {
       "vi": {
@@ -43,42 +43,42 @@
     },
     "key_facts": [
       {
-        "vi": "Do đồng chí Hoàng Cầm sáng chế trong Chiến dịch Hòa Bình mùa Đông - Xuân 1951-1952.",
-        "en": "Invented by soldier Hoang Cam during the Hoa Binh Campaign in Winter-Spring 1951-1952."
+        "vi": "Bố trí liên hoàn ở Tầng 2 (độ sâu 5m – 8m), an toàn trước sức tàn phá của bom phá thông thường cỡ nhỏ.",
+        "en": "Positioned at Level 2 (5m – 8m depth), protected from conventional light demolition bombs."
       },
       {
-        "vi": "Hạ nhiệt độ khói từ trên 250°C xuống 30-35°C qua hệ thống rãnh zíc-zắc dài 10-20m.",
-        "en": "Cools smoke from over 250°C down to 30-35°C through 10-20m zigzag underground trenches."
+        "vi": "Khói từ buồng đốt dẫn qua hệ thống ống hoặc rãnh ngầm, làm nguội dần và phân tán qua nhiều tầng trước khi thoát ra.",
+        "en": "Smoke from firebox routes through underground tubes/trenches, gradually cooled and dispersed across multiple layers."
       },
       {
-        "vi": "Khói thoát ra biến thành làn sương mỏng là là mặt đất, hòa lẫn vào sương rừng tự nhiên.",
-        "en": "Released smoke turns into thin low-lying mist blending seamlessly into natural forest fog."
+        "vi": "Hiện nay được phục dựng tại Bến Dược và Bến Đình, phục vụ du khách món khoai mì chấm muối mè dân dã.",
+        "en": "Preserved and active today at Ben Duoc and Ben Dinh, serving visitors traditional boiled cassava with sesame salt."
       }
     ],
     "faqs": [
       {
         "id": "faq_kitchen_01",
         "question": {
-          "vi": "Tại sao bếp Hoàng Cầm không bị máy bay phát hiện khói?",
-          "en": "Why could enemy aircraft not detect smoke from Hoang Cam stove?"
+          "vi": "Bếp Hoàng Cầm giấu khói dưới lòng đất theo nguyên lý nào?",
+          "en": "How does the Hoang Cam stove conceal smoke underground?"
         },
         "answer": {
-          "vi": "Khói nóng trên 250 độ C đi qua hệ thống rãnh zíc-zắc dài 10-20m phủ đất ẩm và rơm rạ mục sẽ truyền nhiệt vào đất, hạ xuống 30-35 độ C. Khi thoát ra miệng ngụy trang, khói đã nguội biến thành làn sương mỏng bay sát mặt đất hòa vào sương rừng.",
-          "en": "Hot smoke over 250°C travels through 10-20m zigzag trenches covered with damp soil and straw, cooling down to 30-35°C. It emerges as a thin ground-level mist indistinguishable from morning forest fog."
+          "vi": "Thay vì bốc thẳng lên cao thành cột khói, khói sinh ra từ buồng đốt được dẫn qua hệ thống đường ống hoặc rãnh ngầm dưới lòng đất. Quá trình di chuyển giúp khói hạ nhiệt và phân tán, khi thoát ra qua các lỗ thông hơi ngụy trang (dạng ụ đất, ụ mối, gốc cây) chỉ còn làn sương cực mỏng là là mặt đất hòa lẫn vào sương rừng tự nhiên.",
+          "en": "Instead of rising vertically into a visible smoke plume, smoke is channeled through underground tubes/trenches where it cools and disperses. It exits via disguised ground vents (earth mounds, termite mounds, tree roots) as faint mist blending into the jungle fog."
         },
-        "keywords": ["giấu khói", "rãnh", "máy bay", "nhiệt độ", "hạ nhiệt"]
+        "keywords": ["giấu khói", "nguyên lý", "rãnh ngầm", "làm nguội", "sương rừng", "ụ mối"]
       },
       {
         "id": "faq_kitchen_02",
         "question": {
-          "vi": "Bếp Hoàng Cầm thường nấu vào những khung giờ nào?",
-          "en": "What hours were typically used for cooking on Hoang Cam stoves?"
+          "vi": "Tại sao nói bếp Hoàng Cầm góp phần biến địa đạo thành 'thành phố trong lòng đất'?",
+          "en": "Why is Hoang Cam stove said to transform the tunnels into an 'underground city'?"
         },
         "answer": {
-          "vi": "Chiến sĩ chỉ đun nấu vào chập tối hoặc tờ mờ sáng từ 4h00 đến 5h30 sáng để tận dụng màn sương mù tự nhiên của rừng Đông Nam Bộ và dùng củi khô không sinh khói đen.",
-          "en": "Cooking occurred only at dusk or early dawn (4:00 AM - 5:30 AM) to utilize the natural forest mist and dry smokeless wood."
+          "vi": "Sự tích hợp của bếp ăn cùng hầm nghỉ ngơi, kho dự trữ lương thực, kho vũ khí, giếng nước ngầm và bệnh xá dã chiến đã biến địa đạo từ nơi trú ẩn đơn thuần thành một xã hội thu nhỏ, giúp quân dân duy trì sinh hoạt bình thường giữa mưa bom bão đạn.",
+          "en": "Integrating kitchens with living quarters, grain depots, weapon caches, wells, and surgical bunkers turned simple hideouts into a self-sustaining miniature underground society amid constant bombing."
         },
-        "keywords": ["giờ nấu", "thời gian", "sáng sớm", "củi"]
+        "keywords": ["thành phố trong lòng đất", "xã hội thu nhỏ", "sinh hoạt", "liên hoàn"]
       }
     ]
   },

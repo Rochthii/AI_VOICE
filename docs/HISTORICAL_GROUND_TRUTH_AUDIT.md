@@ -36,11 +36,12 @@
 ## I. ĐỐI SOÁT & PHẢN BIỆN CHUYÊN SÂU TỪNG TRẠM
 
 ### 📍 TRẠM 01: BẾP HOÀNG CẦM (GIẤU KHÓI DÃ CHIẾN)
-* 🛑 **Ngộ nhận phổ biến:** Nhiều người tưởng Bếp Hoàng Cầm được phát minh tại Củ Chi trong kháng chiến chống Mỹ.
-* ✅ **Sự thật lịch sử đối soát:**
-  * Bếp do anh nuôi **Hoàng Cầm** (1916 – 1996, quê Nam Định, Đại đoàn 308) sáng tạo vào mùa Đông - Xuân 1951-1952 trong **Chiến dịch Hòa Bình** thời kỳ kháng Pháp.
-  * Khi vào Củ Chi, du kích đã **cải tiến ngầm hóa toàn phần** đưa bếp xuống tầng 2 (sâu 5-7m) và kéo dài rãnh tản nhiệt zíc-zắc dài hàng chục mét dưới đất để chống máy bay trinh sát tầm nhiệt hồng ngoại của quân đội Mỹ.
-* 🔬 **Cơ chế nhiệt động học:** Khói từ buồng đốt $>250^\circ\text{C}$ truyền nhiệt cưỡng bức vào đất bazan ẩm và thảm rơm rạ mục, hạ xuống $30-35^\circ\text{C}$ (ngang nhiệt độ rừng). Khói nguội ngưng tụ hơi nước biến thành làn sương mỏng bay sát mặt đất, hòa lẫn vào sương rừng ban mai lúc $4\text{h}00 - 5\text{h}30$ sáng.
+* 🛑 **Ngộ nhận / Suy diễn ngoài luồng cần loại bỏ:** Các thông số chi tiết đo đạc giả định (như góc 45 độ, rãnh chính xác 10m-20m, hạ nhiệt độ từ 250°C xuống 30-35°C, giờ nấu cố định 4h-5h30 sáng) và tiểu sử cá nhân ngoài luồng không xuất hiện trong tài liệu lưu trữ di tích Củ Chi.
+* ✅ **Sự thật lịch sử & Kỹ thuật đối soát chuẩn hóa:**
+  * **Vị trí chiến thuật:** Bố trí liên hoàn ở **Tầng 2 (Tầng Trung)** ở độ sâu cách mặt đất từ **5m – 8m** (hoặc dao động từ 3m – 10m tùy khu vực), an toàn trước bom phá thông thường cỡ nhỏ.
+  * **Tầm vóc "Thành phố trong lòng đất":** Tích hợp cùng hầm nghỉ ngơi, kho lương thực, kho vũ khí, giếng nước ngầm và bệnh xá dã chiến biến địa đạo thành một **xã hội thu nhỏ** giúp duy trì sinh hoạt bình thường giữa vùng chiến sự.
+  * **Nguyên lý giấu khói:** Khói từ buồng đốt dẫn qua hệ thống đường ống hoặc rãnh dẫn ngầm dưới lòng đất để làm nguội dần (hạ nhiệt) và phân tán qua nhiều tầng. Khi thoát ra các lỗ thông hơi ngụy trang (dạng ụ đất, ụ mối, gốc cây), khói chỉ còn là làn sương cực mỏng là là mặt đất hòa lẫn vào sương rừng tự nhiên.
+  * **Thực tế trải nghiệm ngày nay:** Phục dựng tại Bến Dược và Bến Đình; du khách được thưởng thức món **khoai mì chấm muối mè** đun nấu từ chính bếp Hoàng Cầm.
 
 ---
 

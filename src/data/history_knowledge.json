@@ -33,41 +33,41 @@
     "chunk_id": "chunk_kitchen_01",
     "location_id": "01_hoang_cam_kitchen",
     "category": "living",
-    "content_vi": "Bếp Hoàng Cầm do đồng chí Hoàng Cầm (1916-1996, Nam Định) sáng chế trong Chiến dịch Hòa Bình mùa Đông - Xuân 1951-1952 với phương châm 'Đi không dấu, nấu không khói, nói không tiếng'. Tại Củ Chi, bếp được cải tiến đưa xuống tầng 2 địa đạo với rãnh tản khói ngầm để chống máy bay trinh sát tầm nhiệt Mỹ.",
-    "content_en": "Invented by soldier Hoang Cam (1916-1996) during the 1951-1952 Hoa Binh Campaign under the motto 'Move without trace, cook without smoke, speak without sound'. At Cu Chi, it was adapted into Level 2 tunnels with long underground dispersion trenches.",
-    "keywords": ["hoàng cầm", "nguồn gốc", "tác giả", "1951", "chiến dịch hòa bình", "nấu không khói"],
+    "content_vi": "Bếp Hoàng Cầm là sáng tạo độc đáo trong hệ thống phòng thủ ngầm địa đạo Củ Chi, được thiết kế kín đáo giúp nấu ăn dưới lòng đất mà không bị đối phương phát hiện. Bếp được bố trí liên hoàn ở Tầng 2 (Tầng Trung) ở độ sâu cách mặt đất từ 5m – 8m (hoặc dao động từ 3m – 10m tùy khu vực), bảo đảm an toàn trước sức tàn phá của các loại bom phá thông thường cỡ nhỏ.",
+    "content_en": "The Hoang Cam stove is a unique innovation in Cu Chi's defense system, engineered for subterranean cooking without enemy detection. Situated at Level 2 (5m - 8m depth, up to 3m - 10m depending on the sector), it is protected from conventional light demolition bombs.",
+    "keywords": ["bếp hoàng cầm", "tầng 2", "5m 8m", "3m 10m", "bom phá", "an toàn", "nấu ăn dưới đất"],
     "embedding": [0.142, 0.210, 0.185, 0.088, 0.312, 0.095, -0.045, 0.220, 0.155, 0.088],
-    "source_authority": "Viện Lịch sử Quân sự Việt Nam"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
     "chunk_id": "chunk_kitchen_02",
     "location_id": "01_hoang_cam_kitchen",
-    "category": "tactics",
-    "content_vi": "Cấu tạo bếp Hoàng Cầm gồm 4 khối: 1) Hầm lò buồng đốt chính sâu 1-1.5m có nắp đậy chắn ánh lửa; 2) Hố lắng tàn tro triệt tiêu muội than và tia lửa; 3) Hệ thống rãnh tản nhiệt zíc-zắc dài 10-20m phủ phên tre, cành cây, rơm rạ mục và đất dày 30-50cm; 4) Miệng thoát khói ngụy trang cách xa 15-20m giấu dưới lùm bụi hoặc bờ mương.",
-    "content_en": "The stove has 4 components: 1) Firebox with light-blocking lid; 2) Ash settling pit catching sparks; 3) 10-20m zigzag earthen trenches covered with damp straw and 30-50cm compacted soil; 4) Camouflaged exhaust vent 15-20m away hidden under thick brush.",
-    "keywords": ["cấu tạo", "4 khối", "hầm lò", "hố lắng", "rãnh zíc zắc", "miệng thoát"],
+    "category": "living",
+    "content_vi": "Sự tích hợp của bếp Hoàng Cầm cùng các khu vực chức năng như hầm nghỉ ngơi, kho dự trữ lương thực, kho vũ khí, giếng nước ngầm, bệnh xá dã chiến và phòng phẫu thuật đã biến hệ thống địa đạo từ nơi ẩn nấp đơn thuần thành một 'xã hội thu nhỏ dưới lòng đất' hay 'thành phố trong lòng đất', duy trì cuộc sống sinh hoạt bình thường giữa vùng chiến sự khốc liệt.",
+    "content_en": "Integrating Hoang Cam kitchens with resting quarters, grain stores, armories, wells, field hospitals, and surgical wards transformed the tunnels from simple shelters into a 'miniature underground society' or 'city in the earth' sustaining daily life amidst warfare.",
+    "keywords": ["xã hội thu nhỏ", "thành phố trong lòng đất", "kho lương thực", "giếng nước", "bệnh xá", "sinh hoạt"],
     "embedding": [0.155, 0.225, 0.198, 0.095, 0.325, 0.085, -0.035, 0.235, 0.168, 0.095],
-    "source_authority": "Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
     "chunk_id": "chunk_kitchen_03",
     "location_id": "01_hoang_cam_kitchen",
     "category": "tactics",
-    "content_vi": "Cơ chế tản khói bếp Hoàng Cầm: Khói nóng từ buồng đốt trên 250 độ C khi đi qua hàng chục mét rãnh ngầm sẽ truyền nhiệt vào đất ẩm và rơm mục, hạ nhiệt xuống 30-35 độ C (ngang nhiệt độ môi trường rừng). Khi thoát ra miệng ngụy trang, khói đã nguội biến thành làn sương mỏng bay là là sát đất hòa lẫn vào sương mù tự nhiên.",
-    "content_en": "Thermodynamics of Hoang Cam stove: Hot smoke over 250°C travels through underground damp trenches, dissipating heat into soil down to 30-35°C ambient temperature. Cooled smoke emerges as a thin ground-level mist blending invisibly into forest fog.",
-    "keywords": ["cơ chế", "nhiệt độ", "hạ nhiệt", "sương mù", "giấu khói", "không bốc cao"],
+    "content_vi": "Nguyên lý giấu khói bếp Hoàng Cầm: Thay vì bốc thẳng lên cao thành cột khói, khói sinh ra từ buồng đốt được dẫn qua hệ thống đường ống hoặc rãnh dẫn ngầm dưới lòng đất. Quá trình di chuyển qua mạng lưới rãnh ngầm giúp khói nóng được làm nguội dần (hạ nhiệt) và phân tán ra xa qua nhiều tầng trước khi thoát ra các lỗ thông hơi ngụy trang (dạng ụ đất, ụ mối, gốc cây). Khi ra ngoài, luồng khói đã nguội chỉ còn là làn sương cực mỏng là là sát mặt đất hòa lẫn vào sương rừng tự nhiên.",
+    "content_en": "Smokeless principle: Instead of rising in a vertical column, smoke from the firebox is routed through underground pipes or trenches, gradually cooling and dispersing across multiple layers before venting through disguised ground openings (mounds, termite mounds, tree roots) as faint mist blending into forest fog.",
+    "keywords": ["nguyên lý giấu khói", "rãnh ngầm", "làm nguội", "phân tán khói", "sương mỏng", "sương rừng", "ụ mối", "gốc cây"],
     "embedding": [0.165, 0.238, 0.210, 0.105, 0.340, 0.075, -0.025, 0.245, 0.175, 0.105],
-    "source_authority": "Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
     "chunk_id": "chunk_kitchen_04",
     "location_id": "01_hoang_cam_kitchen",
     "category": "living",
-    "content_vi": "Quy tắc nấu bếp Hoàng Cầm: Chỉ đun nấu vào chập tối hoặc tờ mờ sáng (4h00 - 5h30 sáng) để tận dụng màn sương mù tự nhiên của rừng Đông Nam Bộ. Ưu tiên sử dụng củi khô, than gỗ không nổ và không sinh khói đen.",
-    "content_en": "Cooking discipline: Stoves were operated only at dusk or dawn (4:00 AM - 5:30 AM) utilizing natural morning jungle fog, burning strictly seasoned dry firewood or smokeless charcoal.",
-    "keywords": ["giờ nấu", "4h sáng", "5h30", "củi khô", "than gỗ", "sương mù"],
+    "content_vi": "Hiện nay, bếp Hoàng Cầm đã được trùng tu, phục dựng và bảo tồn nguyên trạng tại các khu di tích Địa đạo Bến Dược và Bến Đình dưới sự quản lý trực tiếp của Ban Quản lý Khu di tích. Khi đến tham quan trải nghiệm thực tế đời sống thời chiến tại đây, du khách sẽ được thưởng thức món ăn kháng chiến dân dã là khoai mì chấm muối mè được đun nấu trực tiếp từ chính bếp Hoàng Cầm lịch sử.",
+    "content_en": "Today, Hoang Cam stoves are authentically preserved and restored at Ben Duoc and Ben Dinh under the Management Board. Visitors experiencing wartime underground life are served traditional boiled cassava with sesame salt cooked directly on historic Hoang Cam stoves.",
+    "keywords": ["bến dược", "bến đình", "phục dựng", "bảo tồn", "khoai mì chấm muối mè", "trải nghiệm thực tế"],
     "embedding": [0.138, 0.198, 0.175, 0.075, 0.298, 0.105, -0.055, 0.210, 0.145, 0.078],
-    "source_authority": "Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
     "chunk_id": "chunk_hospital_01",

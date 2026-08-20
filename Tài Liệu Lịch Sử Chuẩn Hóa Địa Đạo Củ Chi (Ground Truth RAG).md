@@ -37,24 +37,23 @@ Hệ thống địa đạo được đào trên một khu vực có địa chấ
 
 ## **CHƯƠNG 2: CHI TIẾT TRẠM 01 – BẾP HOÀNG CẦM (NGHỆ THUẬT GIẤU KHÓI DÃ CHIẾN)**
 
-### **2.1. Tác giả & Hoàn cảnh lịch sử**
+### **2.1. Vai trò lịch sử & Sự cải tiến tại Địa đạo**
+*   **Giá trị lịch sử:** Bếp Hoàng Cầm là một sáng tạo độc đáo và đặc sắc trong hệ thống phòng thủ ngầm tại địa đạo Củ Chi. Bếp ăn được thiết kế kín đáo nhằm giúp quân và dân ta nấu ăn dưới lòng đất mà không bị đối phương phát hiện.
+*   **Bố trí chiến thuật:** Trong cấu trúc phân tầng của địa đạo Củ Chi, bếp Hoàng Cầm được bố trí liên hoàn ở **Tầng 2 (Tầng Trung)**, tức ở độ sâu cách mặt đất từ **5m – 8m** (hoặc dao động từ 3m – 10m tùy theo từng khu vực liên thông). Vị trí này bảo đảm an toàn cho khu vực bếp ăn trước sức tàn phá của các loại bom phá thông thường cỡ nhỏ.
+*   **Chức năng:** Sự tích hợp của bếp ăn cùng các khu vực chức năng khác như hầm nghỉ ngơi, kho dự trữ lương thực, kho vũ khí, giếng nước ngầm, bệnh xá dã chiến và phòng phẫu thuật đã biến hệ thống địa đạo từ một nơi ẩn nấp đơn thuần thành một **"xã hội thu nhỏ dưới lòng đất"** hay một **"thành phố trong lòng đất"**. Nhờ thế trận liên hoàn và vững chắc này, nhân dân và lực lượng kháng chiến vẫn duy trì được cuộc sống sinh hoạt bình thường ngay giữa vùng chiến sự khốc liệt, bất chấp mưa bom bão đạn dội xuống ngày đêm bên trên mặt đất.
 
-> * **Tác giả:** Đồng chí **Hoàng Cầm** (1916 – 1996), quê quán tại xã Trực Đại, huyện Trực Ninh, tỉnh Nam Định. Ông là Tiểu đội trưởng Nuôi quân thuộc Đội điều trị 8, Đại đoàn 308 (Đại đoàn Quân Tiên Phong).  
-> * **Thời điểm sáng tạo:** Mùa Đông – Xuân 1951 – 1952 trong **Chiến dịch Hòa Bình** (kháng chiến chống Pháp) nhằm thực hiện phương châm: *"Đi không dấu, nấu không khói, nói không tiếng"*.  
-> * **Cải tiến tại Địa đạo Củ Chi (1960 – 1975):** Bếp được đưa xuống tầng 2 của địa đạo, hệ thống rãnh tản khói được đào sâu và kéo dài ngầm để chống lại máy bay trinh sát tầm nhiệt của quân đội Mỹ.
+### **2.2. Nguyên lý kỹ thuật & Cơ chế tản khói**
+*   **Nguyên lý giấu khói:** Bếp Hoàng Cầm hoạt động theo cơ chế phân tán khói vô cùng tinh vi để tránh bị đối phương phát hiện. Thay vì bốc thẳng lên cao thành cột khói thẳng đứng dễ bị trinh sát đường không phát hiện, khói sinh ra từ buồng đốt sẽ được dẫn đi qua một **hệ thống đường ống hoặc rãnh dẫn ngầm dưới lòng đất**.
+*   **Cơ chế làm nguội và tản khói ngầm:** Trong quá trình di chuyển qua mạng lưới rãnh ngầm này, khói nóng được làm nguội dần (hạ nhiệt) và phân tán ra xa thông qua nhiều tầng khác nhau trước khi thoát ra ngoài. 
+*   **Ngụy trang miệng thoát:** Hệ thống thoát khí của bếp kết nối trực tiếp với các lỗ thông hơi ngụy trang tinh vi sát mặt đất dưới dạng các ụ đất tự nhiên, ụ mối đùn hoặc các gốc cây. Khi khí thải ra ngoài, luồng khói đã nguội hoàn toàn chỉ còn là một làn sương cực mỏng, là là sát mặt đất và nhanh chóng hòa lẫn vào sương rừng tự nhiên, khiến đối phương không thể xác định vị trí của bếp lò hay khu vực đóng quân.
+*   **Ứng dụng thực tế ngày nay:** Hiện nay, bếp Hoàng Cầm đã được trùng tu, phục dựng và bảo tồn nguyên trạng tại các khu di tích Địa đạo Bến Dược và Bến Đình dưới sự quản lý trực tiếp của Ban Quản lý Khu di tích. Khi đến tham quan trải nghiệm thực tế đời sống thời chiến tại đây, du khách sẽ được thưởng thức món ăn kháng chiến dân dã là **khoai mì chấm muối mè** được đun nấu trực tiếp từ chính bếp Hoàng Cầm lịch sử.
 
-### **2.2. Cấu tạo kỹ thuật 4 khối liên hoàn**
+---
 
-> 1. **Hầm lò (Buồng đốt chính):** Khoét sâu 1.0m – 1.5m dưới sàn đất tầng 2\. Kích thước chuẩn: Dài 1.2m, rộng 0.8m, cao 0.8m – 1.0m. Đặt được 2 – 3 chảo nấu lớn. Phía trên miệng lò có nắp đậy chắn ánh lửa phản quang; cửa tiếp củi khoét góc nghiêng 45 độ giúp hút gió đáy lò tự nhiên.  
-> 2. **Hố lắng tàn tro & Giảm áp:** Nằm ngay sau họng buồng đốt, sâu hơn đáy rãnh dẫn khói 20cm – 30cm. Có chức năng giữ lại toàn bộ muội than, tàn lửa bay lơ lửng, triệt tiêu nguy cơ tia lửa thoát ra ngoài.  
-> 3. **Hệ thống rãnh tản nhiệt zíc-zắc:** Chiều dài từ 10m đến 20m, đào thoai thoải dốc lên mặt đất. Tiết diện rãnh: Rộng 0.3m – 0.4m, sâu 0.4m – 0.5m. Đào theo hình zíc-zắc để tăng tối đa diện tích tiếp xúc nhiệt. Phía trên rãnh lát phên tre, rải cành cây, phủ lớp rơm rạ mục giữ ẩm, sau cùng lèn chặt một lớp đất dày 30cm – 50cm.  
-> 4. **Miệng thoát khói ngụy trang:** Đặt cách buồng đốt từ 15m đến 20m. Miệng thoát trổ ra sát mặt đất, giấu kín dưới các lùm bụi rậm rạp, gốc cây cổ thụ mục hoặc mép bờ mương.
-
-### **2.3. Cơ chế nhiệt động học & Quy tắc vận hành**
-
-> * **Hạ nhiệt cưỡng bức:** Khói nóng từ buồng đốt (\>250°C) khi đi qua hàng chục mét rãnh ngầm sẽ truyền nhiệt trực tiếp vào thành đất ẩm và thảm thực vật mục. Nhiệt độ dòng khí giảm nhanh xuống 30°C – 35°C (tương đương nhiệt độ không khí môi trường). Muội than và bồ hóng bám vào lớp rơm ẩm; hơi nước ngưng tụ lại thành giọt.  
-> * **Thoát khí:** Khi ra khỏi miệng thoát, luồng khí đã nguội hoàn toàn, chuyển thành làn sương mỏng, nặng hơn không khí nóng nên không thể bốc cao thành cột mà là là sát mặt đất, hòa lẫn vào sương rừng tự nhiên.  
-> * **Quy tắc nấu:** Chỉ đun nấu vào chập tối hoặc tờ mờ sáng (4h00 – 5h30 sáng), tận dụng màn sương mù tự nhiên của vùng rừng Đông Nam Bộ. Ưu tiên sử dụng củi khô, than gỗ không nổ, không sinh khói đen.
+### **Báo cáo Đối soát và Hiệu chỉnh Nguồn Gốc (Audit Notes):**
+1. **Tiểu sử tác giả & Hoàn cảnh lịch sử:** Toàn bộ thông tin về năm sinh/năm tử của đồng chí Hoàng Cầm (1916 – 1996), quê quán (Trực Đại, Trực Ninh, Nam Định), chức vụ (Đội điều trị 8, Đại đoàn 308) cũng như mốc thời gian "Chiến dịch Hòa Bình 1951 – 1952" và khẩu hiệu *"Đi không dấu, nấu không khói, nói không tiếng"* đều không có trong hệ thống tài liệu nguồn lưu trữ tại Củ Chi nên đã được lược bỏ để bám sát tư liệu gốc.
+2. **Kích thước đo đạc chi tiết:** Lược bỏ các thông số phỏng đoán đo đạc 4 khối (buồng đốt sâu 1.0m-1.5m, góc 45 độ, rãnh 10m-20m, đất dày 30-50cm). Nguồn tài liệu xác nhận cấu tạo gồm buồng đốt kết nối với hệ thống ống hoặc rãnh dẫn ngầm dưới lòng đất để dẫn khói đi xa, hạ nhiệt và phân tán khói qua nhiều tầng.
+3. **Nhiệt động học & Giờ nấu:** Lược bỏ suy diễn giảm nhiệt độ cụ thể từ 250°C xuống 30-35°C và giờ nấu 4h-5h30 sáng. Chuẩn hóa về nguyên lý tản khói thụ động và làm nguội dần qua mạng lưới rãnh ngầm, khi thoát ra chỉ còn làn sương cực mỏng là là mặt đất hòa vào sương rừng.
 
 ## **CHƯƠNG 3: CHI TIẾT TRẠM 02 – BỆNH XÁ & HẦM PHẪU THUẬT DÃ CHIẾN**
 
