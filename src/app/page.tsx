@@ -9,6 +9,7 @@ import { SafetyBeacon } from "@/components/SafetyBeacon";
 import { SonicOrb } from "@/components/SonicOrb";
 import { CinemaTicker } from "@/components/CinemaTicker";
 import { PanicModal } from "@/components/PanicModal";
+import { OverviewHub } from "@/components/OverviewHub";
 import { audioEngine, AudioPlaybackState } from "@/lib/audio-engine";
 
 const stations: Station[] = stationsData as unknown as Station[];
@@ -24,6 +25,7 @@ function MainGuideContent() {
   const [currentStation, setCurrentStation] = useState<Station>(initialStation);
   const [locale, setLocale] = useState<Locale>("vi");
   const [isOffline, setIsOffline] = useState<boolean>(false);
+  const [isOverviewOpen, setIsOverviewOpen] = useState<boolean>(!stationParam);
   const [activeSubtitle, setActiveSubtitle] = useState<string>("");
   const [isPanicOpen, setIsPanicOpen] = useState<boolean>(false);
   const [playbackState, setPlaybackState] = useState<AudioPlaybackState>({
@@ -40,16 +42,18 @@ function MainGuideContent() {
   useEffect(() => {
     if (stationParam) {
       const target = stations.find((s) => s.id === stationParam || s.qr_code_key === stationParam);
-      if (target && target.id !== currentStation.id) {
+      if (target) {
         setCurrentStation(target);
+        setIsOverviewOpen(false);
         setActiveSubtitle("");
         const title = getLocalizedText(target.title, locale);
         const summary = getLocalizedText(target.short_summary, locale);
         const story = getLocalizedText(target.human_story_hook, locale);
-        audioEngine.playStationNarration(target.id, title, summary, story, locale);
+        const audioUrl = (target.audio_assets as Record<string, { url: string }>)?.[locale]?.url || (target.audio_assets as Record<string, { url: string }>)?.[locale === "vi" ? "vi" : "en"]?.url;
+        audioEngine.playStationNarration(target.id, title, summary, story, locale, audioUrl);
       }
     }
-  }, [stationParam, currentStation.id, locale]);
+  }, [stationParam, locale]);
 
   // Lắng nghe trạng thái Online/Offline
   useEffect(() => {
@@ -80,6 +84,7 @@ function MainGuideContent() {
   const handleSelectStation = useCallback(
     (station: Station) => {
       setCurrentStation(station);
+      setIsOverviewOpen(false);
       setActiveSubtitle("");
       const title = getLocalizedText(station.title, locale);
       const summary = getLocalizedText(station.short_summary, locale);
@@ -209,6 +214,7 @@ function MainGuideContent() {
           station={currentStation}
           locale={locale}
           onToggleLocale={handleToggleLocale}
+          onOpenOverview={() => setIsOverviewOpen(true)}
           isOffline={isOffline}
         />
 
@@ -239,6 +245,16 @@ function MainGuideContent() {
           locale={locale}
           onClose={() => setIsPanicOpen(false)}
         />
+
+        {/* MÀN HÌNH TỔNG QUAN KHU DI TÍCH & BẢN ĐỒ 5 TRẠM (OVERVIEW HUB) */}
+        {isOverviewOpen && (
+          <OverviewHub
+            stations={stations}
+            locale={locale}
+            onSelectStation={handleSelectStation}
+            onClose={() => setIsOverviewOpen(false)}
+          />
+        )}
       </div>
     </div>
   );
