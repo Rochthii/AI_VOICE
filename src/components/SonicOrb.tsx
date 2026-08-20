@@ -14,6 +14,17 @@ interface SonicOrbProps {
   onAnswerReceived: (answer: string) => void;
 }
 
+// 3D Particle Interface
+interface Particle3D {
+  r: number;
+  theta: number;
+  phi: number;
+  speedTheta: number;
+  speedPhi: number;
+  size: number;
+  colorType: number;
+}
+
 export const SonicOrb: React.FC<SonicOrbProps> = ({
   stationId,
   locale,
@@ -40,6 +51,25 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
   const recognitionRef = useRef<unknown>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
+
+  // Khởi tạo hệ hạt bụi 3D đa chiều sâu (Volumetric 3D Particle Cloud)
+  const particlesRef = useRef<Particle3D[]>([]);
+  useEffect(() => {
+    const pts: Particle3D[] = [];
+    const count = 28;
+    for (let i = 0; i < count; i++) {
+      pts.push({
+        r: 0.25 + Math.random() * 0.55,
+        theta: Math.random() * Math.PI * 2,
+        phi: (Math.random() - 0.5) * Math.PI,
+        speedTheta: (Math.random() - 0.5) * 0.02 + 0.01,
+        speedPhi: (Math.random() - 0.5) * 0.015,
+        size: 1.2 + Math.random() * 2.2,
+        colorType: Math.random() > 0.4 ? 1 : 0
+      });
+    }
+    particlesRef.current = pts;
+  }, []);
 
   // Đồng bộ ref
   useEffect(() => {
@@ -170,7 +200,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
     }
   }, [locale, finishAndSubmitRecording]);
 
-  // 🌟 HIỆU ỨNG 3D THẤU KÍNH ÂM THANH XÚC GIÁC (TACTILE 3D ACOUSTIC LENS)
+  // 🌟 HIỆU ỨNG QUẢ CẦU 3D ĐA TẦNG CHIỀU SÂU QUANG HỌC (VOLUMETRIC 3D OPTICAL CORE)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -185,116 +215,218 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
       const cy = canvas.height / 2;
       const R = canvas.width * 0.44;
 
-      time += isProcessing ? 0.05 : isListening ? 0.045 : isPlaying ? 0.035 : 0.018;
+      const speed = isProcessing ? 0.045 : isListening ? 0.035 : isPlaying ? 0.025 : 0.015;
+      time += speed;
 
-      // 1. Chiều sâu ánh sáng nội vi hữu cơ
-      const innerGradient = ctx.createRadialGradient(
-        cx - R * 0.2,
-        cy - R * 0.25,
-        R * 0.1,
+      // ─── TẦNG 1: LÒNG SÂU NỘI VI & TÁN SẮC BỀ MẶT (VOLUMETRIC AMBIENT BASE) ───
+      const baseGrad = ctx.createRadialGradient(
+        cx + Math.sin(time * 0.5) * (R * 0.15),
+        cy + Math.cos(time * 0.5) * (R * 0.15),
+        R * 0.05,
         cx,
         cy,
         R
       );
 
       if (isListening) {
-        innerGradient.addColorStop(0, "rgba(52, 211, 153, 0.6)");
-        innerGradient.addColorStop(0.5, "rgba(16, 185, 129, 0.35)");
-        innerGradient.addColorStop(1, "rgba(6, 78, 59, 0.08)");
+        baseGrad.addColorStop(0, "rgba(52, 211, 153, 0.7)");
+        baseGrad.addColorStop(0.35, "rgba(16, 185, 129, 0.45)");
+        baseGrad.addColorStop(0.7, "rgba(6, 78, 59, 0.2)");
+        baseGrad.addColorStop(1, "rgba(2, 44, 34, 0.05)");
       } else if (isProcessing) {
-        innerGradient.addColorStop(0, "rgba(251, 191, 36, 0.7)");
-        innerGradient.addColorStop(0.5, "rgba(217, 119, 6, 0.4)");
-        innerGradient.addColorStop(1, "rgba(180, 83, 9, 0.08)");
+        baseGrad.addColorStop(0, "rgba(251, 191, 36, 0.85)");
+        baseGrad.addColorStop(0.3, "rgba(217, 119, 6, 0.5)");
+        baseGrad.addColorStop(0.7, "rgba(180, 83, 9, 0.25)");
+        baseGrad.addColorStop(1, "rgba(120, 53, 15, 0.05)");
       } else if (isPlaying) {
-        innerGradient.addColorStop(0, "rgba(252, 211, 77, 0.6)");
-        innerGradient.addColorStop(0.5, "rgba(217, 119, 6, 0.3)");
-        innerGradient.addColorStop(1, "rgba(146, 64, 14, 0.08)");
+        baseGrad.addColorStop(0, "rgba(252, 211, 77, 0.75)");
+        baseGrad.addColorStop(0.35, "rgba(217, 119, 6, 0.4)");
+        baseGrad.addColorStop(0.75, "rgba(146, 64, 14, 0.18)");
+        baseGrad.addColorStop(1, "rgba(69, 26, 3, 0.03)");
       } else {
-        innerGradient.addColorStop(0, "rgba(245, 158, 11, 0.35)");
-        innerGradient.addColorStop(0.6, "rgba(217, 119, 6, 0.15)");
-        innerGradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+        baseGrad.addColorStop(0, "rgba(245, 158, 11, 0.45)");
+        baseGrad.addColorStop(0.4, "rgba(217, 119, 6, 0.2)");
+        baseGrad.addColorStop(0.8, "rgba(146, 64, 14, 0.06)");
+        baseGrad.addColorStop(1, "rgba(0, 0, 0, 0)");
       }
 
-      ctx.fillStyle = innerGradient;
+      ctx.fillStyle = baseGrad;
       ctx.beginPath();
       ctx.arc(cx, cy, R, 0, Math.PI * 2);
       ctx.fill();
 
-      // 2. Sóng Âm & Dòng Năng Lượng Hữu Cơ 3D
-      const numWaves = isProcessing ? 4 : isListening ? 3 : isPlaying ? 3 : 2;
+      // ─── TẦNG 2: CÁC VÒNG XOÁY NĂNG LƯỢNG 3D XOAY ĐA CHIỀU (3D ORBITAL RESONANCE RINGS) ───
+      // Vẽ 3 vành elip 3D xoay quanh các trục Euler (X, Y, Z)
+      const numRings = 3;
+      for (let rIdx = 0; rIdx < numRings; rIdx++) {
+        const ringAngle = time * (rIdx % 2 === 0 ? 1 : -1) * 0.8 + (rIdx * Math.PI) / 3;
+        const ringTiltX = 0.65 + Math.sin(time * 0.4 + rIdx) * 0.25;
+        const ringTiltY = 0.5 + Math.cos(time * 0.3 + rIdx) * 0.2;
+        const ringRadius = R * (0.42 + rIdx * 0.18);
+        const steps = 48;
 
-      for (let w = 0; w < numWaves; w++) {
-        ctx.beginPath();
-        const baseWaveRadius = R * (0.35 + w * 0.18);
-        const points = 60;
+        // Tách thành nửa sau (back z < 0) và nửa trước (front z > 0)
+        for (let pass = 0; pass < 2; pass++) {
+          ctx.beginPath();
+          let hasPoints = false;
 
-        for (let i = 0; i <= points; i++) {
-          const angle = (i / points) * Math.PI * 2;
-          const harmonic =
-            Math.sin(angle * 3 + time * 1.5 + w * 1.2) * (isProcessing ? 8 : isListening ? 6 : isPlaying ? 5 : 2.5) +
-            Math.cos(angle * 2 - time * 1.2) * (isProcessing ? 5 : isListening ? 4 : isPlaying ? 3.5 : 1.5);
+          for (let i = 0; i <= steps; i++) {
+            const a = (i / steps) * Math.PI * 2;
+            // Tọa độ 3D trước khi chiếu
+            const x0 = Math.cos(a) * ringRadius;
+            const y0 = Math.sin(a) * ringRadius;
+            const z0 = Math.sin(a * 2 + time + rIdx) * (R * 0.2);
 
-          const r = baseWaveRadius + harmonic;
-          const x = cx + Math.cos(angle) * r;
-          const y = cy + Math.sin(angle) * r;
+            // Xoay 3D Euler
+            const x1 = x0 * Math.cos(ringAngle) - y0 * Math.sin(ringAngle);
+            const y1 = (x0 * Math.sin(ringAngle) + y0 * Math.cos(ringAngle)) * ringTiltX;
+            const z1 = z0 + y0 * ringTiltY;
 
-          if (i === 0) {
-            ctx.moveTo(x, y);
-          } else {
-            ctx.lineTo(x, y);
+            // Kiểm tra pass (0: nửa sau, 1: nửa trước)
+            if ((pass === 0 && z1 <= 0) || (pass === 1 && z1 > 0)) {
+              const px = cx + x1;
+              const py = cy + y1;
+              if (!hasPoints) {
+                ctx.moveTo(px, py);
+                hasPoints = true;
+              } else {
+                ctx.lineTo(px, py);
+              }
+            } else {
+              hasPoints = false;
+            }
+          }
+
+          if (hasPoints) {
+            if (isListening) {
+              ctx.strokeStyle = pass === 1 ? "rgba(5, 150, 105, 0.75)" : "rgba(6, 78, 59, 0.3)";
+              ctx.lineWidth = pass === 1 ? 2.5 : 1.2;
+            } else if (isProcessing) {
+              ctx.strokeStyle = pass === 1 ? "rgba(251, 191, 36, 0.85)" : "rgba(180, 83, 9, 0.35)";
+              ctx.lineWidth = pass === 1 ? 2.8 : 1.4;
+            } else if (isPlaying) {
+              ctx.strokeStyle = pass === 1 ? "rgba(217, 119, 6, 0.7)" : "rgba(146, 64, 14, 0.25)";
+              ctx.lineWidth = pass === 1 ? 2.2 : 1.2;
+            } else {
+              ctx.strokeStyle = pass === 1 ? "rgba(217, 119, 6, 0.35)" : "rgba(180, 83, 9, 0.12)";
+              ctx.lineWidth = pass === 1 ? 1.6 : 1.0;
+            }
+            ctx.stroke();
           }
         }
-
-        ctx.closePath();
-
-        if (isListening) {
-          ctx.strokeStyle = `rgba(5, 150, 105, ${0.65 - w * 0.15})`;
-          ctx.lineWidth = 2.4 - w * 0.4;
-        } else if (isProcessing) {
-          ctx.strokeStyle = `rgba(217, 119, 6, ${0.7 - w * 0.15})`;
-          ctx.lineWidth = 2.4 - w * 0.4;
-        } else if (isPlaying) {
-          ctx.strokeStyle = `rgba(217, 119, 6, ${0.6 - w * 0.15})`;
-          ctx.lineWidth = 2.2 - w * 0.4;
-        } else {
-          ctx.strokeStyle = `rgba(217, 119, 6, ${0.3 - w * 0.1})`;
-          ctx.lineWidth = 1.6;
-        }
-
-        ctx.stroke();
       }
 
-      // 3. Hạt Bụi Năng Lượng khi Xử Lý
-      if (isProcessing) {
-        for (let p = 0; p < 6; p++) {
-          const pAngle = time * 2 + (p * Math.PI) / 3;
-          const pDist = R * 0.5 + Math.sin(time * 3 + p) * (R * 0.15);
-          const px = cx + Math.cos(pAngle) * pDist;
-          const py = cy + Math.sin(pAngle) * pDist;
+      // ─── TẦNG 3: BỤI NĂNG LƯỢNG 3D ĐA TẦNG CHIỀU SÂU (VOLUMETRIC PARTICLE CLOUD) ───
+      const pts = particlesRef.current;
+      pts.forEach((p) => {
+        // Cập nhật vị trí cầu 3D
+        p.theta += p.speedTheta * (isProcessing ? 2.5 : 1);
+        p.phi += p.speedPhi * (isProcessing ? 2 : 1);
 
-          ctx.fillStyle = "rgba(251, 191, 36, 0.9)";
+        // Chuyển từ Spherical sang Cartesian 3D (X, Y, Z)
+        const rad = p.r * R;
+        const x3d = rad * Math.cos(p.phi) * Math.cos(p.theta);
+        const y3d = rad * Math.cos(p.phi) * Math.sin(p.theta);
+        const z3d = rad * Math.sin(p.phi);
+
+        // Chiếu phối cảnh Perspective 3D
+        const depthFactor = (z3d + R) / (2 * R); // 0 (tận đáy sau) -> 1 (ngay trước mắt)
+        const px = cx + x3d;
+        const py = cy + y3d * 0.85; // Bẹp nhẹ tạo góc nhìn 3D isometric
+        const renderedSize = Math.max(0.6, p.size * (0.5 + depthFactor * 0.9));
+        const alpha = Math.max(0.1, depthFactor * (isProcessing ? 0.95 : 0.7));
+
+        if (px >= cx - R && px <= cx + R && py >= cy - R && py <= cy + R) {
           ctx.beginPath();
-          ctx.arc(px, py, 2.2, 0, Math.PI * 2);
+          ctx.arc(px, py, renderedSize, 0, Math.PI * 2);
+
+          if (isListening) {
+            ctx.fillStyle = `rgba(52, 211, 153, ${alpha})`;
+          } else if (isProcessing) {
+            ctx.fillStyle = `rgba(251, 191, 36, ${alpha})`;
+          } else {
+            ctx.fillStyle = p.colorType === 1 ? `rgba(251, 191, 36, ${alpha})` : `rgba(217, 119, 6, ${alpha})`;
+          }
+
           ctx.fill();
+
+          // Tia lóe sáng nhỏ cho các hạt bay ngay mặt trước (z3d > R * 0.3)
+          if (z3d > R * 0.3 && renderedSize > 2.0) {
+            ctx.beginPath();
+            ctx.arc(px, py, renderedSize * 2.2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.35})`;
+            ctx.fill();
+          }
         }
+      });
+
+      // ─── TẦNG 4: LÕI PHA LÊ PHÁT QUANG ĐẬM ĐẶC (DENSE RADIANT CRYSTAL CORE) ───
+      const corePulse = Math.sin(time * 2) * (R * 0.04);
+      const coreGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, R * 0.28 + corePulse);
+
+      if (isListening) {
+        coreGrad.addColorStop(0, "rgba(255, 255, 255, 0.9)");
+        coreGrad.addColorStop(0.3, "rgba(52, 211, 153, 0.65)");
+        coreGrad.addColorStop(0.8, "rgba(16, 185, 129, 0.2)");
+        coreGrad.addColorStop(1, "rgba(6, 78, 59, 0)");
+      } else if (isProcessing) {
+        coreGrad.addColorStop(0, "rgba(255, 255, 255, 0.95)");
+        coreGrad.addColorStop(0.3, "rgba(251, 191, 36, 0.8)");
+        coreGrad.addColorStop(0.8, "rgba(217, 119, 6, 0.3)");
+        coreGrad.addColorStop(1, "rgba(180, 83, 9, 0)");
+      } else if (isPlaying) {
+        coreGrad.addColorStop(0, "rgba(255, 255, 255, 0.85)");
+        coreGrad.addColorStop(0.3, "rgba(252, 211, 77, 0.6)");
+        coreGrad.addColorStop(0.8, "rgba(217, 119, 6, 0.2)");
+        coreGrad.addColorStop(1, "rgba(146, 64, 14, 0)");
+      } else {
+        coreGrad.addColorStop(0, "rgba(255, 255, 255, 0.7)");
+        coreGrad.addColorStop(0.35, "rgba(245, 158, 11, 0.35)");
+        coreGrad.addColorStop(0.85, "rgba(217, 119, 6, 0.08)");
+        coreGrad.addColorStop(1, "rgba(0, 0, 0, 0)");
       }
 
-      // 4. Vệt Phản Quang Vòm Thủy Tinh (Curved Glass Reflection)
-      const glare = ctx.createRadialGradient(
-        cx - R * 0.35,
-        cy - R * 0.4,
-        R * 0.05,
-        cx - R * 0.35,
-        cy - R * 0.4,
+      ctx.fillStyle = coreGrad;
+      ctx.beginPath();
+      ctx.arc(cx, cy, R * 0.28 + corePulse, 0, Math.PI * 2);
+      ctx.fill();
+
+      // ─── TẦNG 5: VÀNH TÁN SẮC FRESNEL & ĐỘ BÓNG KÍNH ĐÔI (DUAL CURVED GLASS GLARE) ───
+      // 1. Phản quang chính góc trên bên trái
+      const mainGlare = ctx.createRadialGradient(
+        cx - R * 0.38,
+        cy - R * 0.42,
+        R * 0.02,
+        cx - R * 0.38,
+        cy - R * 0.42,
         R * 0.65
       );
-      glare.addColorStop(0, "rgba(255, 255, 255, 0.85)");
-      glare.addColorStop(0.35, "rgba(255, 255, 255, 0.2)");
-      glare.addColorStop(1, "rgba(255, 255, 255, 0)");
+      mainGlare.addColorStop(0, "rgba(255, 255, 255, 0.95)");
+      mainGlare.addColorStop(0.2, "rgba(255, 255, 255, 0.5)");
+      mainGlare.addColorStop(0.6, "rgba(255, 255, 255, 0.08)");
+      mainGlare.addColorStop(1, "rgba(255, 255, 255, 0)");
 
-      ctx.fillStyle = glare;
+      ctx.fillStyle = mainGlare;
       ctx.beginPath();
-      ctx.arc(cx - R * 0.35, cy - R * 0.4, R * 0.5, 0, Math.PI * 2);
+      ctx.arc(cx - R * 0.38, cy - R * 0.42, R * 0.55, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 2. Phản quang đáy mềm mại (Subsurface Floor Bounce)
+      const floorBounce = ctx.createRadialGradient(
+        cx + R * 0.3,
+        cy + R * 0.45,
+        R * 0.02,
+        cx + R * 0.3,
+        cy + R * 0.45,
+        R * 0.4
+      );
+      floorBounce.addColorStop(0, "rgba(255, 255, 255, 0.35)");
+      floorBounce.addColorStop(0.5, "rgba(255, 255, 255, 0.08)");
+      floorBounce.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+      ctx.fillStyle = floorBounce;
+      ctx.beginPath();
+      ctx.arc(cx + R * 0.3, cy + R * 0.45, R * 0.35, 0, Math.PI * 2);
       ctx.fill();
 
       animFrameIdRef.current = requestAnimationFrame(render);
@@ -312,8 +444,8 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
   // Parallax Tilt 3D
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 14;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -14;
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 16;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -16;
     setTilt({ x: y, y: x });
   };
 
@@ -416,49 +548,49 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
       onMouseLeave={handleMouseLeave}
       className="w-full flex-1 flex flex-col items-center justify-between p-4 py-2 select-none overflow-hidden"
     >
-      {/* 1. THẤU KÍNH ÂM THANH DI TÍCH 3D (TACTILE 3D ACOUSTIC SOUND LENS) */}
+      {/* 1. THẤU KÍNH ÂM THANH DI TÍCH 3D ĐA TẦNG CHIỀU SÂU (VOLUMETRIC 3D OPTICAL CORE) */}
       <div className="relative flex flex-col items-center justify-center my-auto">
         {/* Hào quang nền khuếch tán hữu cơ */}
         <div
-          className={`absolute w-56 h-56 sm:w-64 sm:h-64 rounded-full transition-all duration-700 pointer-events-none ${
+          className={`absolute w-60 h-60 sm:w-68 sm:h-68 rounded-full transition-all duration-700 pointer-events-none ${
             isListening
-              ? "bg-emerald-500/30 blur-3xl scale-125"
+              ? "bg-emerald-500/35 blur-3xl scale-125"
               : isProcessing
-              ? "bg-amber-500/35 blur-2xl animate-pulse scale-110"
+              ? "bg-amber-500/40 blur-3xl animate-pulse scale-115"
               : isPlaying
-              ? "bg-amber-500/30 blur-3xl scale-115"
-              : "bg-amber-400/20 blur-2xl"
+              ? "bg-amber-500/35 blur-3xl scale-115"
+              : "bg-amber-400/25 blur-2xl"
           }`}
         />
 
-        {/* THẤU KÍNH NGUYÊN BẢN (PURE TACTILE LENS) */}
+        {/* THẤU KÍNH NGUYÊN BẢN (PURE TACTILE LENS WITH SUBTERRANEAN 3D DEPTH) */}
         <button
           onClick={handleToggleListening}
           style={{
             transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
             transition: "transform 0.15s ease-out"
           }}
-          className={`w-48 h-48 sm:w-56 sm:h-56 rounded-full relative cursor-pointer overflow-hidden transition-all duration-500 transform active:scale-95 shadow-2xl flex items-center justify-center border-4 ${
+          className={`w-52 h-52 sm:w-60 sm:h-60 rounded-full relative cursor-pointer overflow-hidden transition-all duration-500 transform active:scale-95 shadow-2xl flex items-center justify-center border-4 ${
             isListening
-              ? "bg-gradient-to-br from-white via-emerald-50 to-emerald-100/80 border-emerald-500 shadow-emerald-700/35"
+              ? "bg-gradient-to-br from-[#FAFFF8] via-[#E6F8ED] to-[#D1F2DE] border-emerald-500 shadow-emerald-700/40"
               : isProcessing
-              ? "bg-gradient-to-br from-white via-amber-50 to-amber-100/80 border-amber-500 shadow-amber-700/40 animate-pulse"
+              ? "bg-gradient-to-br from-[#FFFDF7] via-[#FEF3D6] to-[#FDE68A] border-amber-500 shadow-amber-700/45 animate-pulse"
               : isPlaying
-              ? "bg-gradient-to-br from-white via-amber-50 to-amber-100/70 border-amber-500 shadow-amber-700/30"
-              : "bg-gradient-to-br from-white via-[#FBF8F2] to-[#EFE8DC] border-[#D0C7B7] hover:border-amber-500 shadow-[#00000020]"
+              ? "bg-gradient-to-br from-[#FFFDF9] via-[#FEF3D6] to-[#FDE8B3] border-amber-500 shadow-amber-700/35"
+              : "bg-gradient-to-br from-[#FFFDF9] via-[#FAF4E8] to-[#EFE4D0] border-[#CFC5B3] hover:border-amber-500 shadow-[#00000025]"
           }`}
           aria-label="Chạm vào thấu kính để nói chuyện với hướng dẫn viên"
         >
-          {/* Canvas Sóng Âm 3D */}
+          {/* Canvas Sóng Âm & Lõi Hạt 3D Đa Chiều Sâu */}
           <canvas
             ref={canvasRef}
-            width={240}
-            height={240}
+            width={260}
+            height={260}
             className="absolute inset-0 w-full h-full pointer-events-none"
           />
 
           {/* Vành Rim 3D mạ ánh sáng trong suốt */}
-          <div className="absolute inset-0 rounded-full border-2 border-white/70 pointer-events-none shadow-inner" />
+          <div className="absolute inset-0 rounded-full border-2 border-white/80 pointer-events-none shadow-inner" />
         </button>
 
         {/* Chú thích trạng thái tinh tế dưới thấu kính */}
@@ -477,8 +609,8 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                 ? "Đang thuyết minh âm thanh"
                 : "Playing narration"
               : locale === "vi"
-              ? "Chạm vào thấu kính để hỏi"
-              : "Tap lens to ask"}
+              ? "Chạm vào quả cầu để hỏi"
+              : "Tap sphere to ask"}
           </p>
         </div>
       </div>
