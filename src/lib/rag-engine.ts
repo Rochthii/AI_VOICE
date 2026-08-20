@@ -37,18 +37,18 @@ function extractQueryVector(query: string): number[] {
   const normalized = query.toLowerCase();
   const vector = new Array(10).fill(0);
 
-  // Mapping các chủ đề sử liệu Củ Chi vào các chiều vector tương ứng
+  // Mapping các chủ đề sử liệu Củ Chi vào các chiều vector tương ứng (10 chiều)
   const keywordMappings: Record<number, string[]> = {
-    0: ["bếp", "hoàng cầm", "khói", "nấu", "khoai mì", "ăn", "thực phẩm"],
-    1: ["bệnh xá", "phẫu thuật", "bác sĩ", "võ hoàng lê", "filatov", "thuốc nam", "mổ", "cứu thương"],
-    2: ["chỉ huy", "bộ tư lệnh", "khu ủy", "huyện ủy", "bến dược", "bến đình", "tết mậu thân", "nút chặn"],
-    3: ["thông hơi", "lỗ thở", "ụ mối", "chó", "béc giê", "xà phòng mỹ", "đối lưu", "crimp", "cedar falls"],
-    4: ["bẫy", "chông", "mìn gạt", "tô văn đực", "cánh cửa", "nắp tự động", "xe tăng", "thô sơ"],
-    5: ["độ sâu", "tầng 1", "tầng 2", "tầng 3", "chiều dài", "200km", "250km", "đất sét", "đá ong"],
-    6: ["sông sài gòn", "thoát hiểm", "ngách ngầm", "rút lui"],
-    7: ["đền bến dược", "liệt sĩ", "44357", "632 phiến đá", "tưởng niệm"],
-    8: ["chiến tranh nhân dân", "tự lực cánh sinh", "kháng chiến", "du kích"],
-    9: ["an toàn", "ngạt", "khom lưng", "bò", "hướng dẫn"]
+    0: ["bếp", "hoàng cầm", "khói", "nấu", "khoai mì", "ăn", "thực phẩm", "rãnh giấu khói", "kitchen", "stove", "smoke"],
+    1: ["bệnh xá", "phẫu thuật", "bác sĩ", "võ hoàng lê", "filatov", "thuốc nam", "mổ", "cứu thương", "hospital", "surgery", "doctor"],
+    2: ["chỉ huy", "bộ tư lệnh", "khu ủy", "huyện ủy", "bến dược", "bến đình", "tết mậu thân", "nút chặn", "command", "bunker"],
+    3: ["thông hơi", "lỗ thở", "ụ mối", "chó", "béc giê", "xà phòng", "mỹ", "camay", "đối lưu", "crimp", "cedar falls", "ớt bột", "ventilation", "dog", "soap"],
+    4: ["bẫy", "chông", "mìn gạt", "tô văn đực", "cánh cửa", "nắp tự động", "xe tăng", "m113", "thô sơ", "bom lép", "trap", "mine"],
+    5: ["độ sâu", "tầng 1", "tầng 2", "tầng 3", "chiều dài", "200km", "250km", "đất sét", "đá ong", "laterit", "depth", "laterite", "soil"],
+    6: ["sông sài gòn", "thoát hiểm", "ngách ngầm", "rút lui", "escape", "river", "tunnel rats", "chuột chũi", "giáng sinh 1966", "phạm sáng", "bob hope", "christmas"],
+    7: ["đền bến dược", "liệt sĩ", "44357", "632 phiến đá", "tưởng niệm", "unesco", "di sản thế giới", "2027", "2367/qđ-ttg", "quốc gia đặc biệt"],
+    8: ["chiến tranh nhân dân", "tự lực cánh sinh", "kháng chiến", "du kích", "nghiêu thuấn", "võ văn kiệt", "cây củ chi", "strychnos", "tên gọi"],
+    9: ["an toàn", "ngạt", "khom lưng", "bò", "hướng dẫn", "tour đêm", "trăng chiến khu", "giá vé", "35k", "70k", "đất đông cứng", "bảo tồn", "văn lang"]
   };
 
   let matchFound = false;

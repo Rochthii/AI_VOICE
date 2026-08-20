@@ -5,8 +5,29 @@
     "category": "construction",
     "content_vi": "Hệ thống địa đạo Củ Chi được khởi nguồn từ thời kỳ kháng chiến chống Pháp khoảng năm 1948 tại hai xã Tân Phú Trung và Phước Vĩnh An. Từ năm 1961 trong kháng chiến chống Mỹ, khi Củ Chi là căn cứ Khu ủy và Quân khu Sài Gòn - Gia Định, hệ thống phát triển mạnh mẽ với tuyến địa đạo trục chính 'xương sống' (1961-1965). Tổng chiều dài đạt trên 200 km đường hầm tỏa rộng (khoảng 250 km ở một số tư liệu) liên hoàn với 500 km chiến hào và công sự trên mặt đất.",
     "content_en": "The Cu Chi Tunnels began around 1948 during the French resistance in Tan Phu Trung and Phuoc Vinh An. From 1961 during the American War, as the base for the Saigon - Gia Dinh Regional Command, the 'backbone' spine tunnels expanded rapidly (1961-1965). Total length exceeds 200 km (up to 250 km in some records) interconnected with 500 km of surface combat trenches.",
-    "keywords": ["chiều dài", "lịch sử", "200km", "250km", "500km", "hình thành", "1948", "xương sống", "tổng quan"],
-    "embedding": [0.052, 0.124, 0.312, -0.045, 0.189, 0.221, -0.115, 0.088, 0.041, 0.198],
+    "keywords": [
+      "chiều dài",
+      "lịch sử",
+      "200km",
+      "250km",
+      "500km",
+      "hình thành",
+      "1948",
+      "xương sống",
+      "tổng quan"
+    ],
+    "embedding": [
+      0.052,
+      0.124,
+      0.312,
+      -0.045,
+      0.189,
+      0.221,
+      -0.115,
+      0.088,
+      0.041,
+      0.198
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi & Viện Lịch sử Quân sự Việt Nam"
   },
   {
@@ -15,8 +36,28 @@
     "category": "construction",
     "content_vi": "Địa đạo được đào trên khu vực địa chất chủ yếu là đất sét pha đá ong (đất sét pha laterit). Đây là loại đất có đặc tính kết dính cao, độ bền vượt trội và rất ít khi bị sụt lở. Nhờ độ vững chắc tự nhiên chịu lực nén siêu hạng này, hệ thống đứng vững kiên cường không cần dầm bê tông chống đỡ, bảo vệ an toàn trước sức ép từ xích xe tăng, xe bọc thép và sức công phá của bom đạn pháo.",
     "content_en": "The tunnels were excavated in clay mixed with laterite gravel. This soil possesses high adhesion, extreme durability, and minimal cave-in risk. With superior natural compressive strength, the network stands firm without concrete supports, withstanding tanks, APCs, and heavy artillery bombardments.",
-    "keywords": ["địa chất", "đất sét pha đá ong", "laterit", "kết dính cao", "ít sụt lở", "xe tăng", "xe bọc thép", "không cần dầm bê tông"],
-    "embedding": [0.081, 0.155, 0.298, -0.012, 0.210, 0.180, -0.095, 0.112, 0.065, 0.175],
+    "keywords": [
+      "địa chất",
+      "đất sét pha đá ong",
+      "laterit",
+      "kết dính cao",
+      "ít sụt lở",
+      "xe tăng",
+      "xe bọc thép",
+      "không cần dầm bê tông"
+    ],
+    "embedding": [
+      0.081,
+      0.155,
+      0.298,
+      -0.012,
+      0.21,
+      0.18,
+      -0.095,
+      0.112,
+      0.065,
+      0.175
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
@@ -25,8 +66,28 @@
     "category": "construction",
     "content_vi": "Hệ thống địa đạo có cấu trúc 3 tầng sâu kết nối qua nắp hầm bí mật ngụy trang: Tầng 1 (~3m) chống chịu đạn pháo và sức nặng xe tăng, bố trí hào chiến đấu, ụ bắn tỉa, lỗ thông hơi ụ mối; Tầng 2 (5m-8m) chống bom phá thông thường cỡ nhỏ, bố trí bếp Hoàng Cầm, cứu thương, kho lương thực, giếng nước ngầm; Tầng 3 (8m-12m, có nơi sâu hơn 12m) là hầm chỉ huy, phòng họp của lãnh đạo Khu ủy và ngách thoát hiểm trổ ra sông Sài Gòn.",
     "content_en": "The network features 3 tactical levels connected by concealed trapdoors: Level 1 (~3m depth) resists artillery and tanks with sniper posts and vent mounds; Level 2 (5m-8m) withstands light demolition bombs, housing Hoang Cam stoves, first aid, supply depots, and wells; Level 3 (8m-12m, up to >12m) serves as command bunkers for leadership with secret escape tunnels to Saigon River.",
-    "keywords": ["3 tầng", "phân tầng", "độ sâu", "tầng 1", "tầng 2", "tầng 3", "hầm chỉ huy", "thoát hiểm sông sài gòn"],
-    "embedding": [0.092, 0.168, 0.285, -0.025, 0.195, 0.190, -0.105, 0.125, 0.055, 0.185],
+    "keywords": [
+      "3 tầng",
+      "phân tầng",
+      "độ sâu",
+      "tầng 1",
+      "tầng 2",
+      "tầng 3",
+      "hầm chỉ huy",
+      "thoát hiểm sông sài gòn"
+    ],
+    "embedding": [
+      0.092,
+      0.168,
+      0.285,
+      -0.025,
+      0.195,
+      0.19,
+      -0.105,
+      0.125,
+      0.055,
+      0.185
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
@@ -35,8 +96,27 @@
     "category": "living",
     "content_vi": "Bếp Hoàng Cầm là sáng tạo độc đáo trong hệ thống phòng thủ ngầm địa đạo Củ Chi, được thiết kế kín đáo giúp nấu ăn dưới lòng đất mà không bị đối phương phát hiện. Bếp được bố trí liên hoàn ở Tầng 2 (Tầng Trung) ở độ sâu cách mặt đất từ 5m – 8m (hoặc dao động từ 3m – 10m tùy khu vực), bảo đảm an toàn trước sức tàn phá của các loại bom phá thông thường cỡ nhỏ.",
     "content_en": "The Hoang Cam stove is a unique innovation in Cu Chi's defense system, engineered for subterranean cooking without enemy detection. Situated at Level 2 (5m - 8m depth, up to 3m - 10m depending on the sector), it is protected from conventional light demolition bombs.",
-    "keywords": ["bếp hoàng cầm", "tầng 2", "5m 8m", "3m 10m", "bom phá", "an toàn", "nấu ăn dưới đất"],
-    "embedding": [0.142, 0.210, 0.185, 0.088, 0.312, 0.095, -0.045, 0.220, 0.155, 0.088],
+    "keywords": [
+      "bếp hoàng cầm",
+      "tầng 2",
+      "5m 8m",
+      "3m 10m",
+      "bom phá",
+      "an toàn",
+      "nấu ăn dưới đất"
+    ],
+    "embedding": [
+      0.142,
+      0.21,
+      0.185,
+      0.088,
+      0.312,
+      0.095,
+      -0.045,
+      0.22,
+      0.155,
+      0.088
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
@@ -45,8 +125,26 @@
     "category": "living",
     "content_vi": "Sự tích hợp của bếp Hoàng Cầm cùng các khu vực chức năng như hầm nghỉ ngơi, kho dự trữ lương thực, kho vũ khí, giếng nước ngầm, bệnh xá dã chiến và phòng phẫu thuật đã biến hệ thống địa đạo từ nơi ẩn nấp đơn thuần thành một 'xã hội thu nhỏ dưới lòng đất' hay 'thành phố trong lòng đất', duy trì cuộc sống sinh hoạt bình thường giữa vùng chiến sự khốc liệt.",
     "content_en": "Integrating Hoang Cam kitchens with resting quarters, grain stores, armories, wells, field hospitals, and surgical wards transformed the tunnels from simple shelters into a 'miniature underground society' or 'city in the earth' sustaining daily life amidst warfare.",
-    "keywords": ["xã hội thu nhỏ", "thành phố trong lòng đất", "kho lương thực", "giếng nước", "bệnh xá", "sinh hoạt"],
-    "embedding": [0.155, 0.225, 0.198, 0.095, 0.325, 0.085, -0.035, 0.235, 0.168, 0.095],
+    "keywords": [
+      "xã hội thu nhỏ",
+      "thành phố trong lòng đất",
+      "kho lương thực",
+      "giếng nước",
+      "bệnh xá",
+      "sinh hoạt"
+    ],
+    "embedding": [
+      0.155,
+      0.225,
+      0.198,
+      0.095,
+      0.325,
+      0.085,
+      -0.035,
+      0.235,
+      0.168,
+      0.095
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
@@ -55,8 +153,28 @@
     "category": "tactics",
     "content_vi": "Nguyên lý giấu khói bếp Hoàng Cầm: Thay vì bốc thẳng lên cao thành cột khói, khói sinh ra từ buồng đốt được dẫn qua hệ thống đường ống hoặc rãnh dẫn ngầm dưới lòng đất. Quá trình di chuyển qua mạng lưới rãnh ngầm giúp khói nóng được làm nguội dần (hạ nhiệt) và phân tán ra xa qua nhiều tầng trước khi thoát ra các lỗ thông hơi ngụy trang (dạng ụ đất, ụ mối, gốc cây). Khi ra ngoài, luồng khói đã nguội chỉ còn là làn sương cực mỏng là là sát mặt đất hòa lẫn vào sương rừng tự nhiên.",
     "content_en": "Smokeless principle: Instead of rising in a vertical column, smoke from the firebox is routed through underground pipes or trenches, gradually cooling and dispersing across multiple layers before venting through disguised ground openings (mounds, termite mounds, tree roots) as faint mist blending into forest fog.",
-    "keywords": ["nguyên lý giấu khói", "rãnh ngầm", "làm nguội", "phân tán khói", "sương mỏng", "sương rừng", "ụ mối", "gốc cây"],
-    "embedding": [0.165, 0.238, 0.210, 0.105, 0.340, 0.075, -0.025, 0.245, 0.175, 0.105],
+    "keywords": [
+      "nguyên lý giấu khói",
+      "rãnh ngầm",
+      "làm nguội",
+      "phân tán khói",
+      "sương mỏng",
+      "sương rừng",
+      "ụ mối",
+      "gốc cây"
+    ],
+    "embedding": [
+      0.165,
+      0.238,
+      0.21,
+      0.105,
+      0.34,
+      0.075,
+      -0.025,
+      0.245,
+      0.175,
+      0.105
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
@@ -65,8 +183,26 @@
     "category": "living",
     "content_vi": "Hiện nay, bếp Hoàng Cầm đã được trùng tu, phục dựng và bảo tồn nguyên trạng tại các khu di tích Địa đạo Bến Dược và Bến Đình dưới sự quản lý trực tiếp của Ban Quản lý Khu di tích. Khi đến tham quan trải nghiệm thực tế đời sống thời chiến tại đây, du khách sẽ được thưởng thức món ăn kháng chiến dân dã là khoai mì chấm muối mè được đun nấu trực tiếp từ chính bếp Hoàng Cầm lịch sử.",
     "content_en": "Today, Hoang Cam stoves are authentically preserved and restored at Ben Duoc and Ben Dinh under the Management Board. Visitors experiencing wartime underground life are served traditional boiled cassava with sesame salt cooked directly on historic Hoang Cam stoves.",
-    "keywords": ["bến dược", "bến đình", "phục dựng", "bảo tồn", "khoai mì chấm muối mè", "trải nghiệm thực tế"],
-    "embedding": [0.138, 0.198, 0.175, 0.075, 0.298, 0.105, -0.055, 0.210, 0.145, 0.078],
+    "keywords": [
+      "bến dược",
+      "bến đình",
+      "phục dựng",
+      "bảo tồn",
+      "khoai mì chấm muối mè",
+      "trải nghiệm thực tế"
+    ],
+    "embedding": [
+      0.138,
+      0.198,
+      0.175,
+      0.075,
+      0.298,
+      0.105,
+      -0.055,
+      0.21,
+      0.145,
+      0.078
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
@@ -75,8 +211,27 @@
     "category": "living",
     "content_vi": "Trong cấu trúc địa đạo Củ Chi, các công trình y tế như bệnh xá dã chiến, hầm giải phẫu, hầm y tế và hầm nuôi dưỡng thương binh được ưu tiên bố trí liên hoàn tại Tầng 2 (Tầng Trung) ở độ sâu cách mặt đất từ 5m – 8m (hoặc 3m – 10m tùy địa hình ngầm), an toàn trước bom phá thông thường cỡ nhỏ. Đường hầm có chiều cao hạn chế chỉ vừa đủ cho một người đi lom khom, thông khí thụ động qua ống dẫn nối lỗ thở ngụy trang (dạng ụ đất, ụ mối, gốc cây).",
     "content_en": "In Cu Chi's multi-level system, medical bunkers (field hospitals, surgery wards, nursing stations) were situated at Level 2 (5m - 8m depth, up to 3m - 10m) safe from light demolition bombs. Tunnel height requires stooping, with passive ventilation through disguised surface vents.",
-    "keywords": ["bệnh xá", "hầm giải phẫu", "tầng 2", "5m 8m", "lom khom", "hầm y tế", "nuôi dưỡng thương binh"],
-    "embedding": [0.112, 0.088, 0.245, 0.195, 0.155, 0.312, -0.088, 0.165, 0.210, 0.142],
+    "keywords": [
+      "bệnh xá",
+      "hầm giải phẫu",
+      "tầng 2",
+      "5m 8m",
+      "lom khom",
+      "hầm y tế",
+      "nuôi dưỡng thương binh"
+    ],
+    "embedding": [
+      0.112,
+      0.088,
+      0.245,
+      0.195,
+      0.155,
+      0.312,
+      -0.088,
+      0.165,
+      0.21,
+      0.142
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
@@ -85,8 +240,28 @@
     "category": "living",
     "content_vi": "Môi trường sinh hoạt và cứu thương dưới lòng hầm cực kỳ khắc nghiệt do thiếu ánh sáng, không khí ẩm ướt, nóng bức và điều kiện vệ sinh kém, khiến người bám trụ dài ngày dễ mắc bệnh ngoài da, ký sinh trùng và xương khớp. Quân y Củ Chi phát huy tinh thần tự lực cánh sinh bằng phong trào 'vệ sinh phòng bệnh', 'sử dụng cây thuốc Nam', áp dụng 'những toa thuốc căn bản' và sáng kiến 'cấy Phi-la-tốp' (Filatov) tăng đề kháng cho thương binh.",
     "content_en": "Underground medical conditions were severe with low light, high humidity, heat, and poor hygiene causing skin, parasite, and joint ailments. Medics maintained self-reliance via hygiene movements, herbal medicines, standard formulas, and Filatov tissue therapy for wounded fighters.",
-    "keywords": ["khắc nghiệt", "ẩm ướt", "nóng bức", "da liễu", "thuốc Nam", "cấy Phi-la-tốp", "Filatov", "vệ sinh phòng bệnh"],
-    "embedding": [0.125, 0.098, 0.260, 0.210, 0.168, 0.325, -0.075, 0.178, 0.225, 0.155],
+    "keywords": [
+      "khắc nghiệt",
+      "ẩm ướt",
+      "nóng bức",
+      "da liễu",
+      "thuốc Nam",
+      "cấy Phi-la-tốp",
+      "Filatov",
+      "vệ sinh phòng bệnh"
+    ],
+    "embedding": [
+      0.125,
+      0.098,
+      0.26,
+      0.21,
+      0.168,
+      0.325,
+      -0.075,
+      0.178,
+      0.225,
+      0.155
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
@@ -95,8 +270,25 @@
     "category": "living",
     "content_vi": "Mạng lưới y tế nhân dân thời chiến được tổ chức chặt chẽ đến tận cơ sở. Ở khắp các xã thuộc vùng giải phóng đều có trạm y tế, nhà bảo sinh và đội cứu thương dã chiến do lực lượng du kích kết hợp với Hội Mẹ chiến sĩ làm nòng cốt hỗ trợ chăm sóc sức khỏe cho quân dân.",
     "content_en": "Wartime civilian healthcare was deeply grassroots: liberated communes established health stations, maternity wards, and first aid teams supported by guerillas and the Mothers of Soldiers Association.",
-    "keywords": ["mạng lưới y tế", "nhà bảo sinh", "trạm y tế xã", "hội mẹ chiến sĩ", "đội cứu thương"],
-    "embedding": [0.118, 0.092, 0.252, 0.202, 0.160, 0.318, -0.082, 0.170, 0.218, 0.148],
+    "keywords": [
+      "mạng lưới y tế",
+      "nhà bảo sinh",
+      "trạm y tế xã",
+      "hội mẹ chiến sĩ",
+      "đội cứu thương"
+    ],
+    "embedding": [
+      0.118,
+      0.092,
+      0.252,
+      0.202,
+      0.16,
+      0.318,
+      -0.082,
+      0.17,
+      0.218,
+      0.148
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
@@ -105,8 +297,26 @@
     "category": "living",
     "content_vi": "Lịch sử ghi nhận tấm gương Bác sĩ Võ Hoàng Lê (Dr. Vo Hoang Le) thực hiện nhiều ca phẫu thuật ngoại khoa phức tạp trong lòng đất ẩm tối, đồng thời trực tiếp chỉ huy phòng thủ quân sự bảo vệ bệnh viện ngầm trước các đợt càn quét. Hiện nay, tại di tích Củ Chi, các dụng cụ y tế thời chiến và vườn thuốc Nam dã chiến đã được phục dựng và bảo tồn nguyên trạng.",
     "content_en": "History honors Dr. Vo Hoang Le who performed complex surgical operations in dark tunnels and personally commanded defensive actions to protect underground hospitals. Today, wartime medical tools and herbal gardens are authentically preserved at the site.",
-    "keywords": ["Võ Hoàng Lê", "Dr. Vo Hoang Le", "phẫu thuật ngoại khoa", "vườn thuốc Nam", "dụng cụ y tế", "phục dựng"],
-    "embedding": [0.105, 0.082, 0.238, 0.188, 0.148, 0.305, -0.095, 0.158, 0.202, 0.135],
+    "keywords": [
+      "Võ Hoàng Lê",
+      "Dr. Vo Hoang Le",
+      "phẫu thuật ngoại khoa",
+      "vườn thuốc Nam",
+      "dụng cụ y tế",
+      "phục dựng"
+    ],
+    "embedding": [
+      0.105,
+      0.082,
+      0.238,
+      0.188,
+      0.148,
+      0.305,
+      -0.095,
+      0.158,
+      0.202,
+      0.135
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
@@ -115,8 +325,28 @@
     "category": "tactics",
     "content_vi": "Hầm chỉ huy đầu não là hạt nhân trung tâm điều hành toàn bộ hoạt động tác chiến, hiện được bảo tồn nguyên trạng tại Địa đạo Bến Dược (Khu A: Bộ Tư lệnh Quân khu; Khu B: Khu ủy Sài Gòn – Chợ Lớn – Gia Định) và Địa đạo Bến Đình (Huyện ủy Củ Chi). Hầm được thiết kế tại Tầng 3 (độ sâu 8m – 12m, có nơi sâu hơn 12m), là tầng kiên cố nhất có khả năng chịu lực nén tự nhiên tuyệt vời bảo vệ an toàn trước các loại bom tấn lớn nhất.",
     "content_en": "Command bunkers acted as the strategic control center, preserved at Ben Duoc (Sector A: Regional Command; Sector B: Party Committee) and Ben Dinh (District Committee). Situated at Level 3 (8m – 12m depth, up to >12m), they offer exceptional natural compressive strength against heavy aerial bombing.",
-    "keywords": ["sở chỉ huy", "tầng 3", "8m 12m", "bến dược", "bến đình", "khu ủy", "bộ tư lệnh", "huyện ủy"],
-    "embedding": [0.210, 0.145, 0.112, 0.055, 0.285, 0.095, -0.015, 0.312, 0.188, 0.065],
+    "keywords": [
+      "sở chỉ huy",
+      "tầng 3",
+      "8m 12m",
+      "bến dược",
+      "bến đình",
+      "khu ủy",
+      "bộ tư lệnh",
+      "huyện ủy"
+    ],
+    "embedding": [
+      0.21,
+      0.145,
+      0.112,
+      0.055,
+      0.285,
+      0.095,
+      -0.015,
+      0.312,
+      0.188,
+      0.065
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
@@ -125,8 +355,27 @@
     "category": "tactics",
     "content_vi": "Mặt bằng liên hoàn hầm chỉ huy tại Khu A Bến Dược gồm hầm họp Bộ Tư lệnh thông qua phòng Chính ủy/Phó Chính ủy, hầm họp Chính ủy và 2 hầm làm việc/nghỉ của Tư lệnh (kích thước 3,7m x 2,6m và 4,2m x 2,5m; hầm chữ A 2,3m x 2,2m). Dọc tuyến hầm có hệ thống nút chặn tại các điểm hiểm yếu để đóng kín cô lập từng phần hầm khi bị phun hơi ngạt/chất độc hóa học hoặc bơm nước, cùng ngách thoát hiểm cơ mật trổ thẳng ra sát mép sông Sài Gòn.",
     "content_en": "The complex layout at Ben Duoc Sector A includes Headquarters meeting halls, Commissar quarters, Commander rooms (3.7x2.6m & 4.2x2.5m; A-shaped bunker 2.3x2.2m). Safety stop-valves at choke points isolate tunnel sections against gas or water, complemented by emergency escape exits leading to the Saigon River.",
-    "keywords": ["hầm tư lệnh", "hầm chính ủy", "kích thước", "nút chặn", "hơi ngạt", "chất độc hóa học", "thoát hiểm sông Sài Gòn"],
-    "embedding": [0.225, 0.158, 0.125, 0.068, 0.298, 0.085, -0.005, 0.325, 0.198, 0.075],
+    "keywords": [
+      "hầm tư lệnh",
+      "hầm chính ủy",
+      "kích thước",
+      "nút chặn",
+      "hơi ngạt",
+      "chất độc hóa học",
+      "thoát hiểm sông Sài Gòn"
+    ],
+    "embedding": [
+      0.225,
+      0.158,
+      0.125,
+      0.068,
+      0.298,
+      0.085,
+      -0.005,
+      0.325,
+      0.198,
+      0.075
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
@@ -135,8 +384,26 @@
     "category": "tactics",
     "content_vi": "Hệ thống hầm ngầm kiên cố này phản ánh nghệ thuật chỉ huy quân sự độc đáo của chiến tranh nhân dân. Trong Chiến dịch Tết Mậu Thân 1968, hệ thống địa đạo Củ Chi đã hoàn thành xuất sắc vai trò làm bàn đạp xuất phát để quân Giải phóng miền Nam tiến công bất ngờ vào trung tâm đầu não địch tại Sài Gòn.",
     "content_en": "This underground stronghold exemplified people's war strategy. In the 1968 Tet Offensive, Cu Chi tunnels served as the essential staging springboard for surprise assaults directly into enemy headquarters in Saigon.",
-    "keywords": ["Tết Mậu Thân 1968", "Mậu Thân", "bàn đạp xuất phát", "chỉ huy", "Sài Gòn", "chiến tranh nhân dân"],
-    "embedding": [0.218, 0.152, 0.118, 0.062, 0.292, 0.090, -0.010, 0.318, 0.192, 0.070],
+    "keywords": [
+      "Tết Mậu Thân 1968",
+      "Mậu Thân",
+      "bàn đạp xuất phát",
+      "chỉ huy",
+      "Sài Gòn",
+      "chiến tranh nhân dân"
+    ],
+    "embedding": [
+      0.218,
+      0.152,
+      0.118,
+      0.062,
+      0.292,
+      0.09,
+      -0.01,
+      0.318,
+      0.192,
+      0.07
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
@@ -145,8 +412,27 @@
     "category": "construction",
     "content_vi": "Hệ thống thông gió ngầm cung cấp dưỡng khí thụ động thông qua các đường ống dẫn khí bằng thân tre rỗng ruột hoặc ống kim loại dẫn sâu vào lòng đất. Đầu ra của các ống thông hơi trên mặt đất được ngụy trang kín kẽ tại các bụi cây rừng, bụi rậm, gốc cây cổ thụ mục hoặc giả dạng dưới hình thức các ụ mối đùn (ụ mối đất) hay mô đất tự nhiên.",
     "content_en": "Subterranean passive ventilation supplies fresh oxygen through hollow bamboo or metal pipes routed deep underground. Surface vents are camouflaged among forest brush, thickets, rotten tree stumps, or shaped like natural termite mounds and soil hummocks.",
-    "keywords": ["lỗ thông hơi", "ống tre", "ống kim loại", "ngụy trang", "ụ mối đùn", "mô đất", "bụi rậm"],
-    "embedding": [0.185, 0.245, 0.095, -0.045, 0.210, 0.142, -0.065, 0.198, 0.112, 0.225],
+    "keywords": [
+      "lỗ thông hơi",
+      "ống tre",
+      "ống kim loại",
+      "ngụy trang",
+      "ụ mối đùn",
+      "mô đất",
+      "bụi rậm"
+    ],
+    "embedding": [
+      0.185,
+      0.245,
+      0.095,
+      -0.045,
+      0.21,
+      0.142,
+      -0.065,
+      0.198,
+      0.112,
+      0.225
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
@@ -155,8 +441,25 @@
     "category": "construction",
     "content_vi": "Quá trình thông khí ngầm vận hành hoàn toàn dựa trên nguyên lý đối lưu nhiệt tự nhiên. Sự chênh lệch nhiệt độ tự nhiên giữa các thảm thực vật mặt đất và lòng đất ẩm giúp luồng khí nóng thải ra liên tục được phân tán mỏng ra xung quanh, đồng thời hút ngược dưỡng khí mới giàu oxy xuống hầm mà không tạo ra bất kỳ tiếng động hay cột khói nào bốc lên.",
     "content_en": "Ventilation operates on natural thermal convection. The temperature gradient between surface vegetation and humid underground soil steadily disperses exhaled air outward while drawing fresh oxygen inward without noise or visible smoke.",
-    "keywords": ["đối lưu nhiệt tự nhiên", "dưỡng khí", "không tiếng động", "không khói", "thông gió ngầm"],
-    "embedding": [0.178, 0.238, 0.088, -0.052, 0.202, 0.148, -0.072, 0.192, 0.105, 0.218],
+    "keywords": [
+      "đối lưu nhiệt tự nhiên",
+      "dưỡng khí",
+      "không tiếng động",
+      "không khói",
+      "thông gió ngầm"
+    ],
+    "embedding": [
+      0.178,
+      0.238,
+      0.088,
+      -0.052,
+      0.202,
+      0.148,
+      -0.072,
+      0.192,
+      0.105,
+      0.218
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
@@ -165,8 +468,27 @@
     "category": "tactics",
     "content_vi": "Chiến thuật khắc chế chó nghiệp vụ: Trong các trận càn quét lớn như Crimp (1966) hay Cedar Falls (1967), đối phương huy động tối đa chó nghiệp vụ (béc-giê) đánh hơi tìm cửa hầm. Quân dân Củ Chi nảy ra sáng kiến thu thập và đặt xà phòng của Mỹ ngay tại các cửa hầm bí mật và miệng lỗ thông gió. Mùi hóa học đặc trưng nồng nặc của xà phòng Mỹ át hoàn toàn mùi mồ hôi và hơi ấm con người, khiến chó nghiệp vụ bị đánh lừa khứu giác.",
     "content_en": "Defeating tracker dogs: During major sweeps like Operations Crimp (1966) and Cedar Falls (1967), tracking dogs were used to sniff out entrances. Guerillas placed captured American soap at trapdoors and vents. The intense chemical scent masked human perspiration and warmth, completely confounding the dogs.",
-    "keywords": ["chó nghiệp vụ", "chó béc giê", "xà phòng Mỹ", "Crimp 1966", "Cedar Falls 1967", "đánh lừa khứu giác", "át mùi"],
-    "embedding": [0.198, 0.258, 0.108, -0.035, 0.225, 0.132, -0.055, 0.210, 0.125, 0.238],
+    "keywords": [
+      "chó nghiệp vụ",
+      "chó béc giê",
+      "xà phòng Mỹ",
+      "Crimp 1966",
+      "Cedar Falls 1967",
+      "đánh lừa khứu giác",
+      "át mùi"
+    ],
+    "embedding": [
+      0.198,
+      0.258,
+      0.108,
+      -0.035,
+      0.225,
+      0.132,
+      -0.055,
+      0.21,
+      0.125,
+      0.238
+    ],
     "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
@@ -175,8 +497,25 @@
     "category": "weaponry",
     "content_vi": "Tư duy quân sự cốt lõi của trận đồ phòng thủ Địa đạo Củ Chi là nghệ thuật chỉ huy 'lấy nhỏ đánh lớn, lấy ít thắng nhiều, lấy thô sơ thắng hiện đại'. Quân dân Củ Chi xây dựng các 'xã chiến đấu' kiên cố với vành đai giao thông hào chằng chịt nối liền địa đạo đa tầng, bố trí liên hoàn cùng các ụ chiến đấu, bãi mìn, hố đinh, hầm chông, bẫy mìn... tạo thế trận chủ động đánh tiêu hao sinh lực và đập tan các cuộc càn quét.",
     "content_en": "The military philosophy of Cu Chi was 'small defeats big, few overcome many, primitive defeats modern'. Resilient 'combat communes' integrated trench systems with multi-tiered tunnels, bunker posts, minefields, spike pits, and booby traps into an active defense network.",
-    "keywords": ["lấy thô sơ thắng hiện đại", "lấy ít thắng nhiều", "xã chiến đấu", "giao thông hào", "liên hoàn"],
-    "embedding": [0.088, 0.195, 0.145, 0.285, 0.112, 0.065, -0.025, 0.245, 0.312, 0.095],
+    "keywords": [
+      "lấy thô sơ thắng hiện đại",
+      "lấy ít thắng nhiều",
+      "xã chiến đấu",
+      "giao thông hào",
+      "liên hoàn"
+    ],
+    "embedding": [
+      0.088,
+      0.195,
+      0.145,
+      0.285,
+      0.112,
+      0.065,
+      -0.025,
+      0.245,
+      0.312,
+      0.095
+    ],
     "source_authority": "Ban Chỉ huy Quân sự huyện Củ Chi"
   },
   {
@@ -185,8 +524,26 @@
     "category": "weaponry",
     "content_vi": "Hai kiểu bẫy chông kinh điển tiêu biểu nhất được ghi nhận và phục dựng trưng bày tại di tích là 'chông cánh cửa' và 'chông nắp tự động', kết hợp với hố đinh, hố đạp lôi và trận địa mìn trái ngầm. Toàn bộ bẫy chông được chế tác thủ công từ vật liệu tự nhiên sẵn có (tre rừng, gỗ, cành cây) hoặc tái chế phế liệu chiến tranh thu được từ đối phương.",
     "content_en": "Two classic booby trap types preserved at the site are the 'door trap' and the 'automatic lid trap', paired with spike pits, foot-trip charges, and minefields. All were handcrafted from local bamboo/wood or recycled war scrap.",
-    "keywords": ["chông cánh cửa", "chông nắp tự động", "hố đinh", "hố đạp lôi", "vật liệu tại chỗ", "phục dựng"],
-    "embedding": [0.095, 0.210, 0.158, 0.298, 0.125, 0.055, -0.015, 0.258, 0.325, 0.105],
+    "keywords": [
+      "chông cánh cửa",
+      "chông nắp tự động",
+      "hố đinh",
+      "hố đạp lôi",
+      "vật liệu tại chỗ",
+      "phục dựng"
+    ],
+    "embedding": [
+      0.095,
+      0.21,
+      0.158,
+      0.298,
+      0.125,
+      0.055,
+      -0.015,
+      0.258,
+      0.325,
+      0.105
+    ],
     "source_authority": "Sở Văn hóa và Thể thao Thành phố Hồ Chí Minh"
   },
   {
@@ -195,8 +552,27 @@
     "category": "weaponry",
     "content_vi": "Sáng kiến 'mìn gạt' lẫy lừng của Anh hùng Lực lượng vũ trang nhân dân Tô Văn Đực (xã Nhuận Đức): Trong hoàn cảnh thiếu thốn cam go, ông và đồng đội đã thu gom, tận dụng bom và trái pháo lép (đạn hỏng không nổ của đối phương) để cải tiến, chế tạo lại thành mìn gạt. Loại mìn này khắc chế xe cơ giới, phá hủy hàng trăm xe tăng, xe bọc thép, trực thăng và tiêu diệt bộ binh đối phương trong các trận càn lớn như Cedar Falls (1967).",
     "content_en": "The renowned 'sweep mine' invented by Hero To Van Duc (Nhuan Duc commune): Facing shortages, he recycled dud enemy bombs and artillery shells into improvised sweep mines, destroying hundreds of tanks, armored vehicles, and helicopters during major sweeps like Operation Cedar Falls (1967).",
-    "keywords": ["Tô Văn Đực", "mìn gạt", "bom pháo lép", "Cedar Falls 1967", "xe tăng", "xe bọc thép", "tự lực cánh sinh"],
-    "embedding": [0.105, 0.220, 0.168, 0.310, 0.135, 0.045, -0.005, 0.268, 0.335, 0.115],
+    "keywords": [
+      "Tô Văn Đực",
+      "mìn gạt",
+      "bom pháo lép",
+      "Cedar Falls 1967",
+      "xe tăng",
+      "xe bọc thép",
+      "tự lực cánh sinh"
+    ],
+    "embedding": [
+      0.105,
+      0.22,
+      0.168,
+      0.31,
+      0.135,
+      0.045,
+      -0.005,
+      0.268,
+      0.335,
+      0.115
+    ],
     "source_authority": "Thành ủy Thành phố Hồ Chí Minh (Củ Chi - Đất thép thành đồng, 2026)"
   },
   {
@@ -205,8 +581,447 @@
     "category": "tactics",
     "content_vi": "So sánh Bến Dược và Bến Đình: Địa đạo Bến Dược (ấp Phú Hiệp, xã Phú Mỹ Hưng) là căn cứ Bộ Tư lệnh Quân khu (Khu A) và Khu ủy Sài Gòn – Chợ Lớn – Gia Định (Khu B), bảo tồn nguyên bản hầm họp, hầm Tư lệnh, giếng nước ngầm và Đền Tưởng niệm Liệt sĩ Bến Dược (tháp 9 tầng 39m, khắc tên 44.357 anh hùng liệt sĩ trên 632 phiến đá hoa cương). Địa đạo Bến Đình (xã Nhuận Đức) là căn cứ chỉ huy tiền phương Huyện ủy Củ Chi, có đường hầm đi bộ ngầm bên dưới ngang qua Tỉnh lộ 15 và khu trưng bày xác xe tăng, trực thăng, trường bắn thể thao quốc phòng.",
     "content_en": "Comparison: Ben Duoc (Phu My Hung) was the Regional Command base (Sector A) and Party Committee base (Sector B), preserving original underground conference rooms, wells, and the Ben Duoc Memorial Temple (honoring 44,357 martyrs on 632 granite slabs). Ben Dinh (Nhuan Duc) was the District Command base with an underpass beneath Provincial Road 15 and outdoor war relic displays.",
-    "keywords": ["bến dược", "bến đình", "so sánh", "khu ủy", "huyện ủy", "đền bến dược", "44357 liệt sĩ", "632 phiến đá"],
-    "embedding": [0.075, 0.135, 0.280, 0.012, 0.175, 0.210, -0.085, 0.145, 0.095, 0.165],
+    "keywords": [
+      "bến dược",
+      "bến đình",
+      "so sánh",
+      "khu ủy",
+      "huyện ủy",
+      "đền bến dược",
+      "44357 liệt sĩ",
+      "632 phiến đá"
+    ],
+    "embedding": [
+      0.075,
+      0.135,
+      0.28,
+      0.012,
+      0.175,
+      0.21,
+      -0.085,
+      0.145,
+      0.095,
+      0.165
+    ],
     "source_authority": "Thành ủy Thành phố Hồ Chí Minh (Củ Chi - Đất thép thành đồng, 2026)"
+  },
+  {
+    "chunk_id": "chunk_overview_origin_name",
+    "location_id": "general",
+    "category": "overview",
+    "content_vi": "Địa đạo Củ Chi tọa lạc tại các xã Phú Mỹ Hưng, An Nhơn Tây, Nhuận Đức (huyện Củ Chi), cách trung tâm TP.HCM khoảng 70 km (khoảng 69 km theo một số tài liệu) về hướng Tây-Bắc. Đây là điểm cuối chiến lược của Đường mòn Hồ Chí Minh. Tên gọi Củ Chi bắt nguồn từ loài cây củ chi mọc hoang bản địa (tên khoa học: Strychnos nux-vomica L.) chứa độc tố tự nhiên.",
+    "content_en": "The Cu Chi Tunnels are situated across Phu My Hung, An Nhon Tay, and Nhuan Duc communes in Cu Chi District, approximately 70 km (or 69 km) northwest of Ho Chi Minh City center. Positioned as the strategic endpoint of the Ho Chi Minh Trail, the name Cu Chi originates from the native wild tree Strychnos nux-vomica L.",
+    "keywords": [
+      "vị trí",
+      "70km",
+      "69km",
+      "tây bắc",
+      "cây củ chi",
+      "strychnos nux-vomica",
+      "đường mòn hồ chí minh",
+      "phú mỹ hưng",
+      "nhuận đức"
+    ],
+    "embedding": [
+      0.05,
+      0.12,
+      0.31,
+      -0.04,
+      0.19,
+      0.22,
+      -0.11,
+      0.09,
+      0.04,
+      0.2
+    ],
+    "source_authority": "Quyết định 2367/QĐ-TTg & Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
+  },
+  {
+    "chunk_id": "chunk_legal_unesco_status",
+    "location_id": "general",
+    "category": "legal",
+    "content_vi": "Địa đạo Củ Chi được xếp hạng Di tích Quốc gia Đặc biệt theo Quyết định số 2367/QĐ-TTg ngày 23/12/2015 của Thủ tướng Chính phủ, do Bộ Chỉ huy Quân sự TP.HCM quản lý toàn diện với 120,62 ha rừng phòng hộ. Năm 2022, UBND TP.HCM và Bộ VHTTDL đã hoàn thành Giai đoạn 1 hồ sơ đệ trình UNESCO (Văn bản 4207/UBND-VX & 4748/BVHTTDL-DSVH). Dự kiến năm 2027 hoàn thiện hồ sơ chính thức trình UNESCO vinh danh Di sản Thế giới.",
+    "content_en": "Classified as a Special National Relic under Prime Ministerial Decision 2367/QD-TTg (Dec 23, 2015), the site spans 120.62 hectares of protected forest under the HCMC Military Command. Phase 1 UNESCO submission was finalized in 2022 (Doc 4207/UBND-VX & 4748/BVHTTDL-DSVH), targeting full UNESCO World Heritage recognition nomination by 2027.",
+    "keywords": [
+      "unesco",
+      "di sản thế giới",
+      "2027",
+      "2367/qđ-ttg",
+      "bộ chỉ huy quân sự",
+      "120 ha",
+      "rừng phòng hộ",
+      "quốc gia đặc biệt"
+    ],
+    "embedding": [
+      0.06,
+      0.14,
+      0.3,
+      -0.03,
+      0.18,
+      0.21,
+      -0.1,
+      0.08,
+      0.05,
+      0.21
+    ],
+    "source_authority": "Sở Văn hóa và Thể thao TP.HCM (2022) & UBND TP.HCM"
+  },
+  {
+    "chunk_id": "chunk_tourism_night_tour",
+    "location_id": "general",
+    "category": "tourism",
+    "content_vi": "Di tích mở cửa từ 7:00 đến 17:00 hàng ngày. Giá vé: Công dân Việt Nam 35.000 VNĐ, khách quốc tế 70.000 VNĐ (trẻ em 7-16 tuổi giảm 50%, miễn phí cho người có công và học sinh). Trong 6 tháng đầu năm 2024, di tích đón 650.000 lượt khách (tăng 78,6% so với 2023). Nổi bật có Tour đêm 'Trăng chiến khu' tái hiện đời sống kháng chiến dưới trăng tại Khu tái hiện Vùng Giải phóng.",
+    "content_en": "Open daily from 7:00 AM to 5:00 PM. Admission: 35,000 VND (domestic adults), 70,000 VND (international visitors), 50% discount for youth aged 7-16. In the first half of 2024, the site welcomed 650,000 visitors (+78.6% YoY). The highlight is the 'War Zone Moonlight' Night Tour recreating wartime civilian life at the Liberated Zone.",
+    "keywords": [
+      "giá vé",
+      "35k",
+      "70k",
+      "giờ mở cửa",
+      "7h 17h",
+      "650.000 khách",
+      "2024",
+      "tour đêm",
+      "trăng chiến khu"
+    ],
+    "embedding": [
+      0.04,
+      0.11,
+      0.29,
+      -0.05,
+      0.17,
+      0.2,
+      -0.12,
+      0.07,
+      0.03,
+      0.19
+    ],
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi (2024)"
+  },
+  {
+    "chunk_id": "chunk_culture_nghieu_thuan",
+    "location_id": "general",
+    "category": "history",
+    "content_vi": "Theo ghi nhận của đồng chí Võ Văn Kiệt (nguyên Bí thư Khu ủy Sài Gòn - Gia Định), đời sống văn hóa kháng chiến giai đoạn 1950 - 1951 diễn ra vô cùng sôi nổi: ban ngày cấy cày sản xuất, ban đêm ca hát, hò vè, đốt lửa trại. Đây là một xã hội kiểu mẫu đoàn kết, không trộm cắp, không tệ nạn, đêm ngủ không cần đóng cửa, được ví như 'xã hội Nghiêu Thuấn' của thời đại cách mạng.",
+    "content_en": "According to revolutionary leader Vo Van Kiet (former Secretary of the Saigon - Gia Dinh Regional Party Committee), wartime cultural life during 1950-1951 was vibrant: farming by day and folk singing around campfires by night. It formed an exemplary community of unity, devoid of theft and crime, sleeping with open doors, revered as an ideal society of the revolutionary era.",
+    "keywords": [
+      "võ văn kiệt",
+      "nghêu thuấn",
+      "xã hội nghiêu thuấn",
+      "văn hóa kháng chiến",
+      "1950 1951",
+      "chiến khu",
+      "lửa trại"
+    ],
+    "embedding": [
+      0.07,
+      0.13,
+      0.28,
+      -0.02,
+      0.18,
+      0.23,
+      -0.09,
+      0.1,
+      0.06,
+      0.18
+    ],
+    "source_authority": "Lịch sử Đảng bộ TP.HCM (1930 - 1975)"
+  },
+  {
+    "chunk_id": "chunk_geology_3tiers",
+    "location_id": "general",
+    "category": "engineering",
+    "content_vi": "Địa đạo có tổng chiều dài 250 km (trên 200 km ở một số tài liệu) kết nối 500 km hào nổi, đào trên nền đất sét pha đá ong (laterit) tự hóa cứng như đá khi gặp không khí, hoàn toàn không dùng bê tông chống đỡ. Phân chia 3 tầng: Tầng 1 (~3m) chịu pháo và xe tăng; Tầng 2 (5-8m) chống bom phá nhỏ, chứa bếp Hoàng Cầm, bệnh xá, kho lương; Tầng 3 (8-12m, có nơi sâu >12m) là hầm chỉ huy tối mật với lối thoát ra sông Sài Gòn.",
+    "content_en": "Totaling 250 km (over 200 km in some archives) connected to 500 km of trenches, the network is carved into laterite clay that hardens naturally without concrete supports. 3 tiers: Level 1 (~3m) resists artillery and tanks; Level 2 (5-8m) shields against light demolition bombs housing kitchens, hospital, and depots; Level 3 (8-12m, deeper than 12m) houses command bunkers with emergency escape to Saigon River.",
+    "keywords": [
+      "250km",
+      "500km",
+      "laterit",
+      "đất sét pha đá ong",
+      "3 tầng",
+      "tầng 1",
+      "tầng 2",
+      "tầng 3",
+      "không dùng bê tông"
+    ],
+    "embedding": [
+      0.08,
+      0.16,
+      0.3,
+      -0.01,
+      0.21,
+      0.18,
+      -0.09,
+      0.11,
+      0.07,
+      0.18
+    ],
+    "source_authority": "Ban Quản lý Di tích & Viện Lịch sử Quân sự Việt Nam"
+  },
+  {
+    "chunk_id": "chunk_hightech_conservation",
+    "location_id": "general",
+    "category": "conservation",
+    "content_vi": "Nhóm nghiên cứu Đại học Văn Lang (ThS.KTS Võ Ngọc Trưởng, TS.KTS Nguyễn Bảo Thành, TS.KTS Trần Anh Tuấn) đề xuất các giải pháp công nghệ cao ít xâm lấn để bảo tồn địa đạo: Công nghệ đất đông cứng (Ground Freezing Technology) dùng tác nhân làm lạnh hóa cứng đất vách hầm chống sạt lở không cần đào bới; phun đất trộn hóa chất gốc natri xử lý rạn nứt trần hầm; và Bảo tàng Chiến tích bằng đất nén (Rammed Earth Museum) ven sông Sài Gòn.",
+    "content_en": "Van Lang University research team (M.Arch Vo Ngoc Truong, Dr. Nguyen Bao Thanh, Dr. Tran Anh Tuan) proposed non-invasive preservation technologies: Ground Freezing Technology using cryogenics to solidify soil walls against collapse without concrete alterations; sodium-based treated soil for fissure repairs; and a Rammed Earth Museum near Saigon River.",
+    "keywords": [
+      "bảo tồn",
+      "đại học văn lang",
+      "đất đông cứng",
+      "ground freezing",
+      "đất nén",
+      "rammed earth",
+      "võ ngọc trưởng",
+      "nguyễn bảo thành",
+      "trần anh tuấn"
+    ],
+    "embedding": [
+      0.06,
+      0.15,
+      0.27,
+      -0.03,
+      0.2,
+      0.19,
+      -0.08,
+      0.09,
+      0.05,
+      0.19
+    ],
+    "source_authority": "Đề xuất Nghiên cứu Bảo tồn Di sản Ngầm - ĐH Văn Lang (2023)"
+  },
+  {
+    "chunk_id": "chunk_benduoc_command_structure",
+    "location_id": "03_command_bunker",
+    "category": "command",
+    "content_vi": "Khu A Bến Dược (Phú Mỹ Hưng) là căn cứ Bộ Tư lệnh Quân khu Sài Gòn - Gia Định, có các hầm nguyên bản: Hầm làm việc Tư lệnh (3,7m x 2,6m và 4,2m x 2,5m), Hầm chữ A (2,3m x 2,2m), Hầm họp Bộ Tư lệnh và Hầm Chính ủy kết nối với giếng nước ngầm độc đáo (miệng giếng phi 0,8m nằm trong hầm 4m x 2,1m). Khu vực này liên kết Đền Bến Dược tưởng niệm 44.357 liệt sĩ trên 632 phiến đá và Khu Truyền thống 13,5 ha.",
+    "content_en": "Sector A Ben Duoc (Phu My Hung) was the headquarters of the Saigon - Gia Dinh Military Command, featuring original bunkers: Commander's offices (3.7x2.6m & 4.2x2.5m), A-shaped bunker (2.3x2.2m), and Political Commissar bunker connected to an underground well (diameter 0.8m in a 4x2.1m chamber). Adjacent is Ben Duoc Temple commemorating 44,357 fallen heroes on 632 granite slabs.",
+    "keywords": [
+      "bến dược",
+      "khu a",
+      "bộ tư lệnh",
+      "hầm chữ a",
+      "giếng nước ngầm",
+      "44.357 liệt sĩ",
+      "632 phiến đá",
+      "hầm tư lệnh"
+    ],
+    "embedding": [
+      0.1,
+      0.18,
+      0.28,
+      -0.02,
+      0.2,
+      0.19,
+      -0.1,
+      0.12,
+      0.05,
+      0.18
+    ],
+    "source_authority": "Lịch sử Bộ Chỉ huy Miền (1961 - 1976) & Ban Quản lý Di tích"
+  },
+  {
+    "chunk_id": "chunk_bendinh_district_base",
+    "location_id": "03_command_bunker",
+    "category": "command",
+    "content_vi": "Địa đạo Bến Đình (Nhuận Đức) là căn cứ tiền phương của Huyện ủy Củ Chi nằm dọc hai bên tuyến Tỉnh lộ 15. Để phục vụ tham quan an toàn, di tích được đầu tư xây dựng đường hầm đi bộ ngầm xuyên qua bên dưới lòng Tỉnh lộ 15 kết nối liên hoàn các khu vực.",
+    "content_en": "Ben Dinh Tunnels (Nhuan Duc) served as the forward command base for the Cu Chi District Party Committee along Provincial Road 15. To ensure safe visitor access, an underground pedestrian tunnel was constructed beneath Provincial Road 15 connecting the sectors.",
+    "keywords": [
+      "bến đình",
+      "huyện ủy củ chi",
+      "tỉnh lộ 15",
+      "đường hầm ngầm",
+      "nhuận đức"
+    ],
+    "embedding": [
+      0.09,
+      0.17,
+      0.29,
+      -0.03,
+      0.2,
+      0.18,
+      -0.1,
+      0.11,
+      0.06,
+      0.19
+    ],
+    "source_authority": "Lịch sử LLVTND huyện Củ Chi (1945 - 2005)"
+  },
+  {
+    "chunk_id": "chunk_k9_soap_defense",
+    "location_id": "04_ventilation_termite",
+    "category": "tactics",
+    "content_vi": "Khi quân đội Mỹ huy động khoảng 3.000 chó nghiệp vụ béc-giê Tây Đức để đánh hơi tìm cửa hầm và lỗ thông hơi, quân dân Củ Chi đã sáng tạo đặt xà phòng Mỹ (xà phòng Camay) và ớt bột trực tiếp tại các lỗ thông hơi ngụy trang ụ mối. Mùi xà phòng nồng nặc làm tê liệt khứu giác chó săn và khiến chúng lầm tưởng là mùi của quân đội Mỹ, hoàn toàn vô hiệu hóa bầy chó nghiệp vụ.",
+    "content_en": "When the US deployed approximately 3,000 West German shepherd war dogs to track tunnel entrances and vent holes, Cu Chi guerillas placed captured American soap (Camay soap) and chili powder directly at the disguised termite mound vents. The intense soap scent blinded the dogs' olfactory senses, confusing them into perceiving allied scents, completely neutralizing the K-9 threat.",
+    "keywords": [
+      "chó nghiệp vụ",
+      "3000 chó",
+      "béc giê",
+      "xà phòng mỹ",
+      "xà phòng camay",
+      "tê liệt khứu giác",
+      "lỗ thông hơi",
+      "ớt bột"
+    ],
+    "embedding": [
+      0.12,
+      0.22,
+      0.2,
+      0.05,
+      0.25,
+      0.14,
+      -0.06,
+      0.18,
+      0.12,
+      0.14
+    ],
+    "source_authority": "Lịch sử LLVT TP.HCM (1945 - 1995)"
+  },
+  {
+    "chunk_id": "chunk_tunnel_rats_tactics",
+    "location_id": "general",
+    "category": "military",
+    "content_vi": "'Lính chuột chũi' (Tunnel Rats) là lực lượng công binh và bộ binh tình nguyện của quân đội Mỹ, Úc, New Zealand chuyên chui xuống lùng sục địa đạo. Họ phải có thể hình nhỏ bé (dưới 1m65), trang bị đèn pin, dao găm, súng M1911 hoặc súng xoay .38 Special giảm thanh để tránh điếc tai trong hầm hẹp. Khẩu hiệu châm biếm của họ là 'Non Gratum Anus Rodentum' (Not worth a rat's ass).",
+    "content_en": "'Tunnel Rats' were volunteer US, Australian, and New Zealand combat engineers who entered the subterranean tunnels. Selected for their small stature (under 165 cm / 5'5\"), they carried flashlights, bayonets, and silenced .38 Special revolvers or M1911 pistols to prevent ear-drum burst in enclosed spaces, sporting the Latin motto 'Non Gratum Anus Rodentum' (Not worth a rat's ass).",
+    "keywords": [
+      "tunnel rats",
+      "lính chuột chũi",
+      "dưới 1m65",
+      "súng m1911",
+      ".38 special",
+      "non gratum anus rodentum",
+      "quân đội mỹ úc"
+    ],
+    "embedding": [
+      0.11,
+      0.19,
+      0.25,
+      -0.01,
+      0.22,
+      0.17,
+      -0.07,
+      0.15,
+      0.08,
+      0.16
+    ],
+    "source_authority": "Tom Mangold & John Penycate (1985) - The Tunnels of Cu Chi"
+  },
+  {
+    "chunk_id": "chunk_christmas_1966_pham_sang",
+    "location_id": "general",
+    "category": "culture",
+    "content_vi": "Đêm Giáng sinh năm 1966 ghi dấu sự đối lập mang tính biểu tượng: Dưới lòng đất ẩm ướt của địa đạo Củ Chi, người chiến sĩ nghệ sĩ Phạm Sáng say sưa tự biên tự diễn kịch nghệ dưới ánh đèn dầu dã chiến để động viên đồng đội; trong khi ngay phía trên mặt đất tại căn cứ quân sự Mỹ, danh hài Bob Hope đang biểu diễn giải trí cho binh lính Mỹ và đùa rằng họ ở gần đối phương đến mức có thể bán vé xem chung.",
+    "content_en": "Christmas Eve 1966 witnessed a profound historical contrast: Deep inside the dark Cu Chi tunnels, revolutionary artist-soldier Pham Sang performed self-directed theatrical sketches under kerosene lamps to inspire comrades; while directly above on the surface base, comedian Bob Hope entertained US troops, joking that they were so close to the Viet Cong they could sell joint tickets.",
+    "keywords": [
+      "giáng sinh 1966",
+      "phạm sáng",
+      "bob hope",
+      "kịch nghệ",
+      "đèn dầu",
+      "đối lập",
+      "văn nghệ chiến trường"
+    ],
+    "embedding": [
+      0.08,
+      0.14,
+      0.26,
+      -0.02,
+      0.19,
+      0.21,
+      -0.08,
+      0.11,
+      0.06,
+      0.17
+    ],
+    "source_authority": "Củ Chi - Đất thép thành đồng & The Tunnels of Cu Chi"
+  },
+  {
+    "chunk_id": "chunk_dr_vo_hoang_le_hospital",
+    "location_id": "02_field_hospital",
+    "category": "medical",
+    "content_vi": "Bác sĩ anh hùng Võ Hoàng Lê tại bệnh xá ngầm Tầng 2 đã thực hiện hàng trăm ca phẫu thuật phức tạp dưới ánh đèn dầu, sáng tạo cấy mô Filatov và dùng thảo dược Nam y trị bệnh. Khi địch tấn công vào khu vực, ông trực tiếp cầm súng chỉ huy chiến đấu bảo vệ an toàn tuyệt đối cho thương bệnh binh và bệnh xá ngầm.",
+    "content_en": "Heroic subterranean surgeon Dr. Vo Hoang Le at the Level 2 field hospital conducted hundreds of surgeries under oil lamps, pioneering Filatov tissue grafting and herbal therapies. In critical assaults, he took up arms directly to command the defense perimeter, securing the underground hospital and wounded soldiers.",
+    "keywords": [
+      "bác sĩ võ hoàng lê",
+      "bệnh xá",
+      "phẫu thuật",
+      "cấy filatov",
+      "thuốc nam",
+      "cầm súng bảo vệ",
+      "tầng 2"
+    ],
+    "embedding": [
+      0.13,
+      0.23,
+      0.19,
+      0.06,
+      0.26,
+      0.12,
+      -0.05,
+      0.2,
+      0.14,
+      0.12
+    ],
+    "source_authority": "Lịch sử LLVT TP.HCM & Ban Quản lý Khu Di tích"
+  },
+  {
+    "chunk_id": "chunk_to_van_duc_mines",
+    "location_id": "05_booby_traps",
+    "category": "traps",
+    "content_vi": "Anh hùng Tô Văn Đực (xã Nhuận Đức) cùng các du kích đã thu gom bom pháo lép (bom đạn không nổ của quân đội Mỹ), cưa xẻ và cải tiến thành loại 'mìn gạt' tự chế nổi tiếng. Mìn gạt được bố trí trên các trục đường càn, tiêu diệt và phá hủy hàng trăm xe tăng, xe bọc thép M113 trong các chiến dịch lớn.",
+    "content_en": "Hero To Van Duc (Nhuan Duc commune) and local guerillas recovered unexploded US ordnance, repurposing dud shells into legendary 'sweep trip-mines'. Deployed across patrol paths, these improvised mines destroyed hundreds of tanks, armored personnel carriers (M113), and enemy combatants.",
+    "keywords": [
+      "tô văn đực",
+      "mìn gạt",
+      "bom lép",
+      "pháo lép",
+      "xe tăng",
+      "m113",
+      "vũ khí tự chế",
+      "nhuận đức"
+    ],
+    "embedding": [
+      0.15,
+      0.25,
+      0.17,
+      0.08,
+      0.28,
+      0.1,
+      -0.04,
+      0.22,
+      0.16,
+      0.1
+    ],
+    "source_authority": "Lịch sử LLVTND huyện Củ Chi (1945 - 2005)"
+  },
+  {
+    "chunk_id": "chunk_operations_crimp_cedarfalls",
+    "location_id": "general",
+    "category": "battles",
+    "content_vi": "Quân đội Mỹ mở hai trận càn quy mô lớn phá địa đạo: Trận Crimp (08-19/01/1966 với 12.000 quân, dùng máy bơm dội nước ngập hầm) và Trận Cedar Falls (từ 08/01/1967 với 30.000 quân, san phẳng thị trấn Bến Súc). Sau 19 ngày ác liệt, địch tổn thất nặng nề, 130 xe tăng/xe bọc thép và 28 máy bay bị phá hủy, phải thừa nhận bất lực trước hệ thống địa đạo kiên cố.",
+    "content_en": "The US launched two massive offensives against the tunnels: Operation Crimp (Jan 8-19, 1966, 12,000 troops, pumping water to flood tunnels) and Operation Cedar Falls (Jan 8, 1967, 30,000 troops leveling Ben Suc). After 19 fierce days, enemy forces suffered heavy casualties with 130 armor vehicles and 28 aircraft destroyed, failing to breach the subterranean network.",
+    "keywords": [
+      "trận càn crimp",
+      "cedar falls",
+      "1966",
+      "1967",
+      "12000 quân",
+      "30000 quân",
+      "130 xe tăng",
+      "28 máy bay",
+      "tam giác sắt",
+      "bến súc"
+    ],
+    "embedding": [
+      0.1,
+      0.19,
+      0.27,
+      -0.01,
+      0.23,
+      0.16,
+      -0.08,
+      0.13,
+      0.07,
+      0.17
+    ],
+    "source_authority": "Lịch sử Bộ Chỉ huy Miền (1961 - 1976)"
   }
 ]
