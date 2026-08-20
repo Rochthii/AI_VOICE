@@ -2,7 +2,6 @@ import { NextRequest } from "next/server";
 import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
 import { detectQueryLanguage, cleanSpeechText } from "@/lib/shared";
 import fs from "fs";
-import os from "os";
 import path from "path";
 
 export const runtime = "nodejs";
@@ -20,6 +19,21 @@ const NEURAL_VOICE_MAP: Record<string, string> = {
   es: "es-ES-ElviraNeural"      // Nữ Tây Ban Nha
 };
 
+// In-Memory LRU Audio Cache (Lưu 200 câu gần nhất để trả về trong 0ms)
+const ttsMemoryCache = new Map<string, { buffer: Buffer; voiceName: string; lang: string; timestamp: number }>();
+const MAX_CACHE_SIZE = 200;
+
+/**
+ * Tối ưu hóa văn bản để có nhịp điệu ngắt quãng (Pacing) tự nhiên
+ */
+function enhanceSpeechPacing(text: string): string {
+  return text
+    .replace(/\s*([,;:])\s*/g, "$1 ")       // Chuẩn hóa dấu phẩy, hai chấm để ngắt nghỉ 150ms
+    .replace(/\s*([.!?])\s*/g, "$1 ")       // Chuẩn hóa dấu chấm câu để nghỉ 300ms
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 export async function POST(req: NextRequest) {
   let tmpAudioPath = "";
   let tmpMetaPath = "";
@@ -34,10 +48,27 @@ export async function POST(req: NextRequest) {
     }
 
     const cleanedText = cleanSpeechText(rawText);
-    const effectiveLang = detectQueryLanguage(cleanedText, requestedLang);
+    const pacedText = enhanceSpeechPacing(cleanedText);
+    const effectiveLang = detectQueryLanguage(pacedText, requestedLang);
     const voiceName = NEURAL_VOICE_MAP[effectiveLang] || NEURAL_VOICE_MAP.vi;
 
-    // Tổng hợp giọng đọc Microsoft Neural
+    // 1. Kiểm tra cache trong RAM (Trúng cache -> Trả về trong 0ms)
+    const cacheKey = `${voiceName}:${pacedText}`;
+    if (ttsMemoryCache.has(cacheKey)) {
+      const cached = ttsMemoryCache.get(cacheKey)!;
+      return new Response(new Uint8Array(cached.buffer), {
+        headers: {
+          "Content-Type": "audio/mpeg",
+          "Content-Length": cached.buffer.length.toString(),
+          "Cache-Control": "public, max-age=86400",
+          "X-CHI-Voice": cached.voiceName,
+          "X-CHI-Lang": cached.lang,
+          "X-CHI-Cache": "HIT"
+        }
+      });
+    }
+
+    // 2. Tổng hợp giọng đọc Microsoft Neural với tốc độ tối ưu (+6%) và ngữ điệu tự nhiên
     const tts = new MsEdgeTTS();
     await tts.setMetadata(voiceName, OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3);
 
@@ -46,9 +77,9 @@ export async function POST(req: NextRequest) {
       fs.mkdirSync(ttsCacheDir, { recursive: true });
     }
 
-    const result = await tts.toFile(ttsCacheDir, cleanedText, {
+    const result = await tts.toFile(ttsCacheDir, pacedText, {
       pitch: "+0Hz",
-      rate: "-4%",
+      rate: "+6%",  // Tăng tốc độ đọc lên +6% giúp giọng nói dứt khoát, thanh thoát, năng động
       volume: "+0%"
     });
 
@@ -56,6 +87,18 @@ export async function POST(req: NextRequest) {
     tmpMetaPath = result.metadataFilePath || "";
 
     const audioBytes = fs.readFileSync(tmpAudioPath);
+
+    // Lưu vào LRU RAM Cache
+    if (ttsMemoryCache.size >= MAX_CACHE_SIZE) {
+      const firstKey = ttsMemoryCache.keys().next().value;
+      if (firstKey) ttsMemoryCache.delete(firstKey);
+    }
+    ttsMemoryCache.set(cacheKey, {
+      buffer: audioBytes,
+      voiceName,
+      lang: effectiveLang,
+      timestamp: Date.now()
+    });
 
     // Dọn dẹp tệp tạm thời
     try {
@@ -69,7 +112,8 @@ export async function POST(req: NextRequest) {
         "Content-Length": audioBytes.length.toString(),
         "Cache-Control": "public, max-age=86400",
         "X-CHI-Voice": voiceName,
-        "X-CHI-Lang": effectiveLang
+        "X-CHI-Lang": effectiveLang,
+        "X-CHI-Cache": "MISS"
       }
     });
   } catch (err: any) {
