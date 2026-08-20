@@ -1,7 +1,8 @@
-import { Locale, LOCALE_MAP } from "@/i18n";
+import { Locale } from "@/i18n";
 
 export interface AudioPlaybackState {
   isPlaying: boolean;
+  isLoading: boolean;
   currentTime: number;
   duration: number;
   stationId: string;
@@ -16,6 +17,7 @@ class AudioEngine {
   private ttsAudioElement: HTMLAudioElement | null = null;
   private audioContext: AudioContext | null = null;
   private isUnlocked: boolean = false;
+  private isAudioLoading: boolean = false;
 
   private currentStationId: string = "";
   private currentLocale: Locale = "vi";
@@ -147,32 +149,38 @@ class AudioEngine {
     audioFileUrl?: string
   ): Promise<void> {
     this.stop();
+    this.isAudioLoading = true;
+    this.notifyListeners();
     await this.unlockAudioContext();
     this.currentStationId = stationId;
     this.currentLocale = locale;
     this.updateMetadata(title, shortSummary);
 
-    // 1. Ưu tiên phát file MP3 thu sẵn của trạm
-    if (audioFileUrl && audioFileUrl.trim()) {
-      if (!this.audioElement) {
-        this.initAudioElements();
-      }
-      if (this.audioElement) {
-        this.audioElement.src = audioFileUrl;
-        this.audioElement.load();
-        try {
-          await this.audioElement.play();
-          this.notifyListeners();
-          return;
-        } catch (playErr) {
-          console.warn("[AudioEngine] Pre-recorded MP3 play failed, falling back to TTS:", playErr);
+    try {
+      // 1. Ưu tiên phát file MP3 thu sẵn của trạm
+      if (audioFileUrl && audioFileUrl.trim()) {
+        if (!this.audioElement) {
+          this.initAudioElements();
+        }
+        if (this.audioElement) {
+          this.audioElement.src = audioFileUrl;
+          this.audioElement.load();
+          try {
+            await this.audioElement.play();
+            return;
+          } catch (playErr) {
+            console.warn("[AudioEngine] Pre-recorded MP3 play failed, falling back to TTS:", playErr);
+          }
         }
       }
-    }
 
-    // 2. Fallback sang ElevenLabs / Neural TTS
-    const narrationText = `${title}. ${shortSummary} ${storyHook}`;
-    await this.playNeuralTTS(narrationText, locale);
+      // 2. Fallback sang ElevenLabs / Neural TTS
+      const narrationText = `${title}. ${shortSummary} ${storyHook}`;
+      await this.playNeuralTTS(narrationText, locale);
+    } finally {
+      this.isAudioLoading = false;
+      this.notifyListeners();
+    }
   }
 
   /**
@@ -183,6 +191,8 @@ class AudioEngine {
 
     // 1. Tắt toàn bộ mọi nguồn âm thanh đang phát trước đó
     this.stop();
+    this.isAudioLoading = true;
+    this.notifyListeners();
     await this.unlockAudioContext();
 
     try {
@@ -211,10 +221,12 @@ class AudioEngine {
         } catch (playErr) {
           console.warn("[AudioEngine] Immediate TTS autoplay prevented by browser policy:", playErr);
         }
-        this.notifyListeners();
       }
     } catch (err) {
       console.warn("[AudioEngine] Neural TTS playback warning:", err);
+    } finally {
+      this.isAudioLoading = false;
+      this.notifyListeners();
     }
   }
 
@@ -347,6 +359,7 @@ class AudioEngine {
 
     return {
       isPlaying,
+      isLoading: this.isAudioLoading,
       currentTime: activeAudio?.currentTime || 0,
       duration: activeAudio?.duration && !isNaN(activeAudio.duration) && isFinite(activeAudio.duration) ? activeAudio.duration : 0,
       stationId: this.currentStationId,

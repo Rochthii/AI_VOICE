@@ -9,6 +9,7 @@ interface SonicOrbProps {
   stationId: string;
   locale: Locale;
   isPlaying: boolean;
+  isLoadingAudio?: boolean;
   followUpSuggestions?: string[];
   onAskQuestion: (query: string) => Promise<string>;
   onAnswerReceived: (answer: string) => void;
@@ -29,6 +30,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
   stationId,
   locale,
   isPlaying,
+  isLoadingAudio = false,
   followUpSuggestions = [],
   onAskQuestion,
   onAnswerReceived
@@ -36,6 +38,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
   const dict = getDictionary(locale);
   const [isListening, setIsListening] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const isBusy = isProcessing || isLoadingAudio;
   const [speechTranscript, setSpeechTranscript] = useState("");
   const [isTextModalOpen, setIsTextModalOpen] = useState(false);
   const [typedQuery, setTypedQuery] = useState("");
@@ -455,7 +458,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
   // Chạm vào Thấu Kính để Bật/Tắt thu âm hoặc Dừng phát
   const handleToggleListening = useCallback(async () => {
-    if (isProcessing) return;
+    if (isBusy) return;
 
     // NẾU ĐANG PHÁT THUYẾT MINH -> HÀNH ĐỘNG DUY NHẤT LÀ DỪNG PHÁT (STOP/PAUSE), TUYỆT ĐỐI CẤM THU ÂM!
     if (isPlaying) {
@@ -525,11 +528,11 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         }
       }
     }, 6000);
-  }, [isListening, isPlaying, isProcessing, finishAndSubmitRecording]);
+  }, [isListening, isPlaying, isBusy, finishAndSubmitRecording]);
 
   const handleSendTypedQuery = async (queryText?: string) => {
     const q = (queryText || typedQuery).trim();
-    if (!q || isProcessing || isPlaying) return;
+    if (!q || isBusy || isPlaying) return;
 
     setIsTextModalOpen(false);
     setTypedQuery("");
@@ -561,7 +564,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
           className={`absolute w-48 h-48 sm:w-56 sm:h-56 rounded-full transition-all duration-700 pointer-events-none ${
             isListening
               ? "bg-emerald-500/35 blur-3xl scale-125"
-              : isProcessing
+              : isBusy
               ? "bg-amber-500/40 blur-3xl animate-pulse scale-115"
               : isPlaying
               ? "bg-amber-500/35 blur-3xl scale-115"
@@ -572,13 +575,13 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         {/* THẤU KÍNH NGUYÊN BẢN (PURE TACTILE LENS WITH SUBTERRANEAN 3D DEPTH) */}
         <button
           onClick={handleToggleListening}
-          disabled={isProcessing}
+          disabled={isBusy}
           style={{
             transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
             transition: "transform 0.15s ease-out"
           }}
           className={`w-44 h-44 sm:w-52 sm:h-52 rounded-full relative overflow-hidden transition-all duration-500 transform shadow-2xl flex items-center justify-center border-4 ${
-            isProcessing
+            isBusy
               ? "bg-gradient-to-br from-[#FFFDF7] via-[#FEF3D6] to-[#FDE68A] border-amber-500 shadow-amber-700/45 animate-pulse cursor-wait pointer-events-none"
               : isListening
               ? "bg-gradient-to-br from-[#FAFFF8] via-[#E6F8ED] to-[#D1F2DE] border-emerald-500 shadow-emerald-700/40 cursor-pointer active:scale-95"
@@ -607,10 +610,10 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
               ? locale === "vi"
                 ? "Đang lắng nghe... (Tự gửi sau 3s)"
                 : "Listening... (Auto-send after 3s)"
-              : isProcessing
+              : isBusy
               ? locale === "vi"
-                ? "Đang tra cứu sử liệu..."
-                : "Searching archives..."
+                ? "Đang chuẩn bị giọng đọc..."
+                : "Preparing voice..."
               : isPlaying
               ? locale === "vi"
                 ? "Đang thuyết minh • Chạm để Dừng"
@@ -641,10 +644,10 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
             {followUpSuggestions.slice(0, 2).map((sug, idx) => (
               <button
                 key={idx}
-                disabled={isProcessing || isPlaying}
+                disabled={isBusy || isPlaying}
                 onClick={() => handleSendTypedQuery(sug)}
                 className={`w-full p-2.5 px-3 rounded-2xl bg-white hover:bg-amber-50/90 border border-[#E0D8C8] hover:border-amber-500 text-left text-xs font-semibold text-stone-900 transition-all shadow-[0_2px_6px_rgba(0,0,0,0.03)] flex items-center justify-between group font-sans ${
-                  isProcessing || isPlaying ? "opacity-50 pointer-events-none" : "active:scale-[0.98]"
+                  isBusy || isPlaying ? "opacity-50 pointer-events-none" : "active:scale-[0.98]"
                 }`}
               >
                 <span className="line-clamp-1 group-hover:text-amber-950">{sug}</span>
@@ -657,10 +660,10 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
       {/* 4. NÚT GÕ BÀN PHÍM */}
       <button
-        disabled={isProcessing || isPlaying}
+        disabled={isBusy || isPlaying}
         onClick={() => setIsTextModalOpen(true)}
         className={`my-1 flex items-center space-x-1.5 px-4 py-1.5 rounded-full bg-white border border-[#DDD4C2] text-stone-600 hover:text-amber-900 hover:border-amber-500 transition-all text-xs font-semibold shadow-sm font-sans ${
-          isProcessing || isPlaying ? "opacity-50 pointer-events-none" : "active:scale-95"
+          isBusy || isPlaying ? "opacity-50 pointer-events-none" : "active:scale-95"
         }`}
       >
         <MessageSquare className="w-3.5 h-3.5 text-amber-700" />

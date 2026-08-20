@@ -35,6 +35,7 @@ function MainGuideContent() {
   const [isPanicOpen, setIsPanicOpen] = useState<boolean>(false);
   const [playbackState, setPlaybackState] = useState<AudioPlaybackState>({
     isPlaying: false,
+    isLoading: false,
     currentTime: 0,
     duration: 0,
     stationId: matchedStation?.id || "global_overview",
@@ -262,6 +263,7 @@ function MainGuideContent() {
           stationId={currentStation ? currentStation.id : "global_overview"}
           locale={locale}
           isPlaying={playbackState.isPlaying}
+          isLoadingAudio={playbackState.isLoading}
           followUpSuggestions={followUpSuggestions}
           onAskQuestion={handleAskQuestion}
           onAnswerReceived={handleAnswerReceived}
