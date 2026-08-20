@@ -76,7 +76,7 @@ function MainGuideContent() {
     return () => unsubscribe();
   }, []);
 
-  // Chọn trạm và phát giọng nữ thuyết minh Hoài My Neural
+  // Chọn trạm và phát thuyết minh (Ưu tiên MP3 có sẵn, fallback sang ElevenLabs/Neural)
   const handleSelectStation = useCallback(
     (station: Station) => {
       setCurrentStation(station);
@@ -84,7 +84,8 @@ function MainGuideContent() {
       const title = getLocalizedText(station.title, locale);
       const summary = getLocalizedText(station.short_summary, locale);
       const story = getLocalizedText(station.human_story_hook, locale);
-      audioEngine.playStationNarration(station.id, title, summary, story, locale);
+      const audioUrl = (station.audio_assets as Record<string, { url: string }>)?.[locale]?.url || (station.audio_assets as Record<string, { url: string }>)?.[locale === "vi" ? "vi" : "en"]?.url;
+      audioEngine.playStationNarration(station.id, title, summary, story, locale, audioUrl);
     },
     [locale]
   );
@@ -96,7 +97,8 @@ function MainGuideContent() {
       const title = getLocalizedText(currentStation.title, newLocale);
       const summary = getLocalizedText(currentStation.short_summary, newLocale);
       const story = getLocalizedText(currentStation.human_story_hook, newLocale);
-      audioEngine.playStationNarration(currentStation.id, title, summary, story, newLocale);
+      const audioUrl = (currentStation.audio_assets as Record<string, { url: string }>)?.[newLocale]?.url || (currentStation.audio_assets as Record<string, { url: string }>)?.[newLocale === "vi" ? "vi" : "en"]?.url;
+      audioEngine.playStationNarration(currentStation.id, title, summary, story, newLocale, audioUrl);
     },
     [currentStation]
   );

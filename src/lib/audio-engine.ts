@@ -130,20 +130,43 @@ class AudioEngine {
   }
 
   /**
-   * Phát toàn bộ bài thuyết minh của trạm di tích bằng giọng nữ Hoài My Neural (vi-VN-HoaiMyNeural)
+   * Phát toàn bộ bài thuyết minh của trạm di tích:
+   * 1. Ưu tiên phát tệp MP3 phòng thu có sẵn (/audio/stations/...) để tải 0ms, không tốn token và hoạt động offline 100%.
+   * 2. Nếu không có file MP3, tự động chuyển sang ElevenLabs / Neural TTS.
    */
   public async playStationNarration(
     stationId: string,
     title: string,
     shortSummary: string,
     storyHook: string,
-    locale: Locale = "vi"
+    locale: Locale = "vi",
+    audioFileUrl?: string
   ): Promise<void> {
+    this.stop();
     await this.unlockAudioContext();
     this.currentStationId = stationId;
     this.currentLocale = locale;
     this.updateMetadata(title, shortSummary);
 
+    // 1. Ưu tiên phát file MP3 thu sẵn của trạm
+    if (audioFileUrl && audioFileUrl.trim()) {
+      if (!this.audioElement) {
+        this.initAudioElements();
+      }
+      if (this.audioElement) {
+        this.audioElement.src = audioFileUrl;
+        this.audioElement.load();
+        try {
+          await this.audioElement.play();
+          this.notifyListeners();
+          return;
+        } catch (playErr) {
+          console.warn("[AudioEngine] Pre-recorded MP3 play failed, falling back to TTS:", playErr);
+        }
+      }
+    }
+
+    // 2. Fallback sang ElevenLabs / Neural TTS
     const narrationText = `${title}. ${shortSummary} ${storyHook}`;
     await this.playNeuralTTS(narrationText, locale);
   }
