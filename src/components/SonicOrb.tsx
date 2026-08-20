@@ -453,9 +453,15 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
     setTilt({ x: 0, y: 0 });
   };
 
-  // Chạm vào Thấu Kính để Bật/Tắt thu âm
+  // Chạm vào Thấu Kính để Bật/Tắt thu âm hoặc Dừng phát
   const handleToggleListening = useCallback(async () => {
     if (isProcessing) return;
+
+    // NẾU ĐANG PHÁT THUYẾT MINH -> HÀNH ĐỘNG DUY NHẤT LÀ DỪNG PHÁT (STOP/PAUSE), TUYỆT ĐỐI CẤM THU ÂM!
+    if (isPlaying) {
+      audioEngine.pause();
+      return;
+    }
 
     audioEngine.unlockAudioContext();
     audioEngine.playBambooClickSound();
@@ -519,11 +525,11 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         }
       }
     }, 6000);
-  }, [isListening, isProcessing, finishAndSubmitRecording]);
+  }, [isListening, isPlaying, isProcessing, finishAndSubmitRecording]);
 
   const handleSendTypedQuery = async (queryText?: string) => {
     const q = (queryText || typedQuery).trim();
-    if (!q) return;
+    if (!q || isProcessing || isPlaying) return;
 
     setIsTextModalOpen(false);
     setTypedQuery("");
@@ -580,7 +586,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
               ? "bg-gradient-to-br from-[#FFFDF9] via-[#FEF3D6] to-[#FDE8B3] border-amber-500 shadow-amber-700/35 cursor-pointer active:scale-95"
               : "bg-gradient-to-br from-[#FFFDF9] via-[#FAF4E8] to-[#EFE4D0] border-[#CFC5B3] hover:border-amber-500 shadow-[#00000025] cursor-pointer active:scale-95"
           }`}
-          aria-label="Chạm vào thấu kính để nói chuyện với hướng dẫn viên"
+          aria-label="Chạm vào thấu kính để tương tác với hướng dẫn viên"
         >
           {/* Canvas Sóng Âm & Lõi Hạt 3D Đa Chiều Sâu */}
           <canvas
@@ -607,8 +613,8 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                 : "Searching archives..."
               : isPlaying
               ? locale === "vi"
-                ? "Đang thuyết minh âm thanh"
-                : "Playing narration"
+                ? "Đang thuyết minh • Chạm để Dừng"
+                : "Narrating • Tap to Stop"
               : locale === "vi"
               ? "Chạm vào quả cầu để hỏi"
               : "Tap sphere to ask"}
@@ -635,10 +641,10 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
             {followUpSuggestions.slice(0, 2).map((sug, idx) => (
               <button
                 key={idx}
-                disabled={isProcessing}
+                disabled={isProcessing || isPlaying}
                 onClick={() => handleSendTypedQuery(sug)}
                 className={`w-full p-2.5 px-3 rounded-2xl bg-white hover:bg-amber-50/90 border border-[#E0D8C8] hover:border-amber-500 text-left text-xs font-semibold text-stone-900 transition-all shadow-[0_2px_6px_rgba(0,0,0,0.03)] flex items-center justify-between group font-sans ${
-                  isProcessing ? "opacity-60 pointer-events-none" : "active:scale-[0.98]"
+                  isProcessing || isPlaying ? "opacity-50 pointer-events-none" : "active:scale-[0.98]"
                 }`}
               >
                 <span className="line-clamp-1 group-hover:text-amber-950">{sug}</span>
@@ -651,10 +657,10 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
       {/* 4. NÚT GÕ BÀN PHÍM */}
       <button
-        disabled={isProcessing}
+        disabled={isProcessing || isPlaying}
         onClick={() => setIsTextModalOpen(true)}
         className={`my-1 flex items-center space-x-1.5 px-4 py-1.5 rounded-full bg-white border border-[#DDD4C2] text-stone-600 hover:text-amber-900 hover:border-amber-500 transition-all text-xs font-semibold shadow-sm font-sans ${
-          isProcessing ? "opacity-60 pointer-events-none" : "active:scale-95"
+          isProcessing || isPlaying ? "opacity-50 pointer-events-none" : "active:scale-95"
         }`}
       >
         <MessageSquare className="w-3.5 h-3.5 text-amber-700" />
