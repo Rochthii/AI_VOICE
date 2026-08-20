@@ -1,10 +1,10 @@
-# 🚀 ĐẶC TẢ MVP CHÍNH THỨC: CỦ CHI VOICE GUIDE
-### *(Bản MVP Thực Địa Hoàn Chỉnh — Production Real, Zero Mock)*
+# 🚀 ĐẶC TẢ MVP CHÍNH THỨC: CHI VOICE
+### *(CHI VOICE — Hệ Thống Thuyết Minh Viên Giọng Nói AI Di Tích Lịch Sử Địa Đạo Củ Chi)*
 
 ---
 
-## 1. ĐỊNH NGHĨA MVP TRONG 1 CÂU
-> **Củ Chi Voice Guide MVP** là Web App (PWA) thuyết minh viên giọng nói AI thông minh theo phong cách độc bản **"Sonic Monolith"**, tích hợp **100% sử liệu thật của 5 trạm di tích Củ Chi**, tự động phát âm thanh trấn an an toàn và **hoạt động mượt mà ngay cả khi mất sạch sóng dưới lòng địa đạo**.
+## 1. ĐỊNH NGHĨA DỰ ÁN TRONG 1 CÂU
+> **CHI VOICE** là Web App (PWA) thuyết minh viên giọng nói AI thông minh theo phong cách độc bản **"Sonic Monolith"**, tích hợp **100% sử liệu thật của 5 trạm di tích Củ Chi**, tự động phát âm thanh trấn an an toàn và **hoạt động mượt mà ngay cả khi mất sạch sóng dưới lòng địa đạo**.
 
 ---
 
@@ -57,7 +57,7 @@
 ## 4. DỮ LIỆU THẬT 100% CỦA 5 TRẠM DI TÍCH TRONG MVP
 
 | STT | Mã Trạm (`location_id`) | Tên Điểm Di Tích | Thông Số An Toàn | Câu Chuyện Con Người Xúc Động |
-| :---: | :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- | :--- | :--- |
 | **01** | `01_hoang_cam_kitchen` | **Bếp Hoàng Cầm** | Dài 15m • Cao 1.4m • 2 phút | Người lính nuôi quân thức trắng đêm đào rãnh giấu khói cho đồng đội có cơm nóng. |
 | **02** | `02_field_hospital` | **Hầm Cấp Cứu** | Dài 10m • Sâu 6m • 3 phút | Ca phẫu thuật dưới ánh đèn chai đom đóm và nước muối sát trùng giữa tiếng bom rung chuyển. |
 | **03** | `03_command_bunker` | **Hầm Chỉ Huy** | Dài 25m • Cao 1.5m • 3 phút | Căn phòng đất ngầm đưa ra những quyết sách chiến lược thay đổi cục diện chiến trường. |

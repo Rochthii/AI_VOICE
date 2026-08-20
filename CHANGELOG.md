@@ -1,19 +1,23 @@
-# 📝 CHANGELOG: CỦ CHI VOICE GUIDE
+# 📝 CHANGELOG: CHI VOICE
 
 Tất cả các thay đổi đáng chú ý của dự án sẽ được ghi nhận tại tài liệu này theo định dạng [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-## [0.4.0-alpha] - 2026-08-20
+## [0.4.1-alpha] - 2026-08-20
 
-### Added - Hoàn Thành 100% Phase 1 (Nền Móng, Tokens & Strict TypeScript)
-- **Task 1.1:** `package.json` cài đặt Next.js 14, React 18, Tailwind CSS, Lucide Icons, clsx, tailwind-merge.
-- **Task 1.2:** `tsconfig.json` cấu hình TypeScript Strict Mode và alias `@/*`.
-- **Task 1.3:** `tailwind.config.ts` tích hợp toàn bộ Design Tokens phong cách Sonic Monolith (`tunnel-base: #0D0E11`, `tunnel-amber: #E5A93C`, `tunnel-jade: #2DD4BF`, `tunnel-rust: #9A3412`, `tunnel-chalk: #F3F4F6`).
-- **Task 1.4:** `postcss.config.mjs` và `next.config.mjs`.
-- **Task 1.5:** `src/app/globals.css` khóa cứng giao diện hầm tối Zero-Scroll $100\text{vh}$, ẩn scrollbar và hiệu ứng sóng âm `@keyframes rippleWave`.
-- **Task 1.6:** `src/types/station.ts` định nghĩa TypeScript interfaces cho 5 trạm di tích (`Station`, `StationSafety`, `AudioAsset`, `StationFAQ`).
-- **Task 1.7:** `src/types/rag.ts` định nghĩa TypeScript interfaces cho RAG Vector Search & AI Payload (`HistoryChunk`, `RAGMatchResult`, `AIQueryRequest`, `AIQueryResponse`).
+### Added - Khóa Chặt Tên Dự Án Chính Thức: CHI VOICE
+- **Xác lập Định Danh Chính Thức:**
+  * **Tiếng Việt:** *CHI VOICE — Hệ Thống Thuyết Minh Viên Giọng Nói AI Di Tích Lịch Sử Địa Đạo Củ Chi*
+  * **Tiếng Anh:** *CHI VOICE — AI-Powered Historical Voice Guide for Cu Chi Tunnels*
+  * **Thương hiệu viết tắt:** **CHI VOICE** (C.H.I = *Cu Chi Historical Intelligence*).
+- **Đồng bộ hóa toàn diện:** Cập nhật [`README.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/README.md), [`MVP.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/MVP.md), [`BRAND.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/BRAND.md) và hệ thống tài liệu.
+
+---
+
+## [0.4.0-alpha] - 2026-08-20
+### Added
+- Hoàn thành 100% Phase 1 (Nền móng, Tokens & Strict TypeScript).
 
 ---
 
