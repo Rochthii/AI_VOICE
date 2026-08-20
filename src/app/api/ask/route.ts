@@ -21,6 +21,7 @@ import {
 import { Locale } from "@/i18n/types";
 import { AIQueryRequest } from "@/types/rag";
 import { detectQueryLanguage } from "@/lib/shared";
+import { getSmartFollowUpSuggestions } from "@/lib/suggestion-engine";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -88,17 +89,19 @@ export async function POST(req: NextRequest) {
 
   if (isDirectLang && ragMatch && ragMatch.score >= ragThreshold) {
     const answer = ragMatch.content;
+    const suggestions = getSmartFollowUpSuggestions(stationId, lang);
     semanticCache.set(cacheKey, { answer, provider: "rag_local", stationId, lang });
     auditAsync({ stationId: ragMatch.location_id, query, answer, decision: "RAG_HIT", source: ragMatch.source_authority, clientIp, userAgent, lang, chunkId: ragMatch.chunk_id, score: ragMatch.score });
-    return sseImmediate(answer, "rag_local", Date.now() - startMs, ragMatch.score);
+    return sseImmediate(answer, "rag_local", Date.now() - startMs, ragMatch.score, suggestions);
   }
 
   // SAFETY intent cho VI/EN không cần AI — dùng RAG best-effort
   if (isDirectLang && classification.intent === "SAFETY" && ragMatch) {
     const answer = ragMatch.content;
+    const suggestions = getSmartFollowUpSuggestions(stationId, lang);
     semanticCache.set(cacheKey, { answer, provider: "rag_safety", stationId, lang });
     auditAsync({ stationId, query, answer, decision: "SAFETY_RAG", source: "station_data", clientIp, userAgent, lang });
-    return sseImmediate(answer, "rag_safety", Date.now() - startMs);
+    return sseImmediate(answer, "rag_safety", Date.now() - startMs, undefined, suggestions);
   }
 
   // ══ TẦNG 4: STREAMING AI với UNIVERSAL MULTILINGUAL TOKEN BUDGET ═══════════
@@ -150,6 +153,8 @@ export async function POST(req: NextRequest) {
         aiError = err instanceof Error ? err.message : String(err);
       }
 
+      const suggestions = getSmartFollowUpSuggestions(stationId, lang);
+
       if (!fullText.trim() || aiError) {
         // ── TẦNG 5: OFFLINE RAG FALLBACK (khi mất mạng hoàn toàn) ────────────
         // Luôn có câu trả lời dù không có AI
@@ -158,16 +163,17 @@ export async function POST(req: NextRequest) {
           : truncateToTokenBudget(getKnowledgeBySection(classification.relevantSection, lang), MAX_CONTEXT_TOKENS, lang);
 
         controller.enqueue(enc.encode(sseData({ type: "chunk", text: offlineAnswer })));
-        controller.enqueue(enc.encode(sseData({ type: "done", provider: "rag_offline_fallback", latency: Date.now() - startMs })));
+        controller.enqueue(enc.encode(sseData({ type: "done", provider: "rag_offline_fallback", latency: Date.now() - startMs, suggestions })));
         auditAsync({ stationId, query, answer: offlineAnswer, decision: "OFFLINE_RAG_FALLBACK", source: "rag_offline", clientIp, userAgent, lang });
       } else {
-        // Thêm token budget metadata vào done event (monitoring)
+        // Thêm token budget metadata và gợi ý câu hỏi vào done event
         controller.enqueue(enc.encode(sseData({
           type: "done",
           provider: aiResult!.providerId,
           model: aiResult!.model,
           latency: Date.now() - startMs,
-          tokensEstimated: budget.estimatedTotal
+          tokensEstimated: budget.estimatedTotal,
+          suggestions
         })));
 
         // Cache kết quả AI
@@ -202,12 +208,13 @@ function sseImmediate(
   answer: string,
   provider: string,
   latency = 0,
-  score?: number
+  score?: number,
+  suggestions: string[] = []
 ): Response {
   const scoreField = score !== undefined ? `, "score": ${score}` : "";
   const body =
     `data: ${JSON.stringify({ type: "chunk", text: answer })}\n\n` +
-    `data: ${JSON.stringify({ type: "done", provider, latency })}${scoreField}\n\n`;
+    `data: ${JSON.stringify({ type: "done", provider, latency, suggestions })}${scoreField}\n\n`;
 
   return new Response(body, {
     headers: {

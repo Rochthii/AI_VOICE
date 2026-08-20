@@ -9,6 +9,7 @@ interface SonicOrbProps {
   stationId: string;
   locale: Locale;
   isPlaying: boolean;
+  followUpSuggestions?: string[];
   onAskQuestion: (query: string) => Promise<string>;
   onAnswerReceived: (answer: string) => void;
 }
@@ -17,6 +18,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
   stationId,
   locale,
   isPlaying,
+  followUpSuggestions = [],
   onAskQuestion,
   onAnswerReceived
 }) => {
@@ -413,10 +415,30 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
           </div>
         </button>
 
+        {/* CÁC VIÊN CHIP GỢI Ý CÂU HỎI ĐÀO SÂU (FOLLOW-UP DISCOVERY CHIPS) */}
+        {followUpSuggestions && followUpSuggestions.length > 0 && !isListening && (
+          <div className="mt-2.5 flex flex-col items-center gap-1.5 max-w-xs px-2 animate-fadeIn">
+            <span className="text-[10px] font-bold text-amber-900 uppercase tracking-wider text-center">
+              💡 {locale === "vi" ? "Gợi ý hỏi tiếp:" : "Suggested questions:"}
+            </span>
+            <div className="flex flex-wrap justify-center gap-1.5">
+              {followUpSuggestions.slice(0, 2).map((sug, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => handleSendTypedQuery(sug)}
+                  className="px-3 py-1 rounded-full bg-white/95 border border-amber-300 text-stone-800 hover:bg-amber-100 hover:border-amber-500 hover:text-amber-950 active:scale-95 transition-all text-[11px] font-medium shadow-sm leading-tight text-center"
+                >
+                  {sug}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Nút mở bàn phím gõ chữ phụ bên cạnh */}
         <button
           onClick={() => setIsTextModalOpen(true)}
-          className="mt-4 flex items-center space-x-1.5 px-4 py-2 rounded-full bg-white/90 border border-stone-300 text-stone-700 hover:text-amber-800 hover:border-amber-500 active:scale-95 transition-all text-xs font-semibold shadow-sm"
+          className="mt-3 flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-white/90 border border-stone-300 text-stone-700 hover:text-amber-800 hover:border-amber-500 active:scale-95 transition-all text-xs font-semibold shadow-sm"
         >
           <MessageSquare className="w-3.5 h-3.5 text-amber-700" />
           <span>{locale === "vi" ? "Gõ câu hỏi bằng bàn phím" : "Type question"}</span>

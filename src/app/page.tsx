@@ -11,6 +11,7 @@ import { CinemaTicker } from "@/components/CinemaTicker";
 import { PanicModal } from "@/components/PanicModal";
 import { OverviewHub } from "@/components/OverviewHub";
 import { audioEngine, AudioPlaybackState } from "@/lib/audio-engine";
+import { getSmartFollowUpSuggestions } from "@/lib/suggestion-engine";
 
 const stations: Station[] = stationsData as unknown as Station[];
 
@@ -28,6 +29,9 @@ function MainGuideContent() {
   const [isOffline, setIsOffline] = useState<boolean>(false);
   const [isOverviewOpen, setIsOverviewOpen] = useState<boolean>(!matchedStation);
   const [activeSubtitle, setActiveSubtitle] = useState<string>("");
+  const [followUpSuggestions, setFollowUpSuggestions] = useState<string[]>(() =>
+    getSmartFollowUpSuggestions(matchedStation?.id, "vi")
+  );
   const [isPanicOpen, setIsPanicOpen] = useState<boolean>(false);
   const [playbackState, setPlaybackState] = useState<AudioPlaybackState>({
     isPlaying: false,
@@ -47,6 +51,7 @@ function MainGuideContent() {
         setCurrentStation(target);
         setIsOverviewOpen(false);
         setActiveSubtitle("");
+        setFollowUpSuggestions(getSmartFollowUpSuggestions(target.id, locale));
         const title = getLocalizedText(target.title, locale);
         const summary = getLocalizedText(target.short_summary, locale);
         const story = getLocalizedText(target.human_story_hook, locale);
@@ -89,6 +94,7 @@ function MainGuideContent() {
       setCurrentStation(station);
       setIsOverviewOpen(false);
       setActiveSubtitle("");
+      setFollowUpSuggestions(getSmartFollowUpSuggestions(station.id, locale));
       const title = getLocalizedText(station.title, locale);
       const summary = getLocalizedText(station.short_summary, locale);
       const story = getLocalizedText(station.human_story_hook, locale);
@@ -104,6 +110,7 @@ function MainGuideContent() {
   const handleToggleLocale = useCallback(
     (newLocale: Locale) => {
       setLocale(newLocale);
+      setFollowUpSuggestions(getSmartFollowUpSuggestions(currentStation?.id, newLocale));
       if (currentStation) {
         const title = getLocalizedText(currentStation.title, newLocale);
         const summary = getLocalizedText(currentStation.short_summary, newLocale);
@@ -174,6 +181,8 @@ function MainGuideContent() {
               if (event.type === "chunk" && event.text) {
                 fullAnswer += event.text;
                 setActiveSubtitle(fullAnswer);
+              } else if (event.type === "done" && Array.isArray(event.suggestions) && event.suggestions.length > 0) {
+                setFollowUpSuggestions(event.suggestions);
               }
             } catch {
               // Partial SSE line, skip
@@ -235,21 +244,23 @@ function MainGuideContent() {
           onToggleLocale={handleToggleLocale}
           onOpenOverview={() => {
             setCurrentStation(null);
+            setFollowUpSuggestions(getSmartFollowUpSuggestions("global_overview", locale));
             setIsOverviewOpen(true);
           }}
           isOffline={isOffline}
         />
 
-        {/* ZONE 2: QUẢ CẦU ÂM BẢN TƯƠNG TÁC (50vh) */}
+        {/* ZONE 2: KHỐI ÂM THANH TƯƠNG TÁC & GỢI Ý CÂU HỎI (50vh) */}
         <SonicOrb
           stationId={currentStation ? currentStation.id : "global_overview"}
           locale={locale}
           isPlaying={playbackState.isPlaying}
+          followUpSuggestions={followUpSuggestions}
           onAskQuestion={handleAskQuestion}
           onAnswerReceived={handleAnswerReceived}
         />
 
-        {/* ZONE 3: DÒNG THỜI GIAN & PHỤ ĐỀ CINEMA TICKER (30vh) */}
+        {/* ZONE 3: DÒNG THỜI GIAN & BỘ ĐIỀU KHIỂN ÂM THANH (30vh) */}
         <CinemaTicker
           currentStation={currentStation}
           locale={locale}
