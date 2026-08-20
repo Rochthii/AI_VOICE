@@ -268,14 +268,12 @@ function MainGuideContent() {
 
         {/* ZONE 3: DÒNG THỜI GIAN & PHỤ ĐỀ CINEMA TICKER (30vh) */}
         <CinemaTicker
-          stations={stations}
           currentStation={currentStation}
           locale={locale}
           isPlaying={playbackState.isPlaying}
           currentTime={playbackState.currentTime}
           duration={playbackState.duration}
           activeSubtitle={activeSubtitle}
-          onSelectStation={handleSelectStation}
           onTogglePlay={handleTogglePlay}
         />
 
