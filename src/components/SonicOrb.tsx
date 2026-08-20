@@ -364,84 +364,28 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
           {/* Canvas 3D Reactive Soundwave Core */}
           <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full pointer-events-none opacity-90"
+            className="absolute inset-0 w-full h-full pointer-events-none opacity-95"
           />
 
-          {/* Vòng tâm lõi phát sáng & MICRO 3D CHUYÊN NGHIỆP */}
-          <div
-            className={`absolute inset-0 flex flex-col items-center justify-center z-10 ${
-              isProcessing ? "animate-spin" : ""
-            }`}
-          >
-            {/* Lớp hào quang lõi bao quanh Micro */}
-            <div
-              className={`w-24 h-24 rounded-full flex items-center justify-center transition-all duration-500 ${
-                isHolding
-                  ? "bg-teal-500/25 shadow-[0_0_35px_#2DD4BF]"
-                  : isProcessing
-                  ? "bg-amber-500/25 shadow-[0_0_40px_#E5A93C]"
-                  : isPlaying
-                  ? "bg-amber-500/20 shadow-[0_0_30px_#E5A93C]"
-                  : "bg-stone-900/60 shadow-inner"
-              }`}
-            >
-              {/* MICRO 3D ĐIÊU KHẮC KIM LOẠI NGUYÊN KHỐI (3D SCULPTED METALLIC MICROPHONE) */}
-              {isProcessing ? (
-                <Loader2 className="w-12 h-12 text-tunnel-amber animate-spin drop-shadow-[0_0_12px_rgba(229,169,60,0.8)]" />
-              ) : (
-                <div className="relative flex flex-col items-center justify-center transform hover:scale-105 transition-all">
-                  {/* Đầu Lưới Micro 3D (Metallic Mesh Capsule) */}
-                  <div
-                    className={`w-8 h-10 rounded-t-full border-2 relative overflow-hidden transition-all duration-300 ${
-                      isHolding
-                        ? "bg-gradient-to-b from-teal-200 via-teal-500 to-teal-900 border-teal-300 shadow-[0_0_15px_#2DD4BF]"
-                        : isPlaying
-                        ? "bg-gradient-to-b from-amber-200 via-amber-500 to-amber-900 border-amber-300 shadow-[0_0_15px_#E5A93C]"
-                        : "bg-gradient-to-b from-amber-200 via-amber-600 to-stone-900 border-amber-400/90 shadow-[0_0_12px_rgba(229,169,60,0.6)]"
-                    }`}
-                  >
-                    {/* Vân lưới kim loại Micro Studio (Studio Mesh Pattern) */}
-                    <div className="absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:3px_3px] opacity-40" />
-                    {/* Vệt phản quang kim loại (Metallic Specular Highlight) */}
-                    <div className="absolute top-0 left-1 w-2 h-full bg-white/40 blur-[0.5px] rounded-full transform -rotate-12" />
-                  </div>
-
-                  {/* Vành Cổ Micro Kim Loại Vàng (Golden Collar Ring) */}
-                  <div className="w-9 h-1.5 bg-gradient-to-r from-amber-600 via-amber-300 to-amber-700 rounded-sm shadow-sm" />
-
-                  {/* Thân Micro Trụ Kim Loại 3D (Microphone Metallic Stem) */}
-                  <div className="w-4 h-3 bg-gradient-to-r from-stone-800 via-amber-500/80 to-stone-900 rounded-b-md border-x border-amber-400/40" />
-
-                  {/* Vòng gá đỡ chống rung 3D (Shockmount Ring) */}
-                  <div
-                    className={`absolute -bottom-1.5 w-12 h-6 border-b-2 rounded-b-full pointer-events-none transition-all ${
-                      isHolding
-                        ? "border-teal-300 shadow-[0_2px_8px_#2DD4BF]"
-                        : "border-amber-400/80 shadow-[0_2px_8px_rgba(229,169,60,0.5)]"
-                    }`}
-                  />
-                </div>
-              )}
-            </div>
-
-            {/* Dòng trạng thái phát sáng dưới Micro */}
-            <div className="mt-2 flex items-center space-x-1.5 px-3 py-1 rounded-full bg-black/80 border border-white/10 backdrop-blur-md shadow-lg">
+          {/* Badge trạng thái phát sáng tinh tế, luôn nằm ngang ổn định, không xoay lộn */}
+          <div className="absolute inset-0 flex flex-col items-center justify-end pb-8 pointer-events-none z-10">
+            <div className="flex items-center space-x-2 px-3.5 py-1 rounded-full bg-black/80 border border-white/10 backdrop-blur-md shadow-xl transition-all duration-300">
               <span
-                className={`w-1.5 h-1.5 rounded-full ${
+                className={`w-2 h-2 rounded-full ${
                   isHolding
                     ? "bg-tunnel-jade animate-ping"
                     : isProcessing
-                    ? "bg-tunnel-amber animate-spin"
+                    ? "bg-purple-400 animate-pulse shadow-[0_0_8px_#C084FC]"
                     : isPlaying
-                    ? "bg-tunnel-amber animate-pulse"
+                    ? "bg-tunnel-amber animate-pulse shadow-[0_0_8px_#E5A93C]"
                     : "bg-tunnel-amber"
                 }`}
               />
-              <span className="text-[10px] sm:text-[11px] font-bold tracking-widest text-white/95 uppercase font-mono">
+              <span className="text-[10px] sm:text-[11px] font-bold tracking-widest text-stone-200 uppercase font-mono">
                 {isProcessing
                   ? locale === "vi"
-                    ? "TRA SỬ LIỆU"
-                    : "SEARCHING ARCHIVES"
+                    ? "ĐANG TRA SỬ LIỆU..."
+                    : "SEARCHING..."
                   : isHolding
                   ? dict.orb.statusListening
                   : isPlaying
