@@ -149,22 +149,14 @@ class AudioEngine {
   }
 
   /**
-   * Phát giọng đọc Microsoft Neural TTS cao cấp (vi-VN-HoaiMyNeural)
+   * Phát giọng đọc Neural TTS độc quyền (Chỉ phát 1 luồng duy nhất, không trùng lặp)
    */
   public async playNeuralTTS(text: string, lang: Locale = "vi"): Promise<void> {
     if (!text?.trim()) return;
 
-    // Mở khóa Audio context ngay lập tức
+    // 1. Tắt toàn bộ mọi nguồn âm thanh đang phát trước đó
+    this.stop();
     await this.unlockAudioContext();
-
-    // Dừng âm thanh nền nếu có
-    if (this.audioElement && !this.audioElement.paused) {
-      this.audioElement.pause();
-    }
-
-    if (this.ttsAudioElement && !this.ttsAudioElement.paused) {
-      this.ttsAudioElement.pause();
-    }
 
     try {
       const res = await fetch("/api/tts", {
@@ -192,17 +184,6 @@ class AudioEngine {
       }
     } catch (err) {
       console.warn("[AudioEngine] Neural TTS playback warning:", err);
-
-      // Fallback sang Web Speech API nếu offline hoặc lỗi
-      if (typeof window !== "undefined" && "speechSynthesis" in window) {
-        window.speechSynthesis.cancel();
-        const utt = new SpeechSynthesisUtterance(text.trim());
-        utt.lang = lang === "vi" ? "vi-VN" : lang === "fr" ? "fr-FR" : lang === "ja" ? "ja-JP" : lang === "ko" ? "ko-KR" : lang === "zh" ? "zh-CN" : "en-US";
-        utt.rate = 1.0;
-        utt.onstart = () => this.notifyListeners();
-        utt.onend = () => this.notifyListeners();
-        window.speechSynthesis.speak(utt);
-      }
     }
   }
 
@@ -226,6 +207,9 @@ class AudioEngine {
   }
 
   public stop(): void {
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
     if (this.ttsAudioElement) {
       this.ttsAudioElement.pause();
       this.ttsAudioElement.currentTime = 0;
