@@ -24,6 +24,15 @@
 
 ---
 
+## 📋 5 QUY TẮC HIỆU CHỈNH & ĐỐI SOÁT NGUỒN GỐC (AUDIT NOTES)
+1. **Hình dáng hầm thời kháng Pháp:** Không suy diễn hầm chữ L, chỉ ghi nhận *"những đoạn hầm ngắn, cấu trúc đơn giản"* tại Tân Phú Trung và Phước Vĩnh An (1948).
+2. **Phương pháp vận chuyển đất:** Bám sát tư liệu gốc: *"Hàng vạn mét khối đất cát được đưa lên, vận chuyển khéo léo ra khỏi hầm mà không để kẻ thù phát hiện"*.
+3. **Địa chất thổ nhưỡng:** Ghi nhận chuẩn xác là *"đất sét pha đá ong (đất sét pha laterit) có độ kết dính cao, độ bền tốt, ít sụt lở"*, loại bỏ các suy diễn hóa lý ngoài luồng.
+4. **Hầm làm việc lãnh đạo:** Gọi chuẩn xác là *"hầm chỉ huy, phòng họp, nơi làm việc cơ mật của ban lãnh đạo Khu ủy và Bộ Chỉ huy Quân khu"*.
+5. **Cỡ đạn pháo:** Ghi chuẩn xác chống chịu *"đạn pháo và sức nặng xe tăng, xe bọc thép"*.
+
+---
+
 ## I. ĐỐI SOÁT & PHẢN BIỆN CHUYÊN SÂU TỪNG TRẠM
 
 ### 📍 TRẠM 01: BẾP HOÀNG CẦM (GIẤU KHÓI DÃ CHIẾN)

@@ -4,15 +4,21 @@ Tất cả các thay đổi đáng chú ý của dự án sẽ được ghi nh�
 
 ---
 
-## [0.4.4-alpha] - 2026-08-20
+## [0.4.5-alpha] - 2026-08-20
 
-### Added - Chuẩn Hóa 4 Nguồn Tư Liệu Pháp Lý & Quy Tắc Trích Dẫn AI
-- **Tạo tệp [`docs/OFFICIAL_CITATIONS.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/docs/OFFICIAL_CITATIONS.md):** Xác lập 4 xuất bản phẩm chính thống bảo chứng toàn bộ dữ liệu lịch sử:
-  1. *Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi (2020)* — Hồ sơ Di tích Lịch sử Quốc gia Đặc biệt.
-  2. *Bộ Tư lệnh TP.HCM (2015)* — Lịch sử LLVTND Huyện Củ Chi Đất Thép Thành Đồng.
-  3. *Viện Lịch sử Quân sự Việt Nam (2018)* — Tóm tắt các sáng kiến kỹ thuật quân sự tiêu biểu.
-  4. *Tom Mangold & John Penycate (1985)* — The Tunnels of Cu Chi: A Remarkable Story of the Vietnam War.
-- **Cập nhật [`AGENT.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/AGENT.md):** Bổ sung quy tắc trích dẫn nguồn chính thống khi du khách hỏi về cơ sở dữ liệu.
+### Changed - Hiệu Chỉnh 100% Sử Liệu Thẩm Định Chương 1 (Ground Truth Alignment)
+- **Hiệu chỉnh [`Tài Liệu Lịch Sử Chuẩn Hóa Địa Đạo Củ Chi (Ground Truth RAG).md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/Tài%20Liệu%20Lịch%20Sử%20Chuẩn%20Hóa%20Địa%20Đạo%20Củ%20Chi%20(Ground%20Truth%20RAG).md):**
+  * Tích hợp 5 Audit Notes nghiêm ngặt: Lược bỏ suy diễn hầm chữ L, chuẩn hóa nguồn gốc đất sét pha đá ong (laterit), chuẩn hóa cụm từ hầm chỉ huy phòng làm việc Khu ủy.
+- **Cập nhật [`src/data/history_knowledge.json`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/data/history_knowledge.json):**
+  * Đồng bộ `chunk_overview_01`, `chunk_overview_02`, `chunk_overview_03` bám sát từng từ ngữ của bản thẩm định chính thức.
+- **Cập nhật [`docs/HISTORICAL_GROUND_TRUTH_AUDIT.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/docs/HISTORICAL_GROUND_TRUTH_AUDIT.md):**
+  * Bổ sung mục 5 Quy Tắc Hiệu Chỉnh & Đối Soát Nguồn Gốc (Audit Notes).
+
+---
+
+## [0.4.4-alpha] - 2026-08-20
+### Added
+- Chuẩn hóa 4 Nguồn Tư Liệu Pháp Lý & Quy Tắc Trích Dẫn AI (`docs/OFFICIAL_CITATIONS.md`).
 
 ---
 

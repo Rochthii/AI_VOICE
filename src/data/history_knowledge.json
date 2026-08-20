@@ -3,31 +3,31 @@
     "chunk_id": "chunk_overview_01",
     "location_id": "general",
     "category": "construction",
-    "content_vi": "Địa đạo Củ Chi được hình thành từ năm 1948 trong kháng chiến chống Pháp tại hai xã Tân Phú Trung và Phước Vĩnh An, sau đó phát triển nhảy vọt trong kháng chiến chống Mỹ (1961-1975). Toàn tuyến đạt tổng chiều dài hơn 250km đường hầm ngầm liên hoàn với hơn 500km chiến hào nổi trên mặt đất.",
-    "content_en": "The Cu Chi Tunnels began in 1948 during the French resistance in Tan Phu Trung and Phuoc Vinh An, expanding rapidly during the American War (1961-1975) to over 250km of underground tunnels interconnected with 500km of surface combat trenches.",
-    "keywords": ["chiều dài", "lịch sử", "250km", "500km", "hình thành", "1948", "tổng quan"],
+    "content_vi": "Hệ thống địa đạo Củ Chi được khởi nguồn từ thời kỳ kháng chiến chống Pháp khoảng năm 1948 tại hai xã Tân Phú Trung và Phước Vĩnh An. Từ năm 1961 trong kháng chiến chống Mỹ, khi Củ Chi là căn cứ Khu ủy và Quân khu Sài Gòn - Gia Định, hệ thống phát triển mạnh mẽ với tuyến địa đạo trục chính 'xương sống' (1961-1965). Tổng chiều dài đạt trên 200 km đường hầm tỏa rộng (khoảng 250 km ở một số tư liệu) liên hoàn với 500 km chiến hào và công sự trên mặt đất.",
+    "content_en": "The Cu Chi Tunnels began around 1948 during the French resistance in Tan Phu Trung and Phuoc Vinh An. From 1961 during the American War, as the base for the Saigon - Gia Dinh Regional Command, the 'backbone' spine tunnels expanded rapidly (1961-1965). Total length exceeds 200 km (up to 250 km in some records) interconnected with 500 km of surface combat trenches.",
+    "keywords": ["chiều dài", "lịch sử", "200km", "250km", "500km", "hình thành", "1948", "xương sống", "tổng quan"],
     "embedding": [0.052, 0.124, 0.312, -0.045, 0.189, 0.221, -0.115, 0.088, 0.041, 0.198],
-    "source_authority": "Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi & Viện Lịch sử Quân sự Việt Nam"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi & Viện Lịch sử Quân sự Việt Nam"
   },
   {
     "chunk_id": "chunk_overview_02",
     "location_id": "general",
     "category": "construction",
-    "content_vi": "Địa chất Củ Chi là tầng đất sét pha sỏi đá ong (đất bazan phong hóa). Khi mới đào đất dẻo quánh dễ khoét gọt, nhưng khi tiếp xúc với không khí lưu thông trong hầm sẽ phản ứng oxy hóa và khô cứng lại như đá, chịu được sức nặng của xe tăng M48, xe bọc thép M113 và rung chấn bom pháo mà không cần dầm bê tông chống đỡ.",
-    "content_en": "Cu Chi soil consists of clay mixed with laterite gravel (weathered basalt). Highly malleable when moist, it oxidizes and hardens rock-solid upon air contact, bearing heavy M48 tanks, M113 APCs, and artillery vibrations without concrete supports.",
-    "keywords": ["địa chất", "đất sét", "đá ong", "cứng như đá", "xe tăng", "xe bọc thép", "không sập"],
+    "content_vi": "Địa đạo được đào trên khu vực địa chất chủ yếu là đất sét pha đá ong (đất sét pha laterit). Đây là loại đất có đặc tính kết dính cao, độ bền vượt trội và rất ít khi bị sụt lở. Nhờ độ vững chắc tự nhiên chịu lực nén siêu hạng này, hệ thống đứng vững kiên cường không cần dầm bê tông chống đỡ, bảo vệ an toàn trước sức ép từ xích xe tăng, xe bọc thép và sức công phá của bom đạn pháo.",
+    "content_en": "The tunnels were excavated in clay mixed with laterite gravel. This soil possesses high adhesion, extreme durability, and minimal cave-in risk. With superior natural compressive strength, the network stands firm without concrete supports, withstanding tanks, APCs, and heavy artillery bombardments.",
+    "keywords": ["địa chất", "đất sét pha đá ong", "laterit", "kết dính cao", "ít sụt lở", "xe tăng", "xe bọc thép", "không cần dầm bê tông"],
     "embedding": [0.081, 0.155, 0.298, -0.012, 0.210, 0.180, -0.095, 0.112, 0.065, 0.175],
-    "source_authority": "Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
     "chunk_id": "chunk_overview_03",
     "location_id": "general",
     "category": "construction",
-    "content_vi": "Hệ thống địa đạo có cấu trúc 3 tầng: Tầng 1 (sâu ~3m) chịu được xe bọc thép và đạn pháo 105mm; Tầng 2 (sâu 5m-8m) đặt bếp Hoàng Cầm, bệnh xá, kho đạn và giếng nước chống bom phá thông thường; Tầng 3 (sâu 8m-12m, có nơi 15m) là sở chỉ huy đầu não an toàn tuyệt đối trước oanh tạc đường không.",
-    "content_en": "The tunnel network has 3 tactical levels: Level 1 (~3m depth) resists APCs and 105mm shells; Level 2 (5m-8m) houses Hoang Cam stoves, hospitals, ammo caches, and wells; Level 3 (8m-12m, up to 15m) serves as bomb-proof supreme headquarters.",
-    "keywords": ["3 tầng", "phân tầng", "độ sâu", "tầng 1", "tầng 2", "tầng 3", "chống bom"],
+    "content_vi": "Hệ thống địa đạo có cấu trúc 3 tầng sâu kết nối qua nắp hầm bí mật ngụy trang: Tầng 1 (~3m) chống chịu đạn pháo và sức nặng xe tăng, bố trí hào chiến đấu, ụ bắn tỉa, lỗ thông hơi ụ mối; Tầng 2 (5m-8m) chống bom phá thông thường cỡ nhỏ, bố trí bếp Hoàng Cầm, cứu thương, kho lương thực, giếng nước ngầm; Tầng 3 (8m-12m, có nơi sâu hơn 12m) là hầm chỉ huy, phòng họp của lãnh đạo Khu ủy và ngách thoát hiểm trổ ra sông Sài Gòn.",
+    "content_en": "The network features 3 tactical levels connected by concealed trapdoors: Level 1 (~3m depth) resists artillery and tanks with sniper posts and vent mounds; Level 2 (5m-8m) withstands light demolition bombs, housing Hoang Cam stoves, first aid, supply depots, and wells; Level 3 (8m-12m, up to >12m) serves as command bunkers for leadership with secret escape tunnels to Saigon River.",
+    "keywords": ["3 tầng", "phân tầng", "độ sâu", "tầng 1", "tầng 2", "tầng 3", "hầm chỉ huy", "thoát hiểm sông sài gòn"],
     "embedding": [0.092, 0.168, 0.285, -0.025, 0.195, 0.190, -0.105, 0.125, 0.055, 0.185],
-    "source_authority": "Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
     "chunk_id": "chunk_kitchen_01",
