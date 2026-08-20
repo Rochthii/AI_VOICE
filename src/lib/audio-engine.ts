@@ -275,6 +275,7 @@ class AudioEngine {
       this.ttsAudioElement.pause();
       this.ttsAudioElement.src = "";
       this.ttsAudioElement = null;
+      this.notifyListeners();
     }
 
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
@@ -282,7 +283,7 @@ class AudioEngine {
     }
 
     try {
-      // 1. Thử gọi API Microsoft Neural TTS từ server (/api/tts)
+      // 1. Gọi API Microsoft Neural TTS từ server (/api/tts)
       const res = await fetch("/api/tts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -299,14 +300,20 @@ class AudioEngine {
       const audio = new Audio(audioUrl);
       this.ttsAudioElement = audio;
 
-      audio.onended = () => {
+      audio.addEventListener("timeupdate", () => this.notifyListeners());
+      audio.addEventListener("play", () => this.notifyListeners());
+      audio.addEventListener("pause", () => this.notifyListeners());
+      audio.addEventListener("loadedmetadata", () => this.notifyListeners());
+      audio.addEventListener("ended", () => {
         URL.revokeObjectURL(audioUrl);
         if (this.ttsAudioElement === audio) {
           this.ttsAudioElement = null;
         }
-      };
+        this.notifyListeners();
+      });
 
       await audio.play();
+      this.notifyListeners();
     } catch (err) {
       console.warn("[AudioEngine] Neural TTS failed, falling back to Web Speech API:", err);
 
@@ -314,7 +321,11 @@ class AudioEngine {
       if (typeof window !== "undefined" && "speechSynthesis" in window) {
         const utt = new SpeechSynthesisUtterance(text.trim());
         utt.lang = lang === "vi" ? "vi-VN" : lang === "fr" ? "fr-FR" : lang === "ja" ? "ja-JP" : lang === "ko" ? "ko-KR" : lang === "zh" ? "zh-CN" : "en-US";
-        utt.rate = 0.92;
+        utt.rate = 1.0;
+        
+        utt.onstart = () => this.notifyListeners();
+        utt.onend = () => this.notifyListeners();
+        
         window.speechSynthesis.speak(utt);
       }
     }
@@ -334,10 +345,11 @@ class AudioEngine {
   }
 
   public getState(): AudioPlaybackState {
+    const activeAudio = this.ttsAudioElement || this.audioElement;
     return {
-      isPlaying: this.audioElement ? !this.audioElement.paused : false,
-      currentTime: this.audioElement?.currentTime || 0,
-      duration: this.audioElement?.duration || 0,
+      isPlaying: activeAudio ? !activeAudio.paused : false,
+      currentTime: activeAudio?.currentTime || 0,
+      duration: activeAudio?.duration && !isNaN(activeAudio.duration) && isFinite(activeAudio.duration) ? activeAudio.duration : 0,
       stationId: this.currentStationId,
       locale: this.currentLocale
     };

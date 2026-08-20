@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { Play, Pause, RotateCcw, RotateCw, MapPin } from "lucide-react";
+import React, { useMemo } from "react";
+import { Play, Pause, RotateCcw, RotateCw, MapPin, Volume2 } from "lucide-react";
 import { Station } from "@/types/station";
 import { Locale, getDictionary, getLocalizedText } from "@/i18n";
 import { audioEngine } from "@/lib/audio-engine";
@@ -32,7 +32,35 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
 }) => {
   const dict = getDictionary(locale);
   const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
-  const currentSummary = getLocalizedText(currentStation.short_summary, locale);
+
+  // 1. Tính toán Phụ Đề Đồng Bộ Theo Thời Gian Thực (Không Hardcode)
+  const dynamicSubtitle = useMemo(() => {
+    // Nếu AI vừa trả lời hoặc đang stream câu trả lời -> Ưu tiên hiển thị
+    if (activeSubtitle && activeSubtitle.trim().length > 0) {
+      return activeSubtitle;
+    }
+
+    const summary = getLocalizedText(currentStation.short_summary, locale);
+    const storyHook = getLocalizedText(currentStation.human_story_hook, locale);
+    const keyFact1 = currentStation.key_facts?.[0] ? getLocalizedText(currentStation.key_facts[0], locale) : "";
+    const keyFact2 = currentStation.key_facts?.[1] ? getLocalizedText(currentStation.key_facts[1], locale) : "";
+
+    if (!duration || duration <= 0 || !isPlaying) {
+      return summary;
+    }
+
+    const ratio = currentTime / duration;
+    if (ratio < 0.25) {
+      return summary;
+    } else if (ratio < 0.55 && storyHook) {
+      return storyHook;
+    } else if (ratio < 0.80 && keyFact1) {
+      return keyFact1;
+    } else if (keyFact2) {
+      return keyFact2;
+    }
+    return summary;
+  }, [activeSubtitle, currentStation, locale, currentTime, duration, isPlaying]);
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const targetTime = (parseFloat(e.target.value) / 100) * duration;
@@ -40,16 +68,30 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
   };
 
   return (
-    <footer className="h-[30vh] w-full flex flex-col justify-between p-4 bg-gradient-to-t from-black via-stone-950/90 to-transparent select-none z-10">
-      {/* 1. Phụ Đề Điện Ảnh 1 Dòng (Cinema Ticker >= 20px) */}
-      <div className="w-full h-8 flex items-center justify-center overflow-hidden px-2">
-        <p className="text-center text-sm md:text-base font-medium text-tunnel-chalk/90 tracking-wide line-clamp-1 italic">
-          {activeSubtitle || currentSummary}
-        </p>
+    <footer className="h-[32vh] w-full flex flex-col justify-between p-4 bg-gradient-to-t from-black via-stone-950/95 to-transparent select-none z-10">
+      {/* 1. KHUNG PHỤ ĐỀ ĐIỆN ẢNH ĐỒNG BỘ THỜI GIAN THỰC (CINEMA DYNAMIC SUBTITLE) */}
+      <div className="w-full min-h-[52px] max-h-[64px] flex items-center justify-center px-3 py-1.5 rounded-xl bg-stone-950/80 border border-stone-800/60 shadow-inner backdrop-blur-md overflow-hidden relative">
+        <div className="flex items-center space-x-2 w-full justify-center">
+          {isPlaying && (
+            <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-tunnel-amber/20 text-tunnel-amber animate-pulse">
+              <Volume2 className="w-3.5 h-3.5" />
+            </span>
+          )}
+          <div className="overflow-hidden w-full text-center">
+            <p
+              key={dynamicSubtitle}
+              className={`text-xs sm:text-sm font-medium tracking-wide text-stone-200 transition-all duration-300 leading-relaxed ${
+                isPlaying ? "animate-fadeIn" : ""
+              }`}
+            >
+              {dynamicSubtitle}
+            </p>
+          </div>
+        </div>
       </div>
 
-      {/* 2. Thanh Trượt Tiến Độ Âm Thanh (Progress Bar) */}
-      <div className="w-full flex flex-col space-y-1">
+      {/* 2. THANH TRƯỢT TIẾN ĐỘ ÂM THANH (PROGRESS BAR) */}
+      <div className="w-full flex flex-col space-y-1 mt-1">
         <input
           type="range"
           min="0"
@@ -65,8 +107,8 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
         </div>
       </div>
 
-      {/* 3. Cụm Phím Điều Khiển Âm Thanh (Play / Pause / Seek 15s) */}
-      <div className="flex items-center justify-center space-x-6">
+      {/* 3. CỤM PHÍM ĐIỀU KHIỂN ÂM THANH (PLAY / PAUSE / SEEK 15S) */}
+      <div className="flex items-center justify-center space-x-6 my-1">
         <button
           onClick={() => audioEngine.seekRelative(-15)}
           className="p-2 rounded-full text-stone-400 hover:text-tunnel-chalk active:scale-90 transition-all"
@@ -77,7 +119,7 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
 
         <button
           onClick={onTogglePlay}
-          className="p-4 rounded-full bg-tunnel-amber text-stone-950 font-bold hover:bg-amber-400 active:scale-95 shadow-lg shadow-tunnel-amber/20 transition-all"
+          className="p-4 rounded-full bg-tunnel-amber text-stone-950 font-bold hover:bg-amber-400 active:scale-95 shadow-lg shadow-tunnel-amber/25 transition-all"
           aria-label={isPlaying ? dict.ticker.pause : dict.ticker.play}
         >
           {isPlaying ? <Pause className="w-6 h-6 fill-current" /> : <Play className="w-6 h-6 fill-current ml-0.5" />}
@@ -92,7 +134,7 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
         </button>
       </div>
 
-      {/* 4. Mini Station Selector (5 Trạm Di Tích) */}
+      {/* 4. MINI STATION SELECTOR (5 TRẠM DI TÍCH) */}
       <div className="flex items-center space-x-2 overflow-x-auto pb-1 no-scrollbar">
         {stations.map((st) => {
           const title = getLocalizedText(st.title, locale);
