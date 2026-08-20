@@ -197,9 +197,9 @@ function MainGuideContent() {
           }
         }
 
-        // Tự động phát ngay âm thanh Hoài My Neural
+        // Tự động phát ngay âm thanh Hoài My Neural và đợi đến khi thực sự cất tiếng
         if (fullAnswer.trim()) {
-          audioEngine.playNeuralTTS(fullAnswer.trim(), locale);
+          await audioEngine.playNeuralTTS(fullAnswer.trim(), locale);
         }
 
         return fullAnswer;
@@ -210,7 +210,7 @@ function MainGuideContent() {
           : locale === "vi"
           ? "Địa đạo Củ Chi dài hơn 250km với 3 tầng ngầm kiên cố trong lòng đất sét pha đá ong."
           : "Cu Chi tunnels span over 250km across 3 fortified subterranean layers.";
-        audioEngine.playNeuralTTS(fallback, locale);
+        await audioEngine.playNeuralTTS(fallback, locale);
         return fallback;
       }
     },
