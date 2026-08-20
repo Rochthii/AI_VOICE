@@ -43,17 +43,10 @@ function MainGuideContent() {
       if (target && target.id !== currentStation.id) {
         setCurrentStation(target);
         setActiveSubtitle("");
-        const audioAsset =
-          target.audio_assets[locale as "vi" | "en"] ||
-          target.audio_assets.en ||
-          target.audio_assets.vi;
-        audioEngine.loadAndPlay(
-          audioAsset.url,
-          target.id,
-          getLocalizedText(target.title, locale),
-          getLocalizedText(target.short_summary, locale),
-          locale
-        );
+        const title = getLocalizedText(target.title, locale);
+        const summary = getLocalizedText(target.short_summary, locale);
+        const story = getLocalizedText(target.human_story_hook, locale);
+        audioEngine.playStationNarration(target.id, title, summary, story, locale);
       }
     }
   }, [stationParam, currentStation.id, locale]);
@@ -83,22 +76,15 @@ function MainGuideContent() {
     return () => unsubscribe();
   }, []);
 
-  // Tải âm thanh  // Chọn trạm thủ công
+  // Chọn trạm và phát giọng nữ thuyết minh Hoài My Neural
   const handleSelectStation = useCallback(
     (station: Station) => {
       setCurrentStation(station);
       setActiveSubtitle("");
-      const audioAsset =
-        station.audio_assets[locale as "vi" | "en"] ||
-        station.audio_assets.en ||
-        station.audio_assets.vi;
-      audioEngine.loadAndPlay(
-        audioAsset.url,
-        station.id,
-        getLocalizedText(station.title, locale),
-        getLocalizedText(station.short_summary, locale),
-        locale
-      );
+      const title = getLocalizedText(station.title, locale);
+      const summary = getLocalizedText(station.short_summary, locale);
+      const story = getLocalizedText(station.human_story_hook, locale);
+      audioEngine.playStationNarration(station.id, title, summary, story, locale);
     },
     [locale]
   );
@@ -107,23 +93,12 @@ function MainGuideContent() {
   const handleToggleLocale = useCallback(
     (newLocale: Locale) => {
       setLocale(newLocale);
-      const audioAsset =
-        currentStation.audio_assets[newLocale as "vi" | "en"] ||
-        currentStation.audio_assets.en ||
-        currentStation.audio_assets.vi;
-      const savedTime = playbackState.currentTime;
-      audioEngine.loadAndPlay(
-        audioAsset.url,
-        currentStation.id,
-        getLocalizedText(currentStation.title, newLocale),
-        getLocalizedText(currentStation.short_summary, newLocale),
-        newLocale
-      );
-      if (savedTime > 0) {
-        audioEngine.seek(savedTime);
-      }
+      const title = getLocalizedText(currentStation.title, newLocale);
+      const summary = getLocalizedText(currentStation.short_summary, newLocale);
+      const story = getLocalizedText(currentStation.human_story_hook, newLocale);
+      audioEngine.playStationNarration(currentStation.id, title, summary, story, newLocale);
     },
-    [currentStation, playbackState.currentTime]
+    [currentStation]
   );
 
   // Toggle Play / Pause

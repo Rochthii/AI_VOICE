@@ -4,23 +4,24 @@ export interface AudioPlaybackState {
   isPlaying: boolean;
   currentTime: number;
   duration: number;
-  stationId: string | null;
+  stationId: string;
   locale: Locale;
 }
 
 type PlaybackListener = (state: AudioPlaybackState) => void;
 
 class AudioEngine {
-  private static instance: AudioEngine | null = null;
-  private audioContext: AudioContext | null = null;
+  private static instance: AudioEngine;
   private audioElement: HTMLAudioElement | null = null;
+  private ttsAudioElement: HTMLAudioElement | null = null;
+  private audioContext: AudioContext | null = null;
   private isUnlocked: boolean = false;
-  private listeners: Set<PlaybackListener> = new Set();
-  private currentStationId: string | null = null;
+
+  private currentStationId: string = "";
   private currentLocale: Locale = "vi";
+  private listeners: Set<PlaybackListener> = new Set();
 
   private constructor() {
-    // Chỉ khởi tạo trong môi trường Browser
     if (typeof window !== "undefined") {
       this.initAudioElement();
       this.setupDeviceChangeListener();
@@ -66,7 +67,6 @@ class AudioEngine {
         await this.audioContext.resume();
       }
 
-      // Phát 1 frame âm thanh câm (0.01s) để iOS mở quyền Audio
       if (this.audioContext) {
         const buffer = this.audioContext.createBuffer(1, 1, 22050);
         const source = this.audioContext.createBufferSource();
@@ -83,12 +83,11 @@ class AudioEngine {
 
   /**
    * Lắng nghe sự kiện rơi tai nghe Bluetooth hoặc rút jack cắm
-   * Tự động tạm dừng ngay trong 10ms, TUYỆT ĐỐI không phát loa ngoài dưới hầm kín.
    */
   private setupDeviceChangeListener(): void {
     if (typeof navigator !== "undefined" && navigator.mediaDevices) {
       navigator.mediaDevices.addEventListener("devicechange", () => {
-        if (this.audioElement && !this.audioElement.paused) {
+        if (this.isPlaying()) {
           console.warn("[AudioEngine] Audio output device changed (Headphone disconnected) -> Emergency Pause");
           this.pause();
         }
@@ -97,7 +96,7 @@ class AudioEngine {
   }
 
   /**
-   * Tích hợp MediaSession API cho phép điều khiển qua Lock Screen / Cất vào túi quần
+   * Tích hợp MediaSession API
    */
   private setupMediaSession(): void {
     if (typeof navigator === "undefined" || !("mediaSession" in navigator)) return;
@@ -109,9 +108,6 @@ class AudioEngine {
     navigator.mediaSession.setActionHandler("stop", () => this.stop());
   }
 
-  /**
-   * Cập nhật thông tin trạm hiển thị trên màn hình khoá điện thoại (Lock Screen Metadata)
-   */
   public updateMetadata(title: string, stationName: string): void {
     if (typeof navigator === "undefined" || !("mediaSession" in navigator)) return;
 
@@ -127,150 +123,33 @@ class AudioEngine {
   }
 
   /**
-   * Nạp và phát âm thanh của một trạm di tích
+   * Phát toàn bộ bài thuyết minh của trạm di tích bằng giọng nữ Hoài My Neural (vi-VN-HoaiMyNeural)
    */
-  public async loadAndPlay(
-    audioUrl: string,
+  public async playStationNarration(
     stationId: string,
     title: string,
-    stationName: string,
+    shortSummary: string,
+    storyHook: string,
     locale: Locale = "vi"
   ): Promise<void> {
     await this.unlockAudioContext();
-
-    if (!this.audioElement) return;
-
     this.currentStationId = stationId;
     this.currentLocale = locale;
+    this.updateMetadata(title, shortSummary);
 
-    // Nếu đang phát cùng URL thì chỉ cần toggle hoặc resume
-    if (this.audioElement.src.endsWith(audioUrl) && !this.audioElement.error) {
-      if (this.audioElement.paused) {
-        await this.audioElement.play();
-      }
-      return;
-    }
-
-    this.audioElement.src = audioUrl;
-    this.audioElement.load();
-    this.updateMetadata(title, stationName);
-
-    try {
-      await this.audioElement.play();
-    } catch (err) {
-      console.warn("[AudioEngine] MP3 playback fallback to Web Speech TTS:", err);
-      // Fallback tự động đọc nội dung thuyết minh bằng Web Speech API
-      this.speakFallbackText(title, stationName, locale);
-    }
-  }
-
-  /**
-   * Phát giọng đọc thuyết minh qua Web Speech API khi file MP3 chưa tải hoặc môi trường test
-   */
-  public speakFallbackText(title: string, content: string, locale: Locale = "vi"): void {
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
-      const textToRead = `${title}. ${content}`;
-      const utterance = new SpeechSynthesisUtterance(textToRead);
-      utterance.lang = LOCALE_MAP[locale]?.speechLang || "vi-VN";
-      utterance.rate = 0.95;
-      
-      utterance.onstart = () => {
-        this.notifyListeners();
-      };
-      
-      utterance.onend = () => {
-        this.notifyListeners();
-      };
-
-      window.speechSynthesis.speak(utterance);
-    }
-  }
-
-  public play(): void {
-    if (this.audioElement && this.audioElement.paused) {
-      this.audioElement.play().catch((err) => console.warn("[AudioEngine] Play failed:", err));
-    }
-  }
-
-  public pause(): void {
-    if (this.audioElement && !this.audioElement.paused) {
-      this.audioElement.pause();
-    }
-  }
-
-  public stop(): void {
-    if (this.audioElement) {
-      this.audioElement.pause();
-      this.audioElement.currentTime = 0;
-    }
-  }
-
-  public seek(seconds: number): void {
-    if (this.audioElement && Number.isFinite(seconds)) {
-      this.audioElement.currentTime = Math.max(0, Math.min(seconds, this.audioElement.duration || 0));
-    }
-  }
-
-  public seekRelative(offsetSeconds: number): void {
-    if (this.audioElement) {
-      this.seek(this.audioElement.currentTime + offsetSeconds);
-    }
-  }
-
-  /**
-   * Phản hồi xúc giác Haptic Pulse (40ms) khi chạm nút
-   */
-  public triggerHapticFeedback(): void {
-    if (typeof navigator !== "undefined" && "vibrate" in navigator) {
-      try {
-        navigator.vibrate(40);
-      } catch {
-        // Bỏ qua nếu thiết bị không hỗ trợ rung
-      }
-    }
-  }
-
-  /**
-   * Phát âm thanh gõ mõ tre trầm 120Hz dã chiến (Synthesized Bamboo Click)
-   */
-  public playBambooClickSound(): void {
-    if (!this.audioContext) return;
-
-    try {
-      const osc = this.audioContext.createOscillator();
-      const gain = this.audioContext.createGain();
-
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(120, this.audioContext.currentTime); // 120Hz trầm ấm
-      osc.frequency.exponentialRampToValueAtTime(40, this.audioContext.currentTime + 0.08);
-
-      gain.gain.setValueAtTime(0.3, this.audioContext.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.audioContext.currentTime + 0.08);
-
-      osc.connect(gain);
-      gain.connect(this.audioContext.destination);
-
-      osc.start();
-      osc.stop(this.audioContext.currentTime + 0.08);
-    } catch (err) {
-      console.warn("[AudioEngine] Could not play click SFX:", err);
-    }
+    const narrationText = `${title}. ${shortSummary} ${storyHook}`;
+    await this.playNeuralTTS(narrationText, locale);
   }
 
   /**
    * Phát giọng đọc Microsoft Neural TTS cao cấp (vi-VN-HoaiMyNeural)
-   * Tự động fallback sang Web Speech API nếu thiết bị mất kết nối mạng.
    */
-  private ttsAudioElement: HTMLAudioElement | null = null;
-
   public async playNeuralTTS(text: string, lang: Locale = "vi"): Promise<void> {
     if (!text?.trim()) return;
 
-    // Tạm dừng phát âm thanh thuyết minh nền
+    // Tạm dừng phát âm thanh đang chạy
     this.pause();
 
-    // Dừng âm thanh TTS đang phát trước đó nếu có
     if (this.ttsAudioElement) {
       this.ttsAudioElement.pause();
       this.ttsAudioElement.src = "";
@@ -283,7 +162,6 @@ class AudioEngine {
     }
 
     try {
-      // 1. Gọi API Microsoft Neural TTS từ server (/api/tts)
       const res = await fetch("/api/tts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -317,7 +195,6 @@ class AudioEngine {
     } catch (err) {
       console.warn("[AudioEngine] Neural TTS failed, falling back to Web Speech API:", err);
 
-      // 2. Fallback sang Web Speech API nếu offline
       if (typeof window !== "undefined" && "speechSynthesis" in window) {
         const utt = new SpeechSynthesisUtterance(text.trim());
         utt.lang = lang === "vi" ? "vi-VN" : lang === "fr" ? "fr-FR" : lang === "ja" ? "ja-JP" : lang === "ko" ? "ko-KR" : lang === "zh" ? "zh-CN" : "en-US";
@@ -329,6 +206,87 @@ class AudioEngine {
         window.speechSynthesis.speak(utt);
       }
     }
+  }
+
+  public play(): void {
+    if (this.ttsAudioElement && this.ttsAudioElement.paused) {
+      this.ttsAudioElement.play().catch((err) => console.warn("[AudioEngine] TTS Play failed:", err));
+    } else if (this.audioElement && this.audioElement.paused) {
+      this.audioElement.play().catch((err) => console.warn("[AudioEngine] Play failed:", err));
+    }
+  }
+
+  public pause(): void {
+    if (this.ttsAudioElement && !this.ttsAudioElement.paused) {
+      this.ttsAudioElement.pause();
+      this.notifyListeners();
+    }
+    if (this.audioElement && !this.audioElement.paused) {
+      this.audioElement.pause();
+      this.notifyListeners();
+    }
+  }
+
+  public stop(): void {
+    if (this.ttsAudioElement) {
+      this.ttsAudioElement.pause();
+      this.ttsAudioElement.currentTime = 0;
+    }
+    if (this.audioElement) {
+      this.audioElement.pause();
+      this.audioElement.currentTime = 0;
+    }
+    this.notifyListeners();
+  }
+
+  public seek(seconds: number): void {
+    const active = this.ttsAudioElement || this.audioElement;
+    if (active && Number.isFinite(seconds)) {
+      active.currentTime = Math.max(0, Math.min(seconds, active.duration || 0));
+    }
+  }
+
+  public seekRelative(offsetSeconds: number): void {
+    const active = this.ttsAudioElement || this.audioElement;
+    if (active) {
+      this.seek(active.currentTime + offsetSeconds);
+    }
+  }
+
+  public triggerHapticFeedback(): void {
+    if (typeof navigator !== "undefined" && "vibrate" in navigator) {
+      try {
+        navigator.vibrate(40);
+      } catch {}
+    }
+  }
+
+  public playBambooClickSound(): void {
+    if (!this.audioContext) return;
+
+    try {
+      const osc = this.audioContext.createOscillator();
+      const gain = this.audioContext.createGain();
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(120, this.audioContext.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(40, this.audioContext.currentTime + 0.08);
+
+      gain.gain.setValueAtTime(0.3, this.audioContext.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, this.audioContext.currentTime + 0.08);
+
+      osc.connect(gain);
+      gain.connect(this.audioContext.destination);
+
+      osc.start();
+      osc.stop(this.audioContext.currentTime + 0.08);
+    } catch (err) {
+      console.warn("[AudioEngine] Could not play click SFX:", err);
+    }
+  }
+
+  public isPlaying(): boolean {
+    return (this.ttsAudioElement && !this.ttsAudioElement.paused) || (this.audioElement && !this.audioElement.paused) || false;
   }
 
   public subscribe(listener: PlaybackListener): () => void {
