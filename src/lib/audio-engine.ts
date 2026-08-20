@@ -219,22 +219,21 @@ class AudioEngine {
   }
 
   public play(): void {
-    if (this.ttsAudioElement && this.ttsAudioElement.paused && this.ttsAudioElement.src) {
+    if (this.audioElement && this.audioElement.src && this.audioElement.paused) {
+      this.audioElement.play().catch((err) => console.warn("[AudioEngine] Station MP3 Play failed:", err));
+    } else if (this.ttsAudioElement && this.ttsAudioElement.src && this.ttsAudioElement.paused) {
       this.ttsAudioElement.play().catch((err) => console.warn("[AudioEngine] TTS Play failed:", err));
-    } else if (this.audioElement && this.audioElement.paused && this.audioElement.src) {
-      this.audioElement.play().catch((err) => console.warn("[AudioEngine] Play failed:", err));
     }
   }
 
   public pause(): void {
     if (this.ttsAudioElement && !this.ttsAudioElement.paused) {
       this.ttsAudioElement.pause();
-      this.notifyListeners();
     }
     if (this.audioElement && !this.audioElement.paused) {
       this.audioElement.pause();
-      this.notifyListeners();
     }
+    this.notifyListeners();
   }
 
   public stop(): void {
@@ -244,6 +243,7 @@ class AudioEngine {
     if (this.ttsAudioElement) {
       this.ttsAudioElement.pause();
       this.ttsAudioElement.currentTime = 0;
+      this.ttsAudioElement.removeAttribute("src");
     }
     if (this.audioElement) {
       this.audioElement.pause();
@@ -253,14 +253,25 @@ class AudioEngine {
   }
 
   public seek(seconds: number): void {
-    const active = (this.ttsAudioElement && this.ttsAudioElement.src) ? this.ttsAudioElement : this.audioElement;
+    const active = (!this.audioElement?.paused && this.audioElement?.src)
+      ? this.audioElement
+      : (!this.ttsAudioElement?.paused && this.ttsAudioElement?.src)
+      ? this.ttsAudioElement
+      : (this.audioElement?.src ? this.audioElement : this.ttsAudioElement);
+
     if (active && Number.isFinite(seconds)) {
       active.currentTime = Math.max(0, Math.min(seconds, active.duration || 0));
+      this.notifyListeners();
     }
   }
 
   public seekRelative(offsetSeconds: number): void {
-    const active = (this.ttsAudioElement && this.ttsAudioElement.src) ? this.ttsAudioElement : this.audioElement;
+    const active = (!this.audioElement?.paused && this.audioElement?.src)
+      ? this.audioElement
+      : (!this.ttsAudioElement?.paused && this.ttsAudioElement?.src)
+      ? this.ttsAudioElement
+      : (this.audioElement?.src ? this.audioElement : this.ttsAudioElement);
+
     if (active) {
       this.seek(active.currentTime + offsetSeconds);
     }
@@ -316,14 +327,26 @@ class AudioEngine {
   }
 
   public getState(): AudioPlaybackState {
-    const activeAudio = (this.ttsAudioElement && this.ttsAudioElement.src && !this.ttsAudioElement.paused)
-      ? this.ttsAudioElement
-      : (this.ttsAudioElement && this.ttsAudioElement.src)
-      ? this.ttsAudioElement
-      : this.audioElement;
+    let activeAudio: HTMLAudioElement | null = null;
+    if (this.audioElement && !this.audioElement.paused) {
+      activeAudio = this.audioElement;
+    } else if (this.ttsAudioElement && !this.ttsAudioElement.paused) {
+      activeAudio = this.ttsAudioElement;
+    } else if (this.audioElement && this.audioElement.src && this.audioElement.duration > 0) {
+      activeAudio = this.audioElement;
+    } else if (this.ttsAudioElement && this.ttsAudioElement.src) {
+      activeAudio = this.ttsAudioElement;
+    } else {
+      activeAudio = this.audioElement;
+    }
+
+    const isPlaying = Boolean(
+      (this.audioElement && !this.audioElement.paused) ||
+      (this.ttsAudioElement && !this.ttsAudioElement.paused)
+    );
 
     return {
-      isPlaying: activeAudio ? !activeAudio.paused : false,
+      isPlaying,
       currentTime: activeAudio?.currentTime || 0,
       duration: activeAudio?.duration && !isNaN(activeAudio.duration) && isFinite(activeAudio.duration) ? activeAudio.duration : 0,
       stationId: this.currentStationId,

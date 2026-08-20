@@ -130,10 +130,17 @@ function MainGuideContent() {
       audioEngine.pause();
     } else {
       if (currentStation) {
-        if (!playbackState.duration || playbackState.stationId !== currentStation.id) {
-          handleSelectStation(currentStation);
-        } else {
+        const title = getLocalizedText(currentStation.title, locale);
+        const summary = getLocalizedText(currentStation.short_summary, locale);
+        const story = getLocalizedText(currentStation.human_story_hook, locale);
+        const audioUrl =
+          (currentStation.audio_assets as Record<string, { url: string }>)?.[locale]?.url ||
+          (currentStation.audio_assets as Record<string, { url: string }>)?.[locale === "vi" ? "vi" : "en"]?.url;
+
+        if (playbackState.duration > 0 && playbackState.stationId === currentStation.id) {
           audioEngine.play();
+        } else {
+          audioEngine.playStationNarration(currentStation.id, title, summary, story, locale, audioUrl);
         }
       } else {
         // Đang ở Tổng Quan Toàn Cảnh -> Phát bài giới thiệu toàn cảnh Củ Chi
@@ -144,7 +151,7 @@ function MainGuideContent() {
         audioEngine.playNeuralTTS(globalIntro, locale);
       }
     }
-  }, [playbackState, currentStation, handleSelectStation, locale]);
+  }, [playbackState, currentStation, locale]);
 
   // Gửi câu hỏi tới API /api/ask — SSE Stream + Instant Neural TTS
   const handleAskQuestion = useCallback(
