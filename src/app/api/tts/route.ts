@@ -76,9 +76,9 @@ function splitTextForTTS(text: string, maxLen = 175): string[] {
 }
 
 /**
- * TẦNG 1: Microsoft Edge Neural TTS (HoaiMyNeural) với Timeout 7.0s
+ * TẦNG 1: Microsoft Edge Neural TTS (HoaiMyNeural) với tốc độ và cảm xúc tối ưu
  */
-async function synthesizeWithEdgeTTS(text: string, voiceName: string): Promise<Buffer> {
+async function synthesizeWithEdgeTTS(text: string, voiceName: string, lang = "vi"): Promise<Buffer> {
   return new Promise(async (resolve, reject) => {
     const timeout = setTimeout(() => {
       reject(new Error("EdgeTTS WebSocket timeout (7000ms)"));
@@ -88,10 +88,12 @@ async function synthesizeWithEdgeTTS(text: string, voiceName: string): Promise<B
       const tts = new MsEdgeTTS();
       await tts.setMetadata(voiceName, OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3);
 
+      // Tăng tốc độ đọc +18% và nâng nhẹ pitch +3Hz để giọng đọc dõng dạc, ngọt ngào, truyền cảm
+      const isVi = lang.startsWith("vi");
       const streamResult = tts.toStream(text, {
-        pitch: "+0Hz",
-        rate: "+6%",
-        volume: "+0%"
+        pitch: isVi ? "+3Hz" : "+2Hz",
+        rate: isVi ? "+18%" : "+12%",
+        volume: "+15%"
       });
 
       const chunks: Buffer[] = [];
@@ -182,7 +184,7 @@ export async function POST(req: NextRequest) {
 
     // 2. Thử Tầng 1: Microsoft Neural Hoài My
     try {
-      audioBytes = await synthesizeWithEdgeTTS(pacedText, voiceName);
+      audioBytes = await synthesizeWithEdgeTTS(pacedText, voiceName, effectiveLang);
       usedProvider = "microsoft_edge_neural";
     } catch (edgeErr) {
       console.warn("[TTS Tier 1 Fail -> Switching to Tier 2 Google TTS Multi-Chunk]:", edgeErr);
