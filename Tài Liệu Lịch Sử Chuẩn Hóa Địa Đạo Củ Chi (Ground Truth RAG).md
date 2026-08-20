@@ -82,32 +82,45 @@ Hệ thống địa đạo được đào trên một khu vực có địa chấ
 
 ## **CHƯƠNG 4: CHI TIẾT TRẠM 03 – HẦM CHỈ HUY ĐẦU NÃO**
 
-### **4.1. Vị trí & Kết cấu phòng thủ đặc biệt**
+### **4.1. Vị trí & Thiết kế liên hoàn của cơ quan đầu não**
+*   **Vị trí chiến lược:** Các hầm chỉ huy đóng vai trò là hạt nhân trung tâm điều hành toàn bộ hoạt động tác chiến. Hiện nay, các hầm chỉ huy này được bảo tồn nguyên trạng tại các phân khu di tích thuộc Địa đạo Củ Chi:
+    *   **Địa đạo Bến Dược:** Nơi đặt căn cứ Bộ Tư lệnh Quân khu Sài Gòn – Chợ Lớn – Gia Định (Khu A) và căn cứ Khu ủy Sài Gòn – Chợ Lớn – Gia Định (Khu B).
+    *   **Địa đạo Bến Đình:** Nơi đặt căn cứ chỉ huy của Huyện ủy Củ Chi.
+*   **Độ sâu an toàn:** Hầm chỉ huy đầu não được ưu tiên thiết kế tại **Tầng 3 (Tầng trầm dưới cùng)**, ở độ sâu cách mặt đất từ **8m – 12m** (một số vị trí sâu trên 12m). Đây là tầng hầm kiên cố nhất, có khả năng chịu lực nén tự nhiên tuyệt vời và bảo vệ an toàn cho bộ chỉ huy trước sức công phá từ các loại bom tấn lớn nhất của đối phương.
+*   **Mặt bằng cấu trúc liên hoàn (tại Khu A Bến Dược):** Hầm chỉ huy không đứng độc lập mà nằm trong một quần thể kết nối ngầm tinh vi gồm:
+    *   **Hầm họp Bộ Tư lệnh:** Có 3 đường địa đạo thông qua phòng làm việc của Chính ủy, phòng Phó Chính ủy và dẫn đến các lối lên xuống ngầm.
+    *   **Hầm họp Chính ủy:** Có 2 lối lên xuống và trang bị nắp hầm bí mật thông thẳng xuống lòng địa đạo.
+    *   **Hầm làm việc và hầm nghỉ của Tư lệnh:** Gồm 2 căn hầm thông nhau có kích thước thực tế lần lượt là **3,7m x 2,6m** và **4,2m x 2,5m**; có các nhánh địa đạo dẫn tiếp đến hầm thư ký và hầm chữ A (kích thước **2,3m x 2,2m**).
 
-> * **Vị trí:** Đặt tại trung tâm căn cứ Bến Dược và Bến Đình. Là nơi làm việc của Ban Chỉ huy Quân khu Sài Gòn – Gia Định, Huyện ủy Củ Chi và các đoàn cán bộ chiến lược Miền.  
-> * **Độ sâu:** Nằm tại tầng 3 (độ sâu từ 8m – 12m dưới lòng đất).  
-> * **Gia cố chịu lực:** Trần và vách hầm sử dụng thân gỗ căm xe, gỗ dầu cổ thụ chịu lực nén cực lớn. Lớp đất phủ dày 3m – 5m bên trên chịu được đạn pháo 155mm và bom phá thông thường.  
-> * **Kết cấu bẻ góc Z / L:** Lối vào hầm luôn được thiết kế bẻ góc vuông hình chữ Z hoặc chữ L nhằm triệt tiêu hoàn toàn sóng xung kích (Shockwave) từ bom đạn nổ gần trước khi truyền vào phòng họp chính, đồng thời ngăn chặn khí độc hơi cay CS tràn sâu vào bên trong.
+### **4.2. Hệ thống phòng thủ & Ý nghĩa lịch sử**
+*   **Nút chặn an toàn:** Để bảo vệ hầm trước nguy cơ bị đánh phá trực tiếp, dọc theo các tuyến địa đạo được bố trí hệ thống các **nút chặn tại những điểm hiểm yếu**. Khi đối phương phát hiện miệng hầm và thực hiện các biện pháp bơm nước hoặc phun hơi ngạt/chất độc hóa học xuống lòng đất, các nút chặn này sẽ được đóng lại để cô lập từng phần địa đạo, ngăn chặn khí độc và nước tràn sâu vào khu vực chỉ huy.
+*   **Ngách thoát hiểm khẩn cấp:** Từ đường địa đạo trục chính "xương sống", công binh đã đào các nhánh phụ trổ thẳng ra sát **mép sông Sài Gòn**. Đây là đường rút lui chiến thuật bảo mật, giúp Bộ chỉ huy cùng lực lượng kháng chiến có thể rút lui an toàn khi toàn bộ căn cứ trên cạn bị bao vây phong tỏa.
+*   **Quyết sách lịch sử:** Hệ thống hầm ngầm kiên cố này phản ánh nghệ thuật chỉ huy quân sự độc đáo của chiến tranh nhân dân. Trong **Chiến dịch Tết Mậu Thân 1968**, hệ thống địa đạo Củ Chi đã hoàn thành xuất sắc vai trò làm bàn đạp xuất phát để quân Giải phóng miền Nam tiến công bất ngờ vào trung tâm đầu não địch tại Sài Gòn.
 
-### **4.2. Mạng lưới thông tin liên lạc & Quyết sách lịch sử**
-
-> * **Mạng hữu tuyến ngầm:** Đường dây điện thoại dã chiến bọc cao su cách điện được chôn ngầm trong đất, kết nối thông suốt giữa Sở chỉ huy với các phân khu tác chiến.  
-> * **Giao liên hầm ngầm:** Lực lượng giao liên thông thuộc toàn bộ sơ đồ mê cung địa đạo, chuyển tiếp mệnh lệnh tác chiến hỏa tốc bằng văn bản mã hóa hoặc ký hiệu gõ vách quy ước.  
-> * **Dấu ấn lịch sử:** Nơi tổ chức các hội nghị cán bộ chỉ đạo Cuộc Tổng tiến công và nổi dậy Tết Mậu Thân 1968 và là bàn đạp tiến công giải phóng Sài Gòn trong Chiến dịch Hồ Chí Minh lịch sử (tháng 4/1975).
+---
 
 ## **CHƯƠNG 5: CHI TIẾT TRẠM 04 – LỖ THÔNG HƠI Ụ MỐI & ĐỐI PHÓ CHÓ NGHIỆP VỤ**
 
-### **5.1. Cấu trúc ụ mối & Kỹ thuật thông khí**
+### **5.1. Kỹ thuật thông khí & Đối lưu nhiệt ngụy trang**
+*   **Cung cấp dưỡng khí thụ động:** Để bảo đảm sự sống dưới lòng đất ẩm ướt, nóng bức và thiếu dưỡng khí, hệ thống thông gió ngầm được xây dựng hết sức khoa học. Không khí mát giàu oxy từ bên ngoài được lấy vào thông qua các lỗ thông hơi kết nối với hệ thống ống thông gió dẫn sâu vào lòng đất.
+*   **Vật liệu ống dẫn:** Các đường ống dẫn khí này được chế tạo bằng những vật liệu đơn giản, sẵn có tại địa phương như **thân tre rỗng ruột hoặc các ống kim loại**.
+*   **Kỹ thuật ngụy trang lỗ thông hơi:** Đầu ra của các ống thông hơi trên mặt đất được che giấu vô cùng kín kẽ. Miệng thoát khí thường được đặt kín đáo tại vị trí của **các bụi cây rừng, bụi rậm, gốc cây cổ thụ mục** hoặc ngụy trang giả dạng tinh vi dưới hình thức các **ụ mối đùn (ụ mối đất) hay mô đất tự nhiên**.
+*   **Nguyên lý đối lưu:** Quá trình thông khí ngầm vận hành hoàn toàn dựa trên **nguyên lý đối lưu nhiệt tự nhiên**. Sự chênh lệch nhiệt độ tự nhiên giữa các thảm thực vật mặt đất và lòng đất ẩm giúp luồng khí nóng thải ra liên tục được phân tán mỏng ra xung quanh, đồng thời hút ngược dưỡng khí mới xuống hầm mà không tạo ra bất kỳ tiếng động hay cột khói nào bốc lên.
 
-> * **Đặc tính sinh học ụ mối:** Ụ mối đất ở Củ Chi cao 1.0m – 2.0m, đường kính đáy 2.0m – 3.0m. Đất ụ mối được kết dính bằng dịch tiết của mối nên cứng như đá vôi phong hóa, không bị sập khi bom nổ gần. Bên trong ụ mối chứa mạng lưới hàng ngàn khoang rỗng và vi ống dẫn khí tự nhiên.  
-> * **Kỹ thuật thi công ống ngầm:** Công binh đào ngách ngầm dẫn xiên từ trần hầm lên thẳng đáy ụ mối, luồn ống tre rỗng ruột (đường kính 5cm – 10cm) nối thông vào khoang rỗng của ụ mối.  
-> * **Nguyên lý đối lưu:** Chênh lệch nhiệt độ giữa lòng đất và mặt rừng tạo dòng đối lưu thụ động: Khí nóng chứa CO2 và hơi ẩm tự động bốc lên thoát qua các vi ống; không khí mát giàu Oxy từ rừng tràn ngược xuống cung cấp dưỡng khí liên tục 24/24.
+### **5.2. Chiến thuật khắc chế chó nghiệp vụ đối phương**
+*   **Mối đe dọa khứu giác:** Trong các trận càn quét tầm quy mô lớn (như trận càn Cedar Falls năm 1967 hay trận càn Crimp năm 1966), quân đội đối phương đã huy động tối đa **chó nghiệp vụ (chó béc-giê/bạc-rê)** để đánh hơi tìm kiếm dấu vết con người nhằm phát hiện các cửa hầm ngụy trang và lỗ thông hơi ngầm.
+*   **Sáng kiến sử dụng xà phòng Mỹ:** Để khắc chế triệt để khứu giác nhạy bén của chó săn, quân dân ta đã nảy ra sáng kiến thu thập và đặt **xà phòng của Mỹ** ngay tại các cửa hầm bí mật và miệng lỗ thông gió.
+*   **Cơ chế đánh lừa:** Do xà phòng Mỹ có mùi hóa học rất đặc trưng và nồng nặc, khứu giác của chó nghiệp vụ khi đến gần sẽ bị át hoàn toàn, không thể nhận diện được mùi mồ hôi hay hơi ấm bốc lên từ người Việt dưới lòng đất. Nhờ vậy, đối phương không thể phát hiện ra mạng lưới hầm ngầm, bảo vệ tuyệt đối sự bí mật của căn cứ chỉ huy.
 
-### **5.2. Chiến thuật khắc chế chó nghiệp vụ Mỹ (1966 – 1970\)**
+---
 
-> * **Bột ớt cay & Tiêu sọ:** Rắc hỗn hợp hạt tiêu và ớt bột xay mịn quanh khu vực lỗ thông hơi và nắp hầm bí mật. Khi chó săn hít sâu để đánh hơi, bụi ớt kích ứng niêm mạc mũi làm tê liệt hoàn toàn khứu giác.  
-> * **Vật dụng chiến lợi phẩm:** Đặt xà phòng thơm Mỹ, thuốc lá, quần áo thu được của lính Mỹ tại các miệng ngách thông hơi để chó nghiệp vụ nhận diện nhầm mùi đồng đội và không sủa báo động.  
-> * **Ngụy trang mùi sinh học:** Rải phân gia súc, xác lá mục nát để át hoàn toàn hơi người bốc lên từ lòng đất.
+### **BÁO CÁO ĐỐI SOÁT VÀ HIỆU CHỈNH NGUỒN GỐC (AUDIT NOTES):**
+1. **Chất liệu gỗ căm xe, gỗ dầu & Đất dày 3-5m chịu pháo 155mm:** Toàn bộ thông tin về gỗ căm xe/dầu và đất dày 3-5m chịu pháo 155mm không có trong nguồn. Chuẩn hóa theo nguồn: Tầng 3 ở độ sâu 8m - 12m chống được các loại bom tấn lớn nhất nhờ nền đất sét pha đá ong tự nhiên chịu lực nén cực tốt mà không cần dầm bê tông chống đỡ.
+2. **Cửa bẻ góc chữ Z/L triệt tiêu sóng xung kích (Shockwave) & Hơi cay CS:** Chuẩn hóa theo nguồn: Thiết kế **hệ thống nút chặn tại những điểm hiểm yếu** để cô lập từng phần hầm, ngăn nước hoặc hơi ngạt/chất độc hóa học tràn sâu vào khu chỉ huy.
+3. **Mạng điện thoại bọc cao su ngầm & Gõ vách quy ước:** Lược bỏ chi tiết kỹ thuật không xuất hiện trong tài liệu gốc.
+4. **Kích thước sinh học ụ mối:** Lược bỏ số đo ụ mối cao 1-2m, rộng 2-3m và dịch tiết mối cứng như đá vôi. Giữ lại thông tin chuẩn xác: Lỗ thông hơi ngụy trang dạng ụ mối đùn, mô đất tự nhiên, bụi rậm, gốc cây cổ thụ mục.
+5. **Đào ống xiên:** Lược bỏ kỹ thuật thi công góc đào xiên giả định; chuẩn hóa ống thông gió bằng thân tre rỗng ruột hoặc ống kim loại.
+6. **Bột ớt, tiêu sọ, thuốc lá, phân gia súc:** Lược bỏ toàn bộ các chất át mùi suy diễn này. Tài liệu nguồn khẳng định sáng kiến duy nhất hiệu quả nhất được sử dụng là **"xà phòng của Mỹ"** đặt tại cửa hầm và lỗ thông gió để vô hiệu hóa khứu giác chó săn béc-giê trong các trận càn Crimp (1966) và Cedar Falls (1967).
 
 ## **CHƯƠNG 6: CHI TIẾT TRẠM 05 – TRẬN ĐỒ BẪY CHÔNG & VŨ KHÍ DU KÍCH**
 

@@ -60,21 +60,30 @@
 
 ---
 
-### 📍 TRẠM 03: HẦM CHỈ HUY ĐẦU NÃO (KẾT CẤU BẺ GÓC CHỮ Z & L)
-* 🛑 **Nghi vấn phòng thủ:** Tại sao bom pháo dội liên tục mà hầm chỉ huy không bị sập?
-* ✅ **Sự thật kỹ thuật công sự:**
-  * Nằm ở **Tầng 3 (độ sâu 8m - 12m)**, trần hầm gia cố bằng thân gỗ căm xe và gỗ dầu cổ thụ, chịu được đạn pháo hạng nặng $155\text{mm}$.
-  * **Cửa bẻ góc chữ Z và chữ L:** Khi bom đạn nổ ở cửa hầm, sóng xung kích (Shockwave) truyền theo đường thẳng sẽ bị đập vào vách đất dày ở góc bẻ và triệt tiêu động năng trước khi vào phòng họp.
-  * **Khắc chế hơi cay CS:** Góc bẻ kết hợp với nắp hầm chốt kín chặn đứng khí độc hơi cay của địch tràn vào.
+### 📍 TRẠM 03: HẦM CHỈ HUY ĐẦU NÃO (HỆ THỐNG NÚT CHẶN & LIÊN HOÀN)
+* 🛑 **Ngộ nhận / Suy diễn ngoài luồng cần loại bỏ:**
+  * Lược bỏ thông tin gỗ căm xe/dầu và lớp đất dày 3-5m chống pháo 155mm.
+  * Lược bỏ kết cấu bẻ góc Z/L triệt tiêu shockwave và hơi cay CS.
+  * Lược bỏ mạng điện thoại hữu tuyến bọc cao su ngầm và quy ước gõ vách ngầm.
+* ✅ **Sự thật lịch sử & Kỹ thuật đối soát chuẩn hóa:**
+  * **Vị trí & Phân khu:** Bến Dược (Khu A: Bộ Tư lệnh; Khu B: Khu ủy Sài Gòn – Chợ Lớn – Gia Định) và Bến Đình (Huyện ủy Củ Chi).
+  * **Độ sâu an toàn:** Tầng 3 (sâu 8m – 12m, có nơi >12m) là tầng kiên cố nhất, chịu lực nén tự nhiên tuyệt vời trước bom tấn.
+  * **Mặt bằng liên hoàn Khu A:** Hầm họp Bộ Tư lệnh (3 đường thông sang phòng Chính ủy/Phó Chính ủy), hầm họp Chính ủy và 2 hầm Tư lệnh (3,7m x 2,6m và 4,2m x 2,5m; hầm chữ A 2,3m x 2,2m).
+  * **Hệ thống nút chặn:** Bố trí tại các điểm hiểm yếu để đóng kín cô lập từng phần địa đạo, ngăn hơi ngạt/chất độc hóa học và nước bơm.
+  * **Ngách thoát hiểm & Ý nghĩa lịch sử:** Trổ thẳng ra mép sông Sài Gòn; là bàn đạp xuất phát cuộc Tổng tiến công Tết Mậu Thân 1968.
 
 ---
 
 ### 📍 TRẠM 04: LỖ THÔNG HƠI Ụ MỐI & ĐỐI PHÓ CHÓ NGHIỆP VỤ
-* 🛑 **Nghi vấn trinh sát:** Chó béc-giê Mỹ có khứu giác nhạy gấp hàng nghìn lần người, tại sao không đánh hơi ra hầm?
-* ✅ **Sự thật chiến thuật đối soát:**
-  * **Đòn bẩy khứu giác:** Rắc hỗn hợp ớt bột xay mịn và tiêu sọ quanh miệng thở. Khi chó săn hít mạnh để đánh hơi, bụi ớt kích ứng làm tê liệt hoàn toàn các thụ thể khứu giác.
-  * **Bẫy mùi đồng đội:** Đặt xà phòng thơm Mỹ (Camay, Safeguard) và quân phục thu được của lính Mỹ tại lỗ thở $\rightarrow$ Chó nhận diện nhầm là mùi của quân mình nên không sủa báo động.
-  * **Ngụy trang sinh học:** Ụ mối tự nhiên cứng như đá vôi do dịch tiết của mối, bên trong có hàng ngàn vi ống đối lưu không khí thụ động giúp khí nóng $CO_2$ thoát lên và dưỡng khí $O_2$ tràn xuống liên tục $24/24$.
+* 🛑 **Ngộ nhận / Suy diễn ngoài luồng cần loại bỏ:**
+  * Lược bỏ kích thước sinh học ụ mối (cao 1-2m, rộng 2-3m, dịch tiết kết dính).
+  * Lược bỏ kỹ thuật đào ống xiên giả định.
+  * Lược bỏ bột ớt, tiêu sọ, thuốc lá, quần áo, phân gia súc (không có trong tài liệu nguồn).
+* ✅ **Sự thật lịch sử & Chiến thuật đối soát chuẩn hóa:**
+  * **Hệ thống ống dẫn:** Chế tạo bằng thân tre rỗng ruột hoặc ống kim loại dẫn sâu vào lòng đất.
+  * **Kỹ thuật ngụy trang:** Miệng thoát khí giấu kín tại bụi rậm, gốc cây cổ thụ mục, ụ mối đùn hoặc mô đất tự nhiên.
+  * **Nguyên lý đối lưu nhiệt:** Dựa trên chênh lệch nhiệt độ tự nhiên giữa lòng đất ẩm và thảm thực vật mặt đất, phân tán khí nóng và hút dưỡng khí giàu oxy êm dịu, không khói.
+  * **Khắc chế chó săn béc-giê:** Sáng kiến dùng **xà phòng của Mỹ** đặt tại cửa hầm và lỗ thông gió. Mùi hóa học nồng nặc của xà phòng Mỹ át hoàn toàn mùi mồ hôi và hơi ấm con người trong các trận càn lớn như Crimp (1966) và Cedar Falls (1967).
 
 ---
 

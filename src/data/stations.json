@@ -154,14 +154,14 @@
       {
         "id": "faq_hospital_02",
         "question": {
-          "vi": "Tại sao trong hầm mổ không dùng đèn dầu?",
-          "en": "Why were open oil lamps forbidden in surgery tunnels?"
+          "vi": "Bác sĩ Võ Hoàng Lê có đóng góp tiêu biểu gì trong lịch sử quân y Địa đạo Củ Chi?",
+          "en": "What were Dr. Vo Hoang Le's key contributions to Cu Chi tunnel medical history?"
         },
         "answer": {
-          "vi": "Đèn dầu hở bị cấm tuyệt đối vì tiêu hao nhiều oxy trong hầm kín. Thay vào đó, quân y dùng bình ắc-quy nối bóng đèn 6V hoặc đèn măng-sông có chụp sắt hướng tia sáng cục bộ vào bàn mổ.",
-          "en": "Open oil lamps were strictly banned to preserve oxygen in enclosed tunnels. Instead, medics used 6V battery lamps or shielded pressure lanterns focused directly on surgical tables."
+          "vi": "Bác sĩ Võ Hoàng Lê không chỉ thực hiện thành công nhiều ca phẫu thuật ngoại khoa phức tạp ngay trong lòng đất ẩm tối, mà khi đảm nhiệm vai trò chỉ huy, ông đã trực tiếp tổ chức phòng thủ quân sự bảo toàn tuyệt đối cho toàn bộ khu phức hợp bệnh xá, y bác sĩ và thương binh trước các đợt càn quét.",
+          "en": "Dr. Vo Hoang Le successfully performed complex surgeries in dark, humid tunnels and, as a commanding officer, personally organized military defenses to safeguard the entire underground hospital complex, medical staff, and patients during enemy sweeps."
         },
-        "keywords": ["đèn dầu", "ánh sáng", "oxy", "măng-sông"]
+        "keywords": ["Võ Hoàng Lê", "Dr. Vo Hoang Le", "phẫu thuật", "chỉ huy", "bảo vệ bệnh viện"]
       }
     ]
   },
@@ -171,29 +171,29 @@
     "qr_code_key": "QR_COMMAND_03",
     "title": {
       "vi": "Hầm Chỉ Huy Đầu Não",
-      "en": "Supreme Headquarters Bunker"
+      "en": "Supreme Headquarters Command Bunker"
     },
     "short_summary": {
-      "vi": "Sở chỉ huy đầu não tại tầng 3 sâu 8-12m, nơi diễn ra các cuộc họp chiến lược định đoạt cục diện chiến trường.",
-      "en": "The strategic command center at Level 3 (8-12m depth) where critical military decisions were formulated."
+      "vi": "Căn cứ chỉ huy tại Tầng 3 (sâu 8m – 12m) với kết cấu liên hoàn hầm Tư lệnh, hệ thống nút chặn hiểm yếu ngăn khí độc và ngách thoát hiểm ra mép sông Sài Gòn.",
+      "en": "Command complex at Level 3 (8m – 12m depth) with interconnected Commander rooms, safety stop-valves blocking gas, and emergency exits to Saigon River."
     },
     "safety": {
       "tunnel_length_meters": 25,
       "avg_crawl_time_minutes": 3,
       "ceiling_height_meters": 1.5,
       "emergency_exit_note": {
-        "vi": "Có ngách thoát hiểm cơ mật trổ thẳng ra mép sông Sài Gòn.",
-        "en": "Secret emergency escape corridor leading directly to Saigon River."
+        "vi": "Có ngách thoát hiểm cơ mật trổ thẳng ra sát mép sông Sài Gòn.",
+        "en": "Secret emergency escape corridor leading directly to the banks of the Saigon River."
       },
       "reassurance_message": {
-        "vi": "Hầm chỉ huy kiên cố nhất với vách gỗ căm xe và có diện tích rộng rãi nhất trong hệ thống.",
-        "en": "The command bunker is the most fortified with ironwood pillars and the most spacious in the system."
+        "vi": "Hầm chỉ huy ở Tầng 3 sâu 8m - 12m là tầng kiên cố nhất, có khả năng chịu lực nén tự nhiên tuyệt vời trước các loại bom đạn lớn.",
+        "en": "The command bunker at Level 3 (8m - 12m depth) is the strongest layer with superior natural load-bearing resistance against heavy bombing."
       },
       "difficulty_level": "easy"
     },
     "human_story_hook": {
-      "vi": "Tại căn phòng đất nằm sâu 10 mét dưới lòng đất này, tiếng gõ điện đài cơ yếu và các bản đồ tác chiến đã chỉ đạo cuộc Tổng tiến công Tết Mậu Thân 1968 và Chiến dịch Hồ Chí Minh 1975.",
-      "en": "Ten meters underground in this earthen room, telegraph transmitters and battle maps directed the 1968 Tet Offensive and the historic 1975 Ho Chi Minh Campaign."
+      "vi": "Tại quần thể hầm chỉ huy Bến Dược và Bến Đình, các quyết sách quân sự táo bạo đã được ban hành, biến nơi đây thành bàn đạp lịch sử cho cuộc Tổng tiến công Tết Mậu Thân 1968.",
+      "en": "In the command complexes of Ben Duoc and Ben Dinh, bold military decisions were formulated, serving as the staging ground for the historic 1968 Tet Offensive."
     },
     "audio_assets": {
       "vi": {
@@ -209,30 +209,42 @@
     },
     "key_facts": [
       {
-        "vi": "Nằm ở tầng 3 độ sâu 8m - 12m, chịu được đạn pháo 155mm và bom phá.",
-        "en": "Situated at Level 3 (8m - 12m depth), withstanding 155mm artillery and demolition bombs."
+        "vi": "Thiết kế tại Tầng 3 (độ sâu 8m – 12m, có nơi sâu hơn 12m), an toàn trước các loại bom tấn lớn nhất của đối phương.",
+        "en": "Located at Level 3 (8m – 12m depth, up to >12m), secure against the enemy's heaviest aerial bombs."
       },
       {
-        "vi": "Kết cấu cửa bẻ góc vuông hình chữ Z/L triệt tiêu sóng xung kích và khí độc hơi cay CS.",
-        "en": "Z/L-shaped angled entryways that deflect blast shockwaves and block CS tear gas."
+        "vi": "Bố trí hệ thống nút chặn tại các điểm hiểm yếu để đóng kín cô lập từng phần địa đạo khi bị phun hơi độc hoặc bơm nước.",
+        "en": "Equipped with safety stop-valves at critical choke points to isolate tunnel sections when attacked with gas or water."
       },
       {
-        "vi": "Mạng lưới dây điện thoại hữu tuyến dã chiến bọc cao su chôn ngầm trong đất.",
-        "en": "Underground rubber-insulated field telephone network connecting military sectors."
+        "vi": "Hệ thống liên hoàn tại Khu A Bến Dược gồm hầm họp Bộ Tư lệnh, hầm họp Chính ủy và 2 hầm Tư lệnh (3,7m x 2,6m và 4,2m x 2,5m).",
+        "en": "Interconnected complex at Ben Duoc Sector A includes Headquarters meeting room, Commissar room, and Commander bunkers (3.7x2.6m & 4.2x2.5m)."
       }
     ],
     "faqs": [
       {
         "id": "faq_command_01",
         "question": {
-          "vi": "Lối vào hầm chỉ huy được thiết kế hình chữ Z và L để làm gì?",
-          "en": "Why were command bunker entrances shaped in Z and L angles?"
+          "vi": "Địa đạo Củ Chi bảo vệ hầm chỉ huy trước hơi ngạt và nước bơm của đối phương bằng cách nào?",
+          "en": "How did Cu Chi tunnels protect command bunkers from toxic gas and pumped water?"
         },
         "answer": {
-          "vi": "Lối vào bẻ góc vuông chữ Z hoặc L nhằm triệt tiêu hoàn toàn sóng xung kích từ bom đạn nổ gần trước khi truyền vào phòng họp chính, đồng thời ngăn chặn khí độc hơi cay CS tràn sâu vào bên trong.",
-          "en": "Right-angled Z/L corridors deflect shockwaves from nearby bomb explosions before reaching the main room and prevent CS tear gas from penetrating inside."
+          "vi": "Dọc theo các tuyến địa đạo được bố trí hệ thống các nút chặn tại những điểm hiểm yếu. Khi đối phương phát hiện miệng hầm và bơm nước hoặc phun hơi ngạt/chất độc hóa học xuống lòng đất, các nút chặn này sẽ được đóng lại để cô lập từng phần địa đạo, ngăn chặn khí độc và nước tràn sâu vào khu vực chỉ huy.",
+          "en": "Safety stop-valves were installed at critical choke points along the tunnels. When the enemy detected entrances and pumped water or sprayed tear gas/chemicals, these valves were closed to seal off sections, completely blocking gas and water from reaching command zones."
         },
-        "keywords": ["chữ Z", "chữ L", "sóng xung kích", "hơi cay", "khí độc"]
+        "keywords": ["nút chặn", "hơi ngạt", "chất độc hóa học", "bơm nước", "cô lập", "phòng thủ"]
+      },
+      {
+        "id": "faq_command_02",
+        "question": {
+          "vi": "Hầm chỉ huy địa đạo Củ Chi đóng vai trò gì trong Chiến dịch Tết Mậu Thân 1968?",
+          "en": "What role did the Cu Chi command bunker play in the 1968 Tet Offensive?"
+        },
+        "answer": {
+          "vi": "Hệ thống hầm ngầm kiên cố phản ánh nghệ thuật chỉ huy quân sự độc đáo của chiến tranh nhân dân, hoàn thành xuất sắc vai trò làm bàn đạp xuất phát để quân Giải phóng miền Nam tiến công bất ngờ vào trung tâm đầu não địch tại Sài Gòn trong Chiến dịch Tết Mậu Thân 1968.",
+          "en": "The fortified subterranean network reflected the people's war doctrine, serving as the forward staging ground from which Liberation forces launched surprise assaults on enemy headquarters in Saigon during the 1968 Tet Offensive."
+        },
+        "keywords": ["Tết Mậu Thân 1968", "Mậu Thân", "bàn đạp xuất phát", "chỉ huy", "Sài Gòn"]
       }
     ]
   },
@@ -245,8 +257,8 @@
       "en": "Termite Mound Ventilation & K-9 Defense"
     },
     "short_summary": {
-      "vi": "Nghệ thuật ngụy trang lỗ thở ngầm thành tổ mối tự nhiên và chiến thuật vô hiệu hóa khứu giác chó săn Mỹ.",
-      "en": "Ingenious camouflage of underground air vents as termite mounds and tactical defeat of tracking dogs."
+      "vi": "Hệ thống ống thông gió bằng tre hoặc kim loại ngụy trang dưới dạng ụ mối đùn, mô đất và sáng kiến dùng xà phòng Mỹ khắc chế chó săn nghiệp vụ.",
+      "en": "Passive ventilation system with bamboo/metal pipes disguised as termite mounds and soap decoy tactics countering scout dogs."
     },
     "safety": {
       "tunnel_length_meters": 18,
@@ -257,14 +269,14 @@
         "en": "Intermediate emergency exit on the right after 8 meters."
       },
       "reassurance_message": {
-        "vi": "Đoạn hầm này thấp 0.8 mét cần bò sát đất, nhưng luồng gió tươi từ lỗ thở liên tục cung cấp dưỡng khí.",
-        "en": "This section is 0.8m low requiring crawling, but fresh air through the vent constantly supplies oxygen."
+        "vi": "Đoạn hầm này có chiều cao hạn chế cần đi lom khom, nhưng hệ thống đối lưu nhiệt tự nhiên liên tục hút dưỡng khí mới xuống hầm.",
+        "en": "This section requires stooping, but natural thermal convection continuously draws fresh oxygen into the tunnel."
       },
       "difficulty_level": "hard"
     },
     "human_story_hook": {
-      "vi": "Một ụ mối vô tri trên mặt đất là lá phổi cứu sống hàng trăm con người bên dưới; một chút bột ớt và xà phòng chiến lợi phẩm đã đánh lừa cả những đàn chó săn béc-giê thiện chiến nhất.",
-      "en": "An ordinary forest termite mound served as a life-saving lung for hundreds below; chili powder and captured soap outsmarted the most elite military tracking dogs."
+      "vi": "Sáng kiến đặt xà phòng Mỹ tại cửa hầm và lỗ thông hơi đã vô hiệu hóa hoàn toàn khứu giác đàn chó săn béc-giê của đối phương trong các trận càn quét khốc liệt.",
+      "en": "Placing captured American soap at trapdoors and air vents completely neutralized tracking dogs' keen smell during massive sweep operations."
     },
     "audio_assets": {
       "vi": {
@@ -280,30 +292,42 @@
     },
     "key_facts": [
       {
-        "vi": "Ống tre luồn xiên nối từ trần hầm vào mạng vi ống rỗng tự nhiên của ụ mối cứng như đá.",
-        "en": "Bamboo tubes routed diagonally from tunnel ceiling into the hollow micro-passages of stone-hard termite mounds."
+        "vi": "Ống dẫn khí bằng thân tre rỗng ruột hoặc ống kim loại nối với lỗ thông hơi ngụy trang dưới dạng ụ mối đùn, mô đất, bụi rậm, gốc cây.",
+        "en": "Air pipes made of hollow bamboo or metal connect to surface vents disguised as termite mounds, soil hummocks, brush, and tree roots."
       },
       {
-        "vi": "Đối lưu thụ động: Khí nóng CO2 bốc lên, không khí mát giàu Oxy từ rừng tràn xuống 24/24.",
-        "en": "Passive convection: Warm CO2 rises out while cool oxygen-rich forest air draws down 24/7."
+        "vi": "Vận hành hoàn toàn dựa trên nguyên lý đối lưu nhiệt tự nhiên giữa lòng đất và thảm thực vật mặt đất.",
+        "en": "Operates strictly on natural thermal convection between the underground tunnel and surface vegetation."
       },
       {
-        "vi": "Dùng ớt bột xay mịn và xà phòng Mỹ để vô hiệu hóa khứu giác chó săn béc-giê.",
-        "en": "Used finely ground chili powder and captured American soap to neutralize scout dogs' smell."
+        "vi": "Sáng kiến đặt xà phòng Mỹ tại cửa hầm và lỗ thông gió át mùi mồ hôi, đánh lừa khứu giác chó nghiệp vụ trong trận càn Crimp (1966) và Cedar Falls (1967).",
+        "en": "Decoy American soap placed at vents and entrances masked human scent, foiling scout dogs in Operations Crimp (1966) and Cedar Falls (1967)."
       }
     ],
     "faqs": [
       {
         "id": "faq_termite_01",
         "question": {
-          "vi": "Du kích Củ Chi làm thế nào để chó nghiệp vụ Mỹ không phát hiện lỗ thông hơi?",
-          "en": "How did Cu Chi guerillas stop military tracker dogs from finding air vents?"
+          "vi": "Quân dân Củ Chi đã khắc chế chó nghiệp vụ của đối phương bằng cách nào?",
+          "en": "How did Cu Chi guerillas defeat the enemy's scout tracker dogs?"
         },
         "answer": {
-          "vi": "Chiến sĩ rắc ớt bột xay mịn và tiêu sọ quanh lỗ thông hơi để làm tê liệt khứu giác chó săn khi hít phải, đồng thời đặt xà phòng và quần áo thu được của lính Mỹ để chó nhận diện nhầm mùi đồng đội.",
-          "en": "Guerillas scattered ground chili and black pepper around vents to paralyze the dogs' sense of smell, and placed captured American soap and uniforms so dogs identified familiar friendly scents."
+          "vi": "Trong các trận càn lớn như Crimp (1966) hay Cedar Falls (1967), đối phương huy động chó nghiệp vụ (béc-giê) để đánh hơi tìm cửa hầm. Quân dân ta nảy ra sáng kiến thu thập và đặt xà phòng của Mỹ tại các cửa hầm bí mật và miệng lỗ thông gió. Mùi hóa học nồng nặc của xà phòng Mỹ át hoàn toàn mùi mồ hôi và hơi ấm của người dưới hầm, khiến chó nghiệp vụ không thể nhận diện.",
+          "en": "During major operations like Crimp (1966) and Cedar Falls (1967), the enemy used tracking dogs to detect human scent. Guerillas placed captured American soap at trapdoors and vents. The strong chemical scent overwhelmed the dogs' olfactory sense, masking human perspiration and body heat."
         },
-        "keywords": ["chó béc giê", "chó săn", "ớt bột", "xà phòng", "tiêu sọ"]
+        "keywords": ["chó nghiệp vụ", "chó béc giê", "xà phòng Mỹ", "Crimp 1966", "Cedar Falls 1967", "đánh lừa khứu giác"]
+      },
+      {
+        "id": "faq_termite_02",
+        "question": {
+          "vi": "Hệ thống lỗ thông hơi địa đạo vận hành theo nguyên lý nào?",
+          "en": "What principle governs the tunnel air vent system?"
+        },
+        "answer": {
+          "vi": "Hệ thống thông gió vận hành dựa trên nguyên lý đối lưu nhiệt tự nhiên. Sự chênh lệch nhiệt độ giữa lòng đất ẩm và thảm thực vật mặt đất giúp luồng khí nóng thải ra liên tục được phân tán mỏng qua các lỗ ngụy trang (ụ mối đùn, mô đất, bụi cây), đồng thời hút ngược dưỡng khí mới giàu oxy xuống hầm mà không tạo ra tiếng động hay cột khói.",
+          "en": "The ventilation operates via natural thermal convection. Temperature gradients between the cool humid tunnel and surface vegetation disperse warm air quietly through camouflaged openings (termite mounds, soil mounds, brush) while drawing fresh oxygen underground."
+        },
+        "keywords": ["đối lưu nhiệt", "dưỡng khí", "thông gió", "ụ mối đùn", "nguyên lý"]
       }
     ]
   },

@@ -113,61 +113,61 @@
     "chunk_id": "chunk_command_01",
     "location_id": "03_command_bunker",
     "category": "tactics",
-    "content_vi": "Hầm chỉ huy đầu não đặt tại tầng 3 ở độ sâu 8m - 12m, là nơi làm việc của Ban Chỉ huy Quân khu Sài Gòn - Gia Định và Huyện ủy Củ Chi. Trần và vách gia cố bằng gỗ căm xe, gỗ dầu chịu lực cực lớn, lớp đất phủ dày 3m - 5m chịu được đạn pháo 155mm và bom phá.",
-    "content_en": "The Supreme Command Bunker at Level 3 (8m-12m depth) was the headquarters for the Saigon-Gia Dinh Military Zone and Cu Chi Committee. Fortified with heavy ironwood timbers and 3-5m overhead soil, it resisted 155mm shells and heavy bombs.",
-    "keywords": ["sở chỉ huy", "tầng 3", "8m 12m", "gỗ căm xe", "khu ủy", "bến dược"],
+    "content_vi": "Hầm chỉ huy đầu não là hạt nhân trung tâm điều hành toàn bộ hoạt động tác chiến, hiện được bảo tồn nguyên trạng tại Địa đạo Bến Dược (Khu A: Bộ Tư lệnh Quân khu; Khu B: Khu ủy Sài Gòn – Chợ Lớn – Gia Định) và Địa đạo Bến Đình (Huyện ủy Củ Chi). Hầm được thiết kế tại Tầng 3 (độ sâu 8m – 12m, có nơi sâu hơn 12m), là tầng kiên cố nhất có khả năng chịu lực nén tự nhiên tuyệt vời bảo vệ an toàn trước các loại bom tấn lớn nhất.",
+    "content_en": "Command bunkers acted as the strategic control center, preserved at Ben Duoc (Sector A: Regional Command; Sector B: Party Committee) and Ben Dinh (District Committee). Situated at Level 3 (8m – 12m depth, up to >12m), they offer exceptional natural compressive strength against heavy aerial bombing.",
+    "keywords": ["sở chỉ huy", "tầng 3", "8m 12m", "bến dược", "bến đình", "khu ủy", "bộ tư lệnh", "huyện ủy"],
     "embedding": [0.210, 0.145, 0.112, 0.055, 0.285, 0.095, -0.015, 0.312, 0.188, 0.065],
-    "source_authority": "Bộ Tư lệnh TP.HCM"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
     "chunk_id": "chunk_command_02",
     "location_id": "03_command_bunker",
     "category": "tactics",
-    "content_vi": "Kết cấu bẻ góc chữ Z và chữ L: Lối vào hầm chỉ huy luôn bẻ góc vuông hình chữ Z hoặc L nhằm triệt tiêu hoàn toàn sóng xung kích (Shockwave) từ bom đạn nổ gần truyền vào phòng họp chính, đồng thời ngăn chặn khí độc hơi cay CS của đối phương tràn sâu vào bên trong.",
-    "content_en": "Z and L-angled blast baffles: Bunker entrances were engineered with sharp right-angle Z/L turns to dissipate explosive shockwaves from nearby ordnance and prevent toxic CS tear gas from infiltrating the main planning quarters.",
-    "keywords": ["chữ Z", "chữ L", "sóng xung kích", "hơi cay CS", "khí độc", "bẻ góc"],
+    "content_vi": "Mặt bằng liên hoàn hầm chỉ huy tại Khu A Bến Dược gồm hầm họp Bộ Tư lệnh thông qua phòng Chính ủy/Phó Chính ủy, hầm họp Chính ủy và 2 hầm làm việc/nghỉ của Tư lệnh (kích thước 3,7m x 2,6m và 4,2m x 2,5m; hầm chữ A 2,3m x 2,2m). Dọc tuyến hầm có hệ thống nút chặn tại các điểm hiểm yếu để đóng kín cô lập từng phần hầm khi bị phun hơi ngạt/chất độc hóa học hoặc bơm nước, cùng ngách thoát hiểm cơ mật trổ thẳng ra sát mép sông Sài Gòn.",
+    "content_en": "The complex layout at Ben Duoc Sector A includes Headquarters meeting halls, Commissar quarters, Commander rooms (3.7x2.6m & 4.2x2.5m; A-shaped bunker 2.3x2.2m). Safety stop-valves at choke points isolate tunnel sections against gas or water, complemented by emergency escape exits leading to the Saigon River.",
+    "keywords": ["hầm tư lệnh", "hầm chính ủy", "kích thước", "nút chặn", "hơi ngạt", "chất độc hóa học", "thoát hiểm sông Sài Gòn"],
     "embedding": [0.225, 0.158, 0.125, 0.068, 0.298, 0.085, -0.005, 0.325, 0.198, 0.075],
-    "source_authority": "Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
     "chunk_id": "chunk_command_03",
     "location_id": "03_command_bunker",
     "category": "tactics",
-    "content_vi": "Thông tin liên lạc và quyết sách lịch sử: Đường dây điện thoại dã chiến bọc cao su chôn ngầm kết nối Sở chỉ huy với các phân khu. Lực lượng giao liên thông thuộc mê cung hầm chuyển tiếp mật lệnh. Nơi đây đã chỉ đạo cuộc Tổng tiến công Tết Mậu Thân 1968 và Chiến dịch Hồ Chí Minh giải phóng Sài Gòn tháng 4/1975.",
-    "content_en": "Communications and historic decisions: Subterranean rubber-clad telephone wires linked headquarters to combat sectors alongside underground couriers. Here, leadership directed the 1968 Tet Offensive and the 1975 Ho Chi Minh Victory Campaign.",
-    "keywords": ["điện thoại ngầm", "giao liên", "mậu thân 1968", "chiến dịch hồ chí minh", "1975"],
+    "content_vi": "Hệ thống hầm ngầm kiên cố này phản ánh nghệ thuật chỉ huy quân sự độc đáo của chiến tranh nhân dân. Trong Chiến dịch Tết Mậu Thân 1968, hệ thống địa đạo Củ Chi đã hoàn thành xuất sắc vai trò làm bàn đạp xuất phát để quân Giải phóng miền Nam tiến công bất ngờ vào trung tâm đầu não địch tại Sài Gòn.",
+    "content_en": "This underground stronghold exemplified people's war strategy. In the 1968 Tet Offensive, Cu Chi tunnels served as the essential staging springboard for surprise assaults directly into enemy headquarters in Saigon.",
+    "keywords": ["Tết Mậu Thân 1968", "Mậu Thân", "bàn đạp xuất phát", "chỉ huy", "Sài Gòn", "chiến tranh nhân dân"],
     "embedding": [0.218, 0.152, 0.118, 0.062, 0.292, 0.090, -0.010, 0.318, 0.192, 0.070],
-    "source_authority": "Viện Lịch sử Quân sự Việt Nam"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
     "chunk_id": "chunk_termite_01",
     "location_id": "04_ventilation_termite",
     "category": "construction",
-    "content_vi": "Ụ mối đất ở Củ Chi cao 1-2m, đường kính đáy 2-3m, đất kết dính bằng dịch tiết của mối nên cứng như đá vôi không bị sập khi bom nổ gần. Công binh khoét ngách ngầm dẫn xiên từ trần hầm lên đáy ụ mối, luồn ống tre rỗng ruột (đường kính 5-10cm) nối thông vào mạng vi ống rỗng tự nhiên của ụ mối để thông khí.",
-    "content_en": "Termite mounds 1-2m high and 2-3m wide, cemented by termite secretions, are rock-hard against bomb concussions. Sappers routed bamboo tubes (5-10cm diameter) diagonally from tunnel ceilings into the natural micro-tubes of the mound for ventilation.",
-    "keywords": ["ụ mối", "lỗ thông hơi", "ống tre", "cứng như đá", "vi ống", "thông khí"],
+    "content_vi": "Hệ thống thông gió ngầm cung cấp dưỡng khí thụ động thông qua các đường ống dẫn khí bằng thân tre rỗng ruột hoặc ống kim loại dẫn sâu vào lòng đất. Đầu ra của các ống thông hơi trên mặt đất được ngụy trang kín kẽ tại các bụi cây rừng, bụi rậm, gốc cây cổ thụ mục hoặc giả dạng dưới hình thức các ụ mối đùn (ụ mối đất) hay mô đất tự nhiên.",
+    "content_en": "Subterranean passive ventilation supplies fresh oxygen through hollow bamboo or metal pipes routed deep underground. Surface vents are camouflaged among forest brush, thickets, rotten tree stumps, or shaped like natural termite mounds and soil hummocks.",
+    "keywords": ["lỗ thông hơi", "ống tre", "ống kim loại", "ngụy trang", "ụ mối đùn", "mô đất", "bụi rậm"],
     "embedding": [0.185, 0.245, 0.095, -0.045, 0.210, 0.142, -0.065, 0.198, 0.112, 0.225],
-    "source_authority": "Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
     "chunk_id": "chunk_termite_02",
     "location_id": "04_ventilation_termite",
     "category": "construction",
-    "content_vi": "Nguyên lý đối lưu không khí ụ mối: Chênh lệch nhiệt độ giữa lòng hầm và mặt rừng tạo dòng đối lưu thụ động liên tục 24/24. Khí nóng chứa CO2 và hơi ẩm tự động bốc lên thoát qua các vi ống ụ mối; không khí mát giàu Oxy từ rừng tràn ngược xuống cung cấp dưỡng khí cho chiến sĩ.",
-    "content_en": "Passive thermodynamic airflow: Temperature gradients between the cool deep tunnel and the warm forest floor create continuous passive convection: warm CO2 and humidity vent upward while fresh oxygenated forest air draws down 24/7.",
-    "keywords": ["đối lưu", "khí nóng", "oxy", "CO2", "dưỡng khí", "tự nhiên"],
+    "content_vi": "Quá trình thông khí ngầm vận hành hoàn toàn dựa trên nguyên lý đối lưu nhiệt tự nhiên. Sự chênh lệch nhiệt độ tự nhiên giữa các thảm thực vật mặt đất và lòng đất ẩm giúp luồng khí nóng thải ra liên tục được phân tán mỏng ra xung quanh, đồng thời hút ngược dưỡng khí mới giàu oxy xuống hầm mà không tạo ra bất kỳ tiếng động hay cột khói nào bốc lên.",
+    "content_en": "Ventilation operates on natural thermal convection. The temperature gradient between surface vegetation and humid underground soil steadily disperses exhaled air outward while drawing fresh oxygen inward without noise or visible smoke.",
+    "keywords": ["đối lưu nhiệt tự nhiên", "dưỡng khí", "không tiếng động", "không khói", "thông gió ngầm"],
     "embedding": [0.178, 0.238, 0.088, -0.052, 0.202, 0.148, -0.072, 0.192, 0.105, 0.218],
-    "source_authority": "Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
     "chunk_id": "chunk_termite_03",
     "location_id": "04_ventilation_termite",
     "category": "tactics",
-    "content_vi": "Chiến thuật khắc chế chó nghiệp vụ Mỹ (1966-1970): Rắc ớt bột xay mịn và tiêu sọ quanh lỗ thông hơi làm tê liệt khứu giác chó săn khi hít phải; đặt xà phòng thơm và quần áo thu được của lính Mỹ để chó nhận diện nhầm mùi đồng đội; rải phân gia súc và lá mục để át hơi người dưới hầm.",
-    "content_en": "Defeating US K-9 tracker dogs (1966-1970): Guerillas dusted ground chili and pepper around vents to paralyze dogs' nasal passages, set out captured American soap and uniforms so dogs sensed friendly odors, and spread manure/leaf mulch to mask human scent.",
-    "keywords": ["chó béc giê", "chó săn", "ớt bột", "tiêu sọ", "xà phòng mỹ", "đánh lừa khứu giác"],
+    "content_vi": "Chiến thuật khắc chế chó nghiệp vụ: Trong các trận càn quét lớn như Crimp (1966) hay Cedar Falls (1967), đối phương huy động tối đa chó nghiệp vụ (béc-giê) đánh hơi tìm cửa hầm. Quân dân Củ Chi nảy ra sáng kiến thu thập và đặt xà phòng của Mỹ ngay tại các cửa hầm bí mật và miệng lỗ thông gió. Mùi hóa học đặc trưng nồng nặc của xà phòng Mỹ át hoàn toàn mùi mồ hôi và hơi ấm con người, khiến chó nghiệp vụ bị đánh lừa khứu giác.",
+    "content_en": "Defeating tracker dogs: During major sweeps like Operations Crimp (1966) and Cedar Falls (1967), tracking dogs were used to sniff out entrances. Guerillas placed captured American soap at trapdoors and vents. The intense chemical scent masked human perspiration and warmth, completely confounding the dogs.",
+    "keywords": ["chó nghiệp vụ", "chó béc giê", "xà phòng Mỹ", "Crimp 1966", "Cedar Falls 1967", "đánh lừa khứu giác", "át mùi"],
     "embedding": [0.198, 0.258, 0.108, -0.035, 0.225, 0.132, -0.055, 0.210, 0.125, 0.238],
-    "source_authority": "Bộ Tư lệnh TP.HCM"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
     "chunk_id": "chunk_traps_01",
