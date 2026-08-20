@@ -54,6 +54,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
   const recognitionRef = useRef<unknown>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
   const audioChunksRef = useRef<Blob[]>([]);
+  const mimeTypeRef = useRef<string>("audio/webm");
 
   // Khởi tạo hệ hạt bụi 3D đa chiều sâu (Volumetric 3D Particle Cloud)
   const particlesRef = useRef<Particle3D[]>([]);
@@ -107,11 +108,11 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         recorder.stop();
         recorder.stream.getTracks().forEach((t) => t.stop());
 
-        await new Promise((r) => setTimeout(r, 100));
+        await new Promise((r) => setTimeout(r, 200));
 
         if (audioChunksRef.current.length > 0 && !recognizedQuery) {
           try {
-            const audioBlob = new Blob(audioChunksRef.current, { type: "audio/webm" });
+            const audioBlob = new Blob(audioChunksRef.current, { type: mimeTypeRef.current || "audio/webm" });
             const formData = new FormData();
             formData.append("file", audioBlob);
             formData.append("lang", locale);
@@ -498,7 +499,23 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
           }
         });
 
-        const mediaRecorder = new MediaRecorder(stream);
+        // Xác định định dạng tương thích tốt nhất cho Safari iOS hoặc Android
+        let chosenMimeType = "";
+        if (typeof MediaRecorder !== "undefined") {
+          if (MediaRecorder.isTypeSupported("audio/webm;codecs=opus")) {
+            chosenMimeType = "audio/webm;codecs=opus";
+          } else if (MediaRecorder.isTypeSupported("audio/webm")) {
+            chosenMimeType = "audio/webm";
+          } else if (MediaRecorder.isTypeSupported("audio/mp4")) {
+            chosenMimeType = "audio/mp4";
+          } else if (MediaRecorder.isTypeSupported("audio/aac")) {
+            chosenMimeType = "audio/aac";
+          }
+        }
+        mimeTypeRef.current = chosenMimeType || "audio/webm";
+
+        const options = chosenMimeType ? { mimeType: chosenMimeType } : undefined;
+        const mediaRecorder = new MediaRecorder(stream, options);
         mediaRecorderRef.current = mediaRecorder;
 
         mediaRecorder.ondataavailable = (event) => {
@@ -513,21 +530,12 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
       }
     }
 
+    // Tự động kết thúc và gửi nhận diện sau 5.5s nếu người dùng không bấm dừng
     initialSilenceTimerRef.current = setTimeout(() => {
-      if (isListeningRef.current && !latestTranscriptRef.current.trim()) {
-        setIsListening(false);
-        isListeningRef.current = false;
-        if (mediaRecorderRef.current && mediaRecorderRef.current.state !== "inactive") {
-          mediaRecorderRef.current.stop();
-          mediaRecorderRef.current.stream.getTracks().forEach((t) => t.stop());
-        }
-        if (recognitionRef.current) {
-          try {
-            (recognitionRef.current as { stop: () => void }).stop();
-          } catch {}
-        }
+      if (isListeningRef.current) {
+        finishAndSubmitRecording();
       }
-    }, 6000);
+    }, 5500);
   }, [isListening, isPlaying, isBusy, finishAndSubmitRecording]);
 
   const handleSendTypedQuery = async (queryText?: string) => {

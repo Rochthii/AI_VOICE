@@ -31,9 +31,19 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Groq API key not configured" }, { status: 500 });
     }
 
-    // Chuẩn bị FormData gửi lên Groq Whisper API
+    // Chuẩn bị FormData gửi lên Groq Whisper API với đúng định dạng tệp (hỗ trợ cả iOS m4a/mp4 và Android webm)
+    let fileExt = "webm";
+    const mimeType = audioFile.type || "";
+    if (mimeType.includes("mp4") || mimeType.includes("m4a") || mimeType.includes("aac")) {
+      fileExt = "m4a";
+    } else if (mimeType.includes("ogg")) {
+      fileExt = "ogg";
+    } else if (mimeType.includes("wav")) {
+      fileExt = "wav";
+    }
+
     const groqFormData = new FormData();
-    groqFormData.append("file", audioFile, "user_speech.webm");
+    groqFormData.append("file", audioFile, `user_speech.${fileExt}`);
     groqFormData.append("model", "whisper-large-v3-turbo");
     groqFormData.append("temperature", "0");
     
