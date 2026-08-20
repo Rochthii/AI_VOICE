@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { Loader2, MessageSquare, Send, Radio } from "lucide-react";
+import { Loader2, MessageSquare, Send } from "lucide-react";
 import { audioEngine } from "@/lib/audio-engine";
-import { Locale } from "@/types/station";
+import { Locale, getDictionary, LOCALE_MAP } from "@/i18n";
 
 interface SonicOrbProps {
   stationId: string;
@@ -20,6 +20,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
   onAskQuestion,
   onAnswerReceived
 }) => {
+  const dict = getDictionary(locale);
   const [isHolding, setIsHolding] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
   const [isTextModalOpen, setIsTextModalOpen] = useState(false);
@@ -54,7 +55,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
         recognition.continuous = false;
         recognition.interimResults = true;
-        recognition.lang = locale === "vi" ? "vi-VN" : "en-US";
+        recognition.lang = LOCALE_MAP[locale]?.speechLang || "vi-VN";
 
         recognition.onresult = (event) => {
           const text = event.results[0][0].transcript;
@@ -214,9 +215,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
       const query =
         speechTranscript.trim() ||
-        (locale === "vi"
-          ? "Điểm di tích này có ý nghĩa lịch sử gì?"
-          : "What is the historical significance of this station?");
+        dict.orb.defaultQuestion;
 
       setIsProcessing(true);
       try {
@@ -228,7 +227,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         setIsProcessing(false);
       }
     },
-    [speechTranscript, locale, onAskQuestion, onAnswerReceived]
+    [speechTranscript, dict.orb.defaultQuestion, onAskQuestion, onAnswerReceived]
   );
 
   const handleSendTypedQuery = async (queryText?: string) => {
@@ -250,24 +249,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
     }
   };
 
-  const sampleQuestions =
-    locale === "vi"
-      ? [
-          "Bếp Hoàng Cầm giấu khói thế nào?",
-          "Bác sĩ Võ Hoàng Lê là ai?",
-          "Có phải người dân bị ép đào hầm?",
-          "44.357 liệt sĩ có thật không?",
-          "Lỗ thông hơi ụ mối có tác dụng gì?",
-          "Mìn gạt Tô Văn Đực chế tạo ra sao?"
-        ]
-      : [
-          "How did Hoang Cam stove hide smoke?",
-          "Who was Dr. Vo Hoang Le?",
-          "Were civilians forced to dig?",
-          "Is the 44,357 martyr count verified?",
-          "How do termite mound vents work?",
-          "How were To Van Duc sweep mines built?"
-        ];
+  const sampleQuestions = dict.orb.sampleQuestions;
 
   return (
     <main
@@ -398,16 +380,10 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                     ? "TRA SỬ LIỆU"
                     : "SEARCHING ARCHIVES"
                   : isHolding
-                  ? locale === "vi"
-                    ? "ĐANG LẮNG NGHE"
-                    : "LISTENING"
+                  ? dict.orb.statusListening
                   : isPlaying
-                  ? locale === "vi"
-                    ? "ĐANG THUYẾT MINH"
-                    : "NARRATION ACTIVE"
-                  : locale === "vi"
-                  ? "CHẠM ĐỂ HỎI AI"
-                  : "TAP TO ASK AI"}
+                  ? dict.orb.statusNarrating
+                  : dict.orb.statusTapToAsk}
               </span>
             </div>
           </div>
@@ -420,7 +396,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
       {/* 4. PHỤ ĐỀ THỜI GIAN THỰC KHI ĐANG NÓI VÀO MIC */}
       {speechTranscript && (
         <div className="absolute -bottom-2 max-w-[90%] px-4 py-2 rounded-xl bg-stone-950/95 border border-tunnel-amber/60 text-xs text-tunnel-amber text-center shadow-2xl backdrop-blur-md animate-in fade-in z-30 font-mono">
-          [REC] &ldquo;{speechTranscript}&rdquo;
+          {dict.orb.recPrefix} &ldquo;{speechTranscript}&rdquo;
         </div>
       )}
 
@@ -436,10 +412,10 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                 </div>
                 <div>
                   <h3 className="text-sm font-bold tracking-wide uppercase text-white font-mono">
-                    {locale === "vi" ? "TRUNG TÂM HỎI ĐÁP AI" : "AI VOICE INTELLIGENCE"}
+                    {dict.orb.aiTitle}
                   </h3>
                   <p className="text-[11px] text-stone-400">
-                    {locale === "vi" ? "Tra cứu văn khố sử liệu Địa đạo Củ Chi" : "Official Cu Chi Historical Archives"}
+                    {dict.orb.aiSubtitle}
                   </p>
                 </div>
               </div>
@@ -447,7 +423,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                 onClick={() => setIsTextModalOpen(false)}
                 className="text-stone-400 hover:text-white text-xs px-2.5 py-1.5 rounded-lg bg-stone-900 border border-stone-800 font-mono"
               >
-                Đóng
+                {dict.common.close}
               </button>
             </div>
 
@@ -458,18 +434,14 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                 value={typedQuery}
                 onChange={(e) => setTypedQuery(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSendTypedQuery()}
-                placeholder={
-                  locale === "vi"
-                    ? "Nhập câu hỏi lịch sử hoặc thử câu bẫy..."
-                    : "Type a historical or test query..."
-                }
+                placeholder={dict.orb.inputPlaceholder}
                 className="flex-1 px-4 py-3 bg-stone-900 border border-stone-700 rounded-2xl text-sm text-tunnel-chalk focus:outline-none focus:border-tunnel-amber placeholder-stone-500 shadow-inner"
                 autoFocus
               />
               <button
                 onClick={() => handleSendTypedQuery()}
                 className="p-3.5 rounded-2xl bg-gradient-to-br from-tunnel-amber to-amber-600 text-stone-950 font-bold hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-tunnel-amber/25"
-                aria-label="Send query"
+                aria-label={dict.common.send}
               >
                 <Send className="w-4 h-4" />
               </button>
@@ -478,8 +450,8 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
             {/* Bộ Prompt Mẫu */}
             <div className="space-y-2 pt-1">
               <div className="flex items-center justify-between text-[11px] font-medium text-stone-400">
-                <span>{locale === "vi" ? "Gợi ý câu hỏi kiểm tra nhanh:" : "Test prompt suite:"}</span>
-                <span className="text-tunnel-amber text-[10px] font-mono">1-CLICK QUERY</span>
+                <span>{dict.orb.promptSuite}</span>
+                <span className="text-tunnel-amber text-[10px] font-mono">{dict.orb.oneClickQuery}</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 max-h-48 overflow-y-auto pr-1">
                 {sampleQuestions.map((sq, idx) => (

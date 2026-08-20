@@ -5,7 +5,7 @@
  */
 
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
-import { Locale } from "@/types/station";
+import { Locale } from "@/i18n";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || "";
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || "";
@@ -36,11 +36,11 @@ export interface AuditLogEntry {
   responseText: string;
   matchedChunkId?: string;
   confidenceScore?: number;
-  guardrailDecision: string; // SAFE | PROVOCATION_INTERCEPTED | LOW_SIMILARITY_FALLBACK | JAILBREAK_ATTEMPT | AI_RESPONSE | ALL_PROVIDERS_FAILED_OFFLINE_FALLBACK | ...
+  guardrailDecision: string;
   sourceAuthority?: string;
   clientIp?: string;
   userAgent?: string;
-  locale: Locale;
+  locale: Locale | string;
 }
 
 /**

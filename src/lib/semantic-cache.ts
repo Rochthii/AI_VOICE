@@ -18,6 +18,8 @@
  *   - Offline fallback errors
  */
 
+import { removeVietnameseDiacritics } from "./shared";
+
 interface CacheEntry {
   answer: string;
   provider: string;
@@ -38,26 +40,7 @@ class SemanticCache {
   /** Loại bỏ dấu tiếng Việt và normalize để tạo cache key ổn định */
   normalizeKey(query: string, lang: string, stationId?: string): string {
     const station = stationId || "general";
-    const normalized = query
-      .toLowerCase()
-      .trim()
-      // Thay thế dấu tiếng Việt (chỉ 1 lần, đơn giản)
-      .replace(/[àáạảã]/g, "a")
-      .replace(/[âầấậẩẫ]/g, "a")
-      .replace(/[ăằắặẳẵ]/g, "a")
-      .replace(/[èéẹẻẽ]/g, "e")
-      .replace(/[êềếệểễ]/g, "e")
-      .replace(/[ìíịỉĩ]/g, "i")
-      .replace(/[òóọỏõ]/g, "o")
-      .replace(/[ôồốộổỗ]/g, "o")
-      .replace(/[ơờớợởỡ]/g, "o")
-      .replace(/[ùúụủũ]/g, "u")
-      .replace(/[ưừứựửữ]/g, "u")
-      .replace(/[ỳýỵỷỹ]/g, "y")
-      .replace(/[đ]/g, "d")
-      // Gộp nhiều khoảng trắng
-      .replace(/\s+/g, " ");
-
+    const normalized = removeVietnameseDiacritics(query);
     return `${lang}:${station}:${normalized}`;
   }
 

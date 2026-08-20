@@ -1,8 +1,9 @@
-export type Locale = "vi" | "en";
+export type { Locale } from "@/i18n";
 
 export interface LocalizedString {
   vi: string;
   en: string;
+  [key: string]: string;
 }
 
 export interface StationSafety {

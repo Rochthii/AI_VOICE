@@ -202,7 +202,7 @@ export function evaluateHistoricalGuardrail(
           allowed: false,
           isProvocative: true,
           reason: rule.category === "jailbreak" ? "JAILBREAK_ATTEMPT" : "PROVOCATION_INTERCEPTED",
-          rebuttalText: rule.rebuttal[lang],
+          rebuttalText: rule.rebuttal[lang as "vi" | "en"] || rule.rebuttal.en || rule.rebuttal.vi,
           sourceAuthority: rule.sourceAuthority
         };
       }

@@ -3,7 +3,8 @@
 import React, { useState, useEffect, useRef, useCallback, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import stationsData from "@/data/stations.json";
-import { Station, Locale } from "@/types/station";
+import { Station } from "@/types/station";
+import { Locale, LOCALE_MAP, getLocalizedText } from "@/i18n";
 import { SafetyBeacon } from "@/components/SafetyBeacon";
 import { SonicOrb } from "@/components/SonicOrb";
 import { CinemaTicker } from "@/components/CinemaTicker";
@@ -42,12 +43,15 @@ function MainGuideContent() {
       if (target && target.id !== currentStation.id) {
         setCurrentStation(target);
         setActiveSubtitle("");
-        const audioAsset = target.audio_assets[locale];
+        const audioAsset =
+          target.audio_assets[locale as "vi" | "en"] ||
+          target.audio_assets.en ||
+          target.audio_assets.vi;
         audioEngine.loadAndPlay(
           audioAsset.url,
           target.id,
-          target.title[locale],
-          target.short_summary[locale],
+          getLocalizedText(target.title, locale),
+          getLocalizedText(target.short_summary, locale),
           locale
         );
       }
@@ -79,34 +83,40 @@ function MainGuideContent() {
     return () => unsubscribe();
   }, []);
 
-  // Tải âm thanh của trạm được chọn
+  // Tải âm thanh  // Chọn trạm thủ công
   const handleSelectStation = useCallback(
     (station: Station) => {
       setCurrentStation(station);
       setActiveSubtitle("");
-      const audioAsset = station.audio_assets[locale];
+      const audioAsset =
+        station.audio_assets[locale as "vi" | "en"] ||
+        station.audio_assets.en ||
+        station.audio_assets.vi;
       audioEngine.loadAndPlay(
         audioAsset.url,
         station.id,
-        station.title[locale],
-        station.short_summary[locale],
+        getLocalizedText(station.title, locale),
+        getLocalizedText(station.short_summary, locale),
         locale
       );
     },
     [locale]
   );
 
-  // Đổi ngôn ngữ song ngữ VI / EN
+  // Đổi ngôn ngữ hướng dẫn
   const handleToggleLocale = useCallback(
     (newLocale: Locale) => {
       setLocale(newLocale);
-      const audioAsset = currentStation.audio_assets[newLocale];
+      const audioAsset =
+        currentStation.audio_assets[newLocale as "vi" | "en"] ||
+        currentStation.audio_assets.en ||
+        currentStation.audio_assets.vi;
       const savedTime = playbackState.currentTime;
       audioEngine.loadAndPlay(
         audioAsset.url,
         currentStation.id,
-        currentStation.title[newLocale],
-        currentStation.short_summary[newLocale],
+        getLocalizedText(currentStation.title, newLocale),
+        getLocalizedText(currentStation.short_summary, newLocale),
         newLocale
       );
       if (savedTime > 0) {
@@ -158,7 +168,7 @@ function MainGuideContent() {
           if (!text.trim() || typeof window === "undefined" || !("speechSynthesis" in window)) return;
           window.speechSynthesis.cancel();
           const utt = new SpeechSynthesisUtterance(text.trim());
-          utt.lang = locale === "vi" ? "vi-VN" : "en-US";
+          utt.lang = LOCALE_MAP[locale]?.speechLang || "vi-VN";
           utt.rate = 0.92;
           window.speechSynthesis.speak(utt);
         };
@@ -179,7 +189,7 @@ function MainGuideContent() {
                 setActiveSubtitle(fullAnswer);
 
                 // Progressive TTS: đọc ngay khi có câu hoàn chỉnh
-                if (sentenceBuffer.match(/[.!?।]/)) {
+                if (sentenceBuffer.match(/[.!?।。！？]/)) {
                   speakChunk(sentenceBuffer);
                   sentenceBuffer = "";
                   ttsStarted = true;
@@ -201,14 +211,11 @@ function MainGuideContent() {
         return fullAnswer;
       } catch (err) {
         console.warn("[Ask Streaming Fallback]:", err);
-        return locale === "vi"
-          ? currentStation.faqs[0]?.answer.vi || currentStation.human_story_hook.vi
-          : currentStation.faqs[0]?.answer.en || currentStation.human_story_hook.en;
+        return getLocalizedText(currentStation.human_story_hook, locale);
       }
     },
     [currentStation, locale]
   );
-
 
   // Khi nhận câu trả lời AI -> Đọc qua Web Speech TTS
   const handleAnswerReceived = useCallback(
@@ -218,7 +225,7 @@ function MainGuideContent() {
       if (typeof window !== "undefined" && "speechSynthesis" in window) {
         window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(answer);
-        utterance.lang = locale === "vi" ? "vi-VN" : "en-US";
+        utterance.lang = LOCALE_MAP[locale]?.speechLang || "vi-VN";
         utterance.rate = 0.95;
         utterance.onend = () => {
           audioEngine.play();

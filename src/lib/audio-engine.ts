@@ -1,15 +1,11 @@
-/**
- * CHI VOICE - CORE AUDIO ENGINE (SINGLETON)
- * Quản lý toàn bộ vòng đời âm thanh: Web Audio API, iOS Safari Autoplay Unlock,
- * MediaSession (chạy ngầm khi khoá màn hình/cất túi), ngắt kết nối tai nghe và Haptics.
- */
+import { Locale, LOCALE_MAP } from "@/i18n";
 
 export interface AudioPlaybackState {
   isPlaying: boolean;
   currentTime: number;
   duration: number;
   stationId: string | null;
-  locale: "vi" | "en";
+  locale: Locale;
 }
 
 type PlaybackListener = (state: AudioPlaybackState) => void;
@@ -21,7 +17,7 @@ class AudioEngine {
   private isUnlocked: boolean = false;
   private listeners: Set<PlaybackListener> = new Set();
   private currentStationId: string | null = null;
-  private currentLocale: "vi" | "en" = "vi";
+  private currentLocale: Locale = "vi";
 
   private constructor() {
     // Chỉ khởi tạo trong môi trường Browser
@@ -138,7 +134,7 @@ class AudioEngine {
     stationId: string,
     title: string,
     stationName: string,
-    locale: "vi" | "en" = "vi"
+    locale: Locale = "vi"
   ): Promise<void> {
     await this.unlockAudioContext();
 
@@ -171,12 +167,12 @@ class AudioEngine {
   /**
    * Phát giọng đọc thuyết minh qua Web Speech API khi file MP3 chưa tải hoặc môi trường test
    */
-  public speakFallbackText(title: string, content: string, locale: "vi" | "en" = "vi"): void {
+  public speakFallbackText(title: string, content: string, locale: Locale = "vi"): void {
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
       window.speechSynthesis.cancel();
       const textToRead = `${title}. ${content}`;
       const utterance = new SpeechSynthesisUtterance(textToRead);
-      utterance.lang = locale === "vi" ? "vi-VN" : "en-US";
+      utterance.lang = LOCALE_MAP[locale]?.speechLang || "vi-VN";
       utterance.rate = 0.95;
       
       utterance.onstart = () => {

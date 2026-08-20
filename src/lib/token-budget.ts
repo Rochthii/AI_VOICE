@@ -15,6 +15,8 @@
  * Groq free tier: 14.400 token/phút → 21 requests/phút  (so với ~11 trước đây)
  */
 
+import { Locale } from "@/i18n/types";
+
 export interface TokenBudget {
   systemPromptTokens: number;
   contextTokens: number;
@@ -29,12 +31,18 @@ const MAX_CONTEXT_TOKENS = 250;
 const MAX_HISTORY_TOKENS = 60;
 const MAX_QUERY_TOKENS = 50;
 
-/** Ước tính token nhanh không cần API */
-export function estimateTokens(text: string, lang: "vi" | "en" = "vi"): number {
+/** Ước tính token nhanh không cần API cho mọi ngôn ngữ */
+export function estimateTokens(text: string, lang: Locale = "vi"): number {
   if (!text) return 0;
-  // Tiếng Việt có dấu: ~1.8 chars/token (nhiều bytes unicode)
-  // Tiếng Anh: ~4 chars/token
-  const charsPerToken = lang === "vi" ? 1.8 : 4;
+  // CJK (ja, ko, zh): ~1.2 chars/token
+  // Vietnamese: ~1.8 chars/token
+  // Latin (en, fr): ~4 chars/token
+  let charsPerToken = 4;
+  if (lang === "ja" || lang === "ko" || lang === "zh") {
+    charsPerToken = 1.2;
+  } else if (lang === "vi") {
+    charsPerToken = 1.8;
+  }
   return Math.ceil(text.length / charsPerToken);
 }
 
@@ -42,17 +50,23 @@ export function estimateTokens(text: string, lang: "vi" | "en" = "vi"): number {
 export function truncateToTokenBudget(
   text: string,
   maxTokens: number,
-  lang: "vi" | "en" = "vi"
+  lang: Locale = "vi"
 ): string {
-  const charsPerToken = lang === "vi" ? 1.8 : 4;
+  let charsPerToken = 4;
+  if (lang === "ja" || lang === "ko" || lang === "zh") {
+    charsPerToken = 1.2;
+  } else if (lang === "vi") {
+    charsPerToken = 1.8;
+  }
   const maxChars = Math.floor(maxTokens * charsPerToken);
   if (text.length <= maxChars) return text;
-  // Cắt tại câu hoàn chỉnh gần nhất
   const truncated = text.slice(0, maxChars);
   const lastPeriod = Math.max(
     truncated.lastIndexOf("."),
     truncated.lastIndexOf("!"),
-    truncated.lastIndexOf("?")
+    truncated.lastIndexOf("?"),
+    truncated.lastIndexOf("。"),
+    truncated.lastIndexOf("！")
   );
   return lastPeriod > maxChars * 0.6 ? truncated.slice(0, lastPeriod + 1) : truncated + "...";
 }
@@ -63,21 +77,27 @@ export function truncateToTokenBudget(
  */
 export function compressHistory(
   history: Array<{ role: string; content: string }>,
-  lang: "vi" | "en"
+  lang: Locale
 ): string {
   if (!history || history.length === 0) return "";
 
-  // Lấy các câu hỏi của user trong history (bỏ qua assistant turns)
   const userTurns = history
     .filter((m) => m.role === "user")
-    .map((m) => m.content.slice(0, 40)) // Chỉ lấy 40 chars đầu mỗi câu hỏi
-    .slice(-3); // Tối đa 3 câu hỏi gần nhất
+    .map((m) => m.content.slice(0, 40))
+    .slice(-3);
 
   if (userTurns.length === 0) return "";
 
-  // Tóm tắt thành 1 dòng ngắn gọn
   if (lang === "vi") {
     return `[Khách đã hỏi: ${userTurns.join(" / ")}]`;
+  } else if (lang === "fr") {
+    return `[Questions précédentes: ${userTurns.join(" / ")}]`;
+  } else if (lang === "ja") {
+    return `[前回の質問: ${userTurns.join(" / ")}]`;
+  } else if (lang === "ko") {
+    return `[이전 질문: ${userTurns.join(" / ")}]`;
+  } else if (lang === "zh") {
+    return `[先前提问: ${userTurns.join(" / ")}]`;
   }
   return `[Visitor previously asked: ${userTurns.join(" / ")}]`;
 }
@@ -88,7 +108,7 @@ export function assessTokenBudget(params: {
   context: string;
   historyCompressed: string;
   query: string;
-  lang: "vi" | "en";
+  lang: Locale;
 }): TokenBudget {
   const systemPromptTokens = estimateTokens(params.systemPrompt, params.lang);
   const contextTokens = estimateTokens(params.context, params.lang);

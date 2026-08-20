@@ -2,7 +2,11 @@ import { NextRequest } from "next/server";
 import { evaluateHistoricalGuardrail } from "@/lib/guardrails";
 import { recordAuditLog } from "@/lib/supabase";
 import { streamAIWithFailover, AIMessage } from "@/lib/ai-provider-manager";
-import { buildCompactSystemPrompt, CU_CHI_FULL_KNOWLEDGE } from "@/lib/cu-chi-system-prompt";
+import {
+  buildUniversalSystemPrompt,
+  getKnowledgeBySection,
+  getFullKnowledgeText
+} from "@/lib/knowledge";
 import { searchHistoricalKnowledge } from "@/lib/rag-engine";
 import { classifyQuery } from "@/lib/query-classifier";
 import { semanticCache } from "@/lib/semantic-cache";
@@ -13,30 +17,23 @@ import {
   MAX_CONTEXT_TOKENS,
   MAX_QUERY_TOKENS
 } from "@/lib/token-budget";
+import { Locale } from "@/i18n/types";
 import { AIQueryRequest } from "@/types/rag";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
 
 /**
- * POST /api/ask — PIPELINE TỐI ƯU TOKEN + STREAMING SSE
+ * POST /api/ask — PIPELINE TỐI ƯU TOKEN + STREAMING SSE + UNIVERSAL I18N
  *
  * ┌─────────────────────────────────────────────────────────┐
  * │  Tầng 0:  GUARDRAIL          0ms    0 token             │
  * │  Tầng 1:  SEMANTIC CACHE     0ms    0 token  ─── HIT ──►│
  * │  Tầng 2:  QUERY CLASSIFIER   1ms    0 token             │
  * │  Tầng 3:  RAG IN-MEMORY     0.2ms   0 token  ─── HIT ──►│
- * │  Tầng 4:  STREAMING AI   1-1.5s   ≤680 token           │
+ * │  Tầng 4:  STREAMING AI   1-1.5s   ≤600 token           │
  * │  Tầng 5:  OFFLINE RAG FALLBACK 0ms  0 token  ─── FAIL ►│
  * └─────────────────────────────────────────────────────────┘
- *
- * Token budget AI call:
- *   System role:  ≤ 120 tokens
- *   Context:      ≤ 250 tokens (1 section liên quan)
- *   History:      ≤  60 tokens (compressed summary, không raw turns)
- *   Query:        ≤  50 tokens (truncated nếu cần)
- *   Response:         120 tokens max_tokens
- *   TOTAL:        ≤  600 tokens/request
  */
 export async function POST(req: NextRequest) {
   const startMs = Date.now();
@@ -47,7 +44,7 @@ export async function POST(req: NextRequest) {
 
   const rawQuery = body.query?.trim() || "";
   const stationId = body.current_station_id || undefined;
-  const lang = (body.lang || "vi") as "vi" | "en";
+  const lang = (body.lang || "vi") as Locale;
   const rawHistory = body.conversation_history || [];
 
   if (!rawQuery) {
@@ -72,7 +69,6 @@ export async function POST(req: NextRequest) {
   const cacheKey = semanticCache.normalizeKey(query, lang, stationId);
   const cached = semanticCache.get(cacheKey);
   if (cached) {
-    // Cache hit — không ghi audit để tránh noise (đã ghi lần đầu)
     return sseImmediate(cached.answer, `cache:${cached.provider}`, Date.now() - startMs);
   }
 
@@ -80,36 +76,30 @@ export async function POST(req: NextRequest) {
   const classification = classifyQuery(query, stationId);
 
   // ══ TẦNG 3: RAG IN-MEMORY (0.2ms, 0 token) — OFFLINE FIRST ════════════════
-  const ragMatch = searchHistoricalKnowledge(query, stationId, lang);
+  const ragMatch = searchHistoricalKnowledge(query, stationId, lang === "vi" ? "vi" : "en");
 
-  // RAG hit với confidence cao → trả về ngay (0 token AI)
+  // RAG hit với confidence cao cho VI/EN → trả về ngay (0 token AI)
+  const isDirectLang = lang === "vi" || lang === "en";
   const ragThreshold = classification.intent === "FACTUAL" ? 0.72 : 0.78;
-  if (ragMatch && ragMatch.score >= ragThreshold) {
+
+  if (isDirectLang && ragMatch && ragMatch.score >= ragThreshold) {
     const answer = ragMatch.content;
-    // Cache kết quả RAG
     semanticCache.set(cacheKey, { answer, provider: "rag_local", stationId, lang });
     auditAsync({ stationId: ragMatch.location_id, query, answer, decision: "RAG_HIT", source: ragMatch.source_authority, clientIp, userAgent, lang, chunkId: ragMatch.chunk_id, score: ragMatch.score });
     return sseImmediate(answer, "rag_local", Date.now() - startMs, ragMatch.score);
   }
 
-  // SAFETY intent không cần AI — dùng RAG best-effort dù score thấp
-  if (classification.intent === "SAFETY" && ragMatch) {
+  // SAFETY intent cho VI/EN không cần AI — dùng RAG best-effort
+  if (isDirectLang && classification.intent === "SAFETY" && ragMatch) {
     const answer = ragMatch.content;
     semanticCache.set(cacheKey, { answer, provider: "rag_safety", stationId, lang });
     auditAsync({ stationId, query, answer, decision: "SAFETY_RAG", source: "station_data", clientIp, userAgent, lang });
     return sseImmediate(answer, "rag_safety", Date.now() - startMs);
   }
 
-  // ══ TẦNG 4: STREAMING AI với TOKEN BUDGET TỐI ƯU ══════════════════════════
-  const knowledgeBase = CU_CHI_FULL_KNOWLEDGE[lang];
-
-  // Context injection: chỉ inject section liên quan nhất (không inject tất cả)
-  const sectionMap: Record<string, keyof typeof knowledgeBase> = {
-    kitchen: "kitchen", hospital: "hospital", command: "command",
-    ventilation: "ventilation", traps: "traps", overview: "overview", sacred: "sacred"
-  };
-  const relevantKey = sectionMap[classification.relevantSection] || "overview";
-  let contextRaw = knowledgeBase[relevantKey];
+  // ══ TẦNG 4: STREAMING AI với UNIVERSAL MULTILINGUAL TOKEN BUDGET ═══════════
+  // Context injection: chỉ inject section liên quan nhất từ modular knowledge
+  let contextRaw = getKnowledgeBySection(classification.relevantSection, lang);
 
   // Thêm RAG match nếu có (bổ sung độ chính xác)
   if (ragMatch) {
@@ -122,8 +112,8 @@ export async function POST(req: NextRequest) {
   // Nén history thành 1 dòng thay vì gửi raw turns
   const historyCompressed = compressHistory(rawHistory, lang);
 
-  // Build system prompt compact
-  const systemPrompt = buildCompactSystemPrompt(lang, context, stationId);
+  // Build universal system prompt (~110 tokens)
+  const systemPrompt = buildUniversalSystemPrompt(lang, context, stationId);
 
   // Đánh giá budget trước khi gửi
   const budget = assessTokenBudget({ systemPrompt, context, historyCompressed, query, lang });
@@ -131,7 +121,6 @@ export async function POST(req: NextRequest) {
   // Build messages với history nén
   const messages: AIMessage[] = [
     { role: "system", content: systemPrompt },
-    // History dưới dạng single assistant context hint (không raw turns)
     ...(historyCompressed
       ? [{ role: "user" as const, content: historyCompressed },
          { role: "assistant" as const, content: lang === "vi" ? "Tôi đã ghi nhận." : "Noted." }]
@@ -162,7 +151,7 @@ export async function POST(req: NextRequest) {
         // Luôn có câu trả lời dù không có AI
         const offlineAnswer = ragMatch
           ? ragMatch.content
-          : truncateToTokenBudget(knowledgeBase[relevantKey], MAX_CONTEXT_TOKENS, lang);
+          : truncateToTokenBudget(getKnowledgeBySection(classification.relevantSection, lang), MAX_CONTEXT_TOKENS, lang);
 
         controller.enqueue(enc.encode(sseData({ type: "chunk", text: offlineAnswer })));
         controller.enqueue(enc.encode(sseData({ type: "done", provider: "rag_offline_fallback", latency: Date.now() - startMs })));
@@ -241,7 +230,7 @@ function auditAsync(params: {
   source?: string;
   clientIp: string;
   userAgent: string;
-  lang: "vi" | "en";
+  lang: Locale;
   chunkId?: string;
   score?: number;
 }): void {
