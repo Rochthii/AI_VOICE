@@ -17,6 +17,63 @@ interface CinemaTickerProps {
   onTogglePlay: () => void;
 }
 
+/**
+ * Chia nhỏ đoạn văn bản dài thành các dòng phụ đề 1 dòng (Single-line clauses)
+ */
+function splitIntoSingleLines(text: string): string[] {
+  if (!text?.trim()) return [];
+
+  // Tách theo dấu chấm, dấu phẩy, hai chấm, chấm than, chấm hỏi
+  const parts = text
+    .split(/([.!?;:\n]+)/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  const lines: string[] = [];
+  let buffer = "";
+
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    if (/[.!?;:\n]/.test(part)) {
+      buffer += part;
+      if (buffer.trim()) {
+        lines.push(buffer.trim());
+        buffer = "";
+      }
+    } else {
+      if (buffer) {
+        if (buffer.length + part.length > 50) {
+          lines.push(buffer.trim());
+          buffer = part;
+        } else {
+          buffer += " " + part;
+        }
+      } else {
+        buffer = part;
+      }
+    }
+  }
+
+  if (buffer.trim()) {
+    lines.push(buffer.trim());
+  }
+
+  // Nếu câu quá dài không có dấu, ngắt theo cụm 8-10 từ
+  const finalLines: string[] = [];
+  for (const line of lines) {
+    const words = line.split(" ");
+    if (words.length > 14) {
+      for (let w = 0; w < words.length; w += 10) {
+        finalLines.push(words.slice(w, w + 10).join(" "));
+      }
+    } else {
+      finalLines.push(line);
+    }
+  }
+
+  return finalLines.length > 0 ? finalLines : [text.trim()];
+}
+
 export const CinemaTicker: React.FC<CinemaTickerProps> = ({
   currentStation,
   locale,
@@ -29,34 +86,36 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
   const dict = getDictionary(locale);
   const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
 
-  // 1. Tính toán Phụ Đề Điện Ảnh Đồng Bộ Theo Thời Gian Thực (Không Hardcode)
-  const dynamicSubtitle = useMemo(() => {
-    // Nếu AI vừa trả lời hoặc đang stream câu trả lời -> Ưu tiên hiển thị
+  // 1. Toàn bộ văn bản thuyết minh hoặc câu trả lời AI
+  const fullText = useMemo(() => {
     if (activeSubtitle && activeSubtitle.trim().length > 0) {
-      return activeSubtitle;
+      return activeSubtitle.trim();
     }
-
     const summary = getLocalizedText(currentStation.short_summary, locale);
     const storyHook = getLocalizedText(currentStation.human_story_hook, locale);
-    const keyFact1 = currentStation.key_facts?.[0] ? getLocalizedText(currentStation.key_facts[0], locale) : "";
-    const keyFact2 = currentStation.key_facts?.[1] ? getLocalizedText(currentStation.key_facts[1], locale) : "";
+    return `${summary} ${storyHook}`.trim();
+  }, [activeSubtitle, currentStation, locale]);
 
-    if (!duration || duration <= 0 || !isPlaying) {
-      return summary;
+  // 2. Tách thành danh sách các dòng phụ đề 1 dòng (Single-line list)
+  const subtitleLines = useMemo(() => {
+    return splitIntoSingleLines(fullText);
+  }, [fullText]);
+
+  // 3. Xác định dòng phụ đề hiện tại theo tiến độ phát âm thanh (1 dòng duy nhất)
+  const currentSingleLine = useMemo(() => {
+    if (subtitleLines.length === 0) return "";
+    if (!isPlaying || !duration || duration <= 0) {
+      return subtitleLines[0];
     }
 
-    const ratio = currentTime / duration;
-    if (ratio < 0.25) {
-      return summary;
-    } else if (ratio < 0.55 && storyHook) {
-      return storyHook;
-    } else if (ratio < 0.80 && keyFact1) {
-      return keyFact1;
-    } else if (keyFact2) {
-      return keyFact2;
-    }
-    return summary;
-  }, [activeSubtitle, currentStation, locale, currentTime, duration, isPlaying]);
+    const progress = Math.max(0, Math.min(1, currentTime / duration));
+    const activeIndex = Math.min(
+      subtitleLines.length - 1,
+      Math.floor(progress * subtitleLines.length)
+    );
+
+    return subtitleLines[activeIndex] || subtitleLines[0];
+  }, [subtitleLines, isPlaying, currentTime, duration]);
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const targetTime = (parseFloat(e.target.value) / 100) * duration;
@@ -65,22 +124,22 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
 
   return (
     <footer className="w-full flex flex-col justify-end p-4 pb-6 bg-gradient-to-t from-black via-stone-950/95 to-transparent select-none z-10 space-y-3">
-      {/* 1. KHUNG PHỤ ĐỀ ĐIỆN ẢNH ĐỒNG BỘ THỜI GIAN THỰC (CINEMA DYNAMIC SUBTITLE) */}
-      <div className="w-full min-h-[56px] max-h-[72px] flex items-center justify-center px-4 py-2 rounded-2xl bg-stone-950/80 border border-stone-800/60 shadow-lg backdrop-blur-md overflow-hidden relative">
-        <div className="flex items-center space-x-2.5 w-full justify-center">
+      {/* 1. KHUNG PHỤ ĐỀ 1 DÒNG CHUẨN ĐIỆN ẢNH (SINGLE-LINE CINEMA SUBTITLE) */}
+      <div className="w-full h-11 flex items-center justify-center px-4 rounded-full bg-stone-950/90 border border-stone-800/80 shadow-md backdrop-blur-md overflow-hidden relative">
+        <div className="flex items-center space-x-2 w-full justify-center overflow-hidden">
           {isPlaying && (
-            <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-tunnel-amber/20 text-tunnel-amber animate-pulse">
-              <Volume2 className="w-4 h-4" />
+            <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 rounded-full bg-tunnel-amber/20 text-tunnel-amber animate-pulse">
+              <Volume2 className="w-3 h-3" />
             </span>
           )}
           <div className="overflow-hidden w-full text-center">
             <p
-              key={dynamicSubtitle}
-              className={`text-xs sm:text-sm font-medium tracking-wide text-stone-200 transition-all duration-300 leading-relaxed ${
+              key={currentSingleLine}
+              className={`text-xs sm:text-[13px] font-medium tracking-wide text-stone-200 truncate italic leading-none transition-all duration-300 ${
                 isPlaying ? "animate-fadeIn" : ""
               }`}
             >
-              {dynamicSubtitle}
+              {currentSingleLine}
             </p>
           </div>
         </div>
@@ -103,7 +162,7 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
         </div>
       </div>
 
-      {/* 3. CỤM PHÍM ĐIỀU KHIỂN ÂM THANH TRỰC QUAN (PLAY / PAUSE / SEEK 15S) */}
+      {/* 3. CỤM PHÍM ĐIỀU KHIỂN ÂM THANH (PLAY / PAUSE / SEEK 15S) */}
       <div className="flex items-center justify-center space-x-8 pt-1">
         <button
           onClick={() => audioEngine.seekRelative(-15)}
