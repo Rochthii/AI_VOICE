@@ -566,18 +566,19 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         {/* THẤU KÍNH NGUYÊN BẢN (PURE TACTILE LENS WITH SUBTERRANEAN 3D DEPTH) */}
         <button
           onClick={handleToggleListening}
+          disabled={isProcessing}
           style={{
             transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
             transition: "transform 0.15s ease-out"
           }}
-          className={`w-52 h-52 sm:w-60 sm:h-60 rounded-full relative cursor-pointer overflow-hidden transition-all duration-500 transform active:scale-95 shadow-2xl flex items-center justify-center border-4 ${
-            isListening
-              ? "bg-gradient-to-br from-[#FAFFF8] via-[#E6F8ED] to-[#D1F2DE] border-emerald-500 shadow-emerald-700/40"
-              : isProcessing
-              ? "bg-gradient-to-br from-[#FFFDF7] via-[#FEF3D6] to-[#FDE68A] border-amber-500 shadow-amber-700/45 animate-pulse"
+          className={`w-52 h-52 sm:w-60 sm:h-60 rounded-full relative overflow-hidden transition-all duration-500 transform shadow-2xl flex items-center justify-center border-4 ${
+            isProcessing
+              ? "bg-gradient-to-br from-[#FFFDF7] via-[#FEF3D6] to-[#FDE68A] border-amber-500 shadow-amber-700/45 animate-pulse cursor-wait pointer-events-none"
+              : isListening
+              ? "bg-gradient-to-br from-[#FAFFF8] via-[#E6F8ED] to-[#D1F2DE] border-emerald-500 shadow-emerald-700/40 cursor-pointer active:scale-95"
               : isPlaying
-              ? "bg-gradient-to-br from-[#FFFDF9] via-[#FEF3D6] to-[#FDE8B3] border-amber-500 shadow-amber-700/35"
-              : "bg-gradient-to-br from-[#FFFDF9] via-[#FAF4E8] to-[#EFE4D0] border-[#CFC5B3] hover:border-amber-500 shadow-[#00000025]"
+              ? "bg-gradient-to-br from-[#FFFDF9] via-[#FEF3D6] to-[#FDE8B3] border-amber-500 shadow-amber-700/35 cursor-pointer active:scale-95"
+              : "bg-gradient-to-br from-[#FFFDF9] via-[#FAF4E8] to-[#EFE4D0] border-[#CFC5B3] hover:border-amber-500 shadow-[#00000025] cursor-pointer active:scale-95"
           }`}
           aria-label="Chạm vào thấu kính để nói chuyện với hướng dẫn viên"
         >
@@ -634,8 +635,11 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
             {followUpSuggestions.slice(0, 2).map((sug, idx) => (
               <button
                 key={idx}
+                disabled={isProcessing}
                 onClick={() => handleSendTypedQuery(sug)}
-                className="w-full p-2.5 px-3 rounded-2xl bg-white hover:bg-amber-50/90 border border-[#E0D8C8] hover:border-amber-500 text-left text-xs font-semibold text-stone-900 active:scale-[0.98] transition-all shadow-[0_2px_6px_rgba(0,0,0,0.03)] flex items-center justify-between group font-sans"
+                className={`w-full p-2.5 px-3 rounded-2xl bg-white hover:bg-amber-50/90 border border-[#E0D8C8] hover:border-amber-500 text-left text-xs font-semibold text-stone-900 transition-all shadow-[0_2px_6px_rgba(0,0,0,0.03)] flex items-center justify-between group font-sans ${
+                  isProcessing ? "opacity-60 pointer-events-none" : "active:scale-[0.98]"
+                }`}
               >
                 <span className="line-clamp-1 group-hover:text-amber-950">{sug}</span>
                 <ChevronRight className="w-4 h-4 text-amber-700 ml-2 flex-shrink-0 group-hover:translate-x-0.5 transition-transform" />
@@ -647,8 +651,11 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
       {/* 4. NÚT GÕ BÀN PHÍM */}
       <button
+        disabled={isProcessing}
         onClick={() => setIsTextModalOpen(true)}
-        className="my-1 flex items-center space-x-1.5 px-4 py-1.5 rounded-full bg-white border border-[#DDD4C2] text-stone-600 hover:text-amber-900 hover:border-amber-500 active:scale-95 transition-all text-xs font-semibold shadow-sm font-sans"
+        className={`my-1 flex items-center space-x-1.5 px-4 py-1.5 rounded-full bg-white border border-[#DDD4C2] text-stone-600 hover:text-amber-900 hover:border-amber-500 transition-all text-xs font-semibold shadow-sm font-sans ${
+          isProcessing ? "opacity-60 pointer-events-none" : "active:scale-95"
+        }`}
       >
         <MessageSquare className="w-3.5 h-3.5 text-amber-700" />
         <span>{locale === "vi" ? "Gõ câu hỏi bằng bàn phím" : "Type question"}</span>
