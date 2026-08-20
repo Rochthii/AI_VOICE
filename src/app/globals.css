@@ -3,9 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 28, 25, 23;
-  --background-start-rgb: 248, 246, 240;
-  --background-end-rgb: 244, 241, 234;
+  --canvas-bg: #F4F0E6;
+  --surface-card: #FFFFFF;
+  --border-subtle: #E2D9C8;
+  --border-focus: #C25E00;
+  --ink-primary: #1C1917;
+  --ink-secondary: #78716C;
+  --accent-amber: #B45309;
+  --accent-jade: #059669;
 }
 
 html,
@@ -15,9 +20,9 @@ body {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #f4f1ea;
-  color: #1c1917;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #E8E2D5;
+  color: #1C1917;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   user-select: none;
@@ -34,10 +39,11 @@ body {
   scrollbar-width: none;
 }
 
-@keyframes fadeIn {
+/* Hiệu ứng trượt mở mượt mà chuẩn bảo tàng */
+@keyframes cardSlideUp {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -45,6 +51,21 @@ body {
   }
 }
 
-.animate-fadeIn {
-  animation: fadeIn 0.35s ease-out forwards;
+.animate-cardSlideUp {
+  animation: cardSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.6;
+  }
+}
+
+.animate-pulseGlow {
+  animation: pulseGlow 4s ease-in-out infinite;
 }

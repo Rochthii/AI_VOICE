@@ -33,37 +33,37 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
   };
 
   return (
-    <footer className="w-full flex flex-col justify-end p-4 pb-6 bg-gradient-to-t from-[#EDE8DE] via-[#FAF7F2]/90 to-transparent select-none z-10 space-y-3">
-      {/* 1. THANH TRƯỢT TIẾN ĐỘ ÂM THANH (PROGRESS BAR) */}
-      <div className="w-full flex flex-col space-y-1.5 px-1">
+    <footer className="w-full flex flex-col justify-end p-4 pb-5 bg-gradient-to-t from-[#EFE8DC] via-[#FAF7F2] to-transparent border-t border-[#E2D9C8] select-none z-10 space-y-2.5 shadow-[0_-2px_8px_rgba(0,0,0,0.02)]">
+      {/* 1. THANH TRƯỢT TIẾN ĐỘ ÂM THANH (HERITAGE PROGRESS BAR) */}
+      <div className="w-full flex flex-col space-y-1 px-1">
         <input
           type="range"
           min="0"
           max="100"
           value={progressPercent || 0}
           onChange={handleSeek}
-          className="w-full h-2 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-amber-600 shadow-inner"
+          className="w-full h-1.5 bg-[#DDD5C7] rounded-lg appearance-none cursor-pointer accent-amber-600 shadow-inner"
           aria-label={dict.ticker.progressBar}
         />
-        <div className="flex justify-between text-[11px] text-stone-500 font-mono px-0.5 font-semibold">
+        <div className="flex justify-between text-[11px] text-stone-600 font-mono px-0.5 font-bold">
           <span>{formatAudioDuration(currentTime)}</span>
           <span>{formatAudioDuration(duration)}</span>
         </div>
       </div>
 
-      {/* 2. CỤM PHÍM ĐIỀU KHIỂN ÂM THANH (PLAY / PAUSE / SEEK 15S) */}
-      <div className="flex items-center justify-center space-x-8 pt-1">
+      {/* 2. CỤM PHÍM ĐIỀU KHIỂN ÂM THANH KIM LOẠI ĐỒNG */}
+      <div className="flex items-center justify-center space-x-7">
         <button
           onClick={() => audioEngine.seekRelative(-15)}
-          className="p-3 rounded-full bg-white/80 border border-stone-200 text-stone-700 hover:text-stone-950 hover:border-stone-400 active:scale-90 transition-all shadow-sm"
+          className="p-2.5 rounded-full bg-white border border-[#DDD4C2] text-stone-700 hover:text-amber-950 hover:border-amber-500 active:scale-90 transition-all shadow-sm"
           aria-label={dict.ticker.seekBackward}
         >
-          <RotateCcw className="w-5 h-5" />
+          <RotateCcw className="w-4 h-4" />
         </button>
 
         <button
           onClick={onTogglePlay}
-          className="p-4 rounded-full bg-amber-600 text-white font-bold hover:bg-amber-700 active:scale-95 shadow-xl shadow-amber-600/30 transition-all"
+          className="p-3.5 rounded-full bg-gradient-to-tr from-amber-700 via-amber-600 to-amber-500 text-white font-bold hover:brightness-110 active:scale-95 shadow-lg shadow-amber-700/30 border border-amber-400/50 transition-all"
           aria-label={isPlaying ? dict.ticker.pause : dict.ticker.play}
         >
           {isPlaying ? (
@@ -75,10 +75,10 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
 
         <button
           onClick={() => audioEngine.seekRelative(15)}
-          className="p-3 rounded-full bg-white/80 border border-stone-200 text-stone-700 hover:text-stone-950 hover:border-stone-400 active:scale-90 transition-all shadow-sm"
+          className="p-2.5 rounded-full bg-white border border-[#DDD4C2] text-stone-700 hover:text-amber-950 hover:border-amber-500 active:scale-90 transition-all shadow-sm"
           aria-label={dict.ticker.seekForward}
         >
-          <RotateCw className="w-5 h-5" />
+          <RotateCw className="w-4 h-4" />
         </button>
       </div>
     </footer>
