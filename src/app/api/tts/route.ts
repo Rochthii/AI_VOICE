@@ -1,8 +1,6 @@
 import { NextRequest } from "next/server";
 import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
 import { detectQueryLanguage, cleanSpeechText } from "@/lib/shared";
-import fs from "fs";
-import path from "path";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -19,25 +17,22 @@ const NEURAL_VOICE_MAP: Record<string, string> = {
   es: "es-ES-ElviraNeural"      // Nữ Tây Ban Nha
 };
 
-// In-Memory LRU Audio Cache (Lưu 200 câu gần nhất để trả về trong 0ms)
+// In-Memory LRU Audio Cache (Lưu 300 câu gần nhất để trả về ngay trong 0ms)
 const ttsMemoryCache = new Map<string, { buffer: Buffer; voiceName: string; lang: string; timestamp: number }>();
-const MAX_CACHE_SIZE = 200;
+const MAX_CACHE_SIZE = 300;
 
 /**
  * Tối ưu hóa văn bản để có nhịp điệu ngắt quãng (Pacing) tự nhiên
  */
 function enhanceSpeechPacing(text: string): string {
   return text
-    .replace(/\s*([,;:])\s*/g, "$1 ")       // Chuẩn hóa dấu phẩy, hai chấm để ngắt nghỉ 150ms
-    .replace(/\s*([.!?])\s*/g, "$1 ")       // Chuẩn hóa dấu chấm câu để nghỉ 300ms
+    .replace(/\s*([,;:])\s*/g, "$1 ")
+    .replace(/\s*([.!?])\s*/g, "$1 ")
     .replace(/\s+/g, " ")
     .trim();
 }
 
 export async function POST(req: NextRequest) {
-  let tmpAudioPath = "";
-  let tmpMetaPath = "";
-  
   try {
     const body = await req.json();
     const rawText = body.text?.trim() || "";
@@ -68,25 +63,30 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // 2. Tổng hợp giọng đọc Microsoft Neural với tốc độ tối ưu (+6%) và ngữ điệu tự nhiên
+    // 2. Tổng hợp giọng đọc Microsoft Neural IN-MEMORY (Không ghi đĩa, tốc độ tối đa)
     const tts = new MsEdgeTTS();
     await tts.setMetadata(voiceName, OUTPUT_FORMAT.AUDIO_24KHZ_48KBITRATE_MONO_MP3);
 
-    const ttsCacheDir = path.join(process.cwd(), ".next", "cache", "tts");
-    if (!fs.existsSync(ttsCacheDir)) {
-      fs.mkdirSync(ttsCacheDir, { recursive: true });
-    }
-
-    const result = await tts.toFile(ttsCacheDir, pacedText, {
+    const streamResult = tts.toStream(pacedText, {
       pitch: "+0Hz",
-      rate: "+6%",  // Tăng tốc độ đọc lên +6% giúp giọng nói dứt khoát, thanh thoát, năng động
+      rate: "+8%", // Tốc độ nói +8% linh hoạt, không lê thê
       volume: "+0%"
     });
 
-    tmpAudioPath = result.audioFilePath;
-    tmpMetaPath = result.metadataFilePath || "";
+    const chunks: Buffer[] = [];
+    await new Promise<void>((resolve, reject) => {
+      streamResult.audioStream.on("data", (chunk: Buffer) => {
+        chunks.push(chunk);
+      });
+      streamResult.audioStream.on("end", () => {
+        resolve();
+      });
+      streamResult.audioStream.on("error", (err: Error) => {
+        reject(err);
+      });
+    });
 
-    const audioBytes = fs.readFileSync(tmpAudioPath);
+    const audioBytes = Buffer.concat(chunks);
 
     // Lưu vào LRU RAM Cache
     if (ttsMemoryCache.size >= MAX_CACHE_SIZE) {
@@ -100,12 +100,6 @@ export async function POST(req: NextRequest) {
       timestamp: Date.now()
     });
 
-    // Dọn dẹp tệp tạm thời
-    try {
-      if (fs.existsSync(tmpAudioPath)) fs.unlinkSync(tmpAudioPath);
-      if (tmpMetaPath && fs.existsSync(tmpMetaPath)) fs.unlinkSync(tmpMetaPath);
-    } catch (_) {}
-
     return new Response(new Uint8Array(audioBytes), {
       headers: {
         "Content-Type": "audio/mpeg",
@@ -117,13 +111,7 @@ export async function POST(req: NextRequest) {
       }
     });
   } catch (err: any) {
-    // Dọn dẹp tệp nếu có lỗi
-    try {
-      if (tmpAudioPath && fs.existsSync(tmpAudioPath)) fs.unlinkSync(tmpAudioPath);
-      if (tmpMetaPath && fs.existsSync(tmpMetaPath)) fs.unlinkSync(tmpMetaPath);
-    } catch (_) {}
-
-    console.error("[Neural TTS Error]:", err);
+    console.error("[Neural TTS Stream Error]:", err);
     return new Response(JSON.stringify({ error: err?.message || "TTS Synthesis Error" }), {
       status: 500,
       headers: { "Content-Type": "application/json" }

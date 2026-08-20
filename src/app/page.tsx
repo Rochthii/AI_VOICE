@@ -114,7 +114,7 @@ function MainGuideContent() {
     }
   }, [playbackState, currentStation, handleSelectStation]);
 
-  // Gửi câu hỏi tới API /api/ask — SSE Stream + Progressive TTS
+  // Gửi câu hỏi tới API /api/ask — SSE Stream + Instant Neural TTS
   const handleAskQuestion = useCallback(
     async (query: string): Promise<string> => {
       try {
@@ -129,24 +129,12 @@ function MainGuideContent() {
         });
 
         if (!res.ok || !res.body) {
-          throw new Error(`HTTP error ${res.status}`);
+          throw new Error("API Ask stream failed");
         }
 
-        // Consume SSE stream với Progressive TTS
         const reader = res.body.getReader();
         const decoder = new TextDecoder();
         let fullAnswer = "";
-        let sentenceBuffer = "";
-        let ttsStarted = false;
-
-        const speakChunk = (text: string) => {
-          if (!text.trim() || typeof window === "undefined" || !("speechSynthesis" in window)) return;
-          window.speechSynthesis.cancel();
-          const utt = new SpeechSynthesisUtterance(text.trim());
-          utt.lang = LOCALE_MAP[locale]?.speechLang || "vi-VN";
-          utt.rate = 0.92;
-          window.speechSynthesis.speak(utt);
-        };
 
         while (true) {
           const { done, value } = await reader.read();
@@ -160,22 +148,7 @@ function MainGuideContent() {
 
               if (event.type === "chunk" && event.text) {
                 fullAnswer += event.text;
-                sentenceBuffer += event.text;
                 setActiveSubtitle(fullAnswer);
-
-                // Progressive TTS: đọc ngay khi có câu hoàn chỉnh
-                if (sentenceBuffer.match(/[.!?।。！？]/)) {
-                  speakChunk(sentenceBuffer);
-                  sentenceBuffer = "";
-                  ttsStarted = true;
-                  // Dừng audio nền khi AI bắt đầu nói
-                  audioEngine.pause();
-                }
-              } else if (event.type === "done") {
-                // Đọc phần còn lại nếu có
-                if (sentenceBuffer.trim() && !ttsStarted) {
-                  speakChunk(sentenceBuffer);
-                }
               }
             } catch {
               // Partial SSE line, skip
@@ -183,24 +156,29 @@ function MainGuideContent() {
           }
         }
 
-        // Hoàn tất stream SSE
+        // Tự động phát ngay âm thanh Hoài My Neural
+        if (fullAnswer.trim()) {
+          audioEngine.playNeuralTTS(fullAnswer.trim(), locale);
+        }
+
         return fullAnswer;
       } catch (err) {
         console.warn("[Ask Streaming Fallback]:", err);
-        return getLocalizedText(currentStation.human_story_hook, locale);
+        const fallback = getLocalizedText(currentStation.human_story_hook, locale);
+        audioEngine.playNeuralTTS(fallback, locale);
+        return fallback;
       }
     },
     [currentStation, locale]
   );
 
-  // Khi nhận câu trả lời AI -> Đọc qua Microsoft Neural TTS (HoaiMyNeural)
+  // Khi nhận câu trả lời AI -> Đồng bộ phụ đề
   const handleAnswerReceived = useCallback(
-    async (answer: string) => {
+    (answer: string) => {
       if (!answer?.trim()) return;
       setActiveSubtitle(answer);
-      await audioEngine.playNeuralTTS(answer, locale);
     },
-    [locale]
+    []
   );
 
   // Panic Triple-Tap
