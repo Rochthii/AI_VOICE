@@ -4,16 +4,23 @@ Tất cả các thay đổi đáng chú ý của dự án sẽ được ghi nh�
 
 ---
 
-## [0.4.8-alpha] - 2026-08-20
+## [0.5.0-beta] - 2026-08-20
 
-### Changed - Hiệu Chỉnh 100% Sử Liệu Thẩm Định Chương 4 & Chương 5 (Hầm Chỉ Huy & Lỗ Thông Hơi Ụ Mối)
-- **Hiệu chỉnh [`Tài Liệu Lịch Sử Chuẩn Hóa Địa Đạo Củ Chi (Ground Truth RAG).md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/Tài%20Liệu%20Lịch%20Sử%20Chuẩn%20Hóa%20Địa%20Đạo%20Củ%20Chi%20(Ground%20Truth%20RAG).md):**
-  * Chương 4: Bến Dược (Khu A: Bộ Tư lệnh, Khu B: Khu ủy), Bến Đình (Huyện ủy), Tầng 3 sâu 8m – 12m; kích thước thực tế hầm Tư lệnh (3,7x2,6m và 4,2x2,5m), hầm chữ A (2,3x2,2m); hệ thống nút chặn cô lập khí độc/nước bơm; ngách thoát hiểm ra mép sông Sài Gòn; bàn đạp Tết Mậu Thân 1968.
-  * Chương 5: Ống dẫn khí bằng tre/kim loại; ngụy trang ụ mối đùn, mô đất, bụi rậm, gốc cây; đối lưu nhiệt tự nhiên; sáng kiến dùng xà phòng Mỹ vô hiệu hóa khứu giác chó săn trong trận càn Crimp (1966) và Cedar Falls (1967).
-- **Cập nhật [`src/data/stations.json`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/data/stations.json) & [`src/data/history_knowledge.json`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/data/history_knowledge.json):**
-  * Đồng bộ `03_command_bunker`, `04_ventilation_termite` và các chunks `chunk_command_01..03`, `chunk_termite_01..03`.
-- **Cập nhật [`docs/HISTORICAL_GROUND_TRUTH_AUDIT.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/docs/HISTORICAL_GROUND_TRUTH_AUDIT.md):**
-  * Ghi nhận đối soát Trạm 03 và Trạm 04.
+### Milestone - Hoàn Tất 100% Đối Soát Thẩm Định 8 Chương Sử Liệu (Zero Hallucination Ground Truth)
+- **Chuẩn hóa toàn diện [`Tài Liệu Lịch Sử Chuẩn Hóa Địa Đạo Củ Chi (Ground Truth RAG).md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/Tài%20Liệu%20Lịch%20Sử%20Chuẩn%20Hóa%20Địa%20Đạo%20Củ%20Chi%20(Ground%20Truth%20RAG).md):**
+  * Chương 6: Bẫy chông cánh cửa, chông nắp tự động, hố đinh, hố đạp lôi; sáng kiến **mìn gạt** của Anh hùng LLVTND **Tô Văn Đực** (xã Nhuận Đức) từ bom pháo lép đánh xe cơ giới trong trận càn Cedar Falls 1967.
+  * Chương 7: So sánh thực địa Bến Dược (Phú Mỹ Hưng - Bộ Tư lệnh Khu A & Khu ủy Khu B, Đền Bến Dược **44.357 liệt sĩ** trên **632 phiến đá**, Đền Truyền thống 2015, Vùng Giải phóng) và Bến Đình (Nhuận Đức - Huyện ủy, hầm đi bộ ngang qua Tỉnh lộ 15, trưng bày xác trực thăng, xe tăng, trường bắn súng, khoai mì chấm muối mè).
+  * Chương 8: Khóa chặt **7 tài liệu bảo chứng sử liệu chính thống** (bao gồm bộ sách 2026 *Củ Chi - Đất thép thành đồng*).
+- **Đồng bộ hóa 100% [`src/data/stations.json`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/data/stations.json) & [`src/data/history_knowledge.json`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/data/history_knowledge.json):**
+  * 5 trạm thực địa và toàn bộ các RAG knowledge chunks mang mã định danh nguồn `source_authority` chính xác.
+- **Cập nhật [`docs/HISTORICAL_GROUND_TRUTH_AUDIT.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/docs/HISTORICAL_GROUND_TRUTH_AUDIT.md) & [`docs/OFFICIAL_CITATIONS.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/docs/OFFICIAL_CITATIONS.md):**
+  * Ghi nhận đầy đủ 7 tài liệu và các nguyên tắc audit.
+
+---
+
+## [0.4.8-alpha] - 2026-08-20
+### Changed
+- Hiệu chỉnh 100% Sử Liệu Thẩm Định Chương 4 & Chương 5 (Hầm Chỉ Huy & Lỗ Thông Hơi Ụ Mối).
 
 ---
 

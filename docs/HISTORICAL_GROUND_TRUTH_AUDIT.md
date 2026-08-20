@@ -87,12 +87,38 @@
 
 ---
 
-### 📍 TRẠM 05: TRẬN ĐỒ BẪY CHÔNG (KỸ THUẬT TÔI THAN HỒNG)
-* 🛑 **Nghi vấn vật liệu:** Chông tre cắm dưới đất ẩm lâu ngày có bị mục gãy không?
-* ✅ **Sự thật luyện vật liệu dân gian:**
-  * Du kích chỉ chọn **tre đực già trên 3 năm tuổi** (ruột đặc, thớ thịt dày).
-  * Mũi chông sau khi vót nhọn có ngạnh sẽ được **hơ trên than củi hồng**. Quá trình nhiệt phân làm bay kiệt tinh dầu và nước sống, chuyển hóa bề mặt ngoài của tre thành lớp sừng đanh cứng như thép.
-  * Nhờ tôi than hồng, chông tre xuyên thủng được đế giày da bộ binh và không bị ẩm mục dù cắm trong đất sét ướt suốt nhiều tháng mùa mưa.
+### 📍 TRẠM 05: TRẬN ĐỒ BẪY CHÔNG & VŨ KHÍ DU KÍCH
+* 🛑 **Ngộ nhận / Suy diễn ngoài luồng cần loại bỏ:**
+  * Lược bỏ phân loại chi tiết 6 dạng bẫy phỏng đoán (hố sâu 1.2-1.8m, bẫy cánh bướm lò xo thép, bẫy nẹp cật tre, tripwire 10-20cm, cần bật nỏ).
+  * Lược bỏ quy trình tôi than tre già 3 năm.
+* ✅ **Sự thật lịch sử & Vũ khí du kích đối soát chuẩn hóa:**
+  * **Triết lý quân sự:** Nghệ thuật chỉ huy *"lấy nhỏ đánh lớn, lấy ít thắng nhiều, lấy thô sơ thắng hiện đại"*. Xây dựng các *"xã chiến đấu"* liên hoàn vành đai giao thông hào, hầm chông, bãi mìn, ụ chiến đấu.
+  * **Hai kiểu bẫy kinh điển phục dựng:** **Chông cánh cửa** và **chông nắp tự động**, kết hợp cùng hố đinh, hố đạp lôi và bãi mìn liên hoàn dã chiến.
+  * **Sáng kiến mìn gạt Anh hùng Tô Văn Đực:** Thu gom, tận dụng bom và trái pháo lép của đối phương để cải tiến, chế tạo lại thành **"mìn gạt"**, phá hủy hàng trăm xe tăng, xe bọc thép, trực thăng trong các trận càn lớn như Cedar Falls (1967).
+  * **Tinh thần tự lực cánh sinh:** Sử dụng vật liệu tự nhiên tại chỗ (tre rừng, gỗ) kết hợp tái chế phế liệu chiến tranh.
+
+---
+
+### 📍 SO SÁNH THỰC ĐỊA: BẾN DƯỢC vs BẾN ĐÌNH
+* 🛑 **Số liệu phỏng đoán cần loại bỏ:**
+  * Lược bỏ số lượng liệt sĩ phỏng đoán $45.666$ người.
+  * Lược bỏ thông tin địa đạo Bến Đình *"đã được nới rộng lòng hầm cổ cho khách Tây"*.
+  * Lược bỏ các khoảng cách phân tán riêng rẽ (50km / 70km) không có trong nguồn.
+* ✅ **Hiện trạng đối soát chuẩn xác 100%:**
+  * **Khoảng cách toàn hệ thống:** Cách trung tâm TP.HCM khoảng **70 km** (hoặc 69 km theo hướng Tây-Bắc).
+  * **Bến Dược (Phú Mỹ Hưng):** Căn cứ Bộ Tư lệnh Quân khu (Khu A) & Khu ủy Sài Gòn - Gia Định (Khu B); bảo tồn hội trường, hầm Tư lệnh, giếng ngầm; **Đền tưởng niệm Liệt sĩ Bến Dược** (tháp 9 tầng cao 39m, vinh danh **44.357 anh hùng liệt sĩ** trên **632 phiến đá hoa cương**); Đền Khu Truyền thống Cách mạng (2015, 13.5ha); Khu tái hiện Vùng Giải phóng.
+  * **Bến Đình (Nhuận Đức):** Căn cứ tiền phương Huyện ủy Củ Chi; công trình mới: **đường hầm đi bộ ngầm bên dưới ngang qua Tỉnh lộ 15** phục vụ tham quan an toàn; khu trưng bày xác trực thăng, xe tăng; trường bắn súng thể thao quốc phòng; ẩm thực khoai mì chấm muối mè.
+
+---
+
+### 🏛️ KHÓA CHẶT 7 TÀI LIỆU SỬ LIỆU THẨM ĐỊNH (VERIFIED SOURCES):
+1. Ban Chấp hành Đảng bộ TP.HCM (2014) — *Lịch sử Đảng bộ TP.HCM (1930 - 1975)*.
+2. Ban Chỉ huy Quân sự huyện Củ Chi (2006) — *Lịch sử LLVTND huyện Củ Chi (1945 - 2005)*.
+3. Bộ Quốc phòng - Quân khu 7 (2004) — *Lịch sử Bộ Chỉ huy Miền (1961 - 1976)*.
+4. Đảng ủy - Bộ Chỉ huy Quân sự TP.HCM (1998) — *Lịch sử LLVT TP.HCM (1945 - 1995)*.
+5. Sở Văn hóa và Thể thao TP.HCM (2020) — *Báo cáo hiện trạng bảo tồn và khai thác Di tích Địa đạo Củ Chi*.
+6. Thành ủy TP.HCM (2026) — Bộ sách *Củ Chi - Đất thép thành đồng* (Tập 1, 2, 3).
+7. Tom Mangold & John Penycate (1985) — *The Tunnels of Cu Chi*.
 
 ---
 

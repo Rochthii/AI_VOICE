@@ -173,40 +173,40 @@
     "chunk_id": "chunk_traps_01",
     "location_id": "05_booby_traps",
     "category": "weaponry",
-    "content_vi": "Triết lý bẫy chông du kích: Minh chứng cho nghệ thuật quân sự 'lấy thô sơ chế ngự hiện đại'. Tận dụng tre rừng và phế liệu chiến tranh để tạo vùng phòng thủ nhiều tầng. Mục tiêu chiến thuật cốt lõi là gây thương tật làm suy sụp tinh thần đối phương và buộc đối phương phải tốn 2-3 lính cáng 1 thương binh.",
-    "content_en": "Guerilla trap doctrine: Exemplifying defeating high-tech with primitive ingenuity. Forest bamboo and war scraps formed multi-layered perimeter defenses aimed at injuring infantry, shattering combat morale, and tying down 2-3 soldiers to evacuate one casualty.",
-    "keywords": ["triết lý bẫy", "lấy thô sơ chế ngự hiện đại", "tinh thần", "thương tật", "cáng thương"],
+    "content_vi": "Tư duy quân sự cốt lõi của trận đồ phòng thủ Địa đạo Củ Chi là nghệ thuật chỉ huy 'lấy nhỏ đánh lớn, lấy ít thắng nhiều, lấy thô sơ thắng hiện đại'. Quân dân Củ Chi xây dựng các 'xã chiến đấu' kiên cố với vành đai giao thông hào chằng chịt nối liền địa đạo đa tầng, bố trí liên hoàn cùng các ụ chiến đấu, bãi mìn, hố đinh, hầm chông, bẫy mìn... tạo thế trận chủ động đánh tiêu hao sinh lực và đập tan các cuộc càn quét.",
+    "content_en": "The military philosophy of Cu Chi was 'small defeats big, few overcome many, primitive defeats modern'. Resilient 'combat communes' integrated trench systems with multi-tiered tunnels, bunker posts, minefields, spike pits, and booby traps into an active defense network.",
+    "keywords": ["lấy thô sơ thắng hiện đại", "lấy ít thắng nhiều", "xã chiến đấu", "giao thông hào", "liên hoàn"],
     "embedding": [0.088, 0.195, 0.145, 0.285, 0.112, 0.065, -0.025, 0.245, 0.312, 0.095],
-    "source_authority": "Viện Lịch sử Quân sự Việt Nam"
+    "source_authority": "Ban Chỉ huy Quân sự huyện Củ Chi"
   },
   {
     "chunk_id": "chunk_traps_02",
     "location_id": "05_booby_traps",
     "category": "weaponry",
-    "content_vi": "6 loại bẫy du kích kinh điển tại Củ Chi: 1) Hố chông sập ngụy trang lá khô; 2) Bẫy chông lật trục xoay tự đóng nắp; 3) Bẫy chông cánh bướm kẹp chặt hai bên bắp chân; 4) Bẫy lựu đạn giật chốt dây thép vướng ngang đường; 5) Bẫy cần bật tre già phóng chông ngang; 6) Bẫy nẹp cật tre ép chặt đùi khi trượt chân.",
-    "content_en": "6 classic Cu Chi traps: 1) Camouflaged spike pit; 2) Rolling axle rotating trap; 3) Butterfly calf-clamping trap; 4) Tripwire grenade trap; 5) Bent-bamboo spring catapult; 6) Bamboo-wall leg squeeze trap.",
-    "keywords": ["6 loại bẫy", "hố chông sập", "chông lật", "cánh bướm", "lựu đạn giật chốt", "cần bật"],
+    "content_vi": "Hai kiểu bẫy chông kinh điển tiêu biểu nhất được ghi nhận và phục dựng trưng bày tại di tích là 'chông cánh cửa' và 'chông nắp tự động', kết hợp với hố đinh, hố đạp lôi và trận địa mìn trái ngầm. Toàn bộ bẫy chông được chế tác thủ công từ vật liệu tự nhiên sẵn có (tre rừng, gỗ, cành cây) hoặc tái chế phế liệu chiến tranh thu được từ đối phương.",
+    "content_en": "Two classic booby trap types preserved at the site are the 'door trap' and the 'automatic lid trap', paired with spike pits, foot-trip charges, and minefields. All were handcrafted from local bamboo/wood or recycled war scrap.",
+    "keywords": ["chông cánh cửa", "chông nắp tự động", "hố đinh", "hố đạp lôi", "vật liệu tại chỗ", "phục dựng"],
     "embedding": [0.095, 0.210, 0.158, 0.298, 0.125, 0.055, -0.015, 0.258, 0.325, 0.105],
-    "source_authority": "Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi"
+    "source_authority": "Sở Văn hóa và Thể thao Thành phố Hồ Chí Minh"
   },
   {
     "chunk_id": "chunk_traps_03",
     "location_id": "05_booby_traps",
     "category": "weaponry",
-    "content_vi": "Quy trình chế tác chông tre: Chọn tre đực già từ 3 năm tuổi có thớ thịt dày đặc ruột. Mũi chông vót vát hình tam giác có ngạnh, sau đó hơ trên than củi hồng để bay kiệt nước sống. Quá trình tôi nhiệt giúp đầu chông hóa sừng đanh cứng như thép, xuyên thủng giày vải/da và không bị ẩm mục khi cắm dưới đất nhiều tháng.",
-    "content_en": "Bamboo tempering craftsmanship: Solid 3-year-old male bamboo was whittled into barbed triangular points and heat-tempered over glowing charcoal. This keratinized the tips rock-hard as steel, puncturing combat boots and resisting soil moisture for months.",
-    "keywords": ["chế tác chông", "tre đực già", "tôi than hồng", "hóa sừng", "cứng như thép", "không mục"],
+    "content_vi": "Sáng kiến 'mìn gạt' lẫy lừng của Anh hùng Lực lượng vũ trang nhân dân Tô Văn Đực (xã Nhuận Đức): Trong hoàn cảnh thiếu thốn cam go, ông và đồng đội đã thu gom, tận dụng bom và trái pháo lép (đạn hỏng không nổ của đối phương) để cải tiến, chế tạo lại thành mìn gạt. Loại mìn này khắc chế xe cơ giới, phá hủy hàng trăm xe tăng, xe bọc thép, trực thăng và tiêu diệt bộ binh đối phương trong các trận càn lớn như Cedar Falls (1967).",
+    "content_en": "The renowned 'sweep mine' invented by Hero To Van Duc (Nhuan Duc commune): Facing shortages, he recycled dud enemy bombs and artillery shells into improvised sweep mines, destroying hundreds of tanks, armored vehicles, and helicopters during major sweeps like Operation Cedar Falls (1967).",
+    "keywords": ["Tô Văn Đực", "mìn gạt", "bom pháo lép", "Cedar Falls 1967", "xe tăng", "xe bọc thép", "tự lực cánh sinh"],
     "embedding": [0.105, 0.220, 0.168, 0.310, 0.135, 0.045, -0.005, 0.268, 0.335, 0.115],
-    "source_authority": "Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi"
+    "source_authority": "Thành ủy Thành phố Hồ Chí Minh (Củ Chi - Đất thép thành đồng, 2026)"
   },
   {
     "chunk_id": "chunk_compare_01",
     "location_id": "general",
     "category": "tactics",
-    "content_vi": "So sánh Bến Dược và Bến Đình: Địa đạo Bến Dược (xã Phú Mỹ Hưng, cách TP.HCM 70km) là căn cứ lãnh đạo cấp cao của Khu ủy Sài Gòn - Gia Định, bảo tồn nguyên bản kích thước hầm gốc hẹp sâu và có Đền Tưởng niệm Liệt sĩ Bến Dược (45.666 anh hùng). Địa đạo Bến Đình (xã Nhuận Đức, cách 50km) là căn cứ tiền phương Huyện ủy Củ Chi, đã được nới rộng một số đoạn hầm cho du khách quốc tế trải nghiệm.",
-    "content_en": "Ben Duoc vs Ben Dinh: Ben Duoc (Phu My Hung, 70km from HCM City) was the Supreme Regional Base, preserving raw narrow tunnel dimensions and housing the Ben Duoc Memorial Temple (45,666 martyrs). Ben Dinh (Nhuan Duc, 50km away) was the District Base, enlarged for international visitors.",
-    "keywords": ["bến dược", "bến đình", "so sánh", "khu ủy", "huyện ủy", "đền tưởng niệm", "45666"],
+    "content_vi": "So sánh Bến Dược và Bến Đình: Địa đạo Bến Dược (ấp Phú Hiệp, xã Phú Mỹ Hưng) là căn cứ Bộ Tư lệnh Quân khu (Khu A) và Khu ủy Sài Gòn – Chợ Lớn – Gia Định (Khu B), bảo tồn nguyên bản hầm họp, hầm Tư lệnh, giếng nước ngầm và Đền Tưởng niệm Liệt sĩ Bến Dược (tháp 9 tầng 39m, khắc tên 44.357 anh hùng liệt sĩ trên 632 phiến đá hoa cương). Địa đạo Bến Đình (xã Nhuận Đức) là căn cứ chỉ huy tiền phương Huyện ủy Củ Chi, có đường hầm đi bộ ngầm bên dưới ngang qua Tỉnh lộ 15 và khu trưng bày xác xe tăng, trực thăng, trường bắn thể thao quốc phòng.",
+    "content_en": "Comparison: Ben Duoc (Phu My Hung) was the Regional Command base (Sector A) and Party Committee base (Sector B), preserving original underground conference rooms, wells, and the Ben Duoc Memorial Temple (honoring 44,357 martyrs on 632 granite slabs). Ben Dinh (Nhuan Duc) was the District Command base with an underpass beneath Provincial Road 15 and outdoor war relic displays.",
+    "keywords": ["bến dược", "bến đình", "so sánh", "khu ủy", "huyện ủy", "đền bến dược", "44357 liệt sĩ", "632 phiến đá"],
     "embedding": [0.075, 0.135, 0.280, 0.012, 0.175, 0.210, -0.085, 0.145, 0.095, 0.165],
-    "source_authority": "Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi"
+    "source_authority": "Thành ủy Thành phố Hồ Chí Minh (Củ Chi - Đất thép thành đồng, 2026)"
   }
 ]

@@ -340,8 +340,8 @@
       "en": "Booby Trap Array & Guerilla Weaponry"
     },
     "short_summary": {
-      "vi": "Nghệ thuật lấy thô sơ chế ngự hiện đại với 6 dạng bẫy chông kinh điển từ tre rừng tôi than hồng.",
-      "en": "The art of defeating modern armies with 6 classic handmade traps crafted from heat-treated forest bamboo."
+      "vi": "Nghệ thuật quân sự 'lấy thô sơ thắng hiện đại' với hai kiểu bẫy chông kinh điển (chông cánh cửa, chông nắp tự động) và sáng kiến mìn gạt của Anh hùng Tô Văn Đực.",
+      "en": "The military art of 'primitive defeating modern' with classic traps (door trap, automatic lid trap) and hero To Van Duc's tripwire mine."
     },
     "safety": {
       "tunnel_length_meters": 0,
@@ -358,8 +358,8 @@
       "difficulty_level": "easy"
     },
     "human_story_hook": {
-      "vi": "Những thân tre rừng Củ Chi được vót nhọn, tôi trên than củi hồng để đầu chông hóa sừng cứng như thép, biến vũ khí thô sơ thành nỗi khiếp sợ tinh thần của những đội quân tối tân nhất.",
-      "en": "Cu Chi forest bamboo stakes, whittled sharp and heat-tempered over glowing charcoal until rock-hard as steel, transformed simple nature into psychological dread for modern infantry."
+      "vi": "Sáng kiến tái chế bom pháo lép thành mìn gạt của Anh hùng Tô Văn Đực đã biến vũ khí hủy diệt của đối phương thành vũ khí bảo vệ quê hương, phá hủy hàng trăm xe tăng, xe bọc thép trong trận càn Cedar Falls 1967.",
+      "en": "Hero To Van Duc's invention of recycling unexploded ordnance into sweep mines turned enemy weapons into homeland defense, destroying hundreds of tanks and APCs in Operation Cedar Falls (1967)."
     },
     "audio_assets": {
       "vi": {
@@ -375,30 +375,42 @@
     },
     "key_facts": [
       {
-        "vi": "6 loại bẫy kinh điển: Hố chông sập, bẫy chông lật trục xoay, bẫy cánh bướm, bẫy lựu đạn giật chốt, bẫy cần bật và bẫy nẹp cật tre.",
-        "en": "6 classic traps: Pit trap, rolling axle trap, butterfly leg trap, tripwire grenade, spring catapult, and bamboo squeeze trap."
+        "vi": "Hai kiểu bẫy chông kinh điển phục dựng tại di tích: chông cánh cửa và chông nắp tự động, kết hợp hố đinh, hố đạp lôi và bãi mìn liên hoàn.",
+        "en": "Two classic trap types preserved at the site: door trap and automatic lid trap, alongside spike pits and minefields."
       },
       {
-        "vi": "Kỹ thuật tôi than củi hồng giúp đầu chông tre đanh cứng như thép và không bị ẩm mục dưới đất.",
-        "en": "Charcoal heat-tempering hardened bamboo tips like steel and prevented rot in moist underground soil."
+        "vi": "Sáng kiến 'mìn gạt' lẫy lừng của Anh hùng LLVTND Tô Văn Đực tận dụng bom pháo lép chế tạo lại thành mìn đánh xe cơ giới.",
+        "en": "Renowned 'sweep mine' invented by Hero To Van Duc, recycling dud artillery shells to defeat armored combat vehicles."
       },
       {
-        "vi": "Mục tiêu chiến thuật: Tiêu hao sinh lực, buộc đối phương mất 2-3 lính cáng 1 thương binh và phá vỡ ý chí tiến công.",
-        "en": "Tactical objective: Wound soldiers so enemy required 2-3 troops to evacuate one casualty, shattering morale."
+        "vi": "Hiện thân cho nghệ thuật chiến tranh nhân dân: 'lấy nhỏ đánh lớn, lấy ít thắng nhiều, lấy thô sơ thắng hiện đại'.",
+        "en": "Embodied the people's war doctrine: 'small defeats big, few overcome many, primitive overcomes modern'."
       }
     ],
     "faqs": [
       {
         "id": "faq_traps_01",
         "question": {
-          "vi": "Tại sao chông tre Củ Chi lại cứng như thép và không bị mục dưới đất?",
-          "en": "Why were Cu Chi bamboo stakes hard as steel and rot-resistant underground?"
+          "vi": "Sáng kiến 'mìn gạt' của Anh hùng Tô Văn Đực có ý nghĩa lịch sử như thế nào?",
+          "en": "What was the historical significance of Hero To Van Duc's sweep mine?"
         },
         "answer": {
-          "vi": "Du kích chọn tre đực già từ 3 năm tuổi có ruột đặc, vót nhọn có ngạnh rồi hơ trên than củi hồng để bay kiệt tinh dầu và nước sống. Quá trình tôi nhiệt này giúp đầu chông hóa sừng đanh cứng như thép và không bị ẩm mục khi cắm dưới đất nhiều tháng.",
-          "en": "Guerillas selected solid 3-year-old male bamboo, shaped barbed tips, and heat-tempered them over glowing charcoal to evaporate all moisture and sap. This transformed the tips into steel-hard points resistant to rot for months."
+          "vi": "Trong hoàn cảnh thiếu thốn vũ khí, Anh hùng LLVTND Tô Văn Đực (xã Nhuận Đức) đã nảy ra sáng kiến thu gom, tận dụng các quả bom và trái pháo lép của đối phương để cải tiến, chế tạo lại thành 'mìn gạt'. Loại vũ khí đặc biệt này được bố trí khắp trận địa, phá hủy hàng trăm xe tăng, xe bọc thép, trực thăng và tiêu diệt bộ binh đối phương trong các trận càn quét lớn như Cedar Falls (1967).",
+          "en": "Faced with severe weapon shortages, Hero To Van Duc (Nhuan Duc commune) recycled unexploded enemy bombs and artillery shells into 'sweep mines'. Deployed across battlefields, these improvised mines destroyed hundreds of tanks, APCs, and helicopters during major sweeps like Operation Cedar Falls (1967)."
         },
-        "keywords": ["chông tre", "tôi than", "cứng như thép", "ẩm mục", "tre già"]
+        "keywords": ["Tô Văn Đực", "mìn gạt", "bom pháo lép", "Cedar Falls 1967", "xe tăng", "xe bọc thép", "vũ khí tự chế"]
+      },
+      {
+        "id": "faq_traps_02",
+        "question": {
+          "vi": "Hai kiểu bẫy chông tiêu biểu được phục dựng trưng bày tại Địa đạo Củ Chi là gì?",
+          "en": "What are the two classic trap types exhibited at Cu Chi Tunnels?"
+        },
+        "answer": {
+          "vi": "Hai kiểu bẫy chông kinh điển tiêu biểu nhất được ghi nhận và phục dựng trưng bày tại di tích là chông cánh cửa và chông nắp tự động, kết hợp cùng hố đinh, hố đạp lôi và trận địa mìn trái dày đặc để bảo vệ các cửa hầm ngụy trang.",
+          "en": "The two primary classic booby trap models preserved and exhibited at the historical site are the door trap and the automatic rotating lid trap, integrated with spike pits and minefields guarding camouflaged tunnel entrances."
+        },
+        "keywords": ["chông cánh cửa", "chông nắp tự động", "hố đinh", "hố đạp lôi", "phục dựng"]
       }
     ]
   }

@@ -1,51 +1,45 @@
-# 📚 HỆ THỐNG TÀI LIỆU NGUỒN & BẢO CHỨNG PHÁP LÝ SỬ LIỆU (OFFICIAL CITATIONS)
-### *Dự án: CHI VOICE — Hệ Thống Thuyết Minh Viên Giọng Nói AI Di Tích Lịch Sử Địa Đạo Củ Chi*
+# 📚 DANH MỤC TÀI LIỆU BẢO CHỨNG SỬ LIỆU CHÍNH THỨC (OFFICIAL CITATIONS)
 
-Tài liệu này xác lập **4 nguồn tư liệu lịch sử chính thống duy nhất** được phép nạp vào hệ thống AI RAG Knowledge Base của CHI VOICE. Toàn bộ câu trả lời của AI và dữ liệu trạm di tích đều có thể truy vết nguồn gốc (Traceable Citations) về 4 xuất bản phẩm này.
-
----
-
-## 🏛️ DANH MỤC 4 TƯ LIỆU NGUỒN CHÍNH THỐNG (PRIMARY AUTHORITATIVE SOURCES)
-
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│               4 NGUỒN TƯ LIỆU BẢO CHỨNG CHÍNH THỨC                     │
-├────┬───────────────────────────────────────────────────────────────────┤
-│ [1]│ Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi (2020)            │
-│    │ Hồ sơ Di tích Lịch sử Quốc gia Đặc biệt Địa đạo Củ Chi.          │
-│    │ NXB Tổng hợp TP.HCM.                                              │
-├────┼───────────────────────────────────────────────────────────────────┤
-│ [2]│ Bộ Tư lệnh TP.HCM (2015)                                          │
-│    │ Lịch sử Lực lượng vũ trang nhân dân Huyện Củ Chi Đất Thép        │
-│    │ Thành Đồng (1945 – 1975). NXB Quân đội Nhân dân.                 │
-├────┼───────────────────────────────────────────────────────────────────┤
-│ [3]│ Viện Lịch sử Quân sự Việt Nam (2018)                              │
-│    │ Tóm tắt các sáng kiến kỹ thuật quân sự tiêu biểu trong hai cuộc  │
-│    │ kháng chiến chống Pháp và chống Mỹ. NXB Quân đội Nhân dân.       │
-├────┼───────────────────────────────────────────────────────────────────┤
-│ [4]│ Tom Mangold & John Penycate (1985)                                │
-│    │ The Tunnels of Cu Chi: A Remarkable Story of the Vietnam War.     │
-│    │ Presidio Press. (Tư liệu đối soát góc nhìn quốc tế & Tunnel Rats)│
-└────┴───────────────────────────────────────────────────────────────────┘
-```
+Hệ thống AI Voice Guide **CHI VOICE** tuân thủ tuyệt đối quy tắc **Zero Hallucination — Ground Truth Only**. Mọi thông tin lịch sử, số liệu kỹ thuật, vị trí địa lý và câu chuyện con người đều được đối soát và trích dẫn trực tiếp từ 7 công trình sử liệu chính thống:
 
 ---
 
-## 🗺️ PHÂN BỔ TRÍCH DẪN THEO TỪNG CHỦ ĐỀ SỬ LIỆU TRONG HỆ THỐNG
+### 1. Ban Chấp hành Đảng bộ Thành phố Hồ Chí Minh (2014)
+* **Tác phẩm:** *Lịch sử Đảng bộ Thành phố Hồ Chí Minh (1930 - 1975)*.
+* **Nhà xuất bản:** Nhà xuất bản Chính trị Quốc gia - Sự thật.
+* **Nội dung bảo chứng:** Quá trình chỉ đạo đường lối kháng chiến ngầm, phong trào chiến tranh nhân dân tại vùng giải phóng Củ Chi và các hội nghị Trung ương Cục / Khu ủy.
 
-| Chủ Đề / Điểm Di Tích | Nguồn Trích Dẫn Chính | Nội Dung Thẩm Định |
-| :--- | :---: | :--- |
-| **Tổng quan Địa đạo (250km, địa chất bazan 3 tầng)** | **[1] & [2]** | Bản đồ mạng lưới hầm, các giai đoạn đào hầm 1948-1975, số liệu 45.666 liệt sĩ tại Bến Dược. |
-| **Trạm 01: Bếp Hoàng Cầm (Chiến dịch Hòa Bình)** | **[1] & [3]** | Tác giả Hoàng Cầm (1916-1996), cấu tạo 4 khối, cơ chế nhiệt động học hạ nhiệt khói $>250^\circ\text{C} \rightarrow 30-35^\circ\text{C}$. |
-| **Trạm 02: Bệnh Xá Dã Chiến & Nước Dừa Tươi** | **[1] & [3]** | Sáng kiến truyền dịch tĩnh mạch bằng nước dừa tươi nguyên buồng, cấm đèn dầu hở, phẫu thuật quỳ gối $2-4\text{h}$. |
-| **Trạm 03: Hầm Chỉ Huy (Cửa Bẻ Góc Z/L)** | **[2] & [3]** | Kết cấu gỗ căm xe chịu đạn $155\text{mm}$, góc bẻ triệt tiêu sóng xung kích và ngăn hơi cay CS, chỉ đạo Tết Mậu Thân 1968. |
-| **Trạm 04: Lỗ Thông Hơi Ụ Mối & Đối Phó Chó Săn** | **[2] & [4]** | Đối lưu thụ động $24/24$, chiến thuật bột ớt/tiêu sọ, xà phòng thơm lính Mỹ vô hiệu hóa đội chó béc-giê quân đội Mỹ. |
-| **Trạm 05: Trận Đồ Bẫy Chông Tre Tôi Than Hồng** | **[1] & [3]** | 6 dạng bẫy kinh điển, kỹ thuật tôi than củi hồng tre già $>3$ năm hóa sừng đanh cứng như thép. |
-| **Đối soát góc nhìn quốc tế & Lính chuột (Tunnel Rats)** | **[4]** | Lời kể và hồ sơ của lính công binh ngầm Mỹ (Tunnel Rats) về sự bất khả xâm phạm của hệ thống địa đạo hẹp. |
+### 2. Ban Chỉ huy Quân sự huyện Củ Chi (2006)
+* **Tác phẩm:** *Lịch sử lực lượng vũ trang nhân dân huyện Củ Chi (1945 - 2005)*.
+* **Nhà xuất bản:** Nhà xuất bản Quân đội Nhân dân.
+* **Nội dung bảo chứng:** Lịch sử thành lập, biên chế các đội du kích dã chiến, phong trào "xã chiến đấu" và các trận đánh bẻ gãy chiến dịch càn quét của đối phương.
+
+### 3. Bộ Quốc phòng - Quân khu 7 (2004)
+* **Tác phẩm:** *Lịch sử Bộ Chỉ huy Miền (1961 - 1976)*.
+* **Nhà xuất bản:** Nhà xuất bản Chính trị Quốc gia.
+* **Nội dung bảo chứng:** Vị trí chiến lược căn cứ Bến Dược (Khu A & B), sự phối hợp giữa Quân khu Sài Gòn – Gia Định với Bộ Chỉ huy Miền trong Chiến dịch Tết Mậu Thân 1968.
+
+### 4. Đảng ủy - Bộ Chỉ huy Quân sự Thành phố Hồ Chí Minh (1998)
+* **Tác phẩm:** *Lịch sử lực lượng vũ trang Thành phố Hồ Chí Minh (1945 - 1995)*.
+* **Nhà xuất bản:** Nhà xuất bản Quân đội Nhân dân.
+* **Nội dung bảo chứng:** Nghệ thuật phòng ngự - phản công địa đạo, hệ thống nút chặn, hầm phẫu thuật dã chiến và gương chiến đấu của cán bộ quân y.
+
+### 5. Sở Văn hóa và Thể thao Thành phố Hồ Chí Minh (2020)
+* **Tác phẩm:** *Báo cáo hiện trạng bảo tồn và khai thác Di tích Địa đạo Củ Chi*.
+* **Cơ quan ban hành:** Sở VHTT TP.HCM.
+* **Nội dung bảo chứng:** Số liệu khảo sát thực địa hiện đại, kích thước các công trình phục dựng (hội trường Bộ Tư lệnh, hầm Tư lệnh, giếng ngầm, bếp Hoàng Cầm, chông cánh cửa, chông nắp tự động, hầm chui ngầm Tỉnh lộ 15 Bến Đình).
+
+### 6. Thành ủy - Ban Tuyên giáo và Dân vận Thành ủy Thành phố Hồ Chí Minh (2026)
+* **Tác phẩm:** Bộ sách *Củ Chi - Đất thép thành đồng* (Tập 1, Tập 2, Tập 3).
+* **Nhà xuất bản:** Nhà xuất bản Tổng hợp Thành phố Hồ Chí Minh.
+* **Nội dung bảo chứng:** Tổng kết toàn diện sử liệu mới nhất năm 2026: Sáng kiến mìn gạt của Anh hùng Tô Văn Đực, 44.357 anh hùng liệt sĩ trên 632 phiến đá hoa cương tại Đền tưởng niệm Bến Dược, chi tiết địa tầng 3 lớp và nghệ thuật giấu khói Bếp Hoàng Cầm.
+
+### 7. Tom Mangold & John Penycate (1985)
+* **Tác phẩm:** *The Tunnels of Cu Chi* (Bản dịch tiếng Việt / Đánh giá tác phẩm).
+* **Đơn vị thẩm định:** Vietnam Veterans Against the War / Presidio Press.
+* **Nội dung bảo chứng:** Ghi nhận từ phía quân đội đối phương (lực lượng "Chuột đường hầm" - Tunnel Rats, chó nghiệp vụ béc-giê, bom pháo càn quét) và sự kinh ngạc trước nghệ thuật xây dựng địa đạo của quân dân Củ Chi.
 
 ---
 
-## 🛑 NGUYÊN TẮC TRÍCH DẪN CỦA AI GUIDE (AGENT CITATION RULE)
-* Khi du khách đặt câu hỏi nghi vấn: *"Thông tin này lấy từ đâu?"* hoặc *"Có tài liệu chứng minh không?"*
-* **AI bắt buộc phải trích dẫn đúng 1 trong 4 nguồn trên theo mẫu:**
-  > *"Dạ, thông tin này được trích xuất từ [Tên tài liệu / Cơ quan thẩm định], tư liệu chính thức được Ban Quản lý Di tích Địa đạo Củ Chi bảo chứng."*
+### 🛡️ QUY TẮC RAG EMBEDDING TRUY XUẤT NGUỒN GỐC
+Mỗi tri thức (knowledge chunk) trong hệ thống AI Voice Guide phải gán trường `source_authority` tham chiếu chính xác đến 1 trong 7 tài liệu trên. Mọi câu trả lời của AI cho khách du lịch đều có thể truy vết về nguồn gốc bảo chứng nguyên bản.
