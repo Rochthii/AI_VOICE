@@ -157,13 +157,23 @@ export const SafetyBeacon: React.FC<SafetyBeaconProps> = ({
               </div>
             )}
 
-            {/* Nút đóng */}
-            <button
-              onClick={() => setIsDetailsOpen(false)}
-              className="w-full py-3 rounded-xl bg-tunnel-amber text-stone-950 font-bold text-xs hover:bg-amber-400 active:scale-95 transition-all font-mono"
-            >
-              {locale === "vi" ? "ĐÃ HIỂU — TIẾP TỤC NGHE" : "CONTINUE LISTENING"}
-            </button>
+            {/* Nút thao tác */}
+            <div className="flex items-center space-x-2 pt-2">
+              <a
+                href="/qr"
+                target="_blank"
+                rel="noreferrer"
+                className="flex-1 py-3 rounded-xl bg-stone-900 border border-stone-700 text-stone-300 font-bold text-xs hover:border-tunnel-amber hover:text-tunnel-amber active:scale-95 transition-all text-center font-mono"
+              >
+                MÃ QR TRẠM NÀY ↗
+              </a>
+              <button
+                onClick={() => setIsDetailsOpen(false)}
+                className="flex-1 py-3 rounded-xl bg-tunnel-amber text-stone-950 font-bold text-xs hover:bg-amber-400 active:scale-95 transition-all font-mono"
+              >
+                {locale === "vi" ? "ĐÃ HIỂU — TIẾP TỤC" : "CONTINUE"}
+              </button>
+            </div>
           </div>
         </div>
       )}

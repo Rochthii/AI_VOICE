@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import stationsData from "@/data/stations.json";
 import { Station, Locale } from "@/types/station";
 import { SafetyBeacon } from "@/components/SafetyBeacon";
@@ -11,8 +12,15 @@ import { audioEngine, AudioPlaybackState } from "@/lib/audio-engine";
 
 const stations: Station[] = stationsData as unknown as Station[];
 
-export default function HomePage() {
-  const [currentStation, setCurrentStation] = useState<Station>(stations[0]);
+function MainGuideContent() {
+  const searchParams = useSearchParams();
+  const stationParam = searchParams.get("station") || searchParams.get("id");
+
+  // Tìm trạm tương ứng từ URL param hoặc mặc định trạm 01
+  const initialStation =
+    stations.find((s) => s.id === stationParam || s.qr_code_key === stationParam) || stations[0];
+
+  const [currentStation, setCurrentStation] = useState<Station>(initialStation);
   const [locale, setLocale] = useState<Locale>("vi");
   const [isOffline, setIsOffline] = useState<boolean>(false);
   const [activeSubtitle, setActiveSubtitle] = useState<string>("");
@@ -21,12 +29,30 @@ export default function HomePage() {
     isPlaying: false,
     currentTime: 0,
     duration: 0,
-    stationId: stations[0].id,
+    stationId: initialStation.id,
     locale: "vi"
   });
 
-  // Quản lý phát hiện 3 lần chạm liên tiếp (Panic Triple-Tap)
   const tapTimesRef = useRef<number[]>([]);
+
+  // Tự động nhận diện khi URL query param thay đổi (VD: Quét mã QR trạm khác)
+  useEffect(() => {
+    if (stationParam) {
+      const target = stations.find((s) => s.id === stationParam || s.qr_code_key === stationParam);
+      if (target && target.id !== currentStation.id) {
+        setCurrentStation(target);
+        setActiveSubtitle("");
+        const audioAsset = target.audio_assets[locale];
+        audioEngine.loadAndPlay(
+          audioAsset.url,
+          target.id,
+          target.title[locale],
+          target.short_summary[locale],
+          locale
+        );
+      }
+    }
+  }, [stationParam, currentStation.id, locale]);
 
   // Lắng nghe trạng thái Online/Offline
   useEffect(() => {
@@ -83,7 +109,6 @@ export default function HomePage() {
         currentStation.short_summary[newLocale],
         newLocale
       );
-      // Giữ nguyên số giây đang nghe
       if (savedTime > 0) {
         audioEngine.seek(savedTime);
       }
@@ -104,7 +129,7 @@ export default function HomePage() {
     }
   }, [playbackState, currentStation, handleSelectStation]);
 
-  // Xử lý gửi câu hỏi tới API /api/ask
+  // Gửi câu hỏi tới API /api/ask
   const handleAskQuestion = useCallback(
     async (query: string): Promise<string> => {
       try {
@@ -126,7 +151,6 @@ export default function HomePage() {
         return data.answer || "";
       } catch (err) {
         console.warn("[Ask API Offline Fallback]:", err);
-        // Fallback nội bộ nếu hoàn toàn mất mạng
         return locale === "vi"
           ? currentStation.faqs[0]?.answer.vi || currentStation.human_story_hook.vi
           : currentStation.faqs[0]?.answer.en || currentStation.human_story_hook.en;
@@ -135,7 +159,7 @@ export default function HomePage() {
     [currentStation, locale]
   );
 
-  // Khi nhận được câu trả lời AI -> Cập nhật Cinema Ticker và đọc qua Web Speech TTS
+  // Khi nhận câu trả lời AI -> Đọc qua Web Speech TTS
   const handleAnswerReceived = useCallback(
     (answer: string) => {
       setActiveSubtitle(answer);
@@ -144,9 +168,8 @@ export default function HomePage() {
         window.speechSynthesis.cancel();
         const utterance = new SpeechSynthesisUtterance(answer);
         utterance.lang = locale === "vi" ? "vi-VN" : "en-US";
-        utterance.rate = 0.95; // Nhịp điệu chậm rãi, bình tĩnh
+        utterance.rate = 0.95;
         utterance.onend = () => {
-          // Tự động phát tiếp âm thanh nền sau khi AI trả lời xong
           audioEngine.play();
         };
         window.speechSynthesis.speak(utterance);
@@ -155,7 +178,7 @@ export default function HomePage() {
     [locale]
   );
 
-  // Bắt sự kiện Panic Triple-Tap trên toàn bộ màn hình
+  // Panic Triple-Tap
   const handleScreenTouch = () => {
     const now = Date.now();
     const recentTaps = tapTimesRef.current.filter((t) => now - t < 700);
@@ -171,7 +194,7 @@ export default function HomePage() {
 
   return (
     <div className="w-full h-[100dvh] bg-stone-950 flex items-center justify-center overflow-hidden">
-      {/* KHUNG DI ĐỘNG SONIC MONOLITH (MAX-W-MD TRÊN DESKTOP, 100% TRÊN MOBILE) */}
+      {/* KHUNG DI ĐỘNG SONIC MONOLITH */}
       <div
         onClick={handleScreenTouch}
         className="h-[100dvh] w-full max-w-md flex flex-col justify-between bg-tunnel-base text-tunnel-chalk overflow-hidden relative select-none font-sans shadow-2xl border-x border-stone-900/80"
@@ -215,5 +238,13 @@ export default function HomePage() {
         />
       </div>
     </div>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={<div className="h-full w-full bg-stone-950" />}>
+      <MainGuideContent />
+    </Suspense>
   );
 }

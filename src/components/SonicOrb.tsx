@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { Mic, Volume2, Sparkles, Loader2, MessageSquare, Send, Radio } from "lucide-react";
+import { Loader2, MessageSquare, Send, Radio } from "lucide-react";
 import { audioEngine } from "@/lib/audio-engine";
 import { Locale } from "@/types/station";
 
@@ -26,7 +26,6 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
   const [typedQuery, setTypedQuery] = useState("");
   const [speechTranscript, setSpeechTranscript] = useState("");
 
-  // 3D Perspective Tilt Coordinates
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -71,7 +70,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
     }
   }, [locale]);
 
-  // 2. Vẽ 60FPS Reactive Soundwave Core trên Canvas 3D
+  // 2. Vẽ 60FPS Reactive Soundwave Core trên Canvas 3D (Đẹp mê hoặc)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -89,17 +88,16 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
       const activeState = isHolding || isPlaying || isProcessing;
       const waveCount = activeState ? 4 : 2;
-      const baseRadius = 45;
+      const baseRadius = 46;
 
       for (let i = 0; i < waveCount; i++) {
         ctx.beginPath();
         const currentPhase = phase + i * 0.8;
-        const amplitude = isHolding ? 14 : isPlaying ? 10 : isProcessing ? 12 : 3;
-        const speed = isHolding ? 0.08 : isPlaying ? 0.05 : isProcessing ? 0.07 : 0.02;
+        const amplitude = isHolding ? 14 : isPlaying ? 10 : isProcessing ? 12 : 3.5;
 
         for (let angle = 0; angle <= Math.PI * 2; angle += 0.05) {
           const offset = Math.sin(angle * 6 + currentPhase) * amplitude + Math.cos(angle * 3 - currentPhase) * (amplitude * 0.5);
-          const r = baseRadius + i * 14 + offset;
+          const r = baseRadius + i * 13 + offset;
           const x = centerX + Math.cos(angle) * r;
           const y = centerY + Math.sin(angle) * r;
 
@@ -114,19 +112,19 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         ctx.lineWidth = 1.5;
 
         if (isHolding) {
-          ctx.strokeStyle = `rgba(45, 212, 191, ${0.7 - i * 0.15})`;
+          ctx.strokeStyle = `rgba(45, 212, 191, ${0.75 - i * 0.15})`;
           ctx.shadowColor = "#2DD4BF";
           ctx.shadowBlur = 12;
         } else if (isProcessing) {
-          ctx.strokeStyle = `rgba(229, 169, 60, ${0.8 - i * 0.18})`;
+          ctx.strokeStyle = `rgba(229, 169, 60, ${0.85 - i * 0.18})`;
           ctx.shadowColor = "#E5A93C";
           ctx.shadowBlur = 14;
         } else if (isPlaying) {
-          ctx.strokeStyle = `rgba(229, 169, 60, ${0.6 - i * 0.12})`;
+          ctx.strokeStyle = `rgba(229, 169, 60, ${0.65 - i * 0.12})`;
           ctx.shadowColor = "#E5A93C";
           ctx.shadowBlur = 8;
         } else {
-          ctx.strokeStyle = `rgba(229, 169, 60, ${0.2 - i * 0.05})`;
+          ctx.strokeStyle = `rgba(229, 169, 60, ${0.25 - i * 0.06})`;
           ctx.shadowBlur = 0;
         }
 
@@ -146,7 +144,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
     };
   }, [isHolding, isPlaying, isProcessing]);
 
-  // 3. Xử lý 3D Perspective Tilt theo con trỏ chuột / điểm chạm
+  // 3. 3D Perspective Tilt theo con trỏ chuột / điểm chạm
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
@@ -161,7 +159,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
     setTilt({ x: 0, y: 0 });
   };
 
-  // 4. Bắt đầu chạm giữ (Hold-to-Talk)
+  // 4. Bắt đầu chạm giữ
   const handleTouchStart = useCallback(
     (e: React.TouchEvent | React.MouseEvent) => {
       e.preventDefault();
@@ -199,7 +197,6 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         }
       }
 
-      // Nếu chạm quá ngắn (< 250ms) -> Mở hộp thoại nhập câu hỏi nhanh
       if (holdDuration < 250) {
         setIsTextModalOpen(true);
         return;
@@ -269,7 +266,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
       onMouseLeave={handleMouseLeave}
       className="h-[50vh] w-full flex flex-col items-center justify-center relative select-none perspective-[1000px]"
     >
-      {/* 1. HIỆU ỨNG SÓNG SONAR LAN TỎA KHÔNG GIAN DƯỚI ĐẤT */}
+      {/* 1. HIỆU ỨNG SÓNG SONAR LAN TỎA */}
       {isPlaying && (
         <div className="absolute w-[280px] h-[280px] rounded-full border border-tunnel-amber/30 animate-sonar pointer-events-none" />
       )}
@@ -305,8 +302,8 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
           }`}
           aria-label="Quả Cầu Âm Bản 3D"
         >
-          {/* Lớp phản chiếu ánh sáng kính vòm (Specular Glass Curved Highlight) */}
-          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none opacity-80" />
+          {/* Lớp phản quang vòm sắc nét (Curved Specular Glare) */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none opacity-85" />
           <div className="absolute top-2 left-6 w-24 h-12 rounded-full bg-white/20 blur-sm transform -rotate-45 pointer-events-none" />
 
           {/* Canvas 3D Reactive Soundwave Core */}
@@ -315,44 +312,65 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
             className="absolute inset-0 w-full h-full pointer-events-none opacity-90"
           />
 
-          {/* Vòng tâm lõi phát sáng (Pulsing Energy Core) */}
+          {/* Vòng tâm lõi phát sáng & MICRO 3D CHUYÊN NGHIỆP */}
           <div
             className={`absolute inset-0 flex flex-col items-center justify-center z-10 ${
               isProcessing ? "animate-spin" : ""
             }`}
           >
-            {/* Lớp hào quang lõi */}
+            {/* Lớp hào quang lõi bao quanh Micro */}
             <div
               className={`w-24 h-24 rounded-full flex items-center justify-center transition-all duration-500 ${
                 isHolding
-                  ? "bg-teal-500/20 shadow-[0_0_30px_#2DD4BF]"
+                  ? "bg-teal-500/25 shadow-[0_0_35px_#2DD4BF]"
                   : isProcessing
-                  ? "bg-amber-500/20 shadow-[0_0_35px_#E5A93C]"
+                  ? "bg-amber-500/25 shadow-[0_0_40px_#E5A93C]"
                   : isPlaying
-                  ? "bg-amber-500/15 shadow-[0_0_25px_#E5A93C]"
+                  ? "bg-amber-500/20 shadow-[0_0_30px_#E5A93C]"
                   : "bg-stone-900/60 shadow-inner"
               }`}
             >
-              {/* 3D High-Tech Minimalist Core Icon */}
+              {/* MICRO 3D ĐIÊU KHẮC KIM LOẠI NGUYÊN KHỐI (3D SCULPTED METALLIC MICROPHONE) */}
               {isProcessing ? (
-                <Loader2 className="w-10 h-10 text-tunnel-amber animate-spin drop-shadow-[0_0_12px_rgba(229,169,60,0.8)]" />
-              ) : isHolding ? (
-                <Mic className="w-10 h-10 text-teal-300 animate-bounce drop-shadow-[0_0_15px_rgba(45,212,191,0.9)]" />
-              ) : isPlaying ? (
-                <Radio className="w-10 h-10 text-tunnel-amber animate-pulse drop-shadow-[0_0_12px_rgba(229,169,60,0.8)]" />
+                <Loader2 className="w-12 h-12 text-tunnel-amber animate-spin drop-shadow-[0_0_12px_rgba(229,169,60,0.8)]" />
               ) : (
-                <div className="flex items-center justify-center space-x-1">
-                  <span className="w-1 h-5 bg-tunnel-amber/90 rounded-full animate-pulse shadow-[0_0_8px_#E5A93C]" />
-                  <span className="w-1 h-8 bg-tunnel-amber rounded-full shadow-[0_0_12px_#E5A93C]" />
-                  <span className="w-1 h-11 bg-tunnel-amber rounded-full shadow-[0_0_15px_#E5A93C]" />
-                  <span className="w-1 h-8 bg-tunnel-amber rounded-full shadow-[0_0_12px_#E5A93C]" />
-                  <span className="w-1 h-5 bg-tunnel-amber/90 rounded-full animate-pulse shadow-[0_0_8px_#E5A93C]" />
+                <div className="relative flex flex-col items-center justify-center transform hover:scale-105 transition-all">
+                  {/* Đầu Lưới Micro 3D (Metallic Mesh Capsule) */}
+                  <div
+                    className={`w-8 h-10 rounded-t-full border-2 relative overflow-hidden transition-all duration-300 ${
+                      isHolding
+                        ? "bg-gradient-to-b from-teal-200 via-teal-500 to-teal-900 border-teal-300 shadow-[0_0_15px_#2DD4BF]"
+                        : isPlaying
+                        ? "bg-gradient-to-b from-amber-200 via-amber-500 to-amber-900 border-amber-300 shadow-[0_0_15px_#E5A93C]"
+                        : "bg-gradient-to-b from-amber-200 via-amber-600 to-stone-900 border-amber-400/90 shadow-[0_0_12px_rgba(229,169,60,0.6)]"
+                    }`}
+                  >
+                    {/* Vân lưới kim loại Micro Studio (Studio Mesh Pattern) */}
+                    <div className="absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:3px_3px] opacity-40" />
+                    {/* Vệt phản quang kim loại (Metallic Specular Highlight) */}
+                    <div className="absolute top-0 left-1 w-2 h-full bg-white/40 blur-[0.5px] rounded-full transform -rotate-12" />
+                  </div>
+
+                  {/* Vành Cổ Micro Kim Loại Vàng (Golden Collar Ring) */}
+                  <div className="w-9 h-1.5 bg-gradient-to-r from-amber-600 via-amber-300 to-amber-700 rounded-sm shadow-sm" />
+
+                  {/* Thân Micro Trụ Kim Loại 3D (Microphone Metallic Stem) */}
+                  <div className="w-4 h-3 bg-gradient-to-r from-stone-800 via-amber-500/80 to-stone-900 rounded-b-md border-x border-amber-400/40" />
+
+                  {/* Vòng gá đỡ chống rung 3D (Shockmount Ring) */}
+                  <div
+                    className={`absolute -bottom-1.5 w-12 h-6 border-b-2 rounded-b-full pointer-events-none transition-all ${
+                      isHolding
+                        ? "border-teal-300 shadow-[0_2px_8px_#2DD4BF]"
+                        : "border-amber-400/80 shadow-[0_2px_8px_rgba(229,169,60,0.5)]"
+                    }`}
+                  />
                 </div>
               )}
             </div>
 
-            {/* Dòng trạng thái phát sáng dưới Icon */}
-            <div className="mt-2.5 flex items-center space-x-1.5 px-3 py-1 rounded-full bg-black/75 border border-white/10 backdrop-blur-md shadow-lg">
+            {/* Dòng trạng thái phát sáng dưới Micro */}
+            <div className="mt-2 flex items-center space-x-1.5 px-3 py-1 rounded-full bg-black/80 border border-white/10 backdrop-blur-md shadow-lg">
               <span
                 className={`w-1.5 h-1.5 rounded-full ${
                   isHolding
@@ -364,7 +382,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                     : "bg-tunnel-amber"
                 }`}
               />
-              <span className="text-[10px] font-bold tracking-widest text-white/95 uppercase font-mono">
+              <span className="text-[10px] sm:text-[11px] font-bold tracking-widest text-white/95 uppercase font-mono">
                 {isProcessing
                   ? locale === "vi"
                     ? "TRA SỬ LIỆU"
@@ -391,13 +409,12 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
       {/* 4. PHỤ ĐỀ THỜI GIAN THỰC KHI ĐANG NÓI VÀO MIC */}
       {speechTranscript && (
-        <div className="absolute -bottom-2 max-w-[90%] px-4 py-2 rounded-xl bg-stone-950/95 border border-tunnel-amber/60 text-xs text-tunnel-amber text-center shadow-2xl backdrop-blur-md animate-in fade-in z-30">
-          <span className="font-mono text-stone-400 mr-1.5">[REC]</span>
-          &ldquo;{speechTranscript}&rdquo;
+        <div className="absolute -bottom-2 max-w-[90%] px-4 py-2 rounded-xl bg-stone-950/95 border border-tunnel-amber/60 text-xs text-tunnel-amber text-center shadow-2xl backdrop-blur-md animate-in fade-in z-30 font-mono">
+          [REC] &ldquo;{speechTranscript}&rdquo;
         </div>
       )}
 
-      {/* 5. MODAL HỎI ĐÁP TOÀN NĂNG (GÕ TEXT & BỘ PROMPT TEST SỬ LIỆU ĐỐI SOÁT) */}
+      {/* 5. MODAL HỎI ĐÁP TOÀN NĂNG (GÕ TEXT & TEST PROMPTS) */}
       {isTextModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-end sm:items-center justify-center p-4">
           <div className="w-full max-w-md bg-stone-950 border border-stone-800 rounded-3xl p-6 space-y-4 shadow-2xl animate-in slide-in-from-bottom duration-200">
@@ -418,7 +435,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
               </div>
               <button
                 onClick={() => setIsTextModalOpen(false)}
-                className="text-stone-400 hover:text-white text-xs px-2.5 py-1.5 rounded-lg bg-stone-900 border border-stone-800"
+                className="text-stone-400 hover:text-white text-xs px-2.5 py-1.5 rounded-lg bg-stone-900 border border-stone-800 font-mono"
               >
                 Đóng
               </button>
@@ -436,7 +453,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                     ? "Nhập câu hỏi lịch sử hoặc thử câu bẫy..."
                     : "Type a historical or test query..."
                 }
-                className="flex-1 px-4 py-3 bg-stone-900/90 border border-stone-700 rounded-2xl text-sm text-tunnel-chalk focus:outline-none focus:border-tunnel-amber placeholder-stone-500 shadow-inner"
+                className="flex-1 px-4 py-3 bg-stone-900 border border-stone-700 rounded-2xl text-sm text-tunnel-chalk focus:outline-none focus:border-tunnel-amber placeholder-stone-500 shadow-inner"
                 autoFocus
               />
               <button
@@ -448,7 +465,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
               </button>
             </div>
 
-            {/* Bộ Prompt Mẫu Đối Soát Sử Liệu & Kiểm Tra Guardrail */}
+            {/* Bộ Prompt Mẫu */}
             <div className="space-y-2 pt-1">
               <div className="flex items-center justify-between text-[11px] font-medium text-stone-400">
                 <span>{locale === "vi" ? "Gợi ý câu hỏi kiểm tra nhanh:" : "Test prompt suite:"}</span>
@@ -459,7 +476,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                   <button
                     key={idx}
                     onClick={() => handleSendTypedQuery(sq)}
-                    className="text-left text-[11px] p-2.5 rounded-xl bg-stone-900/80 border border-stone-800/90 text-stone-300 hover:border-tunnel-amber hover:bg-tunnel-amber/10 hover:text-tunnel-amber active:scale-95 transition-all leading-snug"
+                    className="text-left text-[11px] p-2.5 rounded-xl bg-stone-900/80 border border-stone-800/90 text-stone-300 hover:border-tunnel-amber hover:bg-tunnel-amber/10 hover:text-tunnel-amber active:scale-95 transition-all leading-snug font-sans"
                   >
                     • {sq}
                   </button>
