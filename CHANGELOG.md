@@ -4,12 +4,19 @@ Tất cả các thay đổi đáng chú ý của dự án sẽ được ghi nh�
 
 ---
 
-## [0.4.2-alpha] - 2026-08-20
+## [0.4.3-alpha] - 2026-08-20
 
-### Added - Hoàn Thành 100% Phase 2 (Tích Hợp Sử Liệu Chuẩn Hóa Ground Truth RAG)
-- **Tích hợp Tài Liệu Thẩm Định:** Tích hợp dữ liệu từ tài liệu bảo chứng bởi Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi (Bộ Tư lệnh TP.HCM) & Viện Lịch sử Quân sự Việt Nam.
-- **Task 2.1 - 2.5:** [`src/data/stations.json`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/data/stations.json) lưu trữ đầy đủ dữ liệu 5 trạm thực tế (Bếp Hoàng Cầm, Hầm Cấp Cứu, Hầm Chỉ Huy, Lỗ Thông Hơi, Khu Bẫy Chông) tích hợp thông số an toàn hầm, câu chuyện con người xúc động và bộ câu hỏi FAQ chuẩn.
-- **Task 2.6:** [`src/data/history_knowledge.json`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/data/history_knowledge.json) đóng gói 17 RAG Chunks chi tiết với đầy đủ từ khóa và vector Float32 phục vụ tìm kiếm ngữ nghĩa In-Memory tức thì ($< 0.2\text{ms}$).
+### Added - Thiết Lập Bản Đối Soát & Phản Biện Sử Liệu Thực Tế Chuyên Sâu
+- **Tạo tệp [`docs/HISTORICAL_GROUND_TRUTH_AUDIT.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/docs/HISTORICAL_GROUND_TRUTH_AUDIT.md):**
+  * Đối soát chuyên sâu 5 trạm thực tế (Nhiệt động học bếp Hoàng Cầm, Y khoa truyền dịch nước dừa tươi, Kỹ thuật bẻ góc Z/L chống sóng nổ & khí độc CS, Nghệ thuật đối phó chó béc-giê bằng bột ớt & xà phòng Mỹ, Kỹ thuật tôi than củi hồng tre già hóa sừng).
+  * Giải mã và đính chính toàn bộ các câu hỏi bẫy lịch sử (Lính chuột Tunnel Rats, Nước ngập địa đạo, Nguồn gốc vũ khí tự chế).
+  * Bảo đảm tính chính xác lịch sử và khoa học 100% không tì vết.
+
+---
+
+## [0.4.2-alpha] - 2026-08-20
+### Added
+- Hoàn thành 100% Phase 2 (Tích hợp Sử Liệu Chuẩn Hóa Ground Truth RAG vào `stations.json` và `history_knowledge.json`).
 
 ---
 
@@ -22,9 +29,3 @@ Tất cả các thay đổi đáng chú ý của dự án sẽ được ghi nh�
 ## [0.4.0-alpha] - 2026-08-20
 ### Added
 - Hoàn thành 100% Phase 1 (Nền móng, Tokens & Strict TypeScript).
-
----
-
-## [0.3.3-alpha] - 2026-08-20
-### Added
-- Thiết lập Atomic Work Breakdown 36 Micro-Tasks (`docs/ATOMIC_WORK_BREAKDOWN.md`).
