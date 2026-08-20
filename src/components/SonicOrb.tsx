@@ -132,12 +132,22 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
       }
 
       phase += isHolding ? 0.08 : isPlaying ? 0.04 : 0.02;
-      animationFrameRef.current = requestAnimationFrame(render);
+      if (typeof document !== "undefined" && !document.hidden) {
+        animationFrameRef.current = requestAnimationFrame(render);
+      }
     };
 
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        animationFrameRef.current = requestAnimationFrame(render);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
     render();
 
     return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
