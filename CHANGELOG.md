@@ -4,24 +4,25 @@ Tất cả các thay đổi đáng chú ý của dự án sẽ được ghi nh�
 
 ---
 
-## [0.5.1-beta] - 2026-08-20
+## [0.5.2-beta] - 2026-08-20
 
-### Synchronized - Đồng Bộ Toàn Bộ Tài Liệu Kỹ Thuật, Kỹ Năng & Agent Skill
-- **Đóng gói Antigravity Agent Skill:**
-  * Khởi tạo [`.agent/skills/cuchi-rag-historian/SKILL.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/.agent/skills/cuchi-rag-historian/SKILL.md) với định danh 7 nguồn sử liệu và các quy tắc thẩm định Ground Truth.
-- **Đồng bộ hóa toàn diện tài liệu kỹ thuật (`docs/` & Root):**
-  * [`docs/HISTORICAL_GROUND_TRUTH_AUDIT.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/docs/HISTORICAL_GROUND_TRUTH_AUDIT.md) & [`docs/OFFICIAL_CITATIONS.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/docs/OFFICIAL_CITATIONS.md).
-  * [`docs/HISTORICAL_DATA_SCHEMA.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/docs/HISTORICAL_DATA_SCHEMA.md), [`docs/MASTER_BLUEPRINT.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/docs/MASTER_BLUEPRINT.md), [`MVP.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/MVP.md), [`AGENT.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/AGENT.md), [`README.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/README.md).
-  * Khóa chặt các dữ kiện: Bếp Hoàng Cầm Tầng 2 sâu 5-8m, Bác sĩ Võ Hoàng Lê & cấy Filatov & dùng cây thuốc Nam, Hầm chỉ huy Tầng 3 sâu 8-12m & nút chặn cô lập & bàn đạp Tết Mậu Thân 1968, Lỗ thông hơi xà phòng Mỹ, Bẫy chông cánh cửa/nắp tự động & mìn gạt Anh hùng Tô Văn Đực, Đền Bến Dược 44.357 liệt sĩ trên 632 phiến đá hoa cương.
+### Added - Hệ Thống Phản Biện Chống Ảo Giác, Kích Động & Xuyên Tạc Lịch Sử
+- **Đặc tả chuyên sâu [`docs/HISTORICAL_GUARDRAIL_AND_REBUTTAL_SYSTEM.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/docs/HISTORICAL_GUARDRAIL_AND_REBUTTAL_SYSTEM.md):**
+  * Thiết lập ma trận phản biện 5 nhóm câu hỏi bẫy/kích động (Phủ nhận tính tự nguyện đào hầm, bôi nhọ anh hùng Tô Văn Đực/Võ Hoàng Lê, kích động thù hằn/so sánh phiến diện, nghi ngờ số lượng 44.357 liệt sĩ Đền Bến Dược, bẫy kỹ thuật giải thiêng công sự và jailbreaks/counter-factual prompts).
+- **Hiện thực hóa mã nguồn [`src/lib/guardrails.ts`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/lib/guardrails.ts):**
+  * Module TypeScript sản xuất 3 tầng (`Tier 1: Deterministic Interception`, `Tier 2: Cosine Score >= 0.78`, `Tier 3: Strict Prompt Constraints`).
+  * Trả về câu phản biện đanh thép, đàng hoàng, lịch thiệp từ 7 nguồn sử liệu mà không cần phụ thuộc vào LLM.
+- **Nâng cấp Kỹ năng & Agent Skill:**
+  * [`skills/skill_guardrail.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/skills/skill_guardrail.md) & [`.agent/skills/cuchi-rag-historian/SKILL.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/.agent/skills/cuchi-rag-historian/SKILL.md).
+
+---
+
+## [0.5.1-beta] - 2026-08-20
+### Changed
+- Đồng bộ toàn bộ tài liệu kỹ thuật, dữ liệu 5 trạm và khởi tạo Agent Skill cuchi-rag-historian.
 
 ---
 
 ## [0.5.0-beta] - 2026-08-20
 ### Milestone
 - Hoàn tất 100% đối soát thẩm định 8 Chương Sử Liệu (Zero Hallucination Ground Truth).
-
----
-
-## [0.4.8-alpha] - 2026-08-20
-### Changed
-- Hiệu chỉnh 100% Sử Liệu Thẩm Định Chương 4 & Chương 5 (Hầm Chỉ Huy & Lỗ Thông Hơi Ụ Mối).
