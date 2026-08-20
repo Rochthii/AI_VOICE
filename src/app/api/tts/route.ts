@@ -3,7 +3,7 @@ import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
 import { detectQueryLanguage, cleanSpeechText } from "@/lib/shared";
 
 export const runtime = "nodejs";
-export const maxDuration = 10;
+export const maxDuration = 15;
 
 // Bảng giọng đọc Microsoft Neural cao cấp nhất cho từng ngôn ngữ
 const NEURAL_VOICE_MAP: Record<string, string> = {
@@ -27,6 +27,43 @@ function enhanceSpeechPacing(text: string): string {
     .replace(/\s*([.!?])\s*/g, "$1 ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+/**
+ * TẦNG 0: ElevenLabs AI Premier Voice (Khi có ELEVENLABS_API_KEY sk_...)
+ */
+async function synthesizeWithElevenLabs(text: string): Promise<Buffer> {
+  const apiKey = process.env.ELEVENLABS_API_KEY;
+  if (!apiKey || !apiKey.startsWith("sk_")) {
+    throw new Error("Invalid ElevenLabs API Key format (must start with sk_)");
+  }
+
+  // Voice ID: Sarah / Rachel / Multilingual
+  const voiceId = "EXAVITQu4vr4xnSDxMaL"; // Sarah (Natural, warm, expressive)
+  const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}?output_format=mp3_22050_32`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "xi-api-key": apiKey
+    },
+    body: JSON.stringify({
+      text,
+      model_id: "eleven_multilingual_v2",
+      voice_settings: {
+        stability: 0.5,
+        similarity_boost: 0.8,
+        use_speaker_boost: true
+      }
+    })
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`ElevenLabs API HTTP ${response.status}: ${errorText.slice(0, 150)}`);
+  }
+
+  const arrayBuf = await response.arrayBuffer();
+  return Buffer.from(arrayBuf);
 }
 
 /**
@@ -123,22 +160,35 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // 2. Thử Tầng 1: Microsoft Neural Hoài My (Timeout 2.5s)
     let audioBytes: Buffer | null = null;
     let usedProvider = "microsoft_edge_neural";
 
-    try {
-      audioBytes = await synthesizeWithEdgeTTS(pacedText, voiceName);
-    } catch (edgeErr) {
-      console.warn("[TTS Tier 1 Fail -> Switching to Tier 2 Google TTS]:", edgeErr);
-
-      // 3. Fallback Tầng 2: Google TTS Siêu Tốc (300ms)
+    // 2. Thử Tầng 0: ElevenLabs (nếu có key sk_...)
+    if (process.env.ELEVENLABS_API_KEY && process.env.ELEVENLABS_API_KEY.startsWith("sk_")) {
       try {
-        audioBytes = await synthesizeWithGoogleTTS(pacedText, effectiveLang);
-        usedProvider = "google_tts_stream";
-      } catch (googleErr) {
-        console.error("[TTS Tier 2 Fail]:", googleErr);
-        throw new Error("All TTS providers failed");
+        audioBytes = await synthesizeWithElevenLabs(pacedText);
+        usedProvider = "elevenlabs_multilingual_v2";
+      } catch (elevenErr) {
+        console.warn("[ElevenLabs Tier 0 Fallback]:", elevenErr);
+      }
+    }
+
+    // 3. Thử Tầng 1: Microsoft Neural Hoài My (Timeout 2.5s)
+    if (!audioBytes) {
+      try {
+        audioBytes = await synthesizeWithEdgeTTS(pacedText, voiceName);
+        usedProvider = "microsoft_edge_neural";
+      } catch (edgeErr) {
+        console.warn("[TTS Tier 1 Fail -> Switching to Tier 2 Google TTS]:", edgeErr);
+
+        // 4. Fallback Tầng 2: Google TTS Siêu Tốc (300ms)
+        try {
+          audioBytes = await synthesizeWithGoogleTTS(pacedText, effectiveLang);
+          usedProvider = "google_tts_stream";
+        } catch (googleErr) {
+          console.error("[TTS Tier 2 Fail]:", googleErr);
+          throw new Error("All TTS providers failed");
+        }
       }
     }
 
