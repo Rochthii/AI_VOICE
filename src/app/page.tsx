@@ -129,7 +129,7 @@ function MainGuideContent() {
     }
   }, [playbackState, currentStation, handleSelectStation]);
 
-  // Gửi câu hỏi tới API /api/ask
+  // Gửi câu hỏi tới API /api/ask — SSE Stream + Progressive TTS
   const handleAskQuestion = useCallback(
     async (query: string): Promise<string> => {
       try {
@@ -143,14 +143,64 @@ function MainGuideContent() {
           })
         });
 
-        if (!res.ok) {
+        if (!res.ok || !res.body) {
           throw new Error(`HTTP error ${res.status}`);
         }
 
-        const data = await res.json();
-        return data.answer || "";
+        // Consume SSE stream với Progressive TTS
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let fullAnswer = "";
+        let sentenceBuffer = "";
+        let ttsStarted = false;
+
+        const speakChunk = (text: string) => {
+          if (!text.trim() || typeof window === "undefined" || !("speechSynthesis" in window)) return;
+          window.speechSynthesis.cancel();
+          const utt = new SpeechSynthesisUtterance(text.trim());
+          utt.lang = locale === "vi" ? "vi-VN" : "en-US";
+          utt.rate = 0.92;
+          window.speechSynthesis.speak(utt);
+        };
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          const lines = decoder.decode(value, { stream: true }).split("\n");
+          for (const line of lines) {
+            if (!line.startsWith("data: ")) continue;
+            try {
+              const event = JSON.parse(line.slice(6));
+
+              if (event.type === "chunk" && event.text) {
+                fullAnswer += event.text;
+                sentenceBuffer += event.text;
+                setActiveSubtitle(fullAnswer);
+
+                // Progressive TTS: đọc ngay khi có câu hoàn chỉnh
+                if (sentenceBuffer.match(/[.!?।]/)) {
+                  speakChunk(sentenceBuffer);
+                  sentenceBuffer = "";
+                  ttsStarted = true;
+                  // Dừng audio nền khi AI bắt đầu nói
+                  audioEngine.pause();
+                }
+              } else if (event.type === "done") {
+                // Đọc phần còn lại nếu có
+                if (sentenceBuffer.trim() && !ttsStarted) {
+                  speakChunk(sentenceBuffer);
+                }
+              }
+            } catch {
+              // Partial SSE line, skip
+            }
+          }
+        }
+
+        return fullAnswer;
       } catch (err) {
-        console.warn("[Ask API Offline Fallback]:", err);
+        console.warn("[Ask Streaming Fallback]:", err);
         return locale === "vi"
           ? currentStation.faqs[0]?.answer.vi || currentStation.human_story_hook.vi
           : currentStation.faqs[0]?.answer.en || currentStation.human_story_hook.en;
@@ -158,6 +208,7 @@ function MainGuideContent() {
     },
     [currentStation, locale]
   );
+
 
   // Khi nhận câu trả lời AI -> Đọc qua Web Speech TTS
   const handleAnswerReceived = useCallback(
