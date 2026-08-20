@@ -1,0 +1,22 @@
+{
+  "name": "CHI VOICE — Thuyết Minh Viên AI Địa Đạo Củ Chi",
+  "short_name": "CHI VOICE",
+  "description": "Web App (PWA) thuyết minh viên giọng nói AI thông minh tại Di tích Lịch sử Quốc gia Đặc biệt Địa đạo Củ Chi — Thiết kế Sonic Monolith, chạy ngầm mượt mà cả khi mất 100% sóng dưới lòng đất.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0D0E11",
+  "theme_color": "#0D0E11",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

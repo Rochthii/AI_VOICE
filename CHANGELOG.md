@@ -4,25 +4,33 @@ Tất cả các thay đổi đáng chú ý của dự án sẽ được ghi nh�
 
 ---
 
-## [0.5.2-beta] - 2026-08-20
+## [0.6.0-release] - 2026-08-20
 
-### Added - Hệ Thống Phản Biện Chống Ảo Giác, Kích Động & Xuyên Tạc Lịch Sử
-- **Đặc tả chuyên sâu [`docs/HISTORICAL_GUARDRAIL_AND_REBUTTAL_SYSTEM.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/docs/HISTORICAL_GUARDRAIL_AND_REBUTTAL_SYSTEM.md):**
-  * Thiết lập ma trận phản biện 5 nhóm câu hỏi bẫy/kích động (Phủ nhận tính tự nguyện đào hầm, bôi nhọ anh hùng Tô Văn Đực/Võ Hoàng Lê, kích động thù hằn/so sánh phiến diện, nghi ngờ số lượng 44.357 liệt sĩ Đền Bến Dược, bẫy kỹ thuật giải thiêng công sự và jailbreaks/counter-factual prompts).
-- **Hiện thực hóa mã nguồn [`src/lib/guardrails.ts`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/lib/guardrails.ts):**
-  * Module TypeScript sản xuất 3 tầng (`Tier 1: Deterministic Interception`, `Tier 2: Cosine Score >= 0.78`, `Tier 3: Strict Prompt Constraints`).
-  * Trả về câu phản biện đanh thép, đàng hoàng, lịch thiệp từ 7 nguồn sử liệu mà không cần phụ thuộc vào LLM.
-- **Nâng cấp Kỹ năng & Agent Skill:**
-  * [`skills/skill_guardrail.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/skills/skill_guardrail.md) & [`.agent/skills/cuchi-rag-historian/SKILL.md`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/.agent/skills/cuchi-rag-historian/SKILL.md).
+### Added - Tích Hợp Toàn Diện Supabase Cloud & Hoàn Thiện Sonic Monolith UI
+- **Tích hợp Supabase Cloud Database & RAG Vector:**
+  * Cấu hình biến môi trường an toàn `.env.local` (Bảo mật tuyệt đối, không hardcode API trong code, nằm trong `.gitignore`).
+  * Thực thi migration DDL SQL trên PostgreSQL (`db.skbarkawoovwmubaboiw.supabase.co`).
+  * Tạo thành công bảng `stations`, bảng `history_knowledge` hỗ trợ `vector(10)` và bảng `audit_logs` kiểm toán bất biến.
+  * Đã nạp thành công 5 trạm thực tế và 21 RAG knowledge chunks vào Supabase Database.
+- **Hoàn thiện Giao diện Độc bản Sonic Monolith UI (Zero-Scroll 100vh):**
+  * [`src/components/SafetyBeacon.tsx`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/components/SafetyBeacon.tsx) (Zone 1: 20vh - Thông số độ dài hầm, thời gian di chuyển, lối thoát gần nhất, chuyển đổi song ngữ VI/EN).
+  * [`src/components/SonicOrb.tsx`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/components/SonicOrb.tsx) (Zone 2: 50vh - Quả Cầu Âm Bản 220px tương tác khổng lồ, Web Speech STT, Canvas FFT).
+  * [`src/components/CinemaTicker.tsx`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/components/CinemaTicker.tsx) (Zone 3: 30vh - Phụ đề điện ảnh 1 dòng, Audio timeline, thanh chọn 5 trạm).
+  * [`src/components/PanicModal.tsx`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/components/PanicModal.tsx) (Chế độ cứu hộ khẩn cấp Panic Triple-Tap với đèn dạ quang `#2DD4BF`).
+  * [`src/app/page.tsx`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/app/page.tsx) & [`src/app/layout.tsx`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/app/layout.tsx).
+- **Hoàn thành Lõi Audio Engine & API Route:**
+  * [`src/lib/audio-engine.ts`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/lib/audio-engine.ts) (Singleton Web Audio, Silent unlock iOS, MediaSession chạy ngầm túi quần, ngắt khẩn cấp khi rơi tai nghe).
+  * [`src/lib/rag-engine.ts`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/lib/rag-engine.ts) (In-Memory Cosine Math 15 dòng, quét RAM $< 0.2\text{ms}$).
+  * [`src/lib/supabase.ts`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/lib/supabase.ts) & [`src/app/api/ask/route.ts`](file:///e:/Projects/Project_ca_nhan/AI_VOICE/src/app/api/ask/route.ts).
+
+---
+
+## [0.5.2-beta] - 2026-08-20
+### Added
+- Thiết lập cơ chế phản biện chống ảo giác, kích động và xuyên tạc lịch sử (3-Tier Historical Guardrail & Anti-Revisionism Engine).
 
 ---
 
 ## [0.5.1-beta] - 2026-08-20
 ### Changed
 - Đồng bộ toàn bộ tài liệu kỹ thuật, dữ liệu 5 trạm và khởi tạo Agent Skill cuchi-rag-historian.
-
----
-
-## [0.5.0-beta] - 2026-08-20
-### Milestone
-- Hoàn tất 100% đối soát thẩm định 8 Chương Sử Liệu (Zero Hallucination Ground Truth).
