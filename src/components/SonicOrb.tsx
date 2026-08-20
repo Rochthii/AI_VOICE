@@ -552,7 +552,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
       <div className="relative flex flex-col items-center justify-center my-auto">
         {/* Hào quang nền khuếch tán hữu cơ */}
         <div
-          className={`absolute w-60 h-60 sm:w-68 sm:h-68 rounded-full transition-all duration-700 pointer-events-none ${
+          className={`absolute w-48 h-48 sm:w-56 sm:h-56 rounded-full transition-all duration-700 pointer-events-none ${
             isListening
               ? "bg-emerald-500/35 blur-3xl scale-125"
               : isProcessing
@@ -571,7 +571,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
             transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
             transition: "transform 0.15s ease-out"
           }}
-          className={`w-52 h-52 sm:w-60 sm:h-60 rounded-full relative overflow-hidden transition-all duration-500 transform shadow-2xl flex items-center justify-center border-4 ${
+          className={`w-44 h-44 sm:w-52 sm:h-52 rounded-full relative overflow-hidden transition-all duration-500 transform shadow-2xl flex items-center justify-center border-4 ${
             isProcessing
               ? "bg-gradient-to-br from-[#FFFDF7] via-[#FEF3D6] to-[#FDE68A] border-amber-500 shadow-amber-700/45 animate-pulse cursor-wait pointer-events-none"
               : isListening

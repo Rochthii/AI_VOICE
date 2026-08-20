@@ -45,7 +45,7 @@ export const SafetyBeacon: React.FC<SafetyBeaconProps> = ({
 
   return (
     <>
-      <header className="w-full flex flex-col justify-between p-4 pb-3 bg-gradient-to-b from-[#FAF7F2] to-[#F4F0E6] border-b border-[#E2D9C8] select-none shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+      <header className="w-full flex flex-col justify-between p-4 pt-[max(1rem,env(safe-area-inset-top))] pb-3 bg-gradient-to-b from-[#FAF7F2] to-[#F4F0E6] border-b border-[#E2D9C8] select-none shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
         {/* Hàng 1: Nút điều hướng bản đồ & Nút chọn ngôn ngữ */}
         <div className="flex items-center justify-between mb-2">
           {onOpenOverview && (

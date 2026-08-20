@@ -3,11 +3,11 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "CHI VOICE — Thuyết Minh Viên Giọng Nói AI Địa Đạo Củ Chi",
-  description: "Web App (PWA) thuyết minh viên giọng nói AI thông minh tại Di tích Lịch sử Quốc gia Đặc biệt Địa đạo Củ Chi — Thiết kế Sonic Monolith, chạy ngầm mượt mà cả khi mất 100% sóng dưới lòng đất.",
+  description: "Web App (PWA) thuyết minh viên giọng nói AI thông minh tại Di tích Lịch sử Quốc gia Đặc biệt Địa đạo Củ Chi — Thiết kế Heritage Monolith, chạy ngầm mượt mà cả khi mất 100% sóng dưới lòng đất.",
   applicationName: "CHI VOICE",
   appleWebApp: {
     capable: true,
-    statusBarStyle: "black-translucent",
+    statusBarStyle: "default",
     title: "CHI VOICE"
   },
   formatDetection: {
@@ -25,7 +25,7 @@ export const viewport: Viewport = {
   maximumScale: 1,
   userScalable: false,
   viewportFit: "cover",
-  themeColor: "#0D0E11"
+  themeColor: "#FAF7F2"
 };
 
 export default function RootLayout({
@@ -34,8 +34,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className="dark bg-tunnel-base text-tunnel-chalk h-full overflow-hidden">
-      <body className="h-full w-full overflow-hidden antialiased select-none touch-manipulation bg-tunnel-base">
+    <html lang="vi" className="bg-[#E8E2D5] text-[#1C1917] h-full overflow-hidden">
+      <body className="h-full w-full overflow-hidden antialiased select-none touch-manipulation bg-[#E8E2D5]">
         {children}
         <script
           dangerouslySetInnerHTML={{

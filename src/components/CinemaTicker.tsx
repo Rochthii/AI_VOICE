@@ -33,7 +33,7 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
   };
 
   return (
-    <footer className="w-full flex flex-col justify-end p-4 pb-5 bg-gradient-to-t from-[#EFE8DC] via-[#FAF7F2] to-transparent border-t border-[#E2D9C8] select-none z-10 space-y-2.5 shadow-[0_-2px_8px_rgba(0,0,0,0.02)]">
+    <footer className="w-full flex flex-col justify-end p-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] bg-gradient-to-t from-[#EFE8DC] via-[#FAF7F2] to-transparent border-t border-[#E2D9C8] select-none z-10 space-y-2.5 shadow-[0_-2px_8px_rgba(0,0,0,0.02)]">
       {/* 1. THANH TRƯỢT TIẾN ĐỘ ÂM THANH (HERITAGE PROGRESS BAR) */}
       <div className="w-full flex flex-col space-y-1 px-1">
         <input
