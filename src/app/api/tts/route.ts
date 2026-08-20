@@ -3,7 +3,7 @@ import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
 import { detectQueryLanguage, cleanSpeechText } from "@/lib/shared";
 
 export const runtime = "nodejs";
-export const maxDuration = 10;
+export const maxDuration = 60;
 
 // Bảng giọng đọc Microsoft Neural cao cấp nhất cho từng ngôn ngữ (Hoài My Nam Bộ cho Tiếng Việt)
 const NEURAL_VOICE_MAP: Record<string, string> = {
@@ -30,13 +30,59 @@ function enhanceSpeechPacing(text: string): string {
 }
 
 /**
- * TẦNG 1: Microsoft Edge Neural TTS (HoaiMyNeural) với Timeout 2.5s
+ * Tách văn bản dài thành các đoạn nhỏ dưới 180 ký tự theo dấu chấm câu
+ */
+function splitTextForTTS(text: string, maxLen = 175): string[] {
+  if (text.length <= maxLen) return [text];
+
+  const sentences = text.match(/[^.!?\n]+[.!?\n]*/g) || [text];
+  const chunks: string[] = [];
+  let currentChunk = "";
+
+  for (const sentence of sentences) {
+    const trimmed = sentence.trim();
+    if (!trimmed) continue;
+
+    if ((currentChunk + " " + trimmed).trim().length <= maxLen) {
+      currentChunk = (currentChunk + " " + trimmed).trim();
+    } else {
+      if (currentChunk) {
+        chunks.push(currentChunk);
+      }
+      if (trimmed.length <= maxLen) {
+        currentChunk = trimmed;
+      } else {
+        // Nếu một câu đơn lẻ dài quá 175 ký tự, chia theo dấu phẩy hoặc khoảng trắng
+        const words = trimmed.split(" ");
+        let subChunk = "";
+        for (const word of words) {
+          if ((subChunk + " " + word).trim().length <= maxLen) {
+            subChunk = (subChunk + " " + word).trim();
+          } else {
+            if (subChunk) chunks.push(subChunk);
+            subChunk = word;
+          }
+        }
+        currentChunk = subChunk;
+      }
+    }
+  }
+
+  if (currentChunk.trim()) {
+    chunks.push(currentChunk.trim());
+  }
+
+  return chunks;
+}
+
+/**
+ * TẦNG 1: Microsoft Edge Neural TTS (HoaiMyNeural) với Timeout 7.0s
  */
 async function synthesizeWithEdgeTTS(text: string, voiceName: string): Promise<Buffer> {
   return new Promise(async (resolve, reject) => {
     const timeout = setTimeout(() => {
-      reject(new Error("EdgeTTS WebSocket timeout (2500ms)"));
-    }, 2500);
+      reject(new Error("EdgeTTS WebSocket timeout (7000ms)"));
+    }, 7000);
 
     try {
       const tts = new MsEdgeTTS();
@@ -44,7 +90,7 @@ async function synthesizeWithEdgeTTS(text: string, voiceName: string): Promise<B
 
       const streamResult = tts.toStream(text, {
         pitch: "+0Hz",
-        rate: "+8%",
+        rate: "+6%",
         volume: "+0%"
       });
 
@@ -70,26 +116,34 @@ async function synthesizeWithEdgeTTS(text: string, voiceName: string): Promise<B
 }
 
 /**
- * TẦNG 2: Google TTS Endpoint Siêu Tốc (300ms Failover)
+ * TẦNG 2: Google TTS Endpoint Đa Phân Đoạn (Không bao giờ bị cắt cụt, đọc trọn vẹn 100%)
  */
 async function synthesizeWithGoogleTTS(text: string, lang: string): Promise<Buffer> {
   const cleanLang = lang.slice(0, 2);
-  const truncatedText = text.slice(0, 200);
-  const q = encodeURIComponent(truncatedText);
-  const url = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${cleanLang}&client=tw-ob&q=${q}`;
+  const textChunks = splitTextForTTS(text, 175);
 
-  const res = await fetch(url, {
-    headers: {
-      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+  const fetchChunk = async (chunkText: string): Promise<Buffer> => {
+    const q = encodeURIComponent(chunkText);
+    const url = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${cleanLang}&client=tw-ob&q=${q}`;
+
+    const res = await fetch(url, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+      }
+    });
+
+    if (!res.ok) {
+      throw new Error(`Google TTS chunk returned HTTP ${res.status}`);
     }
-  });
 
-  if (!res.ok) {
-    throw new Error(`Google TTS returned HTTP ${res.status}`);
-  }
+    const arrayBuf = await res.arrayBuffer();
+    return Buffer.from(arrayBuf);
+  };
 
-  const arrayBuf = await res.arrayBuffer();
-  return Buffer.from(arrayBuf);
+  // Tải song song toàn bộ các phân đoạn âm thanh
+  const audioBuffers = await Promise.all(textChunks.map(fetchChunk));
+  return Buffer.concat(audioBuffers);
 }
 
 export async function POST(req: NextRequest) {
@@ -126,17 +180,17 @@ export async function POST(req: NextRequest) {
     let audioBytes: Buffer | null = null;
     let usedProvider = "microsoft_edge_neural";
 
-    // 2. Thử Tầng 1: Microsoft Neural Hoài My (Timeout 2.5s)
+    // 2. Thử Tầng 1: Microsoft Neural Hoài My
     try {
       audioBytes = await synthesizeWithEdgeTTS(pacedText, voiceName);
       usedProvider = "microsoft_edge_neural";
     } catch (edgeErr) {
-      console.warn("[TTS Tier 1 Fail -> Switching to Tier 2 Google TTS]:", edgeErr);
+      console.warn("[TTS Tier 1 Fail -> Switching to Tier 2 Google TTS Multi-Chunk]:", edgeErr);
 
-      // 3. Fallback Tầng 2: Google TTS Siêu Tốc (300ms)
+      // 3. Fallback Tầng 2: Google TTS Đa Phân Đoạn (Ghép nối 100% câu đầy đủ)
       try {
         audioBytes = await synthesizeWithGoogleTTS(pacedText, effectiveLang);
-        usedProvider = "google_tts_stream";
+        usedProvider = "google_tts_stream_multichunk";
       } catch (googleErr) {
         console.error("[TTS Tier 2 Fail]:", googleErr);
         throw new Error("All TTS providers failed");

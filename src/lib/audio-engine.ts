@@ -43,15 +43,19 @@ class AudioEngine {
     this.audioElement.preload = "auto";
     this.audioElement.addEventListener("timeupdate", () => this.notifyListeners());
     this.audioElement.addEventListener("play", () => this.notifyListeners());
+    this.audioElement.addEventListener("playing", () => this.notifyListeners());
     this.audioElement.addEventListener("pause", () => this.notifyListeners());
     this.audioElement.addEventListener("ended", () => this.notifyListeners());
+    this.audioElement.addEventListener("canplay", () => this.notifyListeners());
     this.audioElement.addEventListener("loadedmetadata", () => this.notifyListeners());
 
     this.ttsAudioElement = new Audio();
     this.ttsAudioElement.preload = "auto";
     this.ttsAudioElement.addEventListener("timeupdate", () => this.notifyListeners());
     this.ttsAudioElement.addEventListener("play", () => this.notifyListeners());
+    this.ttsAudioElement.addEventListener("playing", () => this.notifyListeners());
     this.ttsAudioElement.addEventListener("pause", () => this.notifyListeners());
+    this.ttsAudioElement.addEventListener("canplay", () => this.notifyListeners());
     this.ttsAudioElement.addEventListener("loadedmetadata", () => this.notifyListeners());
     this.ttsAudioElement.addEventListener("ended", () => this.notifyListeners());
 
@@ -202,7 +206,11 @@ class AudioEngine {
       if (this.ttsAudioElement) {
         this.ttsAudioElement.src = audioUrl;
         this.ttsAudioElement.load();
-        await this.ttsAudioElement.play();
+        try {
+          await this.ttsAudioElement.play();
+        } catch (playErr) {
+          console.warn("[AudioEngine] Immediate TTS autoplay prevented by browser policy:", playErr);
+        }
         this.notifyListeners();
       }
     } catch (err) {
