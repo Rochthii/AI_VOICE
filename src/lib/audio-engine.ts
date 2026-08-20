@@ -162,7 +162,32 @@ class AudioEngine {
     try {
       await this.audioElement.play();
     } catch (err) {
-      console.warn("[AudioEngine] Autoplay was prevented by browser policy:", err);
+      console.warn("[AudioEngine] MP3 playback fallback to Web Speech TTS:", err);
+      // Fallback tự động đọc nội dung thuyết minh bằng Web Speech API
+      this.speakFallbackText(title, stationName, locale);
+    }
+  }
+
+  /**
+   * Phát giọng đọc thuyết minh qua Web Speech API khi file MP3 chưa tải hoặc môi trường test
+   */
+  public speakFallbackText(title: string, content: string, locale: "vi" | "en" = "vi"): void {
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+      const textToRead = `${title}. ${content}`;
+      const utterance = new SpeechSynthesisUtterance(textToRead);
+      utterance.lang = locale === "vi" ? "vi-VN" : "en-US";
+      utterance.rate = 0.95;
+      
+      utterance.onstart = () => {
+        this.notifyListeners();
+      };
+      
+      utterance.onend = () => {
+        this.notifyListeners();
+      };
+
+      window.speechSynthesis.speak(utterance);
     }
   }
 

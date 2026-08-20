@@ -170,47 +170,50 @@ export default function HomePage() {
   };
 
   return (
-    <div
-      onClick={handleScreenTouch}
-      className="h-[100dvh] w-full flex flex-col justify-between bg-tunnel-base text-tunnel-chalk overflow-hidden relative select-none font-sans"
-    >
-      {/* ZONE 1: BEACON AN TOÀN & ĐỊNH HƯỚNG (20vh) */}
-      <SafetyBeacon
-        station={currentStation}
-        locale={locale}
-        onToggleLocale={handleToggleLocale}
-        isOffline={isOffline}
-      />
+    <div className="w-full h-[100dvh] bg-stone-950 flex items-center justify-center overflow-hidden">
+      {/* KHUNG DI ĐỘNG SONIC MONOLITH (MAX-W-MD TRÊN DESKTOP, 100% TRÊN MOBILE) */}
+      <div
+        onClick={handleScreenTouch}
+        className="h-[100dvh] w-full max-w-md flex flex-col justify-between bg-tunnel-base text-tunnel-chalk overflow-hidden relative select-none font-sans shadow-2xl border-x border-stone-900/80"
+      >
+        {/* ZONE 1: BEACON AN TOÀN & ĐỊNH HƯỚNG (20vh) */}
+        <SafetyBeacon
+          station={currentStation}
+          locale={locale}
+          onToggleLocale={handleToggleLocale}
+          isOffline={isOffline}
+        />
 
-      {/* ZONE 2: QUẢ CẦU ÂM BẢN TƯƠNG TÁC (50vh) */}
-      <SonicOrb
-        stationId={currentStation.id}
-        locale={locale}
-        isPlaying={playbackState.isPlaying}
-        onAskQuestion={handleAskQuestion}
-        onAnswerReceived={handleAnswerReceived}
-      />
+        {/* ZONE 2: QUẢ CẦU ÂM BẢN TƯƠNG TÁC (50vh) */}
+        <SonicOrb
+          stationId={currentStation.id}
+          locale={locale}
+          isPlaying={playbackState.isPlaying}
+          onAskQuestion={handleAskQuestion}
+          onAnswerReceived={handleAnswerReceived}
+        />
 
-      {/* ZONE 3: DÒNG THỜI GIAN & PHỤ ĐỀ CINEMA TICKER (30vh) */}
-      <CinemaTicker
-        stations={stations}
-        currentStation={currentStation}
-        locale={locale}
-        isPlaying={playbackState.isPlaying}
-        currentTime={playbackState.currentTime}
-        duration={playbackState.duration}
-        activeSubtitle={activeSubtitle}
-        onSelectStation={handleSelectStation}
-        onTogglePlay={handleTogglePlay}
-      />
+        {/* ZONE 3: DÒNG THỜI GIAN & PHỤ ĐỀ CINEMA TICKER (30vh) */}
+        <CinemaTicker
+          stations={stations}
+          currentStation={currentStation}
+          locale={locale}
+          isPlaying={playbackState.isPlaying}
+          currentTime={playbackState.currentTime}
+          duration={playbackState.duration}
+          activeSubtitle={activeSubtitle}
+          onSelectStation={handleSelectStation}
+          onTogglePlay={handleTogglePlay}
+        />
 
-      {/* MODAL CỨU HỘ KHẨN CẤP (PANIC TRIPLE-TAP TORCH) */}
-      <PanicModal
-        isOpen={isPanicOpen}
-        station={currentStation}
-        locale={locale}
-        onClose={() => setIsPanicOpen(false)}
-      />
+        {/* MODAL CỨU HỘ KHẨN CẤP (PANIC TRIPLE-TAP TORCH) */}
+        <PanicModal
+          isOpen={isPanicOpen}
+          station={currentStation}
+          locale={locale}
+          onClose={() => setIsPanicOpen(false)}
+        />
+      </div>
     </div>
   );
 }
