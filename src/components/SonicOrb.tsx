@@ -526,7 +526,11 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
 
         mediaRecorder.start(100);
       } catch (err) {
-        console.warn("[MediaRecorder Error]:", err);
+        console.warn("[MediaRecorder/GetUserMedia Error]:", err);
+        setIsListening(false);
+        isListeningRef.current = false;
+        setIsTextModalOpen(true);
+        return;
       }
     }
 

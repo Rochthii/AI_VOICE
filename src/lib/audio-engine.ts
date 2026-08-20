@@ -70,6 +70,10 @@ class AudioEngine {
   public async unlockAudioContext(): Promise<void> {
     if (typeof window === "undefined") return;
 
+    if (!this.audioElement || !this.ttsAudioElement) {
+      this.initAudioElements();
+    }
+
     try {
       const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
       if (!this.audioContext && AudioCtx) {
@@ -86,6 +90,13 @@ class AudioEngine {
         source.buffer = buffer;
         source.connect(this.audioContext.destination);
         source.start(0);
+      }
+
+      // Mở khóa trước phần tử HTMLAudio cho Safari để tránh chặn async playback
+      if (this.ttsAudioElement && !this.isUnlocked) {
+        this.ttsAudioElement.play().then(() => {
+          this.ttsAudioElement?.pause();
+        }).catch(() => {});
       }
 
       this.isUnlocked = true;
@@ -219,7 +230,22 @@ class AudioEngine {
         try {
           await this.ttsAudioElement.play();
         } catch (playErr) {
-          console.warn("[AudioEngine] Immediate TTS autoplay prevented by browser policy:", playErr);
+          console.warn("[AudioEngine] HTMLAudio play failed, falling back to Web Audio decoding:", playErr);
+          if (this.audioContext) {
+            try {
+              const arrayBuffer = await audioBlob.arrayBuffer();
+              const decodedBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+              const source = this.audioContext.createBufferSource();
+              source.buffer = decodedBuffer;
+              source.connect(this.audioContext.destination);
+              source.start(0);
+              source.onended = () => {
+                this.notifyListeners();
+              };
+            } catch (decErr) {
+              console.warn("[AudioEngine] Web Audio decode failed:", decErr);
+            }
+          }
         }
       }
     } catch (err) {
