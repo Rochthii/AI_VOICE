@@ -8,7 +8,7 @@ import { audioEngine } from "@/lib/audio-engine";
 import { formatAudioDuration } from "@/lib/shared";
 
 interface CinemaTickerProps {
-  currentStation: Station;
+  currentStation: Station | null;
   locale: Locale;
   isPlaying: boolean;
   currentTime: number;
@@ -90,6 +90,11 @@ export const CinemaTicker: React.FC<CinemaTickerProps> = ({
   const fullText = useMemo(() => {
     if (activeSubtitle && activeSubtitle.trim().length > 0) {
       return activeSubtitle.trim();
+    }
+    if (!currentStation) {
+      return locale === "vi"
+        ? "Di tích Lịch sử Quốc gia Đặc biệt Địa đạo Củ Chi — 'Thành phố trong lòng đất' kỳ vĩ với hơn 250km đường hầm chia làm 3 tầng liên hoàn."
+        : "Cu Chi Tunnels Special National Relic — an underground city spanning over 250km across 3 hand-dug subterranean levels.";
     }
     const summary = getLocalizedText(currentStation.short_summary, locale);
     const storyHook = getLocalizedText(currentStation.human_story_hook, locale);

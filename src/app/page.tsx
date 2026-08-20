@@ -18,21 +18,22 @@ function MainGuideContent() {
   const searchParams = useSearchParams();
   const stationParam = searchParams.get("station") || searchParams.get("id");
 
-  // Tìm trạm tương ứng từ URL param hoặc mặc định trạm 01
-  const initialStation =
-    stations.find((s) => s.id === stationParam || s.qr_code_key === stationParam) || stations[0];
+  // Tìm trạm tương ứng nếu quét QR/URL, nếu vào tự nhiên thì là NULL (Tổng Quan Toàn Cảnh)
+  const matchedStation = stationParam
+    ? stations.find((s) => s.id === stationParam || s.qr_code_key === stationParam) || null
+    : null;
 
-  const [currentStation, setCurrentStation] = useState<Station>(initialStation);
+  const [currentStation, setCurrentStation] = useState<Station | null>(matchedStation);
   const [locale, setLocale] = useState<Locale>("vi");
   const [isOffline, setIsOffline] = useState<boolean>(false);
-  const [isOverviewOpen, setIsOverviewOpen] = useState<boolean>(!stationParam);
+  const [isOverviewOpen, setIsOverviewOpen] = useState<boolean>(!matchedStation);
   const [activeSubtitle, setActiveSubtitle] = useState<string>("");
   const [isPanicOpen, setIsPanicOpen] = useState<boolean>(false);
   const [playbackState, setPlaybackState] = useState<AudioPlaybackState>({
     isPlaying: false,
     currentTime: 0,
     duration: 0,
-    stationId: initialStation.id,
+    stationId: matchedStation?.id || "global_overview",
     locale: "vi"
   });
 
@@ -49,7 +50,9 @@ function MainGuideContent() {
         const title = getLocalizedText(target.title, locale);
         const summary = getLocalizedText(target.short_summary, locale);
         const story = getLocalizedText(target.human_story_hook, locale);
-        const audioUrl = (target.audio_assets as Record<string, { url: string }>)?.[locale]?.url || (target.audio_assets as Record<string, { url: string }>)?.[locale === "vi" ? "vi" : "en"]?.url;
+        const audioUrl =
+          (target.audio_assets as Record<string, { url: string }>)?.[locale]?.url ||
+          (target.audio_assets as Record<string, { url: string }>)?.[locale === "vi" ? "vi" : "en"]?.url;
         audioEngine.playStationNarration(target.id, title, summary, story, locale, audioUrl);
       }
     }
@@ -80,7 +83,7 @@ function MainGuideContent() {
     return () => unsubscribe();
   }, []);
 
-  // Chọn trạm và phát thuyết minh (Ưu tiên MP3 có sẵn, fallback sang ElevenLabs/Neural)
+  // Chọn trạm và phát thuyết minh (Ưu tiên MP3 có sẵn, fallback sang Neural)
   const handleSelectStation = useCallback(
     (station: Station) => {
       setCurrentStation(station);
@@ -89,7 +92,9 @@ function MainGuideContent() {
       const title = getLocalizedText(station.title, locale);
       const summary = getLocalizedText(station.short_summary, locale);
       const story = getLocalizedText(station.human_story_hook, locale);
-      const audioUrl = (station.audio_assets as Record<string, { url: string }>)?.[locale]?.url || (station.audio_assets as Record<string, { url: string }>)?.[locale === "vi" ? "vi" : "en"]?.url;
+      const audioUrl =
+        (station.audio_assets as Record<string, { url: string }>)?.[locale]?.url ||
+        (station.audio_assets as Record<string, { url: string }>)?.[locale === "vi" ? "vi" : "en"]?.url;
       audioEngine.playStationNarration(station.id, title, summary, story, locale, audioUrl);
     },
     [locale]
@@ -99,11 +104,15 @@ function MainGuideContent() {
   const handleToggleLocale = useCallback(
     (newLocale: Locale) => {
       setLocale(newLocale);
-      const title = getLocalizedText(currentStation.title, newLocale);
-      const summary = getLocalizedText(currentStation.short_summary, newLocale);
-      const story = getLocalizedText(currentStation.human_story_hook, newLocale);
-      const audioUrl = (currentStation.audio_assets as Record<string, { url: string }>)?.[newLocale]?.url || (currentStation.audio_assets as Record<string, { url: string }>)?.[newLocale === "vi" ? "vi" : "en"]?.url;
-      audioEngine.playStationNarration(currentStation.id, title, summary, story, newLocale, audioUrl);
+      if (currentStation) {
+        const title = getLocalizedText(currentStation.title, newLocale);
+        const summary = getLocalizedText(currentStation.short_summary, newLocale);
+        const story = getLocalizedText(currentStation.human_story_hook, newLocale);
+        const audioUrl =
+          (currentStation.audio_assets as Record<string, { url: string }>)?.[newLocale]?.url ||
+          (currentStation.audio_assets as Record<string, { url: string }>)?.[newLocale === "vi" ? "vi" : "en"]?.url;
+        audioEngine.playStationNarration(currentStation.id, title, summary, story, newLocale, audioUrl);
+      }
     },
     [currentStation]
   );
@@ -113,13 +122,22 @@ function MainGuideContent() {
     if (playbackState.isPlaying) {
       audioEngine.pause();
     } else {
-      if (!playbackState.duration || playbackState.stationId !== currentStation.id) {
-        handleSelectStation(currentStation);
+      if (currentStation) {
+        if (!playbackState.duration || playbackState.stationId !== currentStation.id) {
+          handleSelectStation(currentStation);
+        } else {
+          audioEngine.play();
+        }
       } else {
-        audioEngine.play();
+        // Đang ở Tổng Quan Toàn Cảnh -> Phát bài giới thiệu toàn cảnh Củ Chi
+        const globalIntro =
+          locale === "vi"
+            ? "Di tích Lịch sử Quốc gia Đặc biệt Địa đạo Củ Chi — 'Thành phố trong lòng đất' kỳ vĩ với hơn 250km đường hầm chia làm 3 tầng liên hoàn đào hoàn toàn thủ công, là biểu tượng kiên cường bất khuất của dân tộc Việt Nam."
+            : "Cu Chi Tunnels Special National Relic — an underground city spanning over 250km across 3 hand-dug subterranean levels, standing as an enduring symbol of Vietnamese revolutionary heroism.";
+        audioEngine.playNeuralTTS(globalIntro, locale);
       }
     }
-  }, [playbackState, currentStation, handleSelectStation]);
+  }, [playbackState, currentStation, handleSelectStation, locale]);
 
   // Gửi câu hỏi tới API /api/ask — SSE Stream + Instant Neural TTS
   const handleAskQuestion = useCallback(
@@ -130,7 +148,7 @@ function MainGuideContent() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             query,
-            current_station_id: currentStation.id,
+            current_station_id: currentStation ? currentStation.id : "global_overview",
             lang: locale
           })
         });
@@ -171,7 +189,11 @@ function MainGuideContent() {
         return fullAnswer;
       } catch (err) {
         console.warn("[Ask Streaming Fallback]:", err);
-        const fallback = getLocalizedText(currentStation.human_story_hook, locale);
+        const fallback = currentStation
+          ? getLocalizedText(currentStation.human_story_hook, locale)
+          : locale === "vi"
+          ? "Địa đạo Củ Chi dài hơn 250km với 3 tầng ngầm kiên cố trong lòng đất sét pha đá ong."
+          : "Cu Chi tunnels span over 250km across 3 fortified subterranean layers.";
         audioEngine.playNeuralTTS(fallback, locale);
         return fallback;
       }
@@ -180,13 +202,10 @@ function MainGuideContent() {
   );
 
   // Khi nhận câu trả lời AI -> Đồng bộ phụ đề
-  const handleAnswerReceived = useCallback(
-    (answer: string) => {
-      if (!answer?.trim()) return;
-      setActiveSubtitle(answer);
-    },
-    []
-  );
+  const handleAnswerReceived = useCallback((answer: string) => {
+    if (!answer?.trim()) return;
+    setActiveSubtitle(answer);
+  }, []);
 
   // Panic Triple-Tap
   const handleScreenTouch = () => {
@@ -214,13 +233,16 @@ function MainGuideContent() {
           station={currentStation}
           locale={locale}
           onToggleLocale={handleToggleLocale}
-          onOpenOverview={() => setIsOverviewOpen(true)}
+          onOpenOverview={() => {
+            setCurrentStation(null);
+            setIsOverviewOpen(true);
+          }}
           isOffline={isOffline}
         />
 
         {/* ZONE 2: QUẢ CẦU ÂM BẢN TƯƠNG TÁC (50vh) */}
         <SonicOrb
-          stationId={currentStation.id}
+          stationId={currentStation ? currentStation.id : "global_overview"}
           locale={locale}
           isPlaying={playbackState.isPlaying}
           onAskQuestion={handleAskQuestion}
@@ -241,7 +263,7 @@ function MainGuideContent() {
         {/* MODAL CỨU HỘ KHẨN CẤP (PANIC TRIPLE-TAP TORCH) */}
         <PanicModal
           isOpen={isPanicOpen}
-          station={currentStation}
+          station={currentStation || stations[0]}
           locale={locale}
           onClose={() => setIsPanicOpen(false)}
         />
