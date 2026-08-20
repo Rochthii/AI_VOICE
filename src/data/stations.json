@@ -88,11 +88,11 @@
     "qr_code_key": "QR_HOSPITAL_02",
     "title": {
       "vi": "Bệnh Xá & Hầm Phẫu Thuật Dã Chiến",
-      "en": "Field Hospital & Underground Surgery"
+      "en": "Field Hospital & Underground Surgical Bunker"
     },
     "short_summary": {
-      "vi": "Bệnh xá kiên cố tại tầng 2 sâu 5-7m, nơi diễn ra các ca phẫu thuật phức tạp dưới ánh đèn chai đom đóm.",
-      "en": "Fortified field hospital at Level 2 (5-7m depth) where complex surgeries were performed under fire."
+      "vi": "Khu phức hợp y tế bố trí liên hoàn tại Tầng 2 địa đạo (sâu 5m – 8m), nơi diễn ra các ca phẫu thuật cứu chữa thương binh trong không gian lom khom dưới lòng đất.",
+      "en": "Underground medical complex at Level 2 (5m – 8m depth) where surgeons treated wounded fighters in crouched subterranean quarters."
     },
     "safety": {
       "tunnel_length_meters": 10,
@@ -103,14 +103,14 @@
         "en": "Emergency exit leading to underground water well on the left after 6 meters."
       },
       "reassurance_message": {
-        "vi": "Hầm bệnh xá nằm sâu 6 mét, nhiệt độ mát mẻ 24-26 độ C quanh năm và cách ly tiếng ồn bom đạn.",
-        "en": "The hospital bunker sits 6m deep, maintaining a cool 24-26°C year-round and insulated from surface bomb noise."
+        "vi": "Hầm bệnh xá nằm ở Tầng 2 sâu 5m - 8m, an toàn trước bom phá thông thường. Chiều cao hầm chỉ vừa đủ đi lom khom, xin quý khách di chuyển chậm và cẩn thận.",
+        "en": "The hospital bunker sits at Level 2 (5m - 8m depth), protected from light demolition bombs. Tunnel height requires stooping, please move slowly and carefully."
       },
       "difficulty_level": "medium"
     },
     "human_story_hook": {
-      "vi": "Dưới ánh sáng đèn măng-sông bọc chụp sắt và chai đom đóm, các bác sĩ quân y đã quỳ gối 2 đến 4 tiếng đồng hồ trên nền đất ẩm để thực hiện những ca mổ cứu sống đồng đội.",
-      "en": "Under shielded pressure lamps and firefly bottles, military surgeons kneeled for 2 to 4 hours on damp clay floors performing life-saving operations."
+      "vi": "Hình tượng Bác sĩ Võ Hoàng Lê quả cảm thực hiện những ca phẫu thuật ngoại khoa phức tạp dưới ngọn đèn dầu le lói trong lòng đất ẩm tối, vừa cầm dao mổ vừa chỉ huy bảo vệ toàn vẹn khu bệnh viện ngầm.",
+      "en": "Dr. Vo Hoang Le courageously performed complex surgeries under dim oil lamps in damp earth, wielding surgical scalpels while commanding defensive operations to protect the underground hospital."
     },
     "audio_assets": {
       "vi": {
@@ -126,30 +126,30 @@
     },
     "key_facts": [
       {
-        "vi": "Nằm ở tầng 2 độ sâu 5m - 7m, duy trì nhiệt độ mát mẻ 24°C - 26°C.",
-        "en": "Located at Level 2 (5m - 7m depth), maintaining a cool 24°C - 26°C temperature."
+        "vi": "Bố trí liên hoàn tại Tầng 2 (độ sâu 5m – 8m), an toàn trước các loại bom phá thông thường cỡ nhỏ.",
+        "en": "Positioned at Level 2 (5m – 8m depth), secure against conventional light demolition bombs."
       },
       {
-        "vi": "Sáng kiến truyền dịch tĩnh mạch cấp cứu bằng nước dừa tươi nguyên buồng vô trùng.",
-        "en": "Pioneered intravenous emergency hydration using sterile fresh coconut water."
+        "vi": "Phát huy tinh thần tự lực cánh sinh với phong trào dùng cây thuốc Nam, toa thuốc căn bản và sáng kiến cấy Phi-la-tốp (Filatov).",
+        "en": "Pioneered self-reliance with herbal medicine, essential formulas, and the Filatov tissue therapy method."
       },
       {
-        "vi": "Bác sĩ phẫu thuật trong tư thế ngồi bệt hoặc quỳ gối liên tục 2 đến 4 tiếng.",
-        "en": "Surgeons operated while sitting flat or kneeling continuously for 2 to 4 hours."
+        "vi": "Gắn liền với tấm gương Bác sĩ Võ Hoàng Lê vừa phẫu thuật cứu thương vừa chỉ huy phòng thủ bảo vệ bệnh viện ngầm.",
+        "en": "Exemplified by Dr. Vo Hoang Le who performed intricate surgeries and commanded military defense of the hospital."
       }
     ],
     "faqs": [
       {
         "id": "faq_hospital_01",
         "question": {
-          "vi": "Quân y Củ Chi truyền dịch cho thương binh bằng gì khi hết thuốc?",
-          "en": "What did Cu Chi medics use for IV fluids when supplies ran out?"
+          "vi": "Lực lượng quân y Củ Chi đã khắc phục tình trạng thiếu thuốc men dưới hầm như thế nào?",
+          "en": "How did Cu Chi medics overcome acute medicine shortages underground?"
         },
         "answer": {
-          "vi": "Khi cạn kiệt dung dịch sinh lý do bị bao vây cấm vận, quân y Củ Chi sử dụng nước dừa tươi nguyên buồng đã tiệt trùng vỏ ngoài để truyền tĩnh mạch trực tiếp bù nước và điện giải cho thương binh nặng.",
-          "en": "Under severe blockade without saline, medics sterilized whole fresh coconuts and used the natural water as direct intravenous electrolyte fluid for severely wounded soldiers."
+          "vi": "Trước tình trạng bị bao vây phong tỏa cạn kiệt thuốc men, quân y Củ Chi đẩy mạnh phong trào 'vệ sinh phòng bệnh', đẩy mạnh 'sử dụng cây thuốc Nam' và 'những toa thuốc căn bản' để tự điều chế thuốc, đồng thời áp dụng rộng rãi sáng kiến 'cấy Phi-la-tốp' để nâng cao thể trạng, tăng đề kháng cho thương binh.",
+          "en": "Faced with blockade and medicine shortages, medics promoted hygiene protocols, utilized traditional herbal medicine, formulated essential prescriptions, and widely adopted the Filatov tissue therapy method to boost wounded soldiers' immunity."
         },
-        "keywords": ["nước dừa", "truyền dịch", "thuốc", "dung dịch sinh lý"]
+        "keywords": ["thuốc men", "cây thuốc Nam", "cấy Phi-la-tốp", "Filatov", "vệ sinh phòng bệnh", "tự lực cánh sinh"]
       },
       {
         "id": "faq_hospital_02",

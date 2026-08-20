@@ -45,12 +45,18 @@
 
 ---
 
-### 📍 TRẠM 02: BỆNH XÁ DÃ CHIẾN & TRUYỀN DỊCH NƯỚC DỪA TƯƠI
-* 🛑 **Nghi vấn y khoa:** Nước dừa tươi có thực sự truyền tĩnh mạch được cho người không?
-* ✅ **Sự thật y khoa & Lịch sử đối soát:**
-  * Nước dừa tươi nguyên buồng chưa bị nứt vỏ là một môi trường **hoàn toàn vô trùng** và có nồng độ chất điện giải (Kali, Canxi, Magie, Glucose tự nhiên) tương thích cao với huyết tương người.
-  * Trong điều kiện bị bao vây cấm vận cạn kiệt dịch truyền $NaCl\text{ }0.9\%$, quân y Củ Chi đã tiệt trùng vỏ dừa bằng cồn, dùng kim tiêm lấy nước dừa truyền tĩnh mạch cứu sống hàng trăm thương binh nặng mất máu/mất nước. (Sáng kiến này đã được Viện Lịch sử Quân sự ghi nhận là một trong những kỳ tích y học chiến trường tiêu biểu).
-* 🔬 **Quy tắc an toàn ánh sáng:** Tuyệt đối cấm đèn dầu hở vì trong hầm kín sâu 6m, đèn dầu sẽ đốt sạch lượng Oxy ít ỏi. Bác sĩ phải dùng bình ắc-quy 6V bọc kính bảo vệ hoặc đèn măng-sông có chụp sắt hướng tia sáng cục bộ.
+### 📍 TRẠM 02: BỆNH XÁ DÃ CHIẾN & PHÒNG MỔ NGẦM
+* 🛑 **Ngộ nhận / Suy diễn ngoài luồng cần loại bỏ:**
+  * Lược bỏ thông tin nhiệt độ lý tưởng $24^\circ\text{C}-26^\circ\text{C}$ (thực tế hầm rất nóng bức, ẩm ướt, thiếu vệ sinh).
+  * Lược bỏ phân chia 3 phân khu chi tiết, cáng tre 2 tầng, đèn măng-sông/ắc-quy 6V, nồi hấp áp suất và tư thế quỳ gối 2-4 tiếng.
+  * Lược bỏ truyền dịch nước dừa tươi (không có trong tài liệu nguồn lưu trữ tại Củ Chi).
+* ✅ **Sự thật lịch sử & Y tế đối soát chuẩn hóa:**
+  * **Vị trí chiến thuật:** Bố trí liên hoàn ở **Tầng 2 (Tầng Trung)** ở độ sâu cách mặt đất từ **5m – 8m** (hoặc dao động từ 3m – 10m tùy khu vực), an toàn trước bom phá thông thường cỡ nhỏ.
+  * **Môi trường & Không gian:** Không gian chật hẹp, chiều cao chỉ đủ đi lom khom; thiếu ánh sáng (dùng đèn dầu hoặc vật liệu đơn giản); vi khí ẩm ướt, nóng bức dễ gây bệnh da liễu, ký sinh trùng, xương khớp.
+  * **Sáng kiến y tế tự lực cánh sinh:** Đẩy mạnh *"vệ sinh phòng bệnh"*, *"sử dụng cây thuốc Nam"*, *"những toa thuốc căn bản"* và sáng kiến *"cấy Phi-la-tốp"* (Filatov) tăng cường thể trạng cho thương binh nặng.
+  * **Mạng lưới y tế nhân dân:** Trạm y tế, nhà bảo sinh và đội cứu thương tại khắp các xã do du kích và Hội Mẹ chiến sĩ hỗ trợ.
+  * **Hình tượng người thầy thuốc:** **Bác sĩ Võ Hoàng Lê (Dr. Vo Hoang Le)** quả cảm mổ ngoại khoa phức tạp dưới hầm tối và trực tiếp chỉ huy phòng thủ quân sự bảo vệ bệnh viện ngầm.
+  * **Bảo tồn ngày nay:** Phục dựng dụng cụ y tế thời chiến và vườn thuốc Nam dã chiến.
 
 ---
 

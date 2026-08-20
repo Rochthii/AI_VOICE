@@ -57,17 +57,28 @@ Hệ thống địa đạo được đào trên một khu vực có địa chấ
 
 ## **CHƯƠNG 3: CHI TIẾT TRẠM 02 – BỆNH XÁ & HẦM PHẪU THUẬT DÃ CHIẾN**
 
-### **3.1. Địa tầng & Cấu trúc mặt bằng**
+### **3.1. Địa tầng & Không gian hoạt động**
+*   **Vị trí chiến thuật:** Trong cấu trúc đa tầng phức tạp của địa đạo Củ Chi, các công trình phục vụ y tế như **bệnh xá dã chiến, hầm giải phẫu, hầm y tế và hầm nuôi dưỡng thương binh** được ưu tiên bố trí liên hoàn tại **Tầng 2 (Tầng Trung)**, tức ở độ sâu cách mặt đất từ **5m – 8m** (hoặc dao động từ 3m – 10m tùy theo địa hình kết nối ngầm). Độ sâu này bảo đảm an toàn cho các hoạt động cứu chữa thương bệnh binh trước sức công phá của các loại bom phá thông thường cỡ nhỏ.
+*   **Không gian hạn chế:** Hoạt động điều trị dưới lòng đất diễn ra trong không gian vô cùng chật hẹp, đường hầm địa đạo có chiều cao rất hạn chế, chỉ vừa đủ cho một người đi lom khom. Hệ thống dưỡng khí được cung cấp thụ động qua các đường ống dẫn khí kết nối với lỗ thông hơi ngụy trang tinh vi sát mặt đất dưới dạng các ụ đất, ụ mối đùn hoặc gốc cây.
+*   **Môi trường khắc nghiệt:** Cuộc sống sinh hoạt và cứu thương dưới lòng hầm phải đối mặt với hoàn cảnh cực kỳ khắc nghiệt do thiếu ánh sáng, không khí ẩm ướt, nóng bức và điều kiện vệ sinh kém. Đây là nguyên nhân khiến phần lớn những người bám trụ dưới địa đạo thời gian dài đều bị nhiễm ký sinh trùng, mắc các bệnh ngoài da (da liễu) và các bệnh về xương khớp.
 
-> * **Vị trí:** Đặt tại tầng 2 địa đạo (độ sâu 5m – 7m). Độ sâu này giúp tiêu triệt rung chấn từ bom pháo mặt đất và duy trì nhiệt độ hầm mát mẻ ổn định ở mức 24°C – 26°C quanh năm.  
-> * **Phân khu chức năng:** Hầm tiếp nhận & phân loại thương binh (gần trục giao thông hào chính), Hầm phẫu thuật dã chiến (trần vòm kiên cố, trải bạt nilông vô trùng dã chiến), Hầm hậu phẫu (hệ thống cáng tre hai tầng treo dọc vách đất).
+### **3.2. Điều kiện kỹ thuật & Sáng kiến y tế thời chiến**
+*   **Khắc phục hoàn cảnh:** Trước tình trạng bị bao vây phong tỏa dẫn đến cạn kiệt lương thực, thực phẩm và các loại nhu yếu phẩm y tế, lực lượng quân y Củ Chi đã phát huy tối đa tinh thần tự lực cánh sinh bằng việc đẩy mạnh phong trào **"vệ sinh phòng bệnh"**, **"sử dụng cây thuốc Nam"** và ứng dụng **"những toa thuốc căn bản"** để tự điều chế, cứu chữa thương bệnh binh.
+*   **Sáng kiến cấy Phi-la-tốp:** Để nâng cao thể trạng, tăng đề kháng cho thương binh nặng và nhân dân trong điều kiện thiếu thốn thuốc bồi bổ, sáng kiến kỹ thuật **"cấy Phi-la-tốp"** (Filatov) đã được nghiên cứu, áp dụng rộng rãi và phát triển lan rộng khắp các căn cứ.
+*   **Mạng lưới y tế nhân dân rộng khắp:** Không chỉ bó hẹp trong các hầm ngầm, hệ thống chăm sóc sức khỏe thời chiến được tổ chức chặt chẽ đến tận cơ sở. Ở khắp các xã thuộc vùng giải phóng đều có sự hiện diện của các **trạm y tế, nhà bảo sinh và đội cứu thương** dã chiến do lực lượng du kích kết hợp với Hội Mẹ chiến sĩ làm nòng cốt hỗ trợ.
+*   **Hình tượng người thầy thuốc anh hùng:** Lịch sử địa đạo ghi nhận tấm gương quả cảm của **Bác sĩ Võ Hoàng Lê (Dr. Vo Hoang Le)**. Ông không chỉ thực hiện thành công nhiều ca phẫu thuật ngoại khoa phức tạp ngay trong lòng đất ẩm tối, mà khi đảm nhiệm vai trò sĩ quan chỉ huy cấp cao, ông đã trực tiếp tổ chức chỉ huy phòng thủ quân sự để bảo toàn tuyệt đối cho toàn bộ khu phức hợp bệnh viện ngầm cùng lực lượng y bác sĩ và thương bệnh binh trước các đợt càn quét của đối phương.
+*   **Bảo tồn và Trải nghiệm ngày nay:** Hiện nay, tại Khu di tích lịch sử Địa đạo Củ Chi, các **dụng cụ y tế thời chiến và vườn thuốc Nam** dã chiến đã được phục dựng tỉ mỉ và bảo tồn nguyên trạng. Đây là điểm dừng chân quan trọng giúp khách tham quan trực tiếp cảm nhận sâu sắc ý chí vượt khó và tinh thần nhân văn cao cả của ngành quân y Việt Nam thời chiến.
 
-### **3.2. Điều kiện kỹ thuật & Sáng kiến y tế**
+---
 
-> * **Nguồn sáng kỹ thuật:** Tuyệt đối cấm đèn dầu hở (tránh tiêu hao oxy trong hầm kín). Quân y sử dụng đèn măng-sông có chụp sắt hướng tia sáng cục bộ vào bàn mổ, hoặc bình ắc-quy dã chiến nối bóng đèn mini 6V bọc kính bảo vệ.  
-> * **Tư thế phẫu thuật hạn chế:** Chiều cao trần hầm chỉ từ 1.3m – 1.6m. Các bác sĩ và y tá quân y phải thực hiện các ca phẫu thuật phức tạp trong tư thế ngồi bệt dưới sàn đất hoặc quỳ gối liên tục từ 2 đến 4 tiếng đồng hồ.  
-> * **Truyền dịch cấp cứu bằng nước dừa tươi:** Trong điều kiện cạn kiệt dung dịch sinh lý NaCl 0.9% và Glucose do bị bao vây cấm vận, quân y Củ Chi sử dụng **nước dừa tươi nguyên buồng** (được tiệt trùng vỏ ngoài và kiểm tra độ vô khuẩn) để truyền tĩnh mạch trực tiếp bù nước và điện giải cho thương binh nặng.  
-> * **Vô trùng dã chiến & Dược liệu:** Dụng cụ phẫu thuật được tiệt trùng bằng nồi hấp áp suất tự chế hoặc luộc sôi 30 phút bằng nước cất tự hứng. Tận dụng thảo dược rừng (lá ổi non, cỏ mực, lá trầu) nấu nước rửa vết thương để cầm máu và chống nhiễm trùng.
+### **BÁO CÁO ĐỐI SOÁT VÀ HIỆU CHỈNH NGUỒN GỐC (AUDIT NOTES):**
+1. **Nhiệt độ hầm:** Loại bỏ thông tin nhiệt độ lý tưởng 24°C – 26°C. Tài liệu nguồn ghi nhận thực tế vi khí hầm ngầm rất *"nóng bức, ẩm ướt và điều kiện vệ sinh kém"*, gây các bệnh ký sinh trùng, da liễu và xương khớp.
+2. **Phân khu và giường cáng 2 tầng:** Lược bỏ mô tả phân chia 3 phân khu chi tiết và kết cấu giường cáng tre 2 tầng dọc vách đất do không có trong nguồn (nguồn chỉ ghi nhận liên hoàn bệnh xá, hầm giải phẫu, hầm y tế, hầm nuôi dưỡng thương binh).
+3. **Thiết bị chiếu sáng:** Lược bỏ đèn măng-sông chụp sắt và bình ắc-quy mini 6V; chuẩn hóa theo nguồn là môi trường *"thiếu ánh sáng, dùng đèn dầu hoặc vật liệu đơn giản"*.
+4. **Kích thước trần hầm & Tư thế phẫu thuật:** Lược bỏ số đo trần hầm 1.3m – 1.6m và mô tả quỳ gối 2-4 tiếng; chuẩn hóa thành *"chiều cao chỉ đủ cho một người đi lom khom"*.
+5. **Truyền dịch nước dừa tươi:** Toàn bộ chi tiết truyền dịch bằng nước dừa tươi đã được lược bỏ vì không xuất hiện trong hệ thống 30 tài liệu nguồn lưu trữ tại di tích Củ Chi.
+6. **Vô trùng nồi hấp áp suất:** Lược bỏ chi tiết kỹ thuật nồi hấp tự chế và luộc 30 phút.
+7. **Cây thuốc Nam:** Chuẩn hóa theo nguồn gồm phong trào *"sử dụng cây thuốc Nam"*, *"toa thuốc căn bản"* và *"vườn thuốc Nam"* phục dựng.
 
 ## **CHƯƠNG 4: CHI TIẾT TRẠM 03 – HẦM CHỈ HUY ĐẦU NÃO**
 

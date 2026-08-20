@@ -73,41 +73,41 @@
     "chunk_id": "chunk_hospital_01",
     "location_id": "02_field_hospital",
     "category": "living",
-    "content_vi": "Bệnh xá và phòng mổ dã chiến đặt tại tầng 2 địa đạo ở độ sâu 5m - 7m. Độ sâu này giúp triệt tiêu rung chấn từ bom pháo mặt đất và duy trì nhiệt độ hầm mát mẻ ổn định 24-26 độ C quanh năm. Mặt bằng gồm hầm tiếp nhận, hầm phẫu thuật trải bạt nilông vô trùng và hầm hậu phẫu cáng tre hai tầng.",
-    "content_en": "Field hospital and operating bunker were located at Level 2 (5m - 7m depth), eliminating surface bombing shockwaves and keeping a constant 24-26°C temperature. Facilities included triage, sterile nylon-lined operating room, and 2-tier bamboo bunk recovery wards.",
-    "keywords": ["bệnh xá", "phòng mổ", "độ sâu", "tầng 2", "24 độ C", "cáng tre"],
+    "content_vi": "Trong cấu trúc địa đạo Củ Chi, các công trình y tế như bệnh xá dã chiến, hầm giải phẫu, hầm y tế và hầm nuôi dưỡng thương binh được ưu tiên bố trí liên hoàn tại Tầng 2 (Tầng Trung) ở độ sâu cách mặt đất từ 5m – 8m (hoặc 3m – 10m tùy địa hình ngầm), an toàn trước bom phá thông thường cỡ nhỏ. Đường hầm có chiều cao hạn chế chỉ vừa đủ cho một người đi lom khom, thông khí thụ động qua ống dẫn nối lỗ thở ngụy trang (dạng ụ đất, ụ mối, gốc cây).",
+    "content_en": "In Cu Chi's multi-level system, medical bunkers (field hospitals, surgery wards, nursing stations) were situated at Level 2 (5m - 8m depth, up to 3m - 10m) safe from light demolition bombs. Tunnel height requires stooping, with passive ventilation through disguised surface vents.",
+    "keywords": ["bệnh xá", "hầm giải phẫu", "tầng 2", "5m 8m", "lom khom", "hầm y tế", "nuôi dưỡng thương binh"],
     "embedding": [0.112, 0.088, 0.245, 0.195, 0.155, 0.312, -0.088, 0.165, 0.210, 0.142],
-    "source_authority": "Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
     "chunk_id": "chunk_hospital_02",
     "location_id": "02_field_hospital",
     "category": "living",
-    "content_vi": "Sáng kiến truyền dịch bằng nước dừa tươi: Trong điều kiện cạn kiệt dung dịch sinh lý NaCl 0.9% và Glucose do bao vây cấm vận, quân y Củ Chi dùng nước dừa tươi nguyên buồng đã tiệt trùng vỏ ngoài để truyền tĩnh mạch trực tiếp bù nước và điện giải cấp cứu thương binh nặng.",
-    "content_en": "Coconut water IV infusion: Blockaded without medical saline or glucose, Cu Chi military medics sterilized fresh green coconuts and infused the natural sterile coconut water directly into veins to replenish fluids and electrolytes.",
-    "keywords": ["nước dừa", "truyền dịch", "tĩnh mạch", "điện giải", "cấp cứu", "thuốc"],
+    "content_vi": "Môi trường sinh hoạt và cứu thương dưới lòng hầm cực kỳ khắc nghiệt do thiếu ánh sáng, không khí ẩm ướt, nóng bức và điều kiện vệ sinh kém, khiến người bám trụ dài ngày dễ mắc bệnh ngoài da, ký sinh trùng và xương khớp. Quân y Củ Chi phát huy tinh thần tự lực cánh sinh bằng phong trào 'vệ sinh phòng bệnh', 'sử dụng cây thuốc Nam', áp dụng 'những toa thuốc căn bản' và sáng kiến 'cấy Phi-la-tốp' (Filatov) tăng đề kháng cho thương binh.",
+    "content_en": "Underground medical conditions were severe with low light, high humidity, heat, and poor hygiene causing skin, parasite, and joint ailments. Medics maintained self-reliance via hygiene movements, herbal medicines, standard formulas, and Filatov tissue therapy for wounded fighters.",
+    "keywords": ["khắc nghiệt", "ẩm ướt", "nóng bức", "da liễu", "thuốc Nam", "cấy Phi-la-tốp", "Filatov", "vệ sinh phòng bệnh"],
     "embedding": [0.125, 0.098, 0.260, 0.210, 0.168, 0.325, -0.075, 0.178, 0.225, 0.155],
-    "source_authority": "Viện Lịch sử Quân sự Việt Nam"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
     "chunk_id": "chunk_hospital_03",
     "location_id": "02_field_hospital",
     "category": "living",
-    "content_vi": "Nguồn sáng và tư thế phẫu thuật dưới hầm: Đèn dầu hở bị cấm tuyệt đối để tránh tiêu hao oxy hầm kín. Bác sĩ dùng bình ắc-quy 6V hoặc đèn măng-sông chụp sắt soi cục bộ. Do trần hầm chỉ cao 1.3m - 1.6m, bác sĩ phải ngồi bệt dưới đất hoặc quỳ gối liên tục từ 2 đến 4 tiếng đồng hồ để mổ.",
-    "content_en": "Lighting and surgical posture: Open flames were banned to conserve oxygen. Surgeons used 6V battery lights or hooded lanterns, operating while sitting flat or kneeling continuously for 2 to 4 hours due to 1.3m-1.6m low ceilings.",
-    "keywords": ["đèn măng sông", "ắc quy 6V", "quỳ gối", "ngồi bệt", "trần hầm", "không dùng đèn dầu"],
+    "content_vi": "Mạng lưới y tế nhân dân thời chiến được tổ chức chặt chẽ đến tận cơ sở. Ở khắp các xã thuộc vùng giải phóng đều có trạm y tế, nhà bảo sinh và đội cứu thương dã chiến do lực lượng du kích kết hợp với Hội Mẹ chiến sĩ làm nòng cốt hỗ trợ chăm sóc sức khỏe cho quân dân.",
+    "content_en": "Wartime civilian healthcare was deeply grassroots: liberated communes established health stations, maternity wards, and first aid teams supported by guerillas and the Mothers of Soldiers Association.",
+    "keywords": ["mạng lưới y tế", "nhà bảo sinh", "trạm y tế xã", "hội mẹ chiến sĩ", "đội cứu thương"],
     "embedding": [0.118, 0.092, 0.252, 0.202, 0.160, 0.318, -0.082, 0.170, 0.218, 0.148],
-    "source_authority": "Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
     "chunk_id": "chunk_hospital_04",
     "location_id": "02_field_hospital",
     "category": "living",
-    "content_vi": "Vô trùng và thảo dược quân y: Dụng cụ mổ được tiệt trùng bằng nồi hấp áp suất tự chế hoặc luộc sôi 30 phút bằng nước cất tự hứng. Quân y tận dụng thảo dược rừng như lá ổi non, cỏ mực, lá trầu không nấu nước rửa vết thương để cầm máu và chống nhiễm trùng.",
-    "content_en": "Sterilization and jungle phytomedicine: Surgical tools were autoclaved in homemade pressure cookers or boiled for 30 minutes in condensed water. Medics used wild guava leaves, eclipta, and betel leaves to disinfect wounds and stop bleeding.",
-    "keywords": ["vô trùng", "thảo dược", "lá ổi", "cỏ mực", "tiệt trùng", "cầm máu"],
+    "content_vi": "Lịch sử ghi nhận tấm gương Bác sĩ Võ Hoàng Lê (Dr. Vo Hoang Le) thực hiện nhiều ca phẫu thuật ngoại khoa phức tạp trong lòng đất ẩm tối, đồng thời trực tiếp chỉ huy phòng thủ quân sự bảo vệ bệnh viện ngầm trước các đợt càn quét. Hiện nay, tại di tích Củ Chi, các dụng cụ y tế thời chiến và vườn thuốc Nam dã chiến đã được phục dựng và bảo tồn nguyên trạng.",
+    "content_en": "History honors Dr. Vo Hoang Le who performed complex surgical operations in dark tunnels and personally commanded defensive actions to protect underground hospitals. Today, wartime medical tools and herbal gardens are authentically preserved at the site.",
+    "keywords": ["Võ Hoàng Lê", "Dr. Vo Hoang Le", "phẫu thuật ngoại khoa", "vườn thuốc Nam", "dụng cụ y tế", "phục dựng"],
     "embedding": [0.105, 0.082, 0.238, 0.188, 0.148, 0.305, -0.095, 0.158, 0.202, 0.135],
-    "source_authority": "Ban Quản lý Di tích Lịch sử Địa đạo Củ Chi"
+    "source_authority": "Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi"
   },
   {
     "chunk_id": "chunk_command_01",
