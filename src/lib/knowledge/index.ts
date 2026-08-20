@@ -43,6 +43,21 @@ export function getKnowledgeBySection(section: KnowledgeSectionKey, locale: Loca
 }
 
 /**
+ * Lấy tri thức toàn diện cho câu hỏi: kết hợp bối cảnh tổng thể địa đạo + chi tiết trạm
+ */
+export function getKnowledgeForQuery(section: KnowledgeSectionKey, locale: Locale = "vi"): string {
+  const langKey = locale === "vi" ? "vi" : "en";
+  const stationContent = getKnowledgeBySection(section, locale);
+  const generalOverview = generalKnowledge[langKey].overview;
+
+  if (section === "overview" || section === "sacred") {
+    return `${generalOverview}\n\n${generalKnowledge[langKey].sacred}`;
+  }
+
+  return `[GENERAL CU CHI TUNNEL SYSTEM]:\n${generalOverview}\n\n[SPECIFIC STATION ARCHIVE]:\n${stationContent}`;
+}
+
+/**
  * Lấy toàn bộ văn bản sử liệu theo ngôn ngữ (dùng cho offline fallback)
  */
 export function getFullKnowledgeText(locale: Locale = "vi"): string {

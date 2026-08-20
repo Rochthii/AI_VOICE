@@ -62,14 +62,13 @@ function extractQueryVector(query: string): number[] {
     }
   }
 
-  // Chuẩn hóa vector nếu có khớp
-  if (matchFound) {
-    const magnitude = Math.sqrt(vector.reduce((sum, val) => sum + val * val, 0));
-    return vector.map((v) => v / magnitude);
+  // Không sinh vector giả nếu không có từ khóa khớp
+  if (!matchFound) {
+    return new Array(10).fill(0);
   }
 
-  // Fallback vector ngẫu nhiên nhỏ nếu không bắt được từ khóa
-  return [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1];
+  const magnitude = Math.sqrt(vector.reduce((sum, val) => sum + val * val, 0));
+  return magnitude > 0 ? vector.map((v) => v / magnitude) : vector;
 }
 
 /**

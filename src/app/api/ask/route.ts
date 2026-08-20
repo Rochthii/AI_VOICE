@@ -4,6 +4,7 @@ import { recordAuditLog } from "@/lib/supabase";
 import { streamAIWithFailover, AIMessage } from "@/lib/ai-provider-manager";
 import {
   buildUniversalSystemPrompt,
+  getKnowledgeForQuery,
   getKnowledgeBySection,
   getFullKnowledgeText
 } from "@/lib/knowledge";
@@ -101,10 +102,10 @@ export async function POST(req: NextRequest) {
   }
 
   // ══ TẦNG 4: STREAMING AI với UNIVERSAL MULTILINGUAL TOKEN BUDGET ═══════════
-  // Context injection: chỉ inject section liên quan nhất từ modular knowledge
-  let contextRaw = getKnowledgeBySection(classification.relevantSection, lang);
+  // Context injection: inject tri thức toàn diện (tổng thể hệ thống + chi tiết trạm)
+  let contextRaw = getKnowledgeForQuery(classification.relevantSection, lang);
 
-  // Thêm RAG match nếu có (bổ sung độ chính xác)
+  // Thêm RAG match nếu có (bổ sung độ chính xác cao)
   if (ragMatch) {
     contextRaw = ragMatch.content + "\n\n" + contextRaw;
   }
