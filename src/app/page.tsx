@@ -208,6 +208,7 @@ function MainGuideContent() {
           }
         }
 
+        // Hoàn tất stream SSE
         return fullAnswer;
       } catch (err) {
         console.warn("[Ask Streaming Fallback]:", err);
@@ -217,21 +218,12 @@ function MainGuideContent() {
     [currentStation, locale]
   );
 
-  // Khi nhận câu trả lời AI -> Đọc qua Web Speech TTS
+  // Khi nhận câu trả lời AI -> Đọc qua Microsoft Neural TTS (HoaiMyNeural)
   const handleAnswerReceived = useCallback(
-    (answer: string) => {
+    async (answer: string) => {
+      if (!answer?.trim()) return;
       setActiveSubtitle(answer);
-
-      if (typeof window !== "undefined" && "speechSynthesis" in window) {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(answer);
-        utterance.lang = LOCALE_MAP[locale]?.speechLang || "vi-VN";
-        utterance.rate = 0.95;
-        utterance.onend = () => {
-          audioEngine.play();
-        };
-        window.speechSynthesis.speak(utterance);
-      }
+      await audioEngine.playNeuralTTS(answer, locale);
     },
     [locale]
   );

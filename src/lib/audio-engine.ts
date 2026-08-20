@@ -258,6 +258,68 @@ class AudioEngine {
     }
   }
 
+  /**
+   * Phát giọng đọc Microsoft Neural TTS cao cấp (vi-VN-HoaiMyNeural)
+   * Tự động fallback sang Web Speech API nếu thiết bị mất kết nối mạng.
+   */
+  private ttsAudioElement: HTMLAudioElement | null = null;
+
+  public async playNeuralTTS(text: string, lang: Locale = "vi"): Promise<void> {
+    if (!text?.trim()) return;
+
+    // Tạm dừng phát âm thanh thuyết minh nền
+    this.pause();
+
+    // Dừng âm thanh TTS đang phát trước đó nếu có
+    if (this.ttsAudioElement) {
+      this.ttsAudioElement.pause();
+      this.ttsAudioElement.src = "";
+      this.ttsAudioElement = null;
+    }
+
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
+
+    try {
+      // 1. Thử gọi API Microsoft Neural TTS từ server (/api/tts)
+      const res = await fetch("/api/tts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: text.trim(), lang })
+      });
+
+      if (!res.ok) {
+        throw new Error(`TTS API returned status ${res.status}`);
+      }
+
+      const audioBlob = await res.blob();
+      const audioUrl = URL.createObjectURL(audioBlob);
+
+      const audio = new Audio(audioUrl);
+      this.ttsAudioElement = audio;
+
+      audio.onended = () => {
+        URL.revokeObjectURL(audioUrl);
+        if (this.ttsAudioElement === audio) {
+          this.ttsAudioElement = null;
+        }
+      };
+
+      await audio.play();
+    } catch (err) {
+      console.warn("[AudioEngine] Neural TTS failed, falling back to Web Speech API:", err);
+
+      // 2. Fallback sang Web Speech API nếu offline
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        const utt = new SpeechSynthesisUtterance(text.trim());
+        utt.lang = lang === "vi" ? "vi-VN" : lang === "fr" ? "fr-FR" : lang === "ja" ? "ja-JP" : lang === "ko" ? "ko-KR" : lang === "zh" ? "zh-CN" : "en-US";
+        utt.rate = 0.92;
+        window.speechSynthesis.speak(utt);
+      }
+    }
+  }
+
   public subscribe(listener: PlaybackListener): () => void {
     this.listeners.add(listener);
     listener(this.getState());
