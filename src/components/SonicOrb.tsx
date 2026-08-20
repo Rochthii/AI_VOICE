@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import { Mic, MessageSquare, Send, Sparkles, Volume2 } from "lucide-react";
+import { MessageSquare, Send } from "lucide-react";
 import { audioEngine } from "@/lib/audio-engine";
 import { Locale, getDictionary, LOCALE_MAP } from "@/i18n";
 
@@ -28,6 +28,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
   const [speechTranscript, setSpeechTranscript] = useState("");
   const [isTextModalOpen, setIsTextModalOpen] = useState(false);
   const [typedQuery, setTypedQuery] = useState("");
+  const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   const isListeningRef = useRef(false);
   const latestTranscriptRef = useRef("");
@@ -144,7 +145,6 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
             setSpeechTranscript(currentText);
             latestTranscriptRef.current = currentText;
 
-            // Xóa bộ đếm im lặng cũ khi người dùng còn đang nói
             if (silenceTimerRef.current) {
               clearTimeout(silenceTimerRef.current);
             }
@@ -170,7 +170,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
     }
   }, [locale, finishAndSubmitRecording]);
 
-  // Sóng âm thanh ấm áp, êm dịu (Warm Organic Audio Wave Canvas)
+  // 🌟 HIỆU ỨNG 3D NGHỆ THUẬT SIÊU THỰC TRONG QUẢ CẦU (PURE 3D LIQUID SOUNDWAVE & WAITING FLUID)
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -183,21 +183,58 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const cx = canvas.width / 2;
       const cy = canvas.height / 2;
-      const baseRadius = canvas.width * 0.36;
+      const R = canvas.width * 0.44;
 
-      const waveCount = isPlaying ? 3 : isListening ? 4 : isProcessing ? 2 : 1;
-      const speed = isPlaying ? 0.04 : isListening ? 0.06 : isProcessing ? 0.03 : 0.015;
-      time += speed;
+      time += isProcessing ? 0.05 : isListening ? 0.045 : isPlaying ? 0.035 : 0.018;
 
-      for (let w = 0; w < waveCount; w++) {
+      // 1. Lớp chiều sâu nội vi 3D (Subsurface Ambient Light)
+      const innerGradient = ctx.createRadialGradient(
+        cx - R * 0.25,
+        cy - R * 0.25,
+        R * 0.1,
+        cx,
+        cy,
+        R
+      );
+
+      if (isListening) {
+        innerGradient.addColorStop(0, "rgba(52, 211, 153, 0.45)");
+        innerGradient.addColorStop(0.6, "rgba(16, 185, 129, 0.25)");
+        innerGradient.addColorStop(1, "rgba(6, 78, 59, 0.05)");
+      } else if (isProcessing) {
+        innerGradient.addColorStop(0, "rgba(251, 191, 36, 0.55)");
+        innerGradient.addColorStop(0.5, "rgba(217, 119, 6, 0.3)");
+        innerGradient.addColorStop(1, "rgba(180, 83, 9, 0.05)");
+      } else if (isPlaying) {
+        innerGradient.addColorStop(0, "rgba(252, 211, 77, 0.45)");
+        innerGradient.addColorStop(0.6, "rgba(217, 119, 6, 0.2)");
+        innerGradient.addColorStop(1, "rgba(146, 64, 14, 0.05)");
+      } else {
+        innerGradient.addColorStop(0, "rgba(245, 158, 11, 0.25)");
+        innerGradient.addColorStop(0.7, "rgba(217, 119, 6, 0.1)");
+        innerGradient.addColorStop(1, "rgba(0, 0, 0, 0)");
+      }
+
+      ctx.fillStyle = innerGradient;
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 2. Lõi Sóng Âm & Dòng Chảy Chất Lỏng 3D (3D Resonant Waves)
+      const numWaves = isProcessing ? 4 : isListening ? 3 : isPlaying ? 3 : 2;
+
+      for (let w = 0; w < numWaves; w++) {
         ctx.beginPath();
-        const points = 40;
-        const currentRadius = baseRadius + w * (isListening ? 8 : 6);
+        const baseWaveRadius = R * (0.35 + w * 0.16);
+        const points = 60;
 
         for (let i = 0; i <= points; i++) {
           const angle = (i / points) * Math.PI * 2;
-          const noise = Math.sin(angle * 3 + time + w) * (isListening ? 10 : isPlaying ? 8 : 4);
-          const r = currentRadius + noise;
+          const harmonic =
+            Math.sin(angle * 3 + time * 1.5 + w * 1.2) * (isProcessing ? 9 : isListening ? 7 : isPlaying ? 6 : 3) +
+            Math.cos(angle * 2 - time * 1.2) * (isProcessing ? 6 : isListening ? 5 : isPlaying ? 4 : 2);
+
+          const r = baseWaveRadius + harmonic;
           const x = cx + Math.cos(angle) * r;
           const y = cy + Math.sin(angle) * r;
 
@@ -211,21 +248,54 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
         ctx.closePath();
 
         if (isListening) {
-          ctx.strokeStyle = `rgba(5, 150, 105, ${0.45 - w * 0.08})`;
-          ctx.lineWidth = 2.5;
-        } else if (isPlaying) {
-          ctx.strokeStyle = `rgba(217, 119, 6, ${0.5 - w * 0.1})`;
-          ctx.lineWidth = 2.5;
+          ctx.strokeStyle = `rgba(5, 150, 105, ${0.55 - w * 0.12})`;
+          ctx.lineWidth = 2.5 - w * 0.4;
         } else if (isProcessing) {
-          ctx.strokeStyle = `rgba(180, 83, 9, ${0.4 - w * 0.1})`;
-          ctx.lineWidth = 2;
+          ctx.strokeStyle = `rgba(217, 119, 6, ${0.6 - w * 0.12})`;
+          ctx.lineWidth = 2.5 - w * 0.4;
+        } else if (isPlaying) {
+          ctx.strokeStyle = `rgba(217, 119, 6, ${0.5 - w * 0.12})`;
+          ctx.lineWidth = 2.2 - w * 0.4;
         } else {
-          ctx.strokeStyle = "rgba(217, 119, 6, 0.2)";
-          ctx.lineWidth = 1.5;
+          ctx.strokeStyle = `rgba(217, 119, 6, ${0.25 - w * 0.08})`;
+          ctx.lineWidth = 1.6;
         }
 
         ctx.stroke();
       }
+
+      // 3. Hiệu ứng hạt năng lượng khi đang xử lý (Swirling Energy Dust during Processing)
+      if (isProcessing) {
+        for (let p = 0; p < 8; p++) {
+          const pAngle = time * 2 + (p * Math.PI) / 4;
+          const pDist = R * 0.55 + Math.sin(time * 3 + p) * (R * 0.15);
+          const px = cx + Math.cos(pAngle) * pDist;
+          const py = cy + Math.sin(pAngle) * pDist;
+
+          ctx.fillStyle = "rgba(251, 191, 36, 0.85)";
+          ctx.beginPath();
+          ctx.arc(px, py, 2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // 4. Lớp phản quang vòm thủy tinh 3D cao cấp (Curved Glass Specular Glare)
+      const glare = ctx.createRadialGradient(
+        cx - R * 0.35,
+        cy - R * 0.4,
+        R * 0.05,
+        cx - R * 0.35,
+        cy - R * 0.4,
+        R * 0.7
+      );
+      glare.addColorStop(0, "rgba(255, 255, 255, 0.75)");
+      glare.addColorStop(0.4, "rgba(255, 255, 255, 0.15)");
+      glare.addColorStop(1, "rgba(255, 255, 255, 0)");
+
+      ctx.fillStyle = glare;
+      ctx.beginPath();
+      ctx.arc(cx - R * 0.35, cy - R * 0.4, R * 0.55, 0, Math.PI * 2);
+      ctx.fill();
 
       animFrameIdRef.current = requestAnimationFrame(render);
     };
@@ -239,7 +309,19 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
     };
   }, [isPlaying, isListening, isProcessing]);
 
-  // Chạm vào nút Micro để Bật/Tắt thu âm thông minh
+  // Parallax Tilt 3D khi di chuyển chuột
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 16;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -16;
+    setTilt({ x: y, y: x });
+  };
+
+  const handleMouseLeave = () => {
+    setTilt({ x: 0, y: 0 });
+  };
+
+  // Chạm vào Quả Cầu để Bật/Tắt thu âm thông minh
   const handleToggleListening = useCallback(async () => {
     if (isProcessing) return;
 
@@ -247,12 +329,10 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
     audioEngine.playBambooClickSound();
 
     if (isListening) {
-      // Nếu đang nói mà bấm thêm lần nữa -> Gửi ngay lập tức
       await finishAndSubmitRecording();
       return;
     }
 
-    // Bắt đầu lắng nghe
     setIsListening(true);
     isListeningRef.current = true;
     setSpeechTranscript("");
@@ -292,7 +372,6 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
       }
     }
 
-    // Nếu người dùng bật mic nhưng không nói gì sau 6s -> Tự động dừng
     initialSilenceTimerRef.current = setTimeout(() => {
       if (isListeningRef.current && !latestTranscriptRef.current.trim()) {
         setIsListening(false);
@@ -332,127 +411,93 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
   const sampleQuestions = dict.orb.sampleQuestions;
 
   return (
-    <main className="h-[50vh] w-full flex flex-col items-center justify-center relative select-none p-4">
-      {/* 1. KHỐI ĐĨA ÂM THANH DI TÍCH (HERITAGE SOUND CAPSULE) */}
-      <div className="relative flex flex-col items-center justify-center">
-        {/* Lớp hào quang thở nhẹ nhàng (Organic Warm Breathing Glow) */}
+    <main
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="h-[50vh] w-full flex flex-col items-center justify-center relative select-none p-4 perspective-[1000px]"
+    >
+      {/* 1. QUẢ CẦU 3D CHUẨN ĐIỆN ẢNH (TINH GIẢN 100%, KHÔNG CHỮ, KHÔNG ICON, KHÔNG EMOJI) */}
+      <div
+        style={{
+          transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+          transition: "transform 0.15s ease-out"
+        }}
+        className="relative flex flex-col items-center justify-center animate-sphere-float"
+      >
+        {/* Lớp hào quang nền 3D khuếch tán hữu cơ */}
         <div
-          className={`absolute w-64 h-64 sm:w-72 sm:h-72 rounded-full transition-all duration-700 pointer-events-none ${
+          className={`absolute w-60 h-60 sm:w-68 sm:h-68 rounded-full transition-all duration-700 pointer-events-none ${
             isListening
-              ? "bg-emerald-400/30 blur-3xl scale-110"
+              ? "bg-emerald-400/35 blur-3xl scale-110"
+              : isProcessing
+              ? "bg-amber-500/30 blur-2xl animate-pulse scale-105"
               : isPlaying
               ? "bg-amber-400/30 blur-3xl scale-105"
-              : isProcessing
-              ? "bg-amber-500/20 blur-2xl animate-pulse"
               : "bg-amber-300/20 blur-2xl"
           }`}
         />
 
-        {/* NÚT CHÍNH TƯƠNG TÁC ÂM THANH THÂN THIỆN (CHẠM ĐỂ NÓI -> TỰ ĐỘNG GỬI SAU 3S IM LẶNG) */}
+        {/* QUẢ CẦU 3D NGUYÊN BẢN (PURE TACTILE 3D SPHERE) */}
         <button
           onClick={handleToggleListening}
-          className={`w-52 h-52 sm:w-60 sm:h-60 rounded-full relative cursor-pointer overflow-hidden transition-all duration-300 transform active:scale-95 shadow-2xl flex flex-col items-center justify-center border-2 ${
+          className={`w-52 h-52 sm:w-60 sm:h-60 rounded-full relative cursor-pointer overflow-hidden transition-all duration-500 transform active:scale-95 shadow-2xl flex items-center justify-center border ${
             isListening
-              ? "bg-gradient-to-b from-white via-emerald-50 to-emerald-100/70 border-emerald-500 shadow-emerald-700/25"
+              ? "bg-gradient-to-br from-white via-emerald-50/90 to-emerald-100/70 border-emerald-400/80 shadow-emerald-600/30"
+              : isProcessing
+              ? "bg-gradient-to-br from-white via-amber-50/90 to-amber-100/70 border-amber-400/80 shadow-amber-600/30 animate-pulse"
               : isPlaying
-              ? "bg-gradient-to-b from-white via-amber-50 to-amber-100/60 border-amber-500 shadow-amber-700/20"
-              : "bg-gradient-to-b from-white via-[#FAF6EE] to-[#EFE8DC] border-[#D5CEBF] hover:border-amber-500 shadow-[#00000015]"
+              ? "bg-gradient-to-br from-white via-amber-50/80 to-amber-100/60 border-amber-400/70 shadow-amber-600/25"
+              : "bg-gradient-to-br from-white via-[#FAF6EE] to-[#EFE8DC] border-[#D5CEBF] hover:border-amber-400/80 shadow-[#00000018]"
           }`}
-          aria-label="Chạm để nói chuyện với hướng dẫn viên"
+          aria-label="Quả Cầu 3D CHI VOICE"
         >
-          {/* Canvas sóng âm thanh êm dịu */}
+          {/* Canvas Sóng Âm 3D Độc Quyền */}
           <canvas
             ref={canvasRef}
             width={240}
             height={240}
-            className="absolute inset-0 w-full h-full pointer-events-none opacity-90"
+            className="absolute inset-0 w-full h-full pointer-events-none"
           />
 
-          {/* Biểu tượng trung tâm thân thiện (Icon Mic / Volume / Sparkles) */}
-          <div className="z-10 flex flex-col items-center justify-center space-y-2 pointer-events-none">
-            <div
-              className={`p-4 rounded-full transition-all duration-300 shadow-sm ${
-                isListening
-                  ? "bg-emerald-100 text-emerald-700 scale-110"
-                  : isPlaying
-                  ? "bg-amber-100 text-amber-700 animate-pulse"
-                  : isProcessing
-                  ? "bg-amber-100 text-amber-800 animate-pulse"
-                  : "bg-white/90 text-amber-700 border border-stone-200"
-              }`}
-            >
-              {isListening ? (
-                <Mic className="w-8 h-8 animate-bounce text-emerald-600" />
-              ) : isPlaying ? (
-                <Volume2 className="w-8 h-8 animate-pulse" />
-              ) : isProcessing ? (
-                <Sparkles className="w-8 h-8 animate-spin" />
-              ) : (
-                <Mic className="w-8 h-8" />
-              )}
-            </div>
-
-            {/* Dòng chữ trạng thái rõ ràng, dễ hiểu */}
-            <div className="px-3.5 py-1 rounded-full bg-white/95 border border-stone-300 shadow-sm backdrop-blur-md">
-              <span className="text-[11px] sm:text-xs font-bold tracking-wide text-stone-800 uppercase font-sans">
-                {isListening
-                  ? locale === "vi"
-                    ? "Đang nghe... (Tự gửi sau 3s)"
-                    : "Listening... (Auto-send)"
-                  : isProcessing
-                  ? locale === "vi"
-                    ? "Đang tra sử liệu..."
-                    : "Searching..."
-                  : isPlaying
-                  ? locale === "vi"
-                    ? "Đang thuyết minh"
-                    : "Narrating"
-                  : locale === "vi"
-                  ? "Chạm để nói"
-                  : "Tap to Speak"}
-              </span>
-            </div>
-          </div>
-        </button>
-
-        {/* CÁC VIÊN CHIP GỢI Ý CÂU HỎI ĐÀO SÂU (FOLLOW-UP DISCOVERY CHIPS) */}
-        {followUpSuggestions && followUpSuggestions.length > 0 && !isListening && (
-          <div className="mt-2.5 flex flex-col items-center gap-1.5 max-w-xs px-2 animate-fadeIn">
-            <span className="text-[10px] font-bold text-amber-900 uppercase tracking-wider text-center">
-              💡 {locale === "vi" ? "Gợi ý hỏi tiếp:" : "Suggested questions:"}
-            </span>
-            <div className="flex flex-wrap justify-center gap-1.5">
-              {followUpSuggestions.slice(0, 2).map((sug, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handleSendTypedQuery(sug)}
-                  className="px-3 py-1 rounded-full bg-white/95 border border-amber-300 text-stone-800 hover:bg-amber-100 hover:border-amber-500 hover:text-amber-950 active:scale-95 transition-all text-[11px] font-medium shadow-sm leading-tight text-center"
-                >
-                  {sug}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Nút mở bàn phím gõ chữ phụ bên cạnh */}
-        <button
-          onClick={() => setIsTextModalOpen(true)}
-          className="mt-3 flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-white/90 border border-stone-300 text-stone-700 hover:text-amber-800 hover:border-amber-500 active:scale-95 transition-all text-xs font-semibold shadow-sm"
-        >
-          <MessageSquare className="w-3.5 h-3.5 text-amber-700" />
-          <span>{locale === "vi" ? "Gõ câu hỏi bằng bàn phím" : "Type question"}</span>
+          {/* Vành Rim 3D mạ ánh sáng ngoài cùng */}
+          <div className="absolute inset-0 rounded-full border border-white/60 pointer-events-none shadow-inner" />
         </button>
       </div>
 
-      {/* 2. HIỂN THỊ LỜI NÓI THỜI GIAN THỰC (KHI ĐANG THU ÂM) */}
+      {/* 2. DÒNG PHỤ ĐỀ KHI NÓI TRỰC TIẾP */}
       {speechTranscript && (
-        <div className="absolute bottom-1 max-w-[90%] px-4 py-2 rounded-2xl bg-white border-2 border-emerald-500 text-xs text-stone-900 font-semibold text-center shadow-xl backdrop-blur-md animate-in fade-in z-30">
+        <div className="absolute bottom-2 max-w-[90%] px-4 py-2 rounded-2xl bg-white border-2 border-emerald-500 text-xs text-stone-900 font-semibold text-center shadow-xl backdrop-blur-md animate-in fade-in z-30">
           &ldquo;{speechTranscript}&rdquo;
         </div>
       )}
 
-      {/* 3. MODAL GÕ CÂU HỎI THÂN THIỆN & CÂU HỎI GỢI Ý */}
+      {/* 3. CÁC VIÊN CHIP GỢI Ý CÂU HỎI ĐÀO SÂU (NẰM NGOÀI QUẢ CẦU) */}
+      {followUpSuggestions && followUpSuggestions.length > 0 && !isListening && (
+        <div className="mt-4 flex flex-col items-center gap-1.5 max-w-xs px-2 animate-fadeIn z-20">
+          <div className="flex flex-wrap justify-center gap-1.5">
+            {followUpSuggestions.slice(0, 2).map((sug, idx) => (
+              <button
+                key={idx}
+                onClick={() => handleSendTypedQuery(sug)}
+                className="px-3.5 py-1.5 rounded-full bg-white/95 border border-amber-300 text-stone-800 hover:bg-amber-100 hover:border-amber-500 hover:text-amber-950 active:scale-95 transition-all text-xs font-medium shadow-sm leading-tight text-center"
+              >
+                {sug}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* 4. NÚT GÕ BÀN PHÍM TINH TẾ (NẰM NGOÀI QUẢ CẦU) */}
+      <button
+        onClick={() => setIsTextModalOpen(true)}
+        className="mt-2.5 flex items-center space-x-1.5 px-3.5 py-1 rounded-full bg-white/90 border border-stone-300 text-stone-600 hover:text-amber-800 hover:border-amber-400 active:scale-95 transition-all text-[11px] font-medium shadow-sm"
+      >
+        <MessageSquare className="w-3 h-3 text-amber-700" />
+        <span>{locale === "vi" ? "Gõ câu hỏi" : "Type question"}</span>
+      </button>
+
+      {/* 5. MODAL GÕ CÂU HỎI */}
       {isTextModalOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center p-4">
           <div className="w-full max-w-md bg-[#FAF7F2] border border-[#DDD7CC] rounded-3xl p-6 space-y-4 shadow-2xl animate-in slide-in-from-bottom duration-200 text-stone-900">
