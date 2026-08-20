@@ -87,8 +87,8 @@ export const SafetyBeacon: React.FC<SafetyBeaconProps> = ({
               </div>
             )}
           </div>
-          <span className="text-[10px] text-stone-400 uppercase tracking-wider font-semibold ml-2">
-            Chi tiết ↗
+          <span className="text-[10px] text-stone-400 uppercase tracking-wider font-semibold ml-2 font-mono">
+            XEM CHI TIẾT
           </span>
         </div>
       </header>
@@ -100,7 +100,7 @@ export const SafetyBeacon: React.FC<SafetyBeaconProps> = ({
             {/* Modal Header */}
             <div className="flex items-start justify-between border-b border-stone-800 pb-3">
               <div>
-                <span className="text-[11px] font-bold text-tunnel-amber uppercase tracking-wider">
+                <span className="text-[11px] font-bold text-tunnel-amber uppercase tracking-wider font-mono">
                   TRẠM 0{station.order_index} • ĐỊA ĐẠO CỦ CHI
                 </span>
                 <h2 className="text-lg font-bold text-white mt-0.5">
@@ -117,8 +117,8 @@ export const SafetyBeacon: React.FC<SafetyBeaconProps> = ({
 
             {/* Câu chuyện con người */}
             <div className="p-3.5 rounded-xl bg-tunnel-amber/10 border border-tunnel-amber/20 space-y-1.5">
-              <span className="text-[11px] font-bold text-tunnel-amber uppercase tracking-wider">
-                {locale === "vi" ? "📖 Câu chuyện con người" : "📖 Human Narrative"}
+              <span className="text-[11px] font-bold text-tunnel-amber uppercase tracking-wider font-mono">
+                {locale === "vi" ? "CÂU CHUYỆN LỊCH SỬ" : "HISTORICAL NARRATIVE"}
               </span>
               <p className="text-xs text-stone-200 leading-relaxed italic">
                 &ldquo;{station.human_story_hook[locale]}&rdquo;
@@ -127,8 +127,8 @@ export const SafetyBeacon: React.FC<SafetyBeaconProps> = ({
 
             {/* Key Facts đã kiểm chứng */}
             <div className="space-y-2">
-              <h3 className="text-xs font-bold text-tunnel-jade uppercase tracking-wider">
-                {locale === "vi" ? "Sự thật lịch sử đã kiểm chứng" : "Verified Historical Facts"}
+              <h3 className="text-xs font-bold text-tunnel-jade uppercase tracking-wider font-mono">
+                {locale === "vi" ? "SỰ THẬT LỊCH SỬ ĐÃ KIỂM CHỨNG" : "VERIFIED HISTORICAL FACTS"}
               </h3>
               <div className="space-y-2">
                 {station.key_facts.map((fact, idx) => (
@@ -143,14 +143,14 @@ export const SafetyBeacon: React.FC<SafetyBeaconProps> = ({
             {/* FAQs Phổ biến */}
             {station.faqs && station.faqs.length > 0 && (
               <div className="space-y-2 pt-2 border-t border-stone-800">
-                <h3 className="text-xs font-bold text-tunnel-chalk uppercase tracking-wider">
-                  {locale === "vi" ? "Hỏi & Đáp thường gặp" : "Frequently Asked Questions"}
+                <h3 className="text-xs font-bold text-tunnel-chalk uppercase tracking-wider font-mono">
+                  {locale === "vi" ? "HỎI VÀ ĐÁP THỰC ĐỊA" : "FIELD QUESTIONS & ANSWERS"}
                 </h3>
                 <div className="space-y-2">
                   {station.faqs.map((faq, idx) => (
                     <div key={idx} className="p-2.5 rounded-lg bg-stone-900/90 border border-stone-800 space-y-1">
-                      <p className="text-xs font-semibold text-tunnel-amber">❓ {faq.question[locale]}</p>
-                      <p className="text-xs text-stone-300">💬 {faq.answer[locale]}</p>
+                      <p className="text-xs font-semibold text-tunnel-amber">Q: {faq.question[locale]}</p>
+                      <p className="text-xs text-stone-300">A: {faq.answer[locale]}</p>
                     </div>
                   ))}
                 </div>
@@ -160,7 +160,7 @@ export const SafetyBeacon: React.FC<SafetyBeaconProps> = ({
             {/* Nút đóng */}
             <button
               onClick={() => setIsDetailsOpen(false)}
-              className="w-full py-3 rounded-xl bg-tunnel-amber text-stone-950 font-bold text-xs hover:bg-amber-400 active:scale-95 transition-all"
+              className="w-full py-3 rounded-xl bg-tunnel-amber text-stone-950 font-bold text-xs hover:bg-amber-400 active:scale-95 transition-all font-mono"
             >
               {locale === "vi" ? "ĐÃ HIỂU — TIẾP TỤC NGHE" : "CONTINUE LISTENING"}
             </button>

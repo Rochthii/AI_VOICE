@@ -333,20 +333,26 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                   : "bg-stone-900/60 shadow-inner"
               }`}
             >
-              {/* 3D Embossed Icon */}
+              {/* 3D High-Tech Minimalist Core Icon */}
               {isProcessing ? (
-                <Loader2 className="w-12 h-12 text-tunnel-amber animate-spin drop-shadow-[0_0_10px_rgba(229,169,60,0.8)]" />
+                <Loader2 className="w-10 h-10 text-tunnel-amber animate-spin drop-shadow-[0_0_12px_rgba(229,169,60,0.8)]" />
               ) : isHolding ? (
-                <Mic className="w-12 h-12 text-teal-200 animate-bounce drop-shadow-[0_0_15px_rgba(45,212,191,0.9)]" />
+                <Mic className="w-10 h-10 text-teal-300 animate-bounce drop-shadow-[0_0_15px_rgba(45,212,191,0.9)]" />
               ) : isPlaying ? (
-                <Radio className="w-11 h-11 text-tunnel-amber animate-pulse drop-shadow-[0_0_12px_rgba(229,169,60,0.8)]" />
+                <Radio className="w-10 h-10 text-tunnel-amber animate-pulse drop-shadow-[0_0_12px_rgba(229,169,60,0.8)]" />
               ) : (
-                <Sparkles className="w-11 h-11 text-tunnel-amber drop-shadow-[0_0_10px_rgba(229,169,60,0.7)]" />
+                <div className="flex items-center justify-center space-x-1">
+                  <span className="w-1 h-5 bg-tunnel-amber/90 rounded-full animate-pulse shadow-[0_0_8px_#E5A93C]" />
+                  <span className="w-1 h-8 bg-tunnel-amber rounded-full shadow-[0_0_12px_#E5A93C]" />
+                  <span className="w-1 h-11 bg-tunnel-amber rounded-full shadow-[0_0_15px_#E5A93C]" />
+                  <span className="w-1 h-8 bg-tunnel-amber rounded-full shadow-[0_0_12px_#E5A93C]" />
+                  <span className="w-1 h-5 bg-tunnel-amber/90 rounded-full animate-pulse shadow-[0_0_8px_#E5A93C]" />
+                </div>
               )}
             </div>
 
             {/* Dòng trạng thái phát sáng dưới Icon */}
-            <div className="mt-2 flex items-center space-x-1.5 px-3 py-0.5 rounded-full bg-black/60 border border-white/10 backdrop-blur-md shadow-md">
+            <div className="mt-2.5 flex items-center space-x-1.5 px-3 py-1 rounded-full bg-black/75 border border-white/10 backdrop-blur-md shadow-lg">
               <span
                 className={`w-1.5 h-1.5 rounded-full ${
                   isHolding
@@ -358,19 +364,19 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                     : "bg-tunnel-amber"
                 }`}
               />
-              <span className="text-[10px] sm:text-[11px] font-bold tracking-widest text-white/95 uppercase font-mono">
+              <span className="text-[10px] font-bold tracking-widest text-white/95 uppercase font-mono">
                 {isProcessing
                   ? locale === "vi"
-                    ? "ĐANG TRA SỬ LIỆU"
+                    ? "TRA SỬ LIỆU"
                     : "SEARCHING ARCHIVES"
                   : isHolding
                   ? locale === "vi"
-                    ? "ĐANG LẮNG NGHE..."
-                    : "LISTENING..."
+                    ? "ĐANG LẮNG NGHE"
+                    : "LISTENING"
                   : isPlaying
                   ? locale === "vi"
-                    ? "ĐANG PHÁT THUYẾT MINH"
-                    : "PLAYING NARRATION"
+                    ? "ĐANG THUYẾT MINH"
+                    : "NARRATION ACTIVE"
                   : locale === "vi"
                   ? "CHẠM ĐỂ HỎI AI"
                   : "TAP TO ASK AI"}
@@ -386,7 +392,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
       {/* 4. PHỤ ĐỀ THỜI GIAN THỰC KHI ĐANG NÓI VÀO MIC */}
       {speechTranscript && (
         <div className="absolute -bottom-2 max-w-[90%] px-4 py-2 rounded-xl bg-stone-950/95 border border-tunnel-amber/60 text-xs text-tunnel-amber text-center shadow-2xl backdrop-blur-md animate-in fade-in z-30">
-          <span className="text-stone-400 mr-1">🎙️</span>
+          <span className="font-mono text-stone-400 mr-1.5">[REC]</span>
           &ldquo;{speechTranscript}&rdquo;
         </div>
       )}
@@ -402,11 +408,11 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                   <MessageSquare className="w-5 h-5 text-tunnel-amber" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-bold tracking-wide uppercase text-white">
-                    {locale === "vi" ? "Hỏi Đáp Thuyết Minh Viên AI" : "Ask Historical AI Guide"}
+                  <h3 className="text-sm font-bold tracking-wide uppercase text-white font-mono">
+                    {locale === "vi" ? "TRUNG TÂM HỎI ĐÁP AI" : "AI VOICE INTELLIGENCE"}
                   </h3>
                   <p className="text-[11px] text-stone-400">
-                    {locale === "vi" ? "Tra cứu 100% sử liệu chính thống Địa đạo Củ Chi" : "Verified Cu Chi Archives"}
+                    {locale === "vi" ? "Tra cứu văn khố sử liệu Địa đạo Củ Chi" : "Official Cu Chi Historical Archives"}
                   </p>
                 </div>
               </div>
@@ -414,7 +420,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                 onClick={() => setIsTextModalOpen(false)}
                 className="text-stone-400 hover:text-white text-xs px-2.5 py-1.5 rounded-lg bg-stone-900 border border-stone-800"
               >
-                Đóng ✕
+                Đóng
               </button>
             </div>
 
@@ -445,8 +451,8 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
             {/* Bộ Prompt Mẫu Đối Soát Sử Liệu & Kiểm Tra Guardrail */}
             <div className="space-y-2 pt-1">
               <div className="flex items-center justify-between text-[11px] font-medium text-stone-400">
-                <span>{locale === "vi" ? "⚡ Gợi ý câu hỏi kiểm tra nhanh:" : "⚡ Test Prompt Suite:"}</span>
-                <span className="text-tunnel-amber text-[10px]">Chạm 1 lần để hỏi</span>
+                <span>{locale === "vi" ? "Gợi ý câu hỏi kiểm tra nhanh:" : "Test prompt suite:"}</span>
+                <span className="text-tunnel-amber text-[10px] font-mono">1-CLICK QUERY</span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 max-h-48 overflow-y-auto pr-1">
                 {sampleQuestions.map((sq, idx) => (
@@ -455,7 +461,7 @@ export const SonicOrb: React.FC<SonicOrbProps> = ({
                     onClick={() => handleSendTypedQuery(sq)}
                     className="text-left text-[11px] p-2.5 rounded-xl bg-stone-900/80 border border-stone-800/90 text-stone-300 hover:border-tunnel-amber hover:bg-tunnel-amber/10 hover:text-tunnel-amber active:scale-95 transition-all leading-snug"
                   >
-                    👉 {sq}
+                    • {sq}
                   </button>
                 ))}
               </div>
