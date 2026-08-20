@@ -23,7 +23,7 @@ class AudioEngine {
 
   private constructor() {
     if (typeof window !== "undefined") {
-      this.initAudioElement();
+      this.initAudioElements();
       this.setupDeviceChangeListener();
     }
   }
@@ -36,26 +36,33 @@ class AudioEngine {
   }
 
   /**
-   * Khởi tạo HTML5 Audio Element và kết nối MediaSession
+   * Khởi tạo HTML5 Audio Elements sẵn sàng cho cả nhạc nền và Neural TTS
    */
-  private initAudioElement(): void {
+  private initAudioElements(): void {
     this.audioElement = new Audio();
     this.audioElement.preload = "auto";
-
     this.audioElement.addEventListener("timeupdate", () => this.notifyListeners());
     this.audioElement.addEventListener("play", () => this.notifyListeners());
     this.audioElement.addEventListener("pause", () => this.notifyListeners());
     this.audioElement.addEventListener("ended", () => this.notifyListeners());
     this.audioElement.addEventListener("loadedmetadata", () => this.notifyListeners());
 
+    this.ttsAudioElement = new Audio();
+    this.ttsAudioElement.preload = "auto";
+    this.ttsAudioElement.addEventListener("timeupdate", () => this.notifyListeners());
+    this.ttsAudioElement.addEventListener("play", () => this.notifyListeners());
+    this.ttsAudioElement.addEventListener("pause", () => this.notifyListeners());
+    this.ttsAudioElement.addEventListener("loadedmetadata", () => this.notifyListeners());
+    this.ttsAudioElement.addEventListener("ended", () => this.notifyListeners());
+
     this.setupMediaSession();
   }
 
   /**
-   * Mở khóa AudioContext cho iOS Safari bằng Silent Buffer ở lần chạm đầu tiên
+   * Mở khóa AudioContext và User Activation State cho Web Audio / Safari / Chrome
    */
   public async unlockAudioContext(): Promise<void> {
-    if (this.isUnlocked || typeof window === "undefined") return;
+    if (typeof window === "undefined") return;
 
     try {
       const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
@@ -67,7 +74,7 @@ class AudioEngine {
         await this.audioContext.resume();
       }
 
-      if (this.audioContext) {
+      if (this.audioContext && !this.isUnlocked) {
         const buffer = this.audioContext.createBuffer(1, 1, 22050);
         const source = this.audioContext.createBufferSource();
         source.buffer = buffer;
@@ -147,18 +154,16 @@ class AudioEngine {
   public async playNeuralTTS(text: string, lang: Locale = "vi"): Promise<void> {
     if (!text?.trim()) return;
 
-    // Tạm dừng phát âm thanh đang chạy
-    this.pause();
+    // Mở khóa Audio context ngay lập tức
+    await this.unlockAudioContext();
 
-    if (this.ttsAudioElement) {
-      this.ttsAudioElement.pause();
-      this.ttsAudioElement.src = "";
-      this.ttsAudioElement = null;
-      this.notifyListeners();
+    // Dừng âm thanh nền nếu có
+    if (this.audioElement && !this.audioElement.paused) {
+      this.audioElement.pause();
     }
 
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
+    if (this.ttsAudioElement && !this.ttsAudioElement.paused) {
+      this.ttsAudioElement.pause();
     }
 
     try {
@@ -175,43 +180,36 @@ class AudioEngine {
       const audioBlob = await res.blob();
       const audioUrl = URL.createObjectURL(audioBlob);
 
-      const audio = new Audio(audioUrl);
-      this.ttsAudioElement = audio;
+      if (!this.ttsAudioElement) {
+        this.initAudioElements();
+      }
 
-      audio.addEventListener("timeupdate", () => this.notifyListeners());
-      audio.addEventListener("play", () => this.notifyListeners());
-      audio.addEventListener("pause", () => this.notifyListeners());
-      audio.addEventListener("loadedmetadata", () => this.notifyListeners());
-      audio.addEventListener("ended", () => {
-        URL.revokeObjectURL(audioUrl);
-        if (this.ttsAudioElement === audio) {
-          this.ttsAudioElement = null;
-        }
+      if (this.ttsAudioElement) {
+        this.ttsAudioElement.src = audioUrl;
+        this.ttsAudioElement.load();
+        await this.ttsAudioElement.play();
         this.notifyListeners();
-      });
-
-      await audio.play();
-      this.notifyListeners();
+      }
     } catch (err) {
-      console.warn("[AudioEngine] Neural TTS failed, falling back to Web Speech API:", err);
+      console.warn("[AudioEngine] Neural TTS playback warning:", err);
 
+      // Fallback sang Web Speech API nếu offline hoặc lỗi
       if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
         const utt = new SpeechSynthesisUtterance(text.trim());
         utt.lang = lang === "vi" ? "vi-VN" : lang === "fr" ? "fr-FR" : lang === "ja" ? "ja-JP" : lang === "ko" ? "ko-KR" : lang === "zh" ? "zh-CN" : "en-US";
         utt.rate = 1.0;
-        
         utt.onstart = () => this.notifyListeners();
         utt.onend = () => this.notifyListeners();
-        
         window.speechSynthesis.speak(utt);
       }
     }
   }
 
   public play(): void {
-    if (this.ttsAudioElement && this.ttsAudioElement.paused) {
+    if (this.ttsAudioElement && this.ttsAudioElement.paused && this.ttsAudioElement.src) {
       this.ttsAudioElement.play().catch((err) => console.warn("[AudioEngine] TTS Play failed:", err));
-    } else if (this.audioElement && this.audioElement.paused) {
+    } else if (this.audioElement && this.audioElement.paused && this.audioElement.src) {
       this.audioElement.play().catch((err) => console.warn("[AudioEngine] Play failed:", err));
     }
   }
@@ -240,14 +238,14 @@ class AudioEngine {
   }
 
   public seek(seconds: number): void {
-    const active = this.ttsAudioElement || this.audioElement;
+    const active = (this.ttsAudioElement && this.ttsAudioElement.src) ? this.ttsAudioElement : this.audioElement;
     if (active && Number.isFinite(seconds)) {
       active.currentTime = Math.max(0, Math.min(seconds, active.duration || 0));
     }
   }
 
   public seekRelative(offsetSeconds: number): void {
-    const active = this.ttsAudioElement || this.audioElement;
+    const active = (this.ttsAudioElement && this.ttsAudioElement.src) ? this.ttsAudioElement : this.audioElement;
     if (active) {
       this.seek(active.currentTime + offsetSeconds);
     }
@@ -303,7 +301,12 @@ class AudioEngine {
   }
 
   public getState(): AudioPlaybackState {
-    const activeAudio = this.ttsAudioElement || this.audioElement;
+    const activeAudio = (this.ttsAudioElement && this.ttsAudioElement.src && !this.ttsAudioElement.paused)
+      ? this.ttsAudioElement
+      : (this.ttsAudioElement && this.ttsAudioElement.src)
+      ? this.ttsAudioElement
+      : this.audioElement;
+
     return {
       isPlaying: activeAudio ? !activeAudio.paused : false,
       currentTime: activeAudio?.currentTime || 0,
