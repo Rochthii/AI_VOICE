@@ -50,13 +50,13 @@
 
 ---
 
-## 4. DỮ LIỆU THẬT 100% CỦA 5 TRẠM DI TÍCH TIÊU BIỂU
+## 4. DỮ LIỆU THẬT 100% CỦA 5 TRẠM DI TÍCH TIÊU BIỂU (GROUND TRUTH)
 
-1. **`01_hoang_cam_kitchen` — Bếp Hoàng Cầm:** Dài 15m, cao 1.4m, bò 2 phút. Lối thoát trước mặt 5m. Câu chuyện người lính nuôi quân thức trắng đêm đào rãnh giấu khói sát mặt đất.
-2. **`02_field_hospital` — Hầm Cấp Cứu & Giải Phẫu:** Dài 10m, sâu 6m (Tầng 2), bò 3 phút. Lối thoát dẫn lên giếng nước. Ca phẫu thuật dưới ánh đèn chai đom đóm và nước muối sát trùng.
-3. **`03_command_bunker` — Hầm Chỉ Huy:** Dài 25m, cao 1.5m, bò 3 phút. Lối thoát bí mật ra sông Sài Gòn. Căn phòng đất đưa ra các quyết sách chiến lược thay đổi cục diện chiến trường.
-4. **`04_ventilation_termite` — Lỗ Thông Hơi Ụ Mối:** Dài 18m, cao 0.8m, bò 2.5 phút. Lối thoát sau 8m. Biến ụ mối thành lá phổi ngầm, rắc ớt bột đánh lừa khứu giác chó săn béc-giê.
-5. **`05_booby_traps` — Khu Bẫy Chông Du Kích:** Khu vực mặt đất thoáng mát, đi bộ tự do. Vũ khí thô sơ tre rừng vạt nhọn khuất phục đối phương tối tân.
+1. **`01_hoang_cam_kitchen` — Bếp Hoàng Cầm:** Bố trí Tầng 2 (sâu 5m - 8m), dài 15m, cao 1.4m, bò 2 phút. Lối thoát trước mặt 5m. Dẫn khói qua rãnh/ống ngầm làm nguội thành sương mỏng, phục vụ khoai mì chấm muối mè.
+2. **`02_field_hospital` — Bệnh Xá & Hầm Phẫu Thuật:** Tầng 2 (sâu 5m - 8m), dài 10m, đi lom khom 3 phút. Lối thoát dẫn lên giếng nước ngầm. Tấm gương Bác sĩ Võ Hoàng Lê phẫu thuật dưới hầm tối, sáng kiến cấy Filatov và phong trào dùng cây thuốc Nam.
+3. **`03_command_bunker` — Hầm Chỉ Huy Đầu Não:** Tầng 3 (sâu 8m - 12m), dài 25m, cao 1.5m, bò 3 phút. Hệ thống nút chặn hiểm yếu ngăn khí độc và nước; ngách thoát hiểm ra mép sông Sài Gòn; bàn đạp Chiến dịch Tết Mậu Thân 1968.
+4. **`04_ventilation_termite` — Lỗ Thông Hơi Ụ Mối & Đối Phó Chó Nghiệp Vụ:** Ống tre/kim loại ngụy trang ụ mối đùn, mô đất, bụi rậm. Đối lưu nhiệt tự nhiên. Sáng kiến đặt xà phòng Mỹ át mùi mồ hôi, đánh lừa chó săn béc-giê trong trận càn Crimp (1966) & Cedar Falls (1967).
+5. **`05_booby_traps` — Trận Đồ Bẫy Chông & Vũ Khí Du Kích:** Khu vực mặt đất thoáng mát. Triết lý "lấy thô sơ thắng hiện đại", hai kiểu bẫy kinh điển (chông cánh cửa, chông nắp tự động) và sáng kiến mìn gạt của Anh hùng Tô Văn Đực từ bom pháo lép đánh xe tăng, thiết giáp.
 
 ---
 

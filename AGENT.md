@@ -21,12 +21,15 @@
 * Tập trung vào góc nhìn cảm xúc: Người lính nấu cơm giấu khói thế nào, bác sĩ mổ dưới ánh đèn dầu ra sao, sự mưu trí khi biến ụ mối thành lỗ thở.
 
 ### 🛑 QUY TẮC 3: KHÔNG ẢO GIÁC & BẢO CHỨNG NGUỒN GỐC (ZERO HALLUCINATION & CITATIONS)
-* Chỉ trả lời dựa trên sự thật lịch sử trong RAG Context trích từ 4 tài liệu chính thống:
-  1. *Ban Quản lý Khu Di tích Lịch sử Địa đạo Củ Chi (2020)*
-  2. *Bộ Tư lệnh TP.HCM (2015)*
-  3. *Viện Lịch sử Quân sự Việt Nam (2018)*
-  4. *Tom Mangold & John Penycate (1985)*
-* Khi được hỏi về nguồn gốc sử liệu, AI luôn dẫn nguồn rõ ràng từ 4 tài liệu trên.
+* Chỉ trả lời dựa trên sự thật lịch sử trong RAG Context trích từ 7 tài liệu chính thống:
+  1. *Ban Chấp hành Đảng bộ TP.HCM (2014) — Lịch sử Đảng bộ TP.HCM (1930 - 1975)*
+  2. *Ban Chỉ huy Quân sự huyện Củ Chi (2006) — Lịch sử LLVTND huyện Củ Chi (1945 - 2005)*
+  3. *Bộ Quốc phòng - Quân khu 7 (2004) — Lịch sử Bộ Chỉ huy Miền (1961 - 1976)*
+  4. *Đảng ủy - Bộ Chỉ huy Quân sự TP.HCM (1998) — Lịch sử LLVT TP.HCM (1945 - 1995)*
+  5. *Sở Văn hóa và Thể thao TP.HCM (2020) — Báo cáo hiện trạng bảo tồn Di tích Địa đạo Củ Chi*
+  6. *Thành ủy TP.HCM (2026) — Bộ sách Củ Chi - Đất thép thành đồng (Tập 1, 2, 3)*
+  7. *Tom Mangold & John Penycate (1985) — The Tunnels of Cu Chi*
+* Khi được hỏi về nguồn gốc sử liệu, AI luôn dẫn nguồn rõ ràng từ 7 tài liệu trên.
 * Không có thông tin $\rightarrow$ Từ chối lịch sự, không bịa đặt số liệu chiến trận hay công trình quân sự.
 
 ### 🛑 QUY TẮC 4: TỐI ƯU CHO TAI NGHE DU KHÁCH (VOICE-FIRST FORMATTING)

@@ -54,15 +54,15 @@
 
 ---
 
-## 4. DỮ LIỆU THẬT 100% CỦA 5 TRẠM DI TÍCH TRONG MVP
+## 4. DỮ LIỆU THẬT 100% CỦA 5 TRẠM DI TÍCH TRONG MVP (GROUND TRUTH)
 
 | STT | Mã Trạm (`location_id`) | Tên Điểm Di Tích | Thông Số An Toàn | Câu Chuyện Con Người Xúc Động |
 | :--- | :--- | :--- | :--- | :--- |
-| **01** | `01_hoang_cam_kitchen` | **Bếp Hoàng Cầm** | Dài 15m • Cao 1.4m • 2 phút | Người lính nuôi quân thức trắng đêm đào rãnh giấu khói cho đồng đội có cơm nóng. |
-| **02** | `02_field_hospital` | **Hầm Cấp Cứu** | Dài 10m • Sâu 6m • 3 phút | Ca phẫu thuật dưới ánh đèn chai đom đóm và nước muối sát trùng giữa tiếng bom rung chuyển. |
-| **03** | `03_command_bunker` | **Hầm Chỉ Huy** | Dài 25m • Cao 1.5m • 3 phút | Căn phòng đất ngầm đưa ra những quyết sách chiến lược thay đổi cục diện chiến trường. |
-| **04** | `04_ventilation_termite`| **Lỗ Thông Hơi Ụ Mối**| Dài 18m • Cao 0.8m • 2.5 phút| Biến ụ mối thành lá phổi ngầm, rắc ớt bột đánh lừa khứu giác đàn chó béc-giê săn hầm. |
-| **05** | `05_booby_traps` | **Khu Bẫy Chông** | Mặt đất thoáng mát • Đi bộ | Những thanh tre rừng vạt nhọn thô sơ khuất phục đội quân hiện đại nhất. |
+| **01** | `01_hoang_cam_kitchen` | **Bếp Hoàng Cầm** | Tầng 2 (sâu 5-8m) • Dài 15m • Cao 1.4m • 2 phút | Bếp đỏ lửa nấu khoai mì chấm muối mè, biến lòng hầm thành xã hội thu nhỏ kiên cường. |
+| **02** | `02_field_hospital` | **Bệnh Xá & Hầm Phẫu Thuật** | Tầng 2 (sâu 5-8m) • Dài 10m • Lom khom • 3 phút | Tấm gương Bác sĩ Võ Hoàng Lê phẫu thuật dưới hầm tối, sáng kiến cấy Filatov & dùng cây thuốc Nam. |
+| **03** | `03_command_bunker` | **Hầm Chỉ Huy Đầu Não** | Tầng 3 (sâu 8-12m) • Dài 25m • Cao 1.5m • 3 phút | Nút chặn cô lập khí độc, ngách thoát mép sông Sài Gòn, bàn đạp lịch sử Chiến dịch Tết Mậu Thân 1968. |
+| **04** | `04_ventilation_termite`| **Lỗ Thông Hơi Ụ Mối**| Ụ mối đùn • Dài 18m • Cao 0.8m • 2.5 phút| Ống tre/kim loại đối lưu nhiệt tự nhiên; sáng kiến dùng xà phòng Mỹ đánh lừa chó săn béc-giê. |
+| **05** | `05_booby_traps` | **Trận Đồ Bẫy Chông** | Mặt đất thoáng mát • Đi bộ tự do | Nghệ thuật thô sơ thắng hiện đại với chông cửa, chông nắp tự động & mìn gạt Anh hùng Tô Văn Đực. |
 
 ---
 

@@ -56,26 +56,26 @@ export interface Station {
 ## 2. BỘ DỮ LIỆU THỰC TẾ 5 TRẠM MVP (TÍCH HỢP TÂM LÝ DU KHÁCH)
 
 ### 📍 Trạm 1: `01_hoang_cam_kitchen` (Bếp Hoàng Cầm)
-* **Safety:** Dài 15m | Đi bộ khom lưng | Cao 1.4m | Cửa thoát thoáng gió ngay trước mặt.
-* **Trấn an:** *"Không gian tại bếp tương đối thoáng mát, có lỗ thoát khí tự nhiên."*
-* **Story Hook:** *"Hãy nhìn lớp đất trên trần bếp, nơi người lính nuôi quân đã thức trắng đêm đào từng mét rãnh chỉ để đồng đội có được bữa cơm nóng mà không bị máy bay phát hiện."*
+* **Safety:** Tầng 2 (sâu 5m - 8m) | Dài 15m | Đi lom khom | Cao 1.4m | Cửa thoát thoáng gió ngay trước mặt.
+* **Trấn an:** *"Khu vực bếp tương đối thoáng mát ở Tầng 2, trần hầm cao 1.4 mét. Bạn hãy thở đều và di chuyển thong thả."*
+* **Story Hook:** *"Bếp Hoàng Cầm đỏ lửa nấu chín những củ khoai mì dẻo thơm chấm muối mè, cùng các hầm sinh hoạt biến lòng địa đạo thành một xã hội thu nhỏ kiên cường giữa vùng chiến sự khốc liệt."*
 
-### 📍 Trạm 2: `02_field_hospital` (Hầm Cấp Cứu & Giải Phẫu)
-* **Safety:** Nằm ở tầng 2 (sâu 6m) | Bò trườn 10m | Cao 1.2m | Lối thoát dẫn thẳng lên giếng nước.
-* **Trấn an:** *"Hầm nằm sâu và rất kiên cố, nhiệt độ mát hơn bên ngoài 2-3 độ C."*
-* **Story Hook:** *"Dưới ánh đèn dầu chai tù mù và những đợt bom rung chuyển mặt đất, các bác sĩ đã phẫu thuật bằng kìm tự chế và nước muối sát trùng..."*
+### 📍 Trạm 2: `02_field_hospital` (Bệnh Xá & Hầm Phẫu Thuật Dã Chiến)
+* **Safety:** Tầng 2 (sâu 5m – 8m) | Đi lom khom 10m | Cao 1.4m | Lối thoát hiểm dẫn thẳng lên giếng nước ngầm.
+* **Trấn an:** *"Hầm bệnh xá nằm ở Tầng 2 sâu 5m - 8m, an toàn trước bom phá thông thường. Chiều cao hầm chỉ vừa đủ đi lom khom, xin quý khách di chuyển chậm và cẩn thận."*
+* **Story Hook:** *"Hình tượng Bác sĩ Võ Hoàng Lê quả cảm thực hiện những ca phẫu thuật ngoại khoa phức tạp dưới ngọn đèn dầu le lói trong lòng đất ẩm tối, vừa cầm dao mổ vừa chỉ huy bảo vệ toàn vẹn khu bệnh viện ngầm."*
 
-### 📍 Trạm 3: `03_command_bunker` (Hầm Chỉ Huy Khu Ủy)
-* **Safety:** Dài 25m | Đi khom | Cao 1.5m | Có cửa thoát bí mật hướng ra sông Sài Gòn.
-* **Trấn an:** *"Hầm chỉ huy có diện tích rộng nhất, có băng ghế nghỉ chân cho du khách."*
-* **Story Hook:** *"Từ căn phòng đất nhỏ bé này, những quyết sách làm thay đổi cục diện chiến trường miền Nam đã được truyền đi qua mạng lưới giao liên ngầm."*
+### 📍 Trạm 3: `03_command_bunker` (Hầm Chỉ Huy Đầu Não)
+* **Safety:** Tầng 3 (sâu 8m – 12m) | Dài 25m | Đi khom | Cao 1.5m | Ngách thoát hiểm cơ mật trổ thẳng ra sát mép sông Sài Gòn.
+* **Trấn an:** *"Hầm chỉ huy ở Tầng 3 sâu 8m - 12m là tầng kiên cố nhất, có khả năng chịu lực nén tự nhiên tuyệt vời trước các loại bom đạn lớn."*
+* **Story Hook:** *"Tại quần thể hầm chỉ huy Bến Dược và Bến Đình, các quyết sách quân sự táo bạo đã được ban hành, biến nơi đây thành bàn đạp lịch sử cho cuộc Tổng tiến công Tết Mậu Thân 1968."*
 
-### 📍 Trạm 4: `04_ventilation_termite` (Lỗ Thông Hơi Ụ Mối)
-* **Safety:** Đoạn hầm chuyển tiếp 18m | Bò sát đất | Cao 0.8m | Cửa thoát hiểm sau 8m.
-* **Trấn an:** *"Bạn đang ở gần mặt đất nhất, luồng gió tươi liên tục thổi qua lỗ thông hơi."*
-* **Story Hook:** *"Một ụ mối vô tri trên mặt đất nhưng là lá phổi cứu sống hàng trăm con người bên dưới; rắc một chút ớt bột để đánh lừa cả đàn chó săn thiện chiến nhất."*
+### 📍 Trạm 4: `04_ventilation_termite` (Lỗ Thông Hơi Ụ Mối & Đối Phó Chó Nghiệp Vụ)
+* **Safety:** Đoạn hầm chuyển tiếp 18m | Đi lom khom | Cao 0.8m | Cửa thoát hiểm sau 8m.
+* **Trấn an:** *"Đoạn hầm này có chiều cao hạn chế cần đi lom khom, nhưng hệ thống đối lưu nhiệt tự nhiên liên tục hút dưỡng khí mới xuống hầm."*
+* **Story Hook:** *"Sáng kiến đặt xà phòng Mỹ tại cửa hầm và lỗ thông hơi đã vô hiệu hóa hoàn toàn khứu giác đàn chó săn béc-giê của đối phương trong các trận càn quét khốc liệt."*
 
-### 📍 Trạm 5: `05_booby_traps` (Khu Vực Bẫy Chông Du Kích)
-* **Safety:** Khu vực trên mặt đất râm mát | Đi bộ tự do | Không gian mở.
-* **Trấn an:** *"Bạn đã hoàn thành hành trình ngầm và trở lại mặt đất an toàn."*
-* **Story Hook:** *"Những thanh tre rừng vạt nhọn thô sơ biến thành vũ khí khuất phục những đội quân tối tân nhất thế giới."*
+### 📍 Trạm 5: `05_booby_traps` (Trận Đồ Bẫy Chông & Vũ Khí Du Kích)
+* **Safety:** Khu vực trưng bày trên mặt đất rộng rãi, thoáng mát, đi lại tự do.
+* **Trấn an:** *"Chúc mừng bạn đã hoàn thành hành trình ngầm và trở lại mặt đất an toàn!"*
+* **Story Hook:** *"Sáng kiến tái chế bom pháo lép thành mìn gạt của Anh hùng Tô Văn Đực đã biến vũ khí hủy diệt của đối phương thành vũ khí bảo vệ quê hương, phá hủy hàng trăm xe tăng, xe bọc thép trong trận càn Cedar Falls 1967."*

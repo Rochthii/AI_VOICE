@@ -12,13 +12,13 @@
 ┌────────────────────────────────────────────────────────────────────────┐
 │               MA TRẬN ĐỐI SOÁT SỰ THẬT LỊCH SỬ & KỸ THUẬT              │
 ├──────────────┬────────────────────────┬────────────────────────────────┤
-│ ĐIỂM DI TÍCH │ THÔNG SỐ VẬT LÝ THỰC TẾ│ BẢN CHẤT KHOA HỌC & LỊCH SỬ    │
+│ ĐIỂM DI TÍCH │ THÔNG SỐ ĐỊA TẦNG      │ BẢN CHẤT KHOA HỌC & SỬ LIỆU    │
 ├──────────────┼────────────────────────┼────────────────────────────────┤
-│ Bếp Hoàng Cầm│ 4 khối, rãnh 10-20m    │ Hạ nhiệt khói >250°C -> 30-35°C│
-│ Bệnh Xá      │ Tầng 2, sâu 5-7m, 24°C │ Truyền dịch nước dừa vô trùng  │
-│ Hầm Chỉ Huy  │ Tầng 3, sâu 8-12m      │ Cửa bẻ góc Z/L chặn Shockwave  │
-│ Lỗ Thông Hơi │ Ụ mối cao 1-2m         │ Đối lưu tự nhiên + Bột ớt/tiêu │
-│ Bẫy Chông    │ 6 loại bẫy kinh điển   │ Tre già tôi than củi hóa sừng  │
+│ Bếp Hoàng Cầm│ Tầng 2, sâu 5m - 8m    │ Rãnh ngầm làm nguội & tản khói │
+│ Bệnh Xá      │ Tầng 2, sâu 5m - 8m    │ Cấy Filatov, dùng cây thuốc Nam│
+│ Hầm Chỉ Huy  │ Tầng 3, sâu 8m - 12m   │ Nút chặn cô lập, thoát sông SG │
+│ Lỗ Thông Hơi │ Ụ mối đùn, mô đất      │ Đối lưu tự nhiên + Xà phòng Mỹ │
+│ Bẫy Chông    │ Chông cửa, chông nắp   │ Mìn gạt Tô Văn Đực từ bom lép  │
 └──────────────┴────────────────────────┴────────────────────────────────┘
 ```
 
