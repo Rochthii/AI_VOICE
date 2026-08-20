@@ -37,6 +37,21 @@ export default function RootLayout({
     <html lang="vi" className="dark bg-tunnel-base text-tunnel-chalk h-full overflow-hidden">
       <body className="h-full w-full overflow-hidden antialiased select-none touch-manipulation bg-tunnel-base">
         {children}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator && window.location.protocol === 'https:' || window.location.hostname === 'localhost') {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').then(function(reg) {
+                    console.log('[CHI PWA] ServiceWorker registered with scope:', reg.scope);
+                  }).catch(function(err) {
+                    console.warn('[CHI PWA] ServiceWorker registration failed:', err);
+                  });
+                });
+              }
+            `
+          }}
+        />
       </body>
     </html>
   );

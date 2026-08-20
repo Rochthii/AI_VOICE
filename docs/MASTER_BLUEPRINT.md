@@ -6,9 +6,11 @@
 ## 1. ĐỊNH VỊ SẢN PHẨM & GIÁ TRỊ CỐT LÕI
 * **Tên sản phẩm:** Củ Chi Voice Guide (Người Bạn Đồng Hành Nơi Lòng Đất).
 * **Bản chất:** Web App (PWA) thuyết minh viên giọng nói AI thông minh, không cần cài đặt App Store, phục vụ du khách khám phá Địa đạo Củ Chi.
-* **Mô hình Hybrid 2 Chế độ:**
+* **Mô hình Hybrid 3 Trụ Cột:**
   1. **Chế độ Thuyết minh Ngầm (Offline-First, Zero-Latency):** Quét QR tại cửa hầm $\rightarrow$ Tải trước âm thanh trong $150\text{ms}$ $\rightarrow$ Cất máy vào túi, vừa khom lưng bò vừa nghe thuyết minh chuẩn (Không cần sóng 4G/WiFi, không cần nhìn màn hình).
-  2. **Chế độ Hỏi đáp AI (Voice-to-Voice RAG):** Khi dừng chân tại các hầm rộng $\rightarrow$ Chạm giữ Quả Cầu Âm Bản $220\text{px}$ để hỏi sâu chi tiết sử liệu $\rightarrow$ AI trả lời chính xác $100\%$ từ tư liệu Ban Quản Lý Di Tích trong vòng $< 1.5\text{s}$.
+  2. **Chế độ Hỏi đáp AI Đa Tầng (Multi-Tier Streaming Voice AI):** Khi dừng chân tại các hầm rộng $\rightarrow$ Chạm giữ Quả Cầu Âm Bản $220\text{px}$ để hỏi sâu chi tiết sử liệu $\rightarrow$ Pipeline 5 tầng xử lý với **Instant Failover 0ms** (Groq $\rightarrow$ Gemini $\rightarrow$ OpenRouter free) $\rightarrow$ AI trả lời chính xác $100\%$ từ tư liệu Ban Quản Lý Di Tích trong vòng $1.2\text{s} - 1.5\text{s}$.
+  3. **Hệ Thống Đa Ngôn Ngữ (Universal 6-Lang i18n):** Hỗ trợ 6 ngôn ngữ thông dụng (🇻🇳 VI, 🇬🇧 EN, 🇫🇷 FR, 🇯🇵 JA, 🇰🇷 KO, 🇨🇳 ZH) với Universal Prompt Builder (~110 tokens) tự động nhận diện ngôn ngữ và phản hồi chuẩn xác.
+  4. **Cơ Sở Dữ Liệu Doanh Nghiệp (Supabase Cloud + pgvector):** Lưu trữ 6 thực thể với RLS bảo mật 100%, Semantic Cache chia sẻ, và nhật ký kiểm toán bất biến `audit_logs` (chỉ cho phép INSERT).
 
 ---
 

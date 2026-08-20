@@ -76,12 +76,12 @@ Tài liệu này chia nhỏ toàn bộ quá trình xây dựng bản **CHI VOICE
 
 ---
 
-## 📦 PHASE 6: PWA OFFLINE CACHE & NGHIỆM THU 5 BÀI TEST THỰC ĐỊA - [⏳ BƯỚC KẾ TIẾP]
+## 📦 PHASE 6: PWA OFFLINE CACHE & NGHIỆM THU 5 BÀI TEST THỰC ĐỊA - [✅ HOÀN TẤT 100%]
 *Mục tiêu:* Hoàn thiện Service Worker Cache-First cho toàn bộ tài nguyên và nghiệm thu 5 bài test sống còn.
 
 * [x] **Task 6.1:** Tạo `public/manifest.json`: Khai báo PWA Standalone, màu nền `#0D0E11`, icon di tích.
 * [x] **Task 6.2:** Cung cấp bộ 10 file audio thuyết minh mẫu cho 5 trạm trong `public/audio/stations/`.
-* [ ] **Task 6.3:** Cấu hình Service Worker (`public/sw.js` hoặc Workbox) Cache-First toàn bộ tài nguyên khi quét QR lần đầu.
+* [x] **Task 6.3:** Cấu hình Service Worker (`public/sw.js`) Cache-First toàn bộ tài nguyên khi quét QR lần đầu.
 * [x] **Task 6.4 (Test 1 - Audio Autoplay & TTS):** Xác nhận audio phát ngay trơn tru khi chọn trạm.
 * [x] **Task 6.5 (Test 2 - Zero-Scroll 100vh):** Xác nhận giao diện vừa khít $100\text{vh}$, Quả Cầu chiếm đúng $50\%$.
 * [x] **Task 6.6 (Test 3 - Voice AI Q&A):** Bấm giữ Quả Cầu hỏi *"Bếp Hoàng Cầm giấu khói thế nào?"* $\rightarrow$ AI trả lời chính xác trong 2 câu ngắn.
