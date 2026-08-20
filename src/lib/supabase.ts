@@ -36,7 +36,7 @@ export interface AuditLogEntry {
   responseText: string;
   matchedChunkId?: string;
   confidenceScore?: number;
-  guardrailDecision: "SAFE" | "PROVOCATION_INTERCEPTED" | "LOW_SIMILARITY_FALLBACK" | "JAILBREAK_ATTEMPT";
+  guardrailDecision: string; // SAFE | PROVOCATION_INTERCEPTED | LOW_SIMILARITY_FALLBACK | JAILBREAK_ATTEMPT | AI_RESPONSE | ALL_PROVIDERS_FAILED_OFFLINE_FALLBACK | ...
   sourceAuthority?: string;
   clientIp?: string;
   userAgent?: string;
