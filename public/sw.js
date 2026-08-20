@@ -1,24 +1,34 @@
 /**
  * CHI VOICE - PWA SERVICE WORKER (CACHE-FIRST OFFLINE RUNTIME)
- * Bảo đảm 100% tài nguyên được cache sẵn để du khách xuống hầm 12m không cần mạng
+ * Bảo đảm 100% tài nguyên và tệp âm thanh 5 trạm được cache sẵn để du khách xuống hầm 12m không cần mạng
  */
 
-const CACHE_NAME = "chi-voice-v2.0";
+const CACHE_NAME = "chi-voice-v3.0";
 const STATIC_ASSETS = [
   "/",
   "/qr",
   "/manifest.json",
   "/icons/icon-192.png",
-  "/icons/icon-512.png"
+  "/icons/icon-512.png",
+  "/audio/stations/01_kitchen_vi.mp3",
+  "/audio/stations/01_kitchen_en.mp3",
+  "/audio/stations/02_hospital_vi.mp3",
+  "/audio/stations/02_hospital_en.mp3",
+  "/audio/stations/03_command_vi.mp3",
+  "/audio/stations/03_command_en.mp3",
+  "/audio/stations/04_termite_vi.mp3",
+  "/audio/stations/04_termite_en.mp3",
+  "/audio/stations/05_traps_vi.mp3",
+  "/audio/stations/05_traps_en.mp3"
 ];
 
-// 1. Cài đặt Service Worker và Cache tài nguyên tĩnh
+// 1. Cài đặt Service Worker và Cache trước toàn bộ audio & app shell
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      console.log("[SW] Pre-caching static assets for subterranean usage...");
+      console.log("[SW] Pre-caching static assets and station audio for subterranean usage...");
       return cache.addAll(STATIC_ASSETS).catch((err) => {
-        console.warn("[SW] Cache addAll error:", err);
+        console.warn("[SW] Cache addAll warning:", err);
       });
     })
   );
@@ -50,7 +60,7 @@ self.addEventListener("fetch", (event) => {
   // Không can thiệp API POST requests
   if (request.method !== "GET") return;
 
-  // Audio files: Cache First
+  // Audio files: Cache First (Tải 0ms, không phụ thuộc mạng)
   if (url.pathname.startsWith("/audio/")) {
     event.respondWith(
       caches.match(request).then((cached) => {
@@ -79,7 +89,6 @@ self.addEventListener("fetch", (event) => {
           return networkResponse;
         })
         .catch(() => {
-          // Khi mất mạng hoàn toàn và không có cache -> trả về cached nếu có
           return cached || new Response("Offline", { status: 503 });
         });
 
