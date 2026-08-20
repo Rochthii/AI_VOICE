@@ -19,6 +19,7 @@ import {
 } from "@/lib/token-budget";
 import { Locale } from "@/i18n/types";
 import { AIQueryRequest } from "@/types/rag";
+import { detectQueryLanguage } from "@/lib/shared";
 
 export const runtime = "nodejs";
 export const maxDuration = 30;
@@ -44,7 +45,9 @@ export async function POST(req: NextRequest) {
 
   const rawQuery = body.query?.trim() || "";
   const stationId = body.current_station_id || undefined;
-  const lang = (body.lang || "vi") as Locale;
+  // Tự động nhận diện ngôn ngữ câu hỏi (ưu tiên thứ tiếng thực tế du khách hỏi)
+  const clientLang = (body.lang || "vi") as Locale;
+  const lang = (detectQueryLanguage(rawQuery, clientLang)) as Locale;
   const rawHistory = body.conversation_history || [];
 
   if (!rawQuery) {
