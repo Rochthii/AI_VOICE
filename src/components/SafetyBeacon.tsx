@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { Station } from "@/types/station";
 import { Locale, getDictionary, getLocalizedText, SUPPORTED_LOCALES, LOCALE_MAP } from "@/i18n";
 import { ShieldCheck, Compass, Globe, WifiOff, BookOpen, X, CheckCircle2, Check } from "lucide-react";
+import { StationDossierModal } from "./StationDossierModal";
+import { audioEngine } from "@/lib/audio-engine";
 
 interface SafetyBeaconProps {
   station: Station;
@@ -182,94 +184,25 @@ export const SafetyBeacon: React.FC<SafetyBeaconProps> = ({
         </div>
       )}
 
-      {/* MODAL CHI TIẾT SỬ LIỆU TRẠM */}
-      {isDetailsOpen && (
-        <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-end sm:items-center justify-center p-4">
-          <div className="w-full max-w-lg bg-stone-950 border border-stone-800 rounded-2xl p-5 space-y-4 max-h-[85vh] overflow-y-auto animate-in slide-in-from-bottom duration-200">
-            {/* Modal Header */}
-            <div className="flex items-start justify-between border-b border-stone-800 pb-3">
-              <div>
-                <span className="text-[11px] font-bold text-tunnel-amber uppercase tracking-wider font-mono">
-                  {dict.common.station} 0{station.order_index} • ĐỊA ĐẠO CỦ CHI
-                </span>
-                <h2 className="text-lg font-bold text-white mt-0.5">
-                  {stationTitle}
-                </h2>
-              </div>
-              <button
-                onClick={() => setIsDetailsOpen(false)}
-                className="p-1.5 rounded-lg bg-stone-900 text-stone-400 hover:text-white"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Câu chuyện con người */}
-            <div className="p-3.5 rounded-xl bg-tunnel-amber/10 border border-tunnel-amber/20 space-y-1.5">
-              <span className="text-[11px] font-bold text-tunnel-amber uppercase tracking-wider font-mono">
-                {dict.beacon.historicalStory}
-              </span>
-              <p className="text-xs text-stone-200 leading-relaxed italic">
-                &ldquo;{storyHook}&rdquo;
-              </p>
-            </div>
-
-            {/* Key Facts đã kiểm chứng */}
-            <div className="space-y-2">
-              <h3 className="text-xs font-bold text-tunnel-jade uppercase tracking-wider font-mono">
-                {dict.beacon.verifiedFacts}
-              </h3>
-              <div className="space-y-2">
-                {station.key_facts.map((fact, idx) => (
-                  <div key={idx} className="flex items-start space-x-2 text-xs text-stone-300">
-                    <CheckCircle2 className="w-4 h-4 text-tunnel-jade flex-shrink-0 mt-0.5" />
-                    <span>{getLocalizedText(fact, locale)}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* FAQs Phổ biến */}
-            {station.faqs && station.faqs.length > 0 && (
-              <div className="space-y-2 pt-2 border-t border-stone-800">
-                <h3 className="text-xs font-bold text-tunnel-chalk uppercase tracking-wider font-mono">
-                  {dict.beacon.fieldFaq}
-                </h3>
-                <div className="space-y-2">
-                  {station.faqs.map((faq, idx) => (
-                    <div key={idx} className="p-2.5 rounded-lg bg-stone-900/90 border border-stone-800 space-y-1">
-                      <p className="text-xs font-semibold text-tunnel-amber">
-                        Q: {getLocalizedText(faq.question, locale)}
-                      </p>
-                      <p className="text-xs text-stone-300">
-                        A: {getLocalizedText(faq.answer, locale)}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Nút thao tác */}
-            <div className="flex items-center space-x-2 pt-2">
-              <a
-                href="/qr"
-                target="_blank"
-                rel="noreferrer"
-                className="flex-1 py-3 rounded-xl bg-stone-900 border border-stone-700 text-stone-300 font-bold text-xs hover:border-tunnel-amber hover:text-tunnel-amber active:scale-95 transition-all text-center font-mono"
-              >
-                {dict.common.viewQr}
-              </a>
-              <button
-                onClick={() => setIsDetailsOpen(false)}
-                className="flex-1 py-3 rounded-xl bg-tunnel-amber text-stone-950 font-bold text-xs hover:bg-amber-400 active:scale-95 transition-all font-mono"
-              >
-                {dict.common.understood}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* MODAL CHI TIẾT SỬ LIỆU & HỒ SƠ KHÁM PHÁ TRẠM */}
+      <StationDossierModal
+        station={station}
+        locale={locale}
+        isOpen={isDetailsOpen}
+        onClose={() => setIsDetailsOpen(false)}
+        onPlayNarration={() => {
+          setIsDetailsOpen(false);
+          const title = getLocalizedText(station.title, locale);
+          const summary = getLocalizedText(station.short_summary, locale);
+          const story = getLocalizedText(station.human_story_hook, locale);
+          const audioUrl = (station.audio_assets as Record<string, { url: string }>)?.[locale]?.url || (station.audio_assets as Record<string, { url: string }>)?.[locale === "vi" ? "vi" : "en"]?.url;
+          audioEngine.playStationNarration(station.id, title, summary, story, locale, audioUrl);
+        }}
+        onAskAI={() => {
+          setIsDetailsOpen(false);
+          audioEngine.pause();
+        }}
+      />
     </>
   );
 };

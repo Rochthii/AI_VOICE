@@ -1,9 +1,23 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Station } from "@/types/station";
 import { Locale, getDictionary, getLocalizedText, LOCALE_MAP } from "@/i18n";
-import { Compass, ShieldCheck, Flame, HeartPulse, ShieldAlert, Wind, Crosshair, QrCode, Sparkles, ChevronRight, ArrowLeft } from "lucide-react";
+import {
+  Compass,
+  ShieldCheck,
+  Flame,
+  HeartPulse,
+  ShieldAlert,
+  Wind,
+  Crosshair,
+  QrCode,
+  Sparkles,
+  ChevronRight,
+  ArrowLeft,
+  BookOpen
+} from "lucide-react";
+import { StationDossierModal } from "./StationDossierModal";
 
 interface OverviewHubProps {
   stations: Station[];
@@ -34,6 +48,7 @@ export const OverviewHub: React.FC<OverviewHubProps> = ({
   onSelectStation,
   onClose
 }) => {
+  const [dossierStation, setDossierStation] = useState<Station | null>(null);
   const dict = getDictionary(locale);
 
   return (
@@ -52,8 +67,8 @@ export const OverviewHub: React.FC<OverviewHubProps> = ({
           </h1>
           <p className="text-xs text-stone-400">
             {locale === "vi"
-              ? "Chọn một trạm thực địa để xem hồ sơ chi tiết và nghe thuyết minh"
-              : "Select a field station to view full dossier and audio guide"}
+              ? "Bấm vào từng trạm để xem hồ sơ chi tiết (có những gì, nguyên lý hoạt động)"
+              : "Click any station to explore its full dossier, artifacts, and engineering secrets"}
           </p>
         </div>
 
@@ -93,7 +108,7 @@ export const OverviewHub: React.FC<OverviewHubProps> = ({
         {/* Danh sách 5 Trạm Thực Địa */}
         <div className="space-y-3">
           <h3 className="text-xs font-bold text-stone-400 uppercase tracking-widest font-mono px-1">
-            {locale === "vi" ? "5 TRẠM THỰC ĐỊA CHÍNH THỨC" : "5 OFFICIAL FIELD STATIONS"}
+            {locale === "vi" ? "5 TRẠM THỰC ĐỊA CHÍNH THỨC (BẤM ĐỂ KHÁM PHÁ)" : "5 OFFICIAL FIELD STATIONS"}
           </h3>
 
           {stations.map((st) => {
@@ -104,7 +119,7 @@ export const OverviewHub: React.FC<OverviewHubProps> = ({
             return (
               <button
                 key={st.id}
-                onClick={() => onSelectStation(st)}
+                onClick={() => setDossierStation(st)}
                 className="w-full p-4 rounded-2xl bg-stone-950/80 border border-stone-800/80 hover:border-tunnel-amber/60 hover:bg-stone-900/80 active:scale-[0.98] transition-all text-left flex items-center justify-between group shadow-lg"
               >
                 <div className="flex items-start space-x-3.5 pr-2">
@@ -132,7 +147,10 @@ export const OverviewHub: React.FC<OverviewHubProps> = ({
                   </div>
                 </div>
 
-                <ChevronRight className="w-5 h-5 text-stone-500 group-hover:text-tunnel-amber group-hover:translate-x-1 transition-all flex-shrink-0" />
+                <div className="flex items-center space-x-1 flex-shrink-0 text-tunnel-amber opacity-80 group-hover:opacity-100">
+                  <BookOpen className="w-4 h-4" />
+                  <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-all" />
+                </div>
               </button>
             );
           })}
@@ -150,6 +168,26 @@ export const OverviewHub: React.FC<OverviewHubProps> = ({
           </span>
         </div>
       </footer>
+
+      {/* 4. MODAL HỒ SƠ CHI TIẾT TRẠM (STATION DOSSIER) */}
+      {dossierStation && (
+        <StationDossierModal
+          station={dossierStation}
+          locale={locale}
+          isOpen={true}
+          onClose={() => setDossierStation(null)}
+          onPlayNarration={() => {
+            const st = dossierStation;
+            setDossierStation(null);
+            onSelectStation(st);
+          }}
+          onAskAI={() => {
+            const st = dossierStation;
+            setDossierStation(null);
+            onSelectStation(st);
+          }}
+        />
+      )}
     </div>
   );
 };
